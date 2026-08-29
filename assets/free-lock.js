@@ -75,7 +75,13 @@
   function lockBookCards(){
     var grid = document.getElementById("booksGrid");
     if(!grid) return;
-    var cards = Array.from(grid.querySelectorAll(":scope > a.book-card, :scope > div.book-card"));
+    // 同样不用 :scope，直接遍历子节点，避免 Safari 兼容问题
+    var cards = [];
+    var kids = grid.children;
+    for(var ki = 0; ki < kids.length; ki++){
+      var k = kids[ki];
+      if(k.classList && k.classList.contains("book-card")) cards.push(k);
+    }
     var freeCards = [], otherCards = [];
     cards.forEach(function(c){
       var href = c.getAttribute("href") || "";
