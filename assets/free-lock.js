@@ -105,48 +105,38 @@
   }
 
   function lockGrowthRoad(){
-    // 每个分类分组只保留第一个问题可点，其余全部锁死（不 care 名称，只 care 顺序）
-    // 注意：不用 :scope 选择器，部分 Safari 版本对它有兼容问题，会整段抛错
-    var groups = document.querySelectorAll(".side-nav-problems .nav-group");
-    for(var gi = 0; gi < groups.length; gi++){
-      var g = groups[gi];
-      var ul = g.querySelector("ul");
-      if(!ul) continue;
-      var lis = ul.children;
-      var links = [];
-      for(var li = 0; li < lis.length; li++){
-        if(lis[li].tagName !== "LI") continue;
-        var a = lis[li].querySelector("a[data-target]");
-        if(a) links.push(a);
-      }
-      for(var i = 0; i < links.length; i++){
-        var a = links[i];
-        if(i === 0){
-          a.classList.remove("problem-locked");
-          a.classList.remove("free-locked");
-          continue;
-        }
-        lockLink(a);
-        a.classList.add("problem-locked");
-        a.setAttribute("href", "javascript:void(0)");
-        // 锁标由 free-lock.css 伪元素统一渲染，这里不再插入 SVG
-        // 捕获阶段阻止点击，防止原站局部 show 函数被触发
-        a.addEventListener("click", function(e){
-          if(e.preventDefault) e.preventDefault();
-          if(e.stopImmediatePropagation) e.stopImmediatePropagation();
-        }, true);
-      }
+    // 排序/加锁已由静态 patch 完成；这里只确保加锁链接真的点不动。
+    // 静态 patch 会给锁定项加 class="problem-locked free-locked" 和 href="javascript:void(0)"，
+    // 运行时再补 pointer-events:none + 捕获阶段拦截，双重保险。
+    var locked = document.querySelectorAll(".side-nav-problems a.problem-locked");
+    for(var i = 0; i < locked.length; i++){
+      var a = locked[i];
+      lockLink(a);
+      a.setAttribute("href", "javascript:void(0)");
+      a.addEventListener("click", function(e){
+        if(e.preventDefault) e.preventDefault();
+        if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+      }, true);
     }
   }
 
   // 一级分类点击：不依赖页面内联脚本，用事件委托 + 捕获阶段绑定，最稳。
-  // 行为：点哪个分类就展开哪个，收起其它，并打开该分类下的第一项。
+  // 行为：点哪个分类就展开哪个，收起其它，并打开/跳转到该分类下的第一项。
   function patchGroupTitleClick(){
-    function firstUnlockedTarget(g){
-      var t = g.getAttribute("data-first-target");
-      if(t) return t;
-      var a = g.querySelector("ul li a:not(.problem-locked)[data-target]");
-      return a ? a.getAttribute("data-target") : "";
+    // 返回 {type:'show', id: 'p-xxx'} 或 {type:'nav', href: 'common-problems.html#p-xxx'}
+    function firstUnlocked(g, title){
+      var t = g.getAttribute("data-first-target") || title.getAttribute("data-first-target");
+      if(t) return {type:"show", id:t};
+      var h = g.getAttribute("data-first-href") || title.getAttribute("data-first-href");
+      if(h) return {type:"nav", href:h};
+      // 兜底：直接读第一个未加锁的链接
+      var a = g.querySelector("ul li a:not(.problem-locked)");
+      if(!a) return null;
+      var href = a.getAttribute("href") || "";
+      if(href.indexOf("common-problems.html#p-") !== -1) return {type:"nav", href:href};
+      var dt = a.getAttribute("data-target");
+      if(dt) return {type:"show", id:dt};
+      return null;
     }
     function showTarget(id){
       if(!id) return;
@@ -180,7 +170,13 @@
         if(all[i] !== g) all[i].classList.add("collapsed");
       }
       g.classList.remove("collapsed");
-      showTarget(firstUnlockedTarget(g) || firstUnlockedTarget(title));
+      var action = firstUnlocked(g, title);
+      if(!action) return;
+      if(action.type === "show"){
+        showTarget(action.id);
+      } else if(action.type === "nav"){
+        window.location.href = action.href;
+      }
       if(e.stopPropagation) e.stopPropagation();
     }, true);
   }
