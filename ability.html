@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>能力清单 | 成长觉醒</title>
+<style>
+  :root {
+    --red:#E0432E; --red-soft:rgba(224,67,46,0.07);
+    --bg:#FBF6F0; --card:#FFFDFA; --ink:#201914; --sub:#6A6058; --note:#9C928A; --line:#ECE2D6;
+    --serif:"Noto Serif SC","Songti SC","STSong";
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.7; }
+  header { max-width:1080px; margin:0 auto; padding:56px 24px 8px; }
+  header h1 { font-family:var(--serif); font-size:34px; margin:0 0 8px; }
+  header p { color:var(--sub); margin:0; }
+  nav.toc { position:sticky; top:0; z-index:5; background:rgba(251,246,240,0.92);
+    backdrop-filter:blur(6px); border-bottom:1px solid var(--line); }
+  nav.toc .inner { max-width:1080px; margin:0 auto; padding:10px 24px; display:flex;
+    gap:8px; flex-wrap:wrap; }
+  nav.toc a { font-size:13px; color:var(--sub); text-decoration:none; padding:4px 10px;
+    border:1px solid var(--line); border-radius:999px; }
+  nav.toc a:hover { color:var(--red); border-color:var(--red); }
+  main { max-width:1080px; margin:0 auto; padding:24px; }
+  .methods { margin-top:10px; border-top:1px dashed var(--line); padding-top:8px; }
+  .m-title { font-size:12px; color:var(--red); font-weight:600; margin-bottom:6px; }
+  .method { background:var(--red-soft); border:1px solid rgba(224,67,46,0.15); border-radius:10px;
+    padding:8px 10px; margin:6px 0; }
+  .m-name { font-family:var(--serif); font-size:14px; color:var(--ink); font-weight:600; }
+  .m-sum { font-size:12px; color:var(--sub); margin:2px 0 4px; }
+  .m-steps { margin:0; padding-left:18px; font-size:12px; color:var(--sub); }
+  .m-steps li { margin:1px 0; }
+  .m-book { font-size:11px; color:var(--note); display:block; margin-top:3px; }
+  .cat { margin:36px 0; }
+  .cat h2 { font-family:var(--serif); font-size:24px; display:flex; align-items:baseline; gap:10px; margin:0 0 4px; }
+  .cat h2 .count { font-size:13px; color:var(--red); font-family:sans-serif; }
+  .cat-desc { color:var(--sub); margin:0 0 16px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; }
+  .card-head { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:6px; }
+  .card-head h3 { font-family:var(--serif); font-size:17px; margin:0; }
+  .tag { font-size:11px; color:var(--red); background:var(--red-soft); border:1px solid rgba(224,67,46,0.2);
+    padding:1px 7px; border-radius:999px; }
+  .alias { font-size:12px; color:var(--note); }
+  .desc { margin:4px 0 8px; }
+  .why,.pains,.train { font-size:13px; color:var(--sub); margin:3px 0; }
+  footer { max-width:1080px; margin:0 auto; padding:40px 24px 64px; color:var(--note); font-size:13px; }
+</style>
+<link rel="stylesheet" href="assets/free-lock.css?v=2">
+</head>
+<body>
+<header>
+  <h1>全量成长能力清单</h1>
+  <p>59 项核心能力 · 5 大类 · 数据来自 ability_data.py（网站只展示「网站在用」子集，全量留底）</p>
+</header>
+<nav class="toc"><div class="inner"><a href='#self'>01-自我认知</a><a href='#emotion'>02-情绪管理与精神内核</a><a href='#action'>03-做事与执行</a><a href='#think'>04-思考与决策</a><a href='#social'>05-人际关系</a></div></nav>
+<main>
+<section class="cat">
+      <h2>01-自我认知<span class="count">6 项</span></h2>
+      <p class="cat-desc">认识自己、接纳自己、建立自我价值感</p>
+      <div class="grid"><div class="card" id="abil-元认知">
+      <div class="card-head"><h3>元认知</h3><span class='alias'>别名：元认知能力</span></div>
+      <p class="desc">实时觉察并审视自己的思考过程，及时修补思维漏洞。</p>
+      <p class='why'>为什么：阻断反复自我内耗、不自觉自我设限。</p><p class='train'>训练：念头升起时标注&#x27;我在想什么&#x27;→识别&#x27;我不行&#x27;脚本→立刻修正</p>
+    </div><div class="card" id="abil-自我认同">
+      <div class="card-head"><h3>自我认同</h3><span class='alias'>别名：自我价值感</span></div>
+      <p class="desc">价值感由自身定义，不需外界评价证明。</p>
+      <p class='why'>为什么：解除完全依赖他人认可定义自我、别人否定就自卑。</p><p class='train'>训练：写下&#x27;我认可自己的 3 件事&#x27;→每天自证不因外界动摇</p><div class='methods'><div class='m-title'>提升方法（1）</div><div class="method">
+          <div class="m-name">成功日记</div>
+          <div class="m-sum">每天记录做成的小事，对抗大脑对失败的放大。</div>
+          <ol class="m-steps"><li>每天记录3件做成的小事</li><li>只看完成，不看大小</li><li>低谷时回翻</li></ol>
+          <span class='m-book'>📚 《自卑与超越》、《终身成长》</span>
+        </div></div>
+    </div><div class="card" id="abil-自信心">
+      <div class="card-head"><h3>自信心</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">自信是从一件件小事做成里慢慢攒出来的，不是等来的。</p>
+      <p class='why'>为什么：自信是从一件件小事做成里慢慢攒出来的，不是等来的。</p><p class='pains'>关联痛点：自卑、习惯性自我否定、自我价值感低、总是讨好别人、过度在意他人看法、社恐</p><div class='methods'><div class='m-title'>提升方法（2）</div><div class="method">
+          <div class="m-name">小事启动</div>
+          <div class="m-sum">用一件小到不可能失败的事启动，积累正反馈和自信。</div>
+          <ol class="m-steps"><li>选一件具体小事</li><li>不设结果要求</li><li>记录完成感</li></ol>
+          <span class='m-book'>📚 《自卑与超越》、《终身成长》</span>
+        </div><div class="method">
+          <div class="m-name">成功日记</div>
+          <div class="m-sum">每天记录做成的小事，对抗大脑对失败的放大。</div>
+          <ol class="m-steps"><li>每天记录3件做成的小事</li><li>只看完成，不看大小</li><li>低谷时回翻</li></ol>
+          <span class='m-book'>📚 《自卑与超越》、《终身成长》</span>
+        </div></div>
+    </div><div class="card" id="abil-自我接纳">
+      <div class="card-head"><h3>自我接纳</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">允许自己会犯错，才敢迈第一步。</p>
+      <p class='why'>为什么：允许自己会犯错，才敢迈第一步。</p><p class='pains'>关联痛点：害怕失败</p>
+    </div><div class="card" id="abil-自我觉察">
+      <div class="card-head"><h3>自我觉察</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">先识别「我又在自我否定」这个自动念头，才能打断它。</p>
+      <p class='why'>为什么：先识别「我又在自我否定」这个自动念头，才能打断它。</p><p class='pains'>关联痛点：习惯性自我否定、精神内耗、高敏感、总想改变别人、没有边界感</p>
+    </div><div class="card" id="abil-自我认知能力">
+      <div class="card-head"><h3>自我认知能力</h3><span class='tag'>网站在用</span><span class='alias'>别名：自我认知</span></div>
+      <p class="desc">知道自己擅长什么、不擅长什么，才不会被外界评价带着跑。</p>
+      <p class='why'>为什么：知道自己擅长什么、不擅长什么，才不会被外界评价带着跑。</p><p class='pains'>关联痛点：自卑、自我价值感低、迷茫、过度在意他人看法</p><div class='methods'><div class='m-title'>提升方法（1）</div><div class="method">
+          <div class="m-name">优势清单</div>
+          <div class="m-sum">写下自己擅长和不擅长的事，形成稳定的自我画像。</div>
+          <ol class="m-steps"><li>列出过去做成的事</li><li>提炼重复出现的优势</li><li>标注需要补的短板</li></ol>
+          <span class='m-book'>📚 《自卑与超越》</span>
+        </div></div>
+    </div></div>
+    </section><section class="cat">
+      <h2>02-情绪管理与精神内核<span class="count">4 项</span></h2>
+      <p class="cat-desc">情绪调节、抗压、屏蔽干扰、延迟满足</p>
+      <div class="grid"><div class="card" id="abil-屏蔽力">
+      <div class="card-head"><h3>屏蔽力</h3><span class='alias'>别名：能量守护</span></div>
+      <p class="desc">主动隔离负面评价、负能量人群、碎片化信息。</p>
+      <p class='why'>为什么：减少他人/信息持续消耗自身精神能量。</p><p class='train'>训练：取关消耗源→设信息摄入时段→物理远离负能量场</p><div class='methods'><div class='m-title'>提升方法（1）</div><div class="method">
+          <div class="m-name">屏蔽清单</div>
+          <div class="m-sum">列出并屏蔽阻碍目标的人、信息和习惯，保护注意力。</div>
+          <ol class="m-steps"><li>列出干扰源</li><li>设定屏蔽规则</li><li>定期清理信息入口</li></ol>
+          
+        </div></div>
+    </div><div class="card" id="abil-延迟满足能力">
+      <div class="card-head"><h3>延迟满足能力</h3><span class='alias'>别名：延迟满足</span></div>
+      <p class="desc">主动舍弃即时享乐，为长线目标持续付出。</p>
+      <p class='why'>为什么：沉迷短视频等短期快感、无法为长期克制欲望。</p><p class='train'>训练：72 小时冷静期→把大奖励拆到里程碑→替代性满足</p>
+    </div><div class="card" id="abil-情绪调节">
+      <div class="card-head"><h3>情绪调节</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">情绪来了不硬压，学会转移和释放，脑子才停得下来。</p>
+      <p class='why'>为什么：情绪来了不硬压，学会转移和释放，脑子才停得下来。</p><p class='pains'>关联痛点：精神内耗、焦虑、情绪不稳定、高敏感、情绪化决策、总想改变别人</p>
+    </div><div class="card" id="abil-抗压能力">
+      <div class="card-head"><h3>抗压能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">面对否定和差评不崩，才接得住后面的好。</p>
+      <p class='why'>为什么：面对否定和差评不崩，才接得住后面的好。</p><p class='pains'>关联痛点：自我价值感低、害怕失败、精神内耗、焦虑、高敏感、执行力差、选择困难症、情绪化决策、总是讨好别人、过度在意他人看法、社恐</p>
+    </div></div>
+    </section><section class="cat">
+      <h2>03-做事与执行<span class="count">12 项</span></h2>
+      <p class="cat-desc">执行、习惯、时间管理、精力、复盘、学习</p>
+      <div class="grid"><div class="card" id="abil-专注力">
+      <div class="card-head"><h3>专注力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">注意力有去处，脑子才不会原地打转。</p>
+      <p class='why'>为什么：注意力有去处，脑子才不会原地打转。</p><p class='pains'>关联痛点：精神内耗、专注力差、低效瞎忙</p>
+    </div><div class="card" id="abil-时间管理能力">
+      <div class="card-head"><h3>时间管理能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">任务排布、精力分配、节奏把控。</p>
+      <p class='why'>为什么：时间不够、忙而无效。</p><p class='pains'>关联痛点：拖延、专注力差、低效瞎忙</p><p class='train'>训练：时间块→精力曲线匹配任务→日复盘</p><div class='methods'><div class='m-title'>提升方法（1）</div><div class="method">
+          <div class="m-name">关联习惯</div>
+          <div class="m-sum">把新行为挂到已有习惯之后，用旧习惯提示新行为，建立习惯之间的关联。</div>
+          <ol class="m-steps"><li>列出当前固定习惯</li><li>选一个锚点</li><li>在锚点后插入新行为</li></ol>
+          <span class='m-book'>📚 《原子习惯》</span>
+        </div></div>
+    </div><div class="card" id="abil-复盘能力">
+      <div class="card-head"><h3>复盘能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">做完回头看哪里能更快更好，下次不重蹈。</p>
+      <p class='why'>为什么：做完回头看哪里能更快更好，下次不重蹈。</p><p class='pains'>关联痛点：执行力差、无效学习、经常吃亏上当</p><div class='methods'><div class='m-title'>提升方法（3）</div><div class="method">
+          <div class="m-name">成功日记</div>
+          <div class="m-sum">每天记录做成的小事，对抗大脑对失败的放大。</div>
+          <ol class="m-steps"><li>每天记录3件做成的小事</li><li>只看完成，不看大小</li><li>低谷时回翻</li></ol>
+          <span class='m-book'>📚 《自卑与超越》、《终身成长》</span>
+        </div><div class="method">
+          <div class="m-name">模仿优等生</div>
+          <div class="m-sum">把身边优秀的人当作开卷答案，复制行为模式再迭代成自己的版本。</div>
+          <ol class="m-steps"><li>找一个身边优秀的人</li><li>复制他的行为模式</li><li>迭代成自己的版本</li></ol>
+          
+        </div><div class="method">
+          <div class="m-name">只记录不评判</div>
+          <div class="m-sum">记录是否完成，不评价质量，先建立行为的连续性。</div>
+          <ol class="m-steps"><li>只记录是否做了</li><li>不评价做得好不好</li><li>连续做够21天再优化</li></ol>
+          <span class='m-book'>📚 《原子习惯》</span>
+        </div></div>
+    </div><div class="card" id="abil-学习能力">
+      <div class="card-head"><h3>学习能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">找到适合自己的方式，记得住也用得上。</p>
+      <p class='why'>为什么：找到适合自己的方式，记得住也用得上。</p><p class='pains'>关联痛点：无效学习</p><div class='methods'><div class='m-title'>提升方法（2）</div><div class="method">
+          <div class="m-name">模仿优等生</div>
+          <div class="m-sum">把身边优秀的人当作开卷答案，复制行为模式再迭代成自己的版本。</div>
+          <ol class="m-steps"><li>找一个身边优秀的人</li><li>复制他的行为模式</li><li>迭代成自己的版本</li></ol>
+          
+        </div><div class="method">
+          <div class="m-name">屏蔽清单</div>
+          <div class="m-sum">列出并屏蔽阻碍目标的人、信息和习惯，保护注意力。</div>
+          <ol class="m-steps"><li>列出干扰源</li><li>设定屏蔽规则</li><li>定期清理信息入口</li></ol>
+          
+        </div></div>
+    </div><div class="card" id="abil-归纳总结能力">
+      <div class="card-head"><h3>归纳总结能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">从具体里抽规律，知识才成体系。</p>
+      <p class='why'>为什么：从具体里抽规律，知识才成体系。</p><p class='pains'>关联痛点：无效学习</p>
+    </div><div class="card" id="abil-执行力">
+      <div class="card-head"><h3>执行力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">把「想做」变成「正在做」，拖延就断了。</p>
+      <p class='why'>为什么：把「想做」变成「正在做」，拖延就断了。</p><p class='pains'>关联痛点：拖延、低效瞎忙</p><div class='methods'><div class='m-title'>提升方法（4）</div><div class="method">
+          <div class="m-name">目标可视化</div>
+          <div class="m-sum">把目标写出来、量化、每天看见，用视觉提醒缩小与目标的差距。</div>
+          <ol class="m-steps"><li>把目标写出来/量化</li><li>放在每天看得见的地方</li><li>设置倒计时或打卡</li></ol>
+          
+        </div><div class="method">
+          <div class="m-name">先上船再补票</div>
+          <div class="m-sum">不等到准备好，先做一个最小投递/尝试，在反馈中迭代。</div>
+          <ol class="m-steps"><li>识别最小可投递动作</li><li>先投了再说</li><li>在被拒或反馈中迭代</li></ol>
+          
+        </div><div class="method">
+          <div class="m-name">降低做事门槛</div>
+          <div class="m-sum">把目标缩到最小单位，保证一定能完成，先完成再完美。</div>
+          <ol class="m-steps"><li>把目标缩到最小单位</li><li>保证一定能完成</li><li>先完成再完美</li></ol>
+          <span class='m-book'>📚 《原子习惯》</span>
+        </div><div class="method">
+          <div class="m-name">两分钟规则</div>
+          <div class="m-sum">把任务拆到能在两分钟内启动的最小单位，先做再决定。</div>
+          <ol class="m-steps"><li>识别最小启动动作</li><li>设定两分钟版本</li><li>先做再决定</li></ol>
+          <span class='m-book'>📚 《原子习惯》</span>
+        </div></div>
+    </div><div class="card" id="abil-目标管理能力">
+      <div class="card-head"><h3>目标管理能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">目标不模糊，才有执行路径。</p>
+      <p class='why'>为什么：目标不模糊，才有执行路径。</p><p class='pains'>关联痛点：拖延</p>
+    </div><div class="card" id="abil-精力管理">
+      <div class="card-head"><h3>精力管理</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">知道自己状态好的时段，把好时间留给重要的事。</p>
+      <p class='why'>为什么：知道自己状态好的时段，把好时间留给重要的事。</p><p class='pains'>关联痛点：专注力差</p>
+    </div><div class="card" id="abil-自律">
+      <div class="card-head"><h3>自律</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">不被即时快感带走，才迈得出第一步。</p>
+      <p class='why'>为什么：不被即时快感带走，才迈得出第一步。</p><p class='pains'>关联痛点：拖延、执行力差</p><div class='methods'><div class='m-title'>提升方法（5）</div><div class="method">
+          <div class="m-name">福格行为模型 B=MAT</div>
+          <div class="m-sum">行为 = 动机 × 能力 × 提示，三者同时满足才会发生。</div>
+          <ol class="m-steps"><li>让动机足够强</li><li>让行动足够简单</li><li>设置明确提示</li></ol>
+          <span class='m-book'>📚 《福格行为模型》</span>
+        </div><div class="method">
+          <div class="m-name">微习惯</div>
+          <div class="m-sum">把目标缩到小到不可能失败，靠重复建立行为惯性。</div>
+          <ol class="m-steps"><li>设定最小版本</li><li>绑定已有习惯</li><li>完成即胜利</li></ol>
+          <span class='m-book'>📚 《微习惯》</span>
+        </div><div class="method">
+          <div class="m-name">关联习惯</div>
+          <div class="m-sum">把新行为挂到已有习惯之后，用旧习惯提示新行为，建立习惯之间的关联。</div>
+          <ol class="m-steps"><li>列出当前固定习惯</li><li>选一个锚点</li><li>在锚点后插入新行为</li></ol>
+          <span class='m-book'>📚 《原子习惯》</span>
+        </div><div class="method">
+          <div class="m-name">只记录不评判</div>
+          <div class="m-sum">记录是否完成，不评价质量，先建立行为的连续性。</div>
+          <ol class="m-steps"><li>只记录是否做了</li><li>不评价做得好不好</li><li>连续做够21天再优化</li></ol>
+          <span class='m-book'>📚 《原子习惯》</span>
+        </div><div class="method">
+          <div class="m-name">降低做事门槛</div>
+          <div class="m-sum">把目标缩到最小单位，保证一定能完成，先完成再完美。</div>
+          <ol class="m-steps"><li>把目标缩到最小单位</li><li>保证一定能完成</li><li>先完成再完美</li></ol>
+          <span class='m-book'>📚 《原子习惯》</span>
+        </div></div>
+    </div><div class="card" id="abil-输出能力">
+      <div class="card-head"><h3>输出能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">能讲出来、写出来，才是真懂。</p>
+      <p class='why'>为什么：能讲出来、写出来，才是真懂。</p><p class='pains'>关联痛点：无效学习</p>
+    </div><div class="card" id="abil-销售能力">
+      <div class="card-head"><h3>销售能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">能把自己、产品或想法卖出去，把价值换成结果。</p>
+      <p class='why'>为什么：没有销售能力，再好的能力和产品也无法变现或被看见。</p><div class='methods'><div class='m-title'>提升方法（1）</div><div class="method">
+          <div class="m-name">销售四层级</div>
+          <div class="m-sum">按纳瓦尔宝典，销售能力分四层：第一层把自己产品化不卖时间；第二层卖自己的产品；第三层帮别人卖产品；第四层搭建并管理销售系统。</div>
+          <ol class="m-steps"><li>把自己产品化：找到专长，用杠杆放大</li><li>卖自己的产品：验证需求、直接成交</li><li>卖别人的产品：代理/分销，积累销售手感</li><li>搭建销售系统：带团队、定流程、规模化</li></ol>
+          <span class='m-book'>📚 《纳瓦尔宝典》、《影响力》</span>
+        </div></div>
+    </div><div class="card" id="abil-解决问题能力">
+      <div class="card-head"><h3>解决问题能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">遇事不慌，能拨开情绪找到真问题，并推进到结果。</p>
+      <p class='why'>为什么：人与人的差距，很大程度上是解决问题能力的差距。</p><p class='pains'>关联痛点：执行力差、选择困难症、情绪化决策</p><div class='methods'><div class='m-title'>提升方法（1）</div><div class="method">
+          <div class="m-name">问题解决五步法</div>
+          <div class="m-sum">把解决问题拆成五步：找到真问题、挖本质原因、权衡方案、执行、复盘。</div>
+          <ol class="m-steps"><li>绕开情绪，通过追问找到真正的问题</li><li>用5Why分析法挖掘本质原因</li><li>在有限资源里选见效快、风险可控的方案</li><li>推进执行并应对突发风险</li><li>复盘过程、原因与可复用的规律</li></ol>
+          <span class='m-book'>📚 《原则》、《丰田生产方式》</span>
+        </div></div>
+    </div></div>
+    </section><section class="cat">
+      <h2>04-思考与决策<span class="count">6 项</span></h2>
+      <p class="cat-desc">思辨、逻辑判断、决策、风险管控</p>
+      <div class="grid"><div class="card" id="abil-思辨能力">
+      <div class="card-head"><h3>思辨能力</h3><span class='alias'>别名：批判性/逻辑性/辩证性/逆向性</span></div>
+      <p class="desc">综合批判、逻辑、辩证、逆向四个维度的思考。</p>
+      <p class='why'>为什么：思考片面、非黑即白。</p><p class='train'>训练：每观点强制找反方→用逻辑校验→换视角重述</p><div class='methods'><div class='m-title'>提升方法（2）</div><div class="method">
+          <div class="m-name">多视角切换</div>
+          <div class="m-sum">遇到问题时主动用辩证、逆向、结构化等多种思维方式看问题。</div>
+          <ol class="m-steps"><li>列出自己默认视角</li><li>换一个对立视角</li><li>用结构化方式整合矛盾信息</li></ol>
+          <span class='m-book'>📚 《思考，快与慢》</span>
+        </div><div class="method">
+          <div class="m-name">事实-观点拆分</div>
+          <div class="m-sum">遇到信息先把客观事实和主观解读分开，减少情绪化判断。</div>
+          <ol class="m-steps"><li>列出客观事实</li><li>剥离形容词和情绪</li><li>区分结论与证据</li></ol>
+          <span class='m-book'>📚 《学会提问》</span>
+        </div></div>
+    </div><div class="card" id="abil-决策力">
+      <div class="card-head"><h3>决策力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">敢拍板、敢承担结果，机会才不溜走。</p>
+      <p class='why'>为什么：敢拍板、敢承担结果，机会才不溜走。</p><p class='pains'>关联痛点：选择困难症</p>
+    </div><div class="card" id="abil-判断力">
+      <div class="card-head"><h3>判断力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">信息不全时也能做出相对好的选择。</p>
+      <p class='why'>为什么：信息不全时也能做出相对好的选择。</p><p class='pains'>关联痛点：选择困难症、情绪化决策</p><div class='methods'><div class='m-title'>提升方法（2）</div><div class="method">
+          <div class="m-name">5Why追问</div>
+          <div class="m-sum">连续追问五次为什么，找到问题的底层原因。</div>
+          <ol class="m-steps"><li>写下表面问题</li><li>连续问为什么</li><li>在不可再分的事实处停止</li></ol>
+          <span class='m-book'>📚 《丰田生产方式》</span>
+        </div><div class="method">
+          <div class="m-name">多视角切换</div>
+          <div class="m-sum">遇到问题时主动用辩证、逆向、结构化等多种思维方式看问题。</div>
+          <ol class="m-steps"><li>列出自己默认视角</li><li>换一个对立视角</li><li>用结构化方式整合矛盾信息</li></ol>
+          <span class='m-book'>📚 《思考，快与慢》</span>
+        </div></div>
+    </div><div class="card" id="abil-独立思考能力">
+      <div class="card-head"><h3>独立思考能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">不人云亦云，别人的「稳赚」你敢打个问号。</p>
+      <p class='why'>为什么：不人云亦云，别人的「稳赚」你敢打个问号。</p><p class='pains'>关联痛点：经常吃亏上当、盲目跟风</p><div class='methods'><div class='m-title'>提升方法（3）</div><div class="method">
+          <div class="m-name">事实-观点拆分</div>
+          <div class="m-sum">遇到信息先把客观事实和主观解读分开，减少情绪化判断。</div>
+          <ol class="m-steps"><li>列出客观事实</li><li>剥离形容词和情绪</li><li>区分结论与证据</li></ol>
+          <span class='m-book'>📚 《学会提问》</span>
+        </div><div class="method">
+          <div class="m-name">5Why追问</div>
+          <div class="m-sum">连续追问五次为什么，找到问题的底层原因。</div>
+          <ol class="m-steps"><li>写下表面问题</li><li>连续问为什么</li><li>在不可再分的事实处停止</li></ol>
+          <span class='m-book'>📚 《丰田生产方式》</span>
+        </div><div class="method">
+          <div class="m-name">多视角切换</div>
+          <div class="m-sum">遇到问题时主动用辩证、逆向、结构化等多种思维方式看问题。</div>
+          <ol class="m-steps"><li>列出自己默认视角</li><li>换一个对立视角</li><li>用结构化方式整合矛盾信息</li></ol>
+          <span class='m-book'>📚 《思考，快与慢》</span>
+        </div></div>
+    </div><div class="card" id="abil-逻辑思维能力">
+      <div class="card-head"><h3>逻辑思维能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">能看出论证漏洞，忽悠就站不住。</p>
+      <p class='why'>为什么：能看出论证漏洞，忽悠就站不住。</p><p class='pains'>关联痛点：盲目跟风</p><div class='methods'><div class='m-title'>提升方法（2）</div><div class="method">
+          <div class="m-name">5Why追问</div>
+          <div class="m-sum">连续追问五次为什么，找到问题的底层原因。</div>
+          <ol class="m-steps"><li>写下表面问题</li><li>连续问为什么</li><li>在不可再分的事实处停止</li></ol>
+          <span class='m-book'>📚 《丰田生产方式》</span>
+        </div><div class="method">
+          <div class="m-name">事实-观点拆分</div>
+          <div class="m-sum">遇到信息先把客观事实和主观解读分开，减少情绪化判断。</div>
+          <ol class="m-steps"><li>列出客观事实</li><li>剥离形容词和情绪</li><li>区分结论与证据</li></ol>
+          <span class='m-book'>📚 《学会提问》</span>
+        </div></div>
+    </div><div class="card" id="abil-风险管控能力">
+      <div class="card-head"><h3>风险管控能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">看得到馅饼背后的钩子，才不伸把手。</p>
+      <p class='why'>为什么：看得到馅饼背后的钩子，才不伸把手。</p><p class='pains'>关联痛点：经常吃亏上当</p>
+    </div></div>
+    </section><section class="cat">
+      <h2>05-人际关系<span class="count">20 项</span></h2>
+      <p class="cat-desc">沟通、边界、人脉、社交技巧</p>
+      <div class="grid"><div class="card" id="abil-冲突处理能力">
+      <div class="card-head"><h3>冲突处理能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">把「你错了」换成「我需要」，矛盾就软了。</p>
+      <p class='why'>为什么：把「你错了」换成「我需要」，矛盾就软了。</p><p class='pains'>关联痛点：情绪不稳定</p>
+    </div><div class="card" id="abil-边界感">
+      <div class="card-head"><h3>边界感</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">知道哪些情绪是别人的，不必兜，才不会总替人难受。</p>
+      <p class='why'>为什么：知道哪些情绪是别人的，不必兜，才不会总替人难受。</p><p class='pains'>关联痛点：高敏感、总是讨好别人、没有边界感</p><div class='methods'><div class='m-title'>提升方法（1）</div><div class="method">
+          <div class="m-name">姿态与语言去弱化</div>
+          <div class="m-sum">通过体态、眼神、语言习惯的具体调整，减少弱者气息。</div>
+          <ol class="m-steps"><li>挺胸抬头、眼神稳定、减少小动作</li><li>用肯定句式替换叠词和解释</li><li>拒绝时不找理由</li></ol>
+          <span class='m-book'>📚 《非暴力沟通》、《影响力》</span>
+        </div></div>
+    </div><div class="card" id="abil-主动邀功">
+      <div class="card-head"><h3>主动邀功</h3><span class='alias'>别名：自我展示</span></div>
+      <p class="desc">让成果被看见，主动汇报价值。</p>
+      <p class='why'>为什么：干得多说得少、吃亏。</p><p class='train'>训练：定期汇报→用结果说话→绑定团队价值</p>
+    </div><div class="card" id="abil-人脉筛选与维护能力">
+      <div class="card-head"><h3>人脉筛选与维护能力</h3><span class='alias'>别名：圈子经营</span></div>
+      <p class="desc">升级圈子、远离消耗者、维护良关系。</p>
+      <p class='why'>为什么：圈子拖累、关系断流。</p><p class='train'>训练：定期盘点关系→远离消耗者→主动靠近向上圈</p><div class='methods'><div class='m-title'>提升方法（1）</div><div class="method">
+          <div class="m-name">定期弱联系</div>
+          <div class="m-sum">不打扰地维持高质量弱关系，关键时刻能激活。</div>
+          <ol class="m-steps"><li>盘点关键弱关系</li><li>设置定期触达节奏</li><li>每次提供一点价值</li></ol>
+          <span class='m-book'>📚 《影响力》</span>
+        </div></div>
+    </div><div class="card" id="abil-厚脸皮能力">
+      <div class="card-head"><h3>厚脸皮能力</h3><span class='alias'>别名：不要脸、脸皮厚</span></div>
+      <p class="desc">不因尴尬退缩，敢争取、敢表达。</p>
+      <p class='why'>为什么：放不下面子错失机会。</p><p class='train'>训练：把&#x27;被评价&#x27;脱敏→主动展示→次数换钝感</p>
+    </div><div class="card" id="abil-敢于冲突能力">
+      <div class="card-head"><h3>敢于冲突能力</h3><span class='alias'>别名：建设性冲突</span></div>
+      <p class="desc">为正当权益发起建设性冲突。</p>
+      <p class='why'>为什么：关系靠忍、被欺负不敢反击。</p><p class='train'>训练：对事不对人→摆事实→争取共赢</p>
+    </div><div class="card" id="abil-敢于拒绝能力">
+      <div class="card-head"><h3>敢于拒绝能力</h3><span class='alias'>别名：拒绝力</span></div>
+      <p class="desc">对不合理请求说不，不委屈自己。</p>
+      <p class='why'>为什么：老好人、不敢拒绝被拿捏。</p><p class='train'>训练：缓冲话术→给出替代方案→不解释过度</p><div class='methods'><div class='m-title'>提升方法（1）</div><div class="method">
+          <div class="m-name">姿态与语言去弱化</div>
+          <div class="m-sum">通过体态、眼神、语言习惯的具体调整，减少弱者气息。</div>
+          <ol class="m-steps"><li>挺胸抬头、眼神稳定、减少小动作</li><li>用肯定句式替换叠词和解释</li><li>拒绝时不找理由</li></ol>
+          <span class='m-book'>📚 《非暴力沟通》、《影响力》</span>
+        </div></div>
+    </div><div class="card" id="abil-示弱能力">
+      <div class="card-head"><h3>示弱能力</h3><span class='alias'>别名：适度示弱</span></div>
+      <p class="desc">适当暴露脆弱，拉近信任。</p>
+      <p class='why'>为什么：永远硬撑、让人不敢靠近。</p><p class='train'>训练：在信任者前说&#x27;我也有搞不定的&#x27;→降低防御</p>
+    </div><div class="card" id="abil-立边界能力">
+      <div class="card-head"><h3>立边界能力</h3><span class='alias'>别名：边界感</span></div>
+      <p class="desc">守个人边界，对不合理索取敢于对抗。</p>
+      <p class='why'>为什么：被拿捏、无意得罪人、交浅言深。</p><p class='train'>训练：明确&#x27;我的事/你的事&#x27;→温和坚定说 no→不为难自己</p>
+    </div><div class="card" id="abil-自我包装能力">
+      <div class="card-head"><h3>自我包装能力</h3><span class='alias'>别名：个人呈现</span></div>
+      <p class="desc">得体呈现自己的专业与价值。</p>
+      <p class='why'>为什么：&#x27;酒香怕巷子深&#x27;、被低估。</p><p class='train'>训练：精炼一句话定位→准备案例→精准场合展示</p><div class='methods'><div class='m-title'>提升方法（1）</div><div class="method">
+          <div class="m-name">定期弱联系</div>
+          <div class="m-sum">不打扰地维持高质量弱关系，关键时刻能激活。</div>
+          <ol class="m-steps"><li>盘点关键弱关系</li><li>设置定期触达节奏</li><li>每次提供一点价值</li></ol>
+          <span class='m-book'>📚 《影响力》</span>
+        </div></div>
+    </div><div class="card" id="abil-装傻能力">
+      <div class="card-head"><h3>装傻能力</h3><span class='alias'>别名：大智若愚</span></div>
+      <p class="desc">该糊涂时装糊涂，避免无谓争锋。</p>
+      <p class='why'>为什么：事事争赢、得罪人。</p><p class='train'>训练：无关原则的事装不懂→把表现机会让出</p>
+    </div><div class="card" id="abil-识人辨人能力">
+      <div class="card-head"><h3>识人辨人能力</h3><span class='alias'>别名：识人</span></div>
+      <p class="desc">快速判断对方人品、动机、边界。</p>
+      <p class='why'>为什么：反复被坑、遇人不淑。</p><p class='train'>训练：看其如何对待弱者→利益冲突时的选择→长期观察</p>
+    </div><div class="card" id="abil-试探能力">
+      <div class="card-head"><h3>试探能力</h3><span class='alias'>别名：分寸试探</span></div>
+      <p class="desc">用小步试探对方态度与底线。</p>
+      <p class='why'>为什么：一次性交心易被伤。</p><p class='train'>训练：先浅后深→观察反应→再决定敞开心扉程度</p>
+    </div><div class="card" id="abil-高情商">
+      <div class="card-head"><h3>高情商</h3><span class='alias'>别名：情绪感知</span></div>
+      <p class="desc">读懂氛围与情绪，得体回应。</p>
+      <p class='why'>为什么：说话伤人、易冲突。</p><p class='train'>训练：观察微表情→先接情绪→再处理事</p>
+    </div><div class="card" id="abil-麻烦别人能力">
+      <div class="card-head"><h3>麻烦别人能力</h3><span class='alias'>别名：适度求助</span></div>
+      <p class="desc">合理求助，借关系增进连接。</p>
+      <p class='why'>为什么：从不求助、关系疏离。</p><p class='train'>训练：找对方擅长的帮→事后回馈→小额互欠</p>
+    </div><div class="card" id="abil-倾听能力">
+      <div class="card-head"><h3>倾听能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">先听懂对方，再说自己的观点，不抢话。</p>
+      <p class='why'>为什么：先听懂对方，再说自己的观点，不抢话。</p><p class='pains'>关联痛点：沟通能力差</p>
+    </div><div class="card" id="abil-共情能力">
+      <div class="card-head"><h3>共情能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">理解对方的情绪和立场，话才说到心里。</p>
+      <p class='why'>为什么：理解对方的情绪和立场，话才说到心里。</p><p class='pains'>关联痛点：沟通能力差、没有边界感</p>
+    </div><div class="card" id="abil-应变能力">
+      <div class="card-head"><h3>应变能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">现场被cue、冷场，能接得住。</p>
+      <p class='why'>为什么：现场被cue、冷场，能接得住。</p><p class='pains'>关联痛点：社恐、沟通能力差</p>
+    </div><div class="card" id="abil-沟通能力">
+      <div class="card-head"><h3>沟通能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">把「你应该」换成「我是这么想的」，对方才听得进。</p>
+      <p class='why'>为什么：把「你应该」换成「我是这么想的」，对方才听得进。</p><p class='pains'>关联痛点：总想改变别人、沟通能力差、没有边界感</p><div class='methods'><div class='m-title'>提升方法（2）</div><div class="method">
+          <div class="m-name">三阶梯沟通法</div>
+          <div class="m-sum">先接住情绪，再讲客观事实，最后给出观点和理由。</div>
+          <ol class="m-steps"><li>接住对方情绪，共情并给台阶</li><li>只讲客观事实，不做主观评判</li><li>给出自己的观点和理由</li></ol>
+          <span class='m-book'>📚 《非暴力沟通》</span>
+        </div><div class="method">
+          <div class="m-name">结论先行</div>
+          <div class="m-sum">沟通时先说结论，再说理由和细节。</div>
+          <ol class="m-steps"><li>明确你想要对方做什么</li><li>一句话说结论</li><li>分层展开依据</li></ol>
+          <span class='m-book'>📚 《金字塔原理》</span>
+        </div></div>
+    </div><div class="card" id="abil-表达能力">
+      <div class="card-head"><h3>表达能力</h3><span class='tag'>网站在用</span></div>
+      <p class="desc">敢把自己的需求说出来，不用绕、不用讨好。</p>
+      <p class='why'>为什么：敢把自己的需求说出来，不用绕、不用讨好。</p><p class='pains'>关联痛点：总是讨好别人、社恐</p><div class='methods'><div class='m-title'>提升方法（3）</div><div class="method">
+          <div class="m-name">结论先行</div>
+          <div class="m-sum">沟通时先说结论，再说理由和细节。</div>
+          <ol class="m-steps"><li>明确你想要对方做什么</li><li>一句话说结论</li><li>分层展开依据</li></ol>
+          <span class='m-book'>📚 《金字塔原理》</span>
+        </div><div class="method">
+          <div class="m-name">三阶梯沟通法</div>
+          <div class="m-sum">先接住情绪，再讲客观事实，最后给出观点和理由。</div>
+          <ol class="m-steps"><li>接住对方情绪，共情并给台阶</li><li>只讲客观事实，不做主观评判</li><li>给出自己的观点和理由</li></ol>
+          <span class='m-book'>📚 《非暴力沟通》</span>
+        </div><div class="method">
+          <div class="m-name">姿态与语言去弱化</div>
+          <div class="m-sum">通过体态、眼神、语言习惯的具体调整，减少弱者气息。</div>
+          <ol class="m-steps"><li>挺胸抬头、眼神稳定、减少小动作</li><li>用肯定句式替换叠词和解释</li><li>拒绝时不找理由</li></ol>
+          <span class='m-book'>📚 《非暴力沟通》、《影响力》</span>
+        </div></div>
+    </div></div>
+    </section>
+</main>
+<footer>本页由 gen_ability_page.py 从 ability_data.py 自动生成，请勿手改。</footer>
+<script src="assets/free-lock.js?v=2"></script>
+</body>
+</html>

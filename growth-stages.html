@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成长觉醒</title>
+<link rel="stylesheet" href="assets/site.css?v=39">
+<link rel="stylesheet" href="assets/search.css?v=39">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
+<style>
+/* 成长卡点首页 v2 · 觉醒曲线 · 手绘白板风 */
+.growth-page{
+  --paper:#FBF6F0;--ink:#201914;--muted:#9C928A;--line:#6A6058;
+  --accent:#E0432E;--accent-soft:rgba(224,67,46,.07);--card:#FFFDFA;
+  font-family:"LXGW WenKai","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--paper);min-height:100vh;color:var(--ink);
+}
+.growth-wrap{max-width:1080px;margin-left:var(--side-width);padding:24px 28px 84px;}
+
+/* 左侧卡点导航（与 common-problems.html 风格一致） */
+.side-nav-problems .nav-group{margin-bottom:12px;}
+.side-nav-problems .group-title{
+  font-size:13.5px;font-weight:700;color:var(--title);letter-spacing:.3px;
+  padding:12px 12px 7px;
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+}
+.side-nav-problems .nav-group ul{list-style:none;}
+.side-nav-problems .nav-group li{margin:0 0 3px;}
+.side-nav-problems .nav-group a{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 12px 9px 24px;border-radius:8px;position:relative;
+  font-size:13px;color:var(--text-2);text-decoration:none;letter-spacing:.2px;
+  transition:background var(--dur) ease,color var(--dur) ease;
+}
+.side-nav-problems .nav-group a:hover{background:none;color:var(--brand);}
+.side-nav-problems .nav-group a::before{
+  content:'';position:absolute;left:5px;top:50%;transform:translateY(-50%);
+  width:3px;height:0;background:var(--brand);border-radius:2px;transition:height .18s ease;
+}
+.side-nav-problems .nav-group a:hover::before{height:16px;}
+
+.growth-hero{position:relative;text-align:center;margin-bottom:6px;padding-top:0;}
+.growth-hero h1{font-size:28px;font-weight:700;color:var(--ink);letter-spacing:0;margin:0;}
+.growth-hero h1 span{color:var(--accent);position:relative;display:inline-block;}
+.growth-hero h1 span::after{content:'';position:absolute;left:-3px;right:-3px;bottom:4px;height:6px;background:var(--accent-soft);border-radius:3px;z-index:-1;}
+
+/* 觉醒曲线 */
+.curve-section{margin:-6px 0 18px;}
+.curve-card{
+  position:relative;
+  padding:0;
+}
+
+/* H5 引导：用户可能不知道要点侧边栏，加一个大按钮展开痛点导航 */
+.growth-cta{
+  display:none;
+  text-align:center;
+  margin-top:28px;
+}
+.growth-cta-hint{
+  font-size:14px;color:var(--muted);margin-bottom:10px;letter-spacing:.2px;
+}
+.growth-cta-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--brand);color:#fff;border:none;border-radius:999px;
+  padding:12px 28px;font-size:15px;font-weight:600;letter-spacing:.5px;
+  cursor:pointer;box-shadow:0 4px 14px rgba(224,67,46,.22);
+  transition:transform .1s ease,box-shadow .2s ease,background .2s ease;
+}
+.growth-cta-btn:hover{background:#c93622;}
+.growth-cta-btn:active{transform:scale(.97);}
+.curve-wrap{position:relative;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.curve-wrap::-webkit-scrollbar{display:none;}
+.curve-svg{width:100%;height:auto;display:block;overflow:visible;}
+.curve-svg text{font-family:"LXGW WenKai","PingFang SC",sans-serif;}
+.curve-scroll-hint{display:none;text-align:center;font-size:12px;color:var(--muted);letter-spacing:.3px;margin:0 0 18px;opacity:.85;}
+.curve-dot{fill:var(--accent);stroke:#fff;stroke-width:2.5;}
+.curve-num{fill:#fff;font-size:17px;font-weight:700;text-anchor:middle;dominant-baseline:central;}
+.curve-label{fill:var(--ink);font-size:19px;font-weight:700;}
+.curve-sub{fill:var(--muted);font-size:13px;text-anchor:middle;}
+.curve-axis{fill:var(--muted);font-size:13px;}
+.curve-legend{display:flex;gap:18px;justify-content:center;margin-top:22px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
+.curve-legend span{display:inline-flex;align-items:center;gap:6px;}
+.lg-solid{width:20px;height:2.5px;background:var(--accent);border-radius:2px;display:inline-block;}
+.lg-dash{width:20px;height:0;border-top:1.5px dashed var(--line);display:inline-block;}
+
+/* 曲线区域分区 */
+.stage-region{fill:rgba(224,67,46,.06);}
+.stage-region.even{fill:rgba(106,96,88,.05);}
+.region-boundary{
+  stroke:var(--line);stroke-width:1.2;stroke-dasharray:5 4;opacity:.45;
+}
+
+/* 区域名称：竖排显示在区域左上角，避免与上方状态说明重叠 */
+.zone-label{
+  fill:var(--muted);font-size:15px;font-weight:600;letter-spacing:2px;
+  text-anchor:start;
+  writing-mode:vertical-rl;
+  text-orientation:upright;
+}
+
+/* 阶段标记：愚昧之巅 / 绝望之谷 / 开悟之坡 / 成熟之境 */
+.curve-label{
+  fill:var(--accent);font-size:18px;font-weight:700;
+  paint-order:stroke;stroke:var(--paper);stroke-width:4px;
+}
+
+/* 底部状态说明 */
+.state-label{
+  fill:var(--muted);font-size:13px;font-weight:500;text-anchor:middle;
+}
+
+@media (max-width:760px){
+  .zone-label{font-size:13px;letter-spacing:1px;}
+  .curve-label{font-size:13px;stroke-width:3px;}
+  .state-label{font-size:10px;}
+}
+@media (max-width:900px){
+  .growth-cta{display:block !important;}
+  .curve-hint{display:none;}
+}
+
+
+@media (max-width:900px){
+  .growth-wrap{margin-left:0;padding:18px 16px 40px;}
+  .growth-hero{padding-top:0;margin-bottom:4px;}
+  .growth-hero h1{display:none;}
+  .curve-label{font-size:15px;}
+  .curve-section{margin:0 -16px;}
+  .curve-card{padding:0 16px;}
+  .curve-svg{width:760px;max-width:none;height:auto;}
+  .curve-scroll-hint{display:block;font-size:11px;color:var(--muted);opacity:.85;margin:0 0 18px;}
+  .curve-legend{margin-top:22px;font-size:11px;gap:12px;}
+  .growth-cta{margin-top:14px;}
+  .growth-cta-hint{font-size:13px;margin-bottom:8px;}
+  .growth-cta-btn{padding:10px 24px;font-size:14px;}
+}
+</style>
+<link rel="stylesheet" href="assets/free-lock.css?v=2">
+</head>
+<body class="page-model">
+<nav class="site-nav" id="siteNav">
+  <div class="inner">
+    <button class="menu-toggle" id="menuToggle" aria-label="打开分类导航">☰</button>
+    <a class="brand" href="growth-brain.html">
+      <img class="site-icon" src="assets/site-icon.png" alt="成长觉醒" width="32" height="32">
+      <span class="brand-text">
+        <span class="title">成长觉醒</span>
+      </span>
+    </a>
+    <div class="nav-tabs" role="tablist"><a role="tab" class="tab" href="growth-brain.html">第二大脑</a><a role="tab" class="tab" href="all.html">全部思维模型</a><a role="tab" class="tab active" href="growth-stages.html">成长之路</a><a role="tab" class="tab" href="book-list.html">成长书单</a></div>
+    <div class="right">
+      <div class="stat">16 类 · 198 模型 · 已完成 78</div>
+      <div class="gsearch" data-search="search.html"><form class="gsearch-form" role="search"><div class="gsearch-field"><input class="gsearch-input" type="text" placeholder="请输入搜索关键词" aria-label="搜索思维模型"><button class="gsearch-clear" type="button" aria-label="清空搜索"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><button class="gsearch-btn" type="submit" aria-label="搜索"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button></form></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function(){
+  var tabs = document.querySelector('.nav-tabs');
+  function scrollTabIntoView(tab){
+    if(!tab || !tabs) return;
+    var cw = tabs.clientWidth, sw = tabs.scrollWidth;
+    if(sw <= cw) return;
+    // 让 active tab 出现在容器左侧约 1/4 处，确保前面一个 tab 也能露出来
+    var relLeft = tab.offsetLeft - tabs.offsetLeft;
+    var target = relLeft - cw * 0.25;
+    tabs.scrollTo({left: Math.max(0, Math.min(target, sw - cw)), behavior: 'smooth'});
+  }
+  if(tabs){
+    var active = tabs.querySelector('.tab.active');
+    if(active) setTimeout(function(){ scrollTabIntoView(active); }, 0);
+    tabs.addEventListener('click', function(e){
+      var t = e.target.closest('.tab');
+      if(t) setTimeout(function(){ scrollTabIntoView(t); }, 0);
+    });
+  }
+})();
+</script>
+<div class="site-nav-placeholder"></div>
+<aside class="side-nav side-nav-problems" id="sideNav">
+  
+  <div class="side-scroll" id="sideScroll">
+    <div class="nav-group collapsed" data-group="g-0" data-first-href="common-problems.html#p-自卑"><div class="group-title" data-first-href="common-problems.html#p-自卑">自我认知<button class="group-toggle" type="button" aria-label="展开/收起"></button></div><ul><li><a href="common-problems.html#p-自卑"><span>自卑</span></a></li><li><a href="common-problems.html#p-习惯性自我否定"><span>习惯性自我否定</span></a></li><li><a href="common-problems.html#p-自我价值感低"><span>自我价值感低</span></a></li><li><a href="common-problems.html#p-迷茫"><span>迷茫</span></a></li><li><a href="common-problems.html#p-害怕失败"><span>害怕失败</span></a></li></ul></div><div class="nav-group collapsed" data-group="g-1" data-first-href="common-problems.html#p-精神内耗"><div class="group-title" data-first-href="common-problems.html#p-精神内耗">情绪管理<button class="group-toggle" type="button" aria-label="展开/收起"></button></div><ul><li><a href="common-problems.html#p-精神内耗"><span>精神内耗</span></a></li><li><a href="common-problems.html#p-焦虑"><span>焦虑</span></a></li><li><a href="common-problems.html#p-情绪不稳定"><span>情绪不稳定</span></a></li><li><a href="common-problems.html#p-高敏感"><span>高敏感</span></a></li></ul></div><div class="nav-group collapsed" data-group="g-2" data-first-href="common-problems.html#p-选择困难症"><div class="group-title" data-first-href="common-problems.html#p-选择困难症">思考与决策<button class="group-toggle" type="button" aria-label="展开/收起"></button></div><ul><li><a href="common-problems.html#p-选择困难症"><span>选择困难症</span></a></li><li><a href="common-problems.html#p-经常吃亏上当"><span>经常吃亏上当</span></a></li><li><a href="common-problems.html#p-盲目跟风"><span>盲目跟风</span></a></li><li><a href="common-problems.html#p-情绪化决策"><span>情绪化决策</span></a></li></ul></div><div class="nav-group collapsed" data-group="g-3" data-first-href="common-problems.html#p-拖延"><div class="group-title" data-first-href="common-problems.html#p-拖延">做事与执行<button class="group-toggle" type="button" aria-label="展开/收起"></button></div><ul><li><a href="common-problems.html#p-拖延"><span>拖延</span></a></li><li><a href="common-problems.html#p-执行力差"><span>执行力差</span></a></li><li><a href="common-problems.html#p-专注力差"><span>专注力差</span></a></li><li><a href="common-problems.html#p-低效瞎忙"><span>低效瞎忙</span></a></li><li><a href="common-problems.html#p-无效学习"><span>无效学习</span></a></li></ul></div><div class="nav-group collapsed" data-group="g-4" data-first-href="common-problems.html#p-总是讨好别人"><div class="group-title" data-first-href="common-problems.html#p-总是讨好别人">人际关系<button class="group-toggle" type="button" aria-label="展开/收起"></button></div><ul><li><a href="common-problems.html#p-总是讨好别人"><span>总是讨好别人</span></a></li><li><a href="common-problems.html#p-过度在意他人看法"><span>过度在意他人看法</span></a></li><li><a href="common-problems.html#p-社恐"><span>社恐</span></a></li><li><a href="common-problems.html#p-总想改变别人"><span>总想改变别人</span></a></li><li><a href="common-problems.html#p-沟通能力差"><span>沟通能力差</span></a></li><li><a href="common-problems.html#p-没有边界感"><span>没有边界感</span></a></li></ul></div>
+    <span class="side-hint" id="sideHint"></span>
+  </div>
+  
+</aside>
+<div class="side-nav-overlay" id="sideOverlay"></div>
+<main class="growth-page">
+  <div class="growth-wrap">
+    <section class="curve-section">
+      <div class="curve-card">
+        <div class="curve-wrap">
+  <svg class="curve-svg" viewBox="0 0 940 435" role="img" aria-label="认知觉醒曲线">
+    <defs>
+      <filter id="awRough" x="-20%" y="-30%" width="140%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/>
+      </filter>
+      <marker id="awAh" markerWidth="11" markerHeight="11" refX="7" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 L2,4 Z" fill="#6A6058"/>
+      </marker>
+      <marker id="awAh2" markerWidth="11" markerHeight="11" refX="7" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 L2,4 Z" fill="#6A6058"/>
+      </marker>
+    </defs>
+    <!-- 坐标轴 -->
+    <line x1="60" y1="405" x2="60" y2="75" stroke="#6A6058" stroke-width="2" marker-end="url(#awAh2)"/>
+    <line x1="60" y1="400" x2="900" y2="400" stroke="#6A6058" stroke-width="2" marker-end="url(#awAh)"/>
+    <text class="curve-axis" x="46" y="63" text-anchor="middle" transform="rotate(-90 46 63)">自信程度</text>
+    <text class="curve-axis" x="890" y="423" text-anchor="end">成长觉醒</text>
+    <!-- 顶部状态说明 -->
+    <text class="state-label" x="155" y="72">不知道自己不知道</text>
+<text class="state-label" x="340" y="72">知道自己不知道</text>
+<text class="state-label" x="540" y="72">知道自己知道</text>
+<text class="state-label" x="765" y="72">不知道自己知道</text>
+
+    <!-- 四阶段分区 -->
+    <rect class="stage-region" x="60" y="85" width="190" height="315"/>
+<rect class="stage-region even" x="250" y="85" width="180" height="315"/>
+<line class="region-boundary" x1="250" y1="85" x2="250" y2="400"/>
+<rect class="stage-region" x="430" y="85" width="220" height="315"/>
+<line class="region-boundary" x1="430" y1="85" x2="430" y2="400"/>
+<rect class="stage-region even" x="650" y="85" width="230" height="315"/>
+<line class="region-boundary" x1="650" y1="85" x2="650" y2="400"/>
+
+    <!-- 实际能力：虚线，曲折向上、起伏不均 -->
+    <path d="M60,375 C120,365 160,345 190,335 C240,338 270,350 300,352 C350,345 390,305 420,305 C465,308 495,320 520,322 C570,315 610,275 640,268 C680,270 710,281 730,283 C770,278 795,238 820,238 C860,232 885,222 900,220" fill="none" stroke="#6A6058" stroke-width="2" stroke-dasharray="7 6" opacity=".55"/>
+    <!-- 自信曲线：手绘（四阶段）-->
+    <path d="M60,375 C110,373 140,210 175,155 C240,75 290,390 340,345 C420,295 480,300 540,260 C620,220 720,215 820,205 C860,200 890,205 920,205"
+          fill="none" stroke="#E0432E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#awRough)"/>
+    <text class="zone-label" x="76" y="127">盲目自信区</text>
+<text class="zone-label" x="266" y="127">崩溃区</text>
+<text class="zone-label" x="446" y="127">成长区</text>
+<text class="zone-label" x="666" y="127">成熟区</text>
+
+    <text class="curve-label" x="175" y="125" text-anchor="middle">愚昧之巅</text>
+<text class="curve-label" x="340" y="382" text-anchor="middle">绝望之谷</text>
+<text class="curve-label" x="575" y="265" text-anchor="start">开悟之坡</text>
+<text class="curve-label" x="820" y="178" text-anchor="middle">成熟之境</text>
+
+    <circle class="curve-dot" cx="175" cy="155" r="14"/><text class="curve-num" x="175" y="155">①</text><circle class="curve-dot" cx="340" cy="345" r="14"/><text class="curve-num" x="340" y="345">②</text><circle class="curve-dot" cx="540" cy="260" r="14"/><text class="curve-num" x="540" y="260">③</text><circle class="curve-dot" cx="820" cy="205" r="14"/><text class="curve-num" x="820" y="205">④</text>
+  </svg>
+</div>
+        <div class="curve-scroll-hint">← 左右滑动查看完整内容 →</div>
+        <div class="curve-legend">
+          <span><i class="lg-solid"></i>自信曲线</span>
+          <span><i class="lg-dash"></i>真实成长</span>
+        </div>
+      </div>
+      <div class="growth-cta">
+        <p class="growth-cta-hint">你目前卡在哪个阶段？点这里解决你的卡点</p>
+        <button class="growth-cta-btn" id="growthCtaBtn" type="button">开启成长之路</button>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="assets/search.js?v=10"></script>
+<script>
+/* 移动端侧边栏抽屉 */
+(function(){
+  var menuToggle = document.getElementById('menuToggle');
+  var sideNav = document.getElementById('sideNav');
+  var sideOverlay = document.getElementById('sideOverlay');
+  function openSide(){ if(sideNav){ sideNav.classList.add('open'); sideOverlay && sideOverlay.classList.add('show'); } }
+  function closeSide(){ if(sideNav){ sideNav.classList.remove('open'); sideOverlay && sideOverlay.classList.remove('show'); } }
+  if(menuToggle && sideNav){
+    function onMenuTap(e){
+      e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+      e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true);
+      sideNav.classList.contains('open') ? closeSide() : openSide();
+    }
+    menuToggle.addEventListener('click', onMenuTap);
+    menuToggle.addEventListener('touchstart', onMenuTap, {passive:false});
+  }
+  if(sideOverlay){ sideOverlay.addEventListener('click', closeSide); sideOverlay.addEventListener('touchstart', closeSide, {passive:false}); }
+  document.querySelectorAll('.side-nav a').forEach(function(a){ a.addEventListener('click', function(){ if(window.innerWidth <= 900) closeSide(); }); });
+  var growthCtaBtn = document.getElementById('growthCtaBtn');
+  if(growthCtaBtn){ growthCtaBtn.addEventListener('click', function(e){ e.stopPropagation(); openSide(); }); }
+
+})();
+
+/* 侧边栏手动滚动箭头 */
+(function(){
+  var scroll = document.getElementById('sideScroll');
+  var up = document.getElementById('sideUp');
+  var down = document.getElementById('sideDown');
+  var hint = document.getElementById('sideHint');
+  if(!scroll || !up || !down) return;
+  var step = 112;
+  var hideTimer = null;
+  function showHint(text, isTop){
+    if(!hint) return;
+    hint.textContent = text;
+    hint.className = 'side-hint ' + (isTop ? 'top' : 'bottom');
+    requestAnimationFrame(function(){ hint.classList.add('show'); });
+    if(hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(function(){ hint.classList.remove('show'); }, 1400);
+  }
+  function updateArrows(){
+    var sh = scroll.scrollHeight, st = scroll.scrollTop, ch = scroll.clientHeight;
+    var atTop = st <= 1;
+    var atBottom = st + ch >= sh - 1;
+    up.disabled = atTop; up.classList.toggle('disabled', atTop);
+    down.disabled = atBottom; down.classList.toggle('disabled', atBottom);
+  }
+  function scrollBy(delta){ scroll.scrollBy({top: delta, behavior: 'smooth'}); }
+  up.addEventListener('click', function(){ if(scroll.scrollTop <= 1){ showHint('已到达顶部', true); return; } scrollBy(-step); });
+  down.addEventListener('click', function(){ if(scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 1){ showHint('已到达底部', false); return; } scrollBy(step); });
+  scroll.addEventListener('scroll', updateArrows, {passive: true});
+  window.addEventListener('load', updateArrows);
+  updateArrows();
+})();
+
+/* 左侧分组折叠/展开：点击标题展开/收起；展开后直接跳转到该组第一个痛点 */
+(function(){
+  document.querySelectorAll('.side-nav-problems .group-title').forEach(function(title){
+    title.addEventListener('click', function(e){
+      if(e.target.closest('a')) return;
+      var g = title.closest('.nav-group');
+      if(!g) return;
+      var wasCollapsed = g.classList.contains('collapsed');
+      g.classList.toggle('collapsed');
+      if(wasCollapsed){
+        var href = g.getAttribute('data-first-href') || title.getAttribute('data-first-href');
+        if(href){
+          // H5 抽屉模式下先关闭侧栏，再自然跳转到第一个痛点详情页
+          if(window.innerWidth <= 900){
+            var sideNav = document.getElementById('sideNav');
+            var sideOverlay = document.getElementById('sideOverlay');
+            if(sideNav) sideNav.classList.remove('open');
+            if(sideOverlay) sideOverlay.classList.remove('show');
+          }
+          window.location.href = href;
+        }
+      }
+    });
+  });
+})();
+</script>
+<script src="assets/free-lock.js?v=2"></script>
+</body>
+</html>

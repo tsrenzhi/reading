@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script>document.documentElement.classList.add('preload');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成长觉醒</title>
+<link rel="stylesheet" href="assets/site.css?v=39">
+<link rel="stylesheet" href="assets/search.css?v=39">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
+<style>
+/* 首屏渲染期间禁用所有过渡/动画：初始状态由 JS 修正时不播动画，避免「空白→填满」闪一下 */
+html.preload,html.preload *{transition:none!important;animation:none!important;}
+/* ===== 本页仅补充常见问题专属结构样式，全部使用 site.css 变量 ===== */
+
+/* 左侧导航一级分组：放大当前分组箭头 + 拉开层级 */
+.side-nav .nav-group{margin-bottom:12px;}
+.side-nav .group-title{
+  font-size:13.5px;font-weight:700;color:var(--title);letter-spacing:.3px;
+  padding:12px 12px 7px;
+  transition:background var(--dur) ease,color var(--dur) ease;
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+}
+.side-nav .group-title.active{color:var(--brand);}
+.side-nav .group-title.active .group-toggle{color:var(--brand);}
+.side-nav .nav-group ul{list-style:none;}
+.side-nav .nav-group li{margin:0 0 3px;}
+.side-nav .nav-group a{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 12px 9px 24px;border-radius:8px;position:relative;
+  font-size:13px;color:var(--text-2);text-decoration:none;letter-spacing:.2px;
+  transition:background var(--dur) ease,color var(--dur) ease;
+}
+.side-nav .nav-group a:hover{background:none;color:var(--brand);}
+.side-nav .nav-group a.active{
+  background:#fff;color:var(--brand);font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,0.06);
+}
+.side-nav .nav-group a.active::before{
+  content:'';position:absolute;left:5px;top:50%;transform:translateY(-50%);
+  width:3px;height:16px;background:var(--brand);border-radius:2px;
+}
+
+/* 主标题区：只保留问题名，字号稍小，与常见表现间距收紧 */
+.pain-section .subhead{margin:0 0 14px;}
+.pain-section .subhead .inner{padding:0;}
+.pain-section .subhead h1{
+  font-size:32px;font-weight:700;color:var(--title);letter-spacing:.4px;line-height:1.25;
+}
+
+/* 常见表现：高级标签云。纸白卡片底 + 暖墨细线 + 多层柔影 + 朱红点，hover 微浮。 */
+.pain-tags{
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:12px 14px;
+  padding:2px 0 4px;
+}
+.pain-tags .pain-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 18px 10px 14px;
+  background:var(--card);
+  border:1px solid var(--line-weak);
+  border-radius:100px;
+  font-size:13.5px;font-weight:500;color:var(--title);letter-spacing:.2px;
+  cursor:default;
+  opacity:0;transform:translateY(10px);
+  box-shadow:
+    0 1px 1px rgba(32,25,20,0.02),
+    0 2px 5px rgba(32,25,20,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.55);
+  transition:
+    background var(--dur) ease,
+    border-color var(--dur) ease,
+    color var(--dur) ease,
+    transform .28s cubic-bezier(0.25,1,0.5,1),
+    box-shadow .28s cubic-bezier(0.25,1,0.5,1);
+}
+.pain-tags .pain-tag::before{
+  content:'';
+  width:6px;height:6px;border-radius:50%;
+  background:var(--brand);
+  opacity:.45;
+  flex-shrink:0;
+  transition:opacity var(--dur) ease,transform .25s cubic-bezier(0.25,1,0.5,1);
+}
+.pain-tags .pain-tag.show{
+  opacity:1;transform:translateY(0);
+}
+.pain-tags .pain-tag:hover{
+  border-color:rgba(224,67,46,0.30);
+  transform:translateY(-2px);
+  box-shadow:
+    0 3px 6px rgba(32,25,20,0.035),
+    0 8px 16px rgba(32,25,20,0.045),
+    inset 0 1px 0 rgba(255,255,255,0.55);
+}
+.pain-tags .pain-tag:hover::before{
+  opacity:.85;
+  transform:scale(1.15);
+}
+@media (prefers-reduced-motion: reduce){
+  .pain-tags .pain-tag{opacity:1;transform:none;transition:background var(--dur) ease,border-color var(--dur) ease,box-shadow var(--dur) ease;}
+}
+@media (max-width:768px){
+  .pain-tags{gap:10px 12px;}
+  .pain-tags .pain-tag{font-size:13px;padding:9px 14px 9px 11px;}
+}
+
+/* 问题详情页：区块间距 + 渐进 reveal */
+.pain-section .core{margin-bottom:28px;opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease;}
+.pain-section .core.core-first{margin-top:-6px;}
+.pain-section .core.reveal-in{opacity:1;transform:none;}
+.pain-section .core:last-child{margin-bottom:0;}
+.pain-section .core-head{margin-bottom:12px;}
+.pain-section .core-head h2{
+  font-size:20px;font-weight:700;color:var(--title);letter-spacing:.2px;
+}
+@media (prefers-reduced-motion: reduce){
+  .pain-section .core{opacity:1;transform:none;transition:none;}
+}
+
+/* ===== 怎么解决 · 白板手绘逻辑图风格 ===== */
+.solve-board{
+  --ink-2:#6A6058;            /* 手绘墨线（暖墨） */
+  --paper:#FBF6F0;
+  --card:#FFFDFA;
+  font-family:"LXGW WenKai","PingFang SC","Microsoft YaHei",sans-serif;
+  padding:2px 0 0;
+}
+/* 原因 → 解法 行 */
+.solve-rows{display:flex;flex-direction:column;gap:16px;}
+.solve-row{display:flex;align-items:stretch;gap:10px;}
+.solve-cause{
+  flex:0 0 36%;position:relative;background:var(--card);
+  border:2px solid var(--ink-2);border-radius:14px;padding:16px;
+  transform:rotate(-1deg);box-shadow:3px 4px 0 rgba(32,25,20,.08);
+}
+.solve-cause-h{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.solve-num{
+  flex:0 0 auto;width:28px;height:28px;border-radius:50%;
+  background:var(--brand);color:#fff;font-size:14px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.solve-cause-k{font-size:13px;font-weight:700;color:var(--brand);letter-spacing:1px;}
+.solve-cause-t{font-size:16px;font-weight:600;color:var(--title);line-height:1.55;}
+/* 原因 → 解法的红色手绘箭头 */
+.solve-arrow-h{
+  flex:0 0 56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;align-self:center;
+}
+.solve-arrow-lab{
+  font-size:12px;font-weight:600;color:var(--brand);letter-spacing:.5px;white-space:nowrap;
+}
+.solve-row-arrow{
+  flex:0 0 auto;width:48px;height:24px;overflow:visible;
+}
+.solve-fix{
+  flex:1 1 auto;background:var(--card);border:2px dashed var(--ink-2);border-radius:14px;
+  padding:16px;transform:rotate(.4deg);box-shadow:3px 4px 0 rgba(32,25,20,.05);
+}
+.solve-fix-top{
+  font-size:15.5px;line-height:1.75;color:var(--text-2);
+}
+.solve-fix-top a{color:var(--brand);font-weight:600;text-decoration:none;}
+.solve-fix-top a:hover{text-decoration:underline;}
+@media (max-width:768px){
+  .solve-row{flex-direction:column;gap:6px;}
+  .solve-row-arrow{display:none;}
+  .solve-cause{flex:none;transform:rotate(-.6deg);}
+  .solve-fix{flex:none;transform:rotate(.3deg);}
+}
+
+/* 思维模型 / 能力卡片：统一网格，hover 轻微上浮 */
+.pain-section .grid .model.done{
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.pain-section .grid .model.done:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 26px rgba(32,25,20,0.08);
+}
+</style>
+
+<link rel="stylesheet" href="assets/free-lock.css?v=2">
+</head>
+<body>
+<script>
+// 阻止浏览器默认 hash 滚动（目标元素初始 display:none，浏览器会滚动到错误位置）。
+// 加载前临时去掉 hash，show() 执行后再恢复，让内容从顶栏下方顶头显示。
+(function(){
+  var h = location.hash;
+  if(h){
+    history.replaceState(null, '', location.pathname + location.search);
+    window.__savedHash = h;
+  }
+})();
+</script>
+
+<!-- 手绘抖动滤镜 + 箭头 marker（白板风「怎么解决」共用） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="solveRough" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2"/>
+    </filter>
+    <marker id="solveAh" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 L2,4 Z" fill="#6A6058"/>
+    </marker>
+    <marker id="solveAhRed" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 L2,4 Z" fill="#E0432E"/>
+    </marker>
+  </defs>
+</svg>
+
+<nav class="site-nav" id="siteNav">
+  <div class="inner">
+    <button class="menu-toggle" id="menuToggle" aria-label="打开分类导航">☰</button>
+    <a class="brand" href="growth-brain.html">
+      <img class="site-icon" src="assets/site-icon.png" alt="成长觉醒" width="32" height="32">
+      <span class="brand-text">
+        <span class="title">成长觉醒</span>
+      </span>
+    </a>
+    <div class="nav-tabs" role="tablist"><a role="tab" class="tab" href="growth-brain.html">第二大脑</a><a role="tab" class="tab" href="all.html">全部思维模型</a><a role="tab" class="tab active" href="growth-stages.html">成长之路</a><a role="tab" class="tab" href="book-list.html">成长书单</a></div>
+    <div class="right">
+      <div class="stat">16 类 · 198 模型 · 已完成 78</div>
+      <div class="gsearch" data-search="search.html"><form class="gsearch-form" role="search"><div class="gsearch-field"><input class="gsearch-input" type="text" placeholder="请输入搜索关键词" aria-label="搜索思维模型"><button class="gsearch-clear" type="button" aria-label="清空搜索"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><button class="gsearch-btn" type="submit" aria-label="搜索"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button></form></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function(){
+  var tabs = document.querySelector('.nav-tabs');
+  function scrollTabIntoView(tab){
+    if(!tab || !tabs) return;
+    var cw = tabs.clientWidth, sw = tabs.scrollWidth;
+    if(sw <= cw) return;
+    // 让 active tab 出现在容器左侧约 1/4 处，确保前面一个 tab 也能露出来
+    var relLeft = tab.offsetLeft - tabs.offsetLeft;
+    var target = relLeft - cw * 0.25;
+    tabs.scrollTo({left: Math.max(0, Math.min(target, sw - cw)), behavior: 'smooth'});
+  }
+  if(tabs){
+    var active = tabs.querySelector('.tab.active');
+    if(active) setTimeout(function(){ scrollTabIntoView(active); }, 0);
+    tabs.addEventListener('click', function(e){
+      var t = e.target.closest('.tab');
+      if(t) setTimeout(function(){ scrollTabIntoView(t); }, 0);
+    });
+  }
+})();
+</script>
+
+<aside class="side-nav side-nav-problems" id="sideNav">
+  
+  <div class="side-scroll" id="sideScroll">
+    <div class="nav-group" data-group="g-0" data-first-target="p-迷茫"><div class="group-title" data-first-target="p-迷茫">自我认知<button class="group-toggle" type="button" aria-label="展开/收起"></button></div><ul><li><a href="#p-迷茫" data-target="p-迷茫" data-group="g-0"><span>迷茫</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-自卑"><span>自卑</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-习惯性自我否定"><span>习惯性自我否定</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-自我价值感低"><span>自我价值感低</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-害怕失败"><span>害怕失败</span></a></li></ul></div><div class="nav-group" data-group="g-1" data-first-target="p-焦虑"><div class="group-title" data-first-target="p-焦虑">情绪管理<button class="group-toggle" type="button" aria-label="展开/收起"></button></div><ul><li><a href="#p-焦虑" data-target="p-焦虑" data-group="g-1"><span>焦虑</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-精神内耗"><span>精神内耗</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-情绪不稳定"><span>情绪不稳定</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-高敏感"><span>高敏感</span></a></li></ul></div><div class="nav-group" data-group="g-2" data-first-target="p-盲目跟风"><div class="group-title" data-first-target="p-盲目跟风">思考与决策<button class="group-toggle" type="button" aria-label="展开/收起"></button></div><ul><li><a href="#p-盲目跟风" data-target="p-盲目跟风" data-group="g-2"><span>盲目跟风</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-选择困难症"><span>选择困难症</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-经常吃亏上当"><span>经常吃亏上当</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-情绪化决策"><span>情绪化决策</span></a></li></ul></div><div class="nav-group" data-group="g-3" data-first-target="p-拖延"><div class="group-title" data-first-target="p-拖延">做事与执行<button class="group-toggle" type="button" aria-label="展开/收起"></button></div><ul><li><a href="#p-拖延" data-target="p-拖延" data-group="g-3"><span>拖延</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-执行力差"><span>执行力差</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-专注力差"><span>专注力差</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-低效瞎忙"><span>低效瞎忙</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-无效学习"><span>无效学习</span></a></li></ul></div><div class="nav-group" data-group="g-4" data-first-target="p-过度在意他人看法"><div class="group-title" data-first-target="p-过度在意他人看法">人际关系<button class="group-toggle" type="button" aria-label="展开/收起"></button></div><ul><li><a href="#p-过度在意他人看法" data-target="p-过度在意他人看法" data-group="g-4"><span>过度在意他人看法</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-总是讨好别人"><span>总是讨好别人</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-社恐"><span>社恐</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-总想改变别人"><span>总想改变别人</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-沟通能力差"><span>沟通能力差</span></a></li><li><a class="problem-locked free-locked" href="javascript:void(0)" data-target="p-没有边界感"><span>没有边界感</span></a></li></ul></div>
+    <span class="side-hint" id="sideHint"></span>
+  </div>
+  
+</aside>
+<div class="side-nav-overlay" id="sideOverlay"></div>
+
+<div class="wrap">
+  <div class="stack" id="painStack">
+<section class="pain-section" id="p-自卑" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>自卑</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">总觉得自己不如别人</span>
+<span class="pain-tag">不敢争取机会</span>
+<span class="pain-tag">不敢表达</span>
+<span class="pain-tag">怕被嘲笑</span>
+<span class="pain-tag">做事没底气</span>
+<span class="pain-tag">当众紧张</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">总盯着自己的短处看，忽略了自己的长处</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-自卑">辩证思维</a>：缺点翻过来往往就是优点——内向等于会倾听，敏感等于能共情，别只放大坏的那面。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">习惯拿自己的短处比别人的长处</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bi-jiao-you-shi.html?ref=problem&p=p-自卑">比较优势</a>：别拿自己最弱的地方去比别人最强的地方。换个维度，你也有自己占优的那块，把劲使在那，比到处比有用。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">一犯错就觉得自己整个人都不行</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/shi-shi-qiu-shi.html?ref=problem&p=p-自卑">实事求是</a>：一件事没做好，不等于你这个人不行。前者能改，后者是瞎扣帽子。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">看不见自己身上已有的优点</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/ni-xiang-si-wei.html?ref=problem&p=p-自卑">逆向思维</a>：反着找——别人凭什么找你帮忙、愿意跟你待着？那就是你的闪光点。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">自我认知</span></div><div class="m-val">知道自己擅长什么、不擅长什么，才不会被外界评价带着跑。</div></div>
+<div class="model"><div class="m-head"><span class="name">自信心</span></div><div class="m-val">自信是从一件件小事做成里慢慢攒出来的，不是等来的。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">失败是事没成，不等于你这个人不行，扛得住才敢再试。</div></div>
+<div class="model"><div class="m-head"><span class="name">表达能力</span></div><div class="m-val">敢把想法说出来，别人才有机会看到你、认可你。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-习惯性自我否定" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>习惯性自我否定</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">觉得自己干啥都不行</span>
+<span class="pain-tag">总盯着自己的缺点</span>
+<span class="pain-tag">犯错后就自责</span>
+<span class="pain-tag">总觉得自己一无是处</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">一犯错就往「我不行」上扣</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/shi-shi-qiu-shi.html?ref=problem&p=p-习惯性自我否定">实事求是</a>：分清「这件事我没做好」和「我整个人不行」——前者能改，后者是瞎扣帽子。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">还没试就先认定自己会失败</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/gai-lv-si-wei.html?ref=problem&p=p-习惯性自我否定">概率思维</a>：一次没成说明不了什么，样本太小。多试几次，概率会还你公道。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">只记得自己失败的事，刻意放大了失败，忽略了自己做成的事</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-习惯性自我否定">辩证思维</a>：你也做成过很多事，只是你没把它们当回事。把做成的事列出来对着看。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">认定自己改不了、不会再变了</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/dong-tai-si-wei.html?ref=problem&p=p-习惯性自我否定">动态思维</a>：人是会变的。现在的你和过去不一样，未来也可以不一样。别用老照片定义现在的你。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">自我觉察</span></div><div class="m-val">先识别「我又在自我否定」这个自动念头，才能打断它。</div></div>
+<div class="model"><div class="m-head"><span class="name">自信心</span></div><div class="m-val">用行动结果去推翻「我不行」的预设，做出来比想出来管用。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">摔倒了能爬起来，而不是躺着给自己判刑。</div></div>
+<div class="model"><div class="m-head"><span class="name">执行力</span></div><div class="m-val">做着做着就有底气了，越不动越觉得自己不行。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-自我价值感低" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>自我价值感低</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">习惯性低估自己</span>
+<span class="pain-tag">总觉得自己不配被夸奖</span>
+<span class="pain-tag">接不住别人的夸奖</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">觉得自己不配被喜欢、被夸奖</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/shi-shi-qiu-shi.html?ref=problem&p=p-自我价值感低">实事求是</a>：别人对你好、夸你，至少有一部分是真的。别全当客气，试着接住那句好话。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">习惯性贬低自己，总觉得别人比自己厉害</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-自我价值感低">辩证思维</a>：你嫌自己普通，可在某些人眼里你就是那个厉害的、靠得住的人。人也总有自己不擅长的地方。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">拿自己的短处比别人的长处</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bi-jiao-you-shi.html?ref=problem&p=p-自我价值感低">比较优势</a>：谁都有高低起伏，别拿自己最弱的地方去比别人最强的地方。换个维度，你也有自己占优的那块。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">自我认知</span></div><div class="m-val">看清自己的真实价值，才不会被一句低评价绑架。</div></div>
+<div class="model"><div class="m-head"><span class="name">自信心</span></div><div class="m-val">允许自己「配得上」好东西，是价值感的第一步。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">面对否定和差评不崩，才接得住后面的好。</div></div>
+<div class="model"><div class="m-head"><span class="name">表达能力</span></div><div class="m-val">敢接住夸奖、也敢说自己的需求，关系才对等。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-迷茫" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>迷茫</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">不知道想要什么</span>
+<span class="pain-tag">没有目标</span>
+<span class="pain-tag">生活没奔头</span>
+<span class="pain-tag">躺平</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">一直按别人的期待活，没问过自己真正想要什么</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/di-yi-xing-yuan-li.html?ref=problem&p=p-迷茫">第一性原理</a>：剥掉「爸妈希望」「社会告诉我」，回到最基本的问题——你到底想成为什么样的人？</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">只看眼前，不考虑长远</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/chang-qi-zhu-yi.html?ref=problem&p=p-迷茫">长期主义</a>：现在的状态不是终局，三年后回头看，今天的纠结可能根本不算事。把眼光放远一点。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">找不到自己的方向</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-迷茫">结构化思维</a>：方向不是想出来的，是试出来的。先把「我是谁、会什么、要什么」写清楚，再从最小一步开始试。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">自我认知</span></div><div class="m-val">知道自己要什么，是走出迷茫的第一步。</div></div>
+<div class="model"><div class="m-head"><span class="name">目标管理能力</span></div><div class="m-val">把大方向拆成今天能干的一件事，就不空转了。</div></div>
+<div class="model"><div class="m-head"><span class="name">执行力</span></div><div class="m-val">边做边找方向，不是想明白了才动。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-害怕失败" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>害怕失败</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">不敢尝试新事物</span>
+<span class="pain-tag">怕丢人</span>
+<span class="pain-tag">怕丢脸</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">觉得能力是天生的、改不了的</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/cheng-zhang-xing-si-wei.html?ref=problem&p=p-害怕失败">成长型思维</a>：能力不是天生的，是练出来的。先出一版糙的，再一轮轮改，越做越好。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">一失败就认定自己不行</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/dong-tai-si-wei.html?ref=problem&p=p-害怕失败">动态思维</a>：失败是过程里的一个点，不是结局。摔了之后路还长着呢。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">还没做就先想最坏的结果</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/ni-xiang-si-wei.html?ref=problem&p=p-害怕失败">逆向思维</a>：先想「最坏能坏到哪」——发现也不过如此，反而敢动了。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">怕被别人笑话、怕丢脸</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/gai-lv-si-wei.html?ref=problem&p=p-害怕失败">概率思维</a>：你怕的「别人笑你」，真实发生的概率往往很低。大多数人根本没空一直盯着你。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">摔倒了能爬起来，失败才不可怕。</div></div>
+<div class="model"><div class="m-head"><span class="name">自我接纳</span></div><div class="m-val">允许自己会犯错，才敢迈第一步。</div></div>
+<div class="model"><div class="m-head"><span class="name">执行力</span></div><div class="m-val">先动起来，比想清楚更治害怕。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-精神内耗" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>精神内耗</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">总爱胡思乱想</span>
+<span class="pain-tag">反复纠结</span>
+<span class="pain-tag">睡前瞎想</span>
+<span class="pain-tag">揪着过去不放</span>
+<span class="pain-tag">小事反复琢磨</span>
+<span class="pain-tag">没事就钻牛角尖</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">想做的事没做，做的事又心不在焉</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-精神内耗">结构化思维</a>：想学习又刷手机，刷手机又想着学习，两头都没顾上。给脑子派一个具体任务，比如「先写 200 字」，做完了再歇。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">总盯着事情的负面看</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-精神内耗">辩证思维</a>：一件事至少两面，你只放大坏的那面。被领导批评，除了「我不行」还有「他指出了我能改的」。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">把别人的看法当成事实</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/shi-shi-qiu-shi.html?ref=problem&p=p-精神内耗">实事求是</a>：别人怎么看你，只是他的想法，不是事实。去验证：他为什么这么说？有没有证据？真相往往没那么糟。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">总担心小概率的坏事</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/gai-lv-si-wei.html?ref=problem&p=p-精神内耗">概率思维</a>：你反复想的糟糕结果，真实发生概率往往不到 5%。别为 5% 的事耗 100% 的精力。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">自我觉察</span></div><div class="m-val">先意识到「我又在反复想」，才能打断这个循环。</div></div>
+<div class="model"><div class="m-head"><span class="name">情绪调节</span></div><div class="m-val">情绪来了不硬压，学会转移和释放，脑子才停得下来。</div></div>
+<div class="model"><div class="m-head"><span class="name">专注力</span></div><div class="m-val">注意力有去处，脑子才不会原地打转。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">小事不容易把你带崩，内耗就少。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-焦虑" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>焦虑</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">心里总不踏实</span>
+<span class="pain-tag">看到别人进步着急</span>
+<span class="pain-tag">经常烦躁</span>
+<span class="pain-tag">总担心出事</span>
+<span class="pain-tag">很难放松</span>
+<span class="pain-tag">莫名心慌</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">总想控制那些自己控制不了的事</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xi-tong-si-wei.html?ref=problem&p=p-焦虑">系统思维</a>：很多事在更大的系统里，不是你一个人能控的。分清能控的、交还不能控的。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">担心的事太多，分不清轻重缓急</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-焦虑">结构化思维</a>：把你怕的事列出来，区分哪些是马上该做的、哪些是瞎想的。先做能做的，剩下的不用现在就解决。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">总往最坏的结果想</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/ni-xiang-si-wei.html?ref=problem&p=p-焦虑">逆向思维</a>：先想「最坏能坏到哪」——发现也不过如此，反而踏实了。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">总盯着眼前一时的得失，越看越慌</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/chang-qi-zhu-yi.html?ref=problem&p=p-焦虑">长期主义</a>：你现在的状态不是终局，三年后回头看，今天这点得失可能根本不算事。把眼光放长，眼前的慌就小了。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">压力来了不至于直接被压垮。</div></div>
+<div class="model"><div class="m-head"><span class="name">情绪调节</span></div><div class="m-val">焦虑是一种情绪，可以被疏导，不是只能硬扛。</div></div>
+<div class="model"><div class="m-head"><span class="name">自我接纳</span></div><div class="m-val">世界本就不确定，适应比控制更重要。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-情绪不稳定" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>情绪不稳定</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">因为一点小事就发脾气</span>
+<span class="pain-tag">容易 emo</span>
+<span class="pain-tag">心情忽好忽坏</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">容易把事情往坏处想，一点小事就上火</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/shi-shi-qiu-shi.html?ref=problem&p=p-情绪不稳定">实事求是</a>：先分清楚「他说了什么」和「我觉得他在针对我」——往往后者才是火气的来源。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">过度关注当下发生的事，想不到以后</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/dong-tai-si-wei.html?ref=problem&p=p-情绪不稳定">动态思维</a>：10 分钟、10 个月、10 年后，这事还重要吗？换个时间尺度，火气自己就小了。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">分不清自己到底在气什么</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/yin-guo-si-wei.html?ref=problem&p=p-情绪不稳定">因果思维</a>：今天爆发，可能不是因为刚才那件事，是这一周的压力攒的。找到真正的原因，才治得了根。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">情绪上来了不会先停一下</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-情绪不稳定">辩证思维</a>：吵赢这一句，可能输掉这段关系。先停几秒，再决定要不要说出口。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">情绪调节</span></div><div class="m-val">情绪起来时能按下暂停键，不立刻发火。</div></div>
+<div class="model"><div class="m-head"><span class="name">自律</span></div><div class="m-val">给自己几秒缓冲，冲动的话就憋回去了。</div></div>
+<div class="model"><div class="m-head"><span class="name">共情能力</span></div><div class="m-val">理解对方为什么那么说，火气能小一半。</div></div>
+<div class="model"><div class="m-head"><span class="name">冲突处理能力</span></div><div class="m-val">把「你错了」换成「我需要」，矛盾就软了。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-高敏感" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>高敏感</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">心软</span>
+<span class="pain-tag">为了别人委屈自己</span>
+<span class="pain-tag">容易被别人的情绪带着走</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">总觉得别人的情绪需要自己负责</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/shi-shi-qiu-shi.html?ref=problem&p=p-高敏感">实事求是</a>：分清「他心情差」和「我惹的他」——多数时候，是他自己的事，跟你没关系。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">一被请求就不好意思拒绝</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xiang-dui-si-wei.html?ref=problem&p=p-高敏感">相对思维</a>：帮不帮是你的选择，不是义务。别人难过，不等于你必须替他扛。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">太容易吸收别人的情绪</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xi-tong-si-wei.html?ref=problem&p=p-高敏感">系统思维</a>：别人的情绪像天气，会过去。那是他的事，你不必跟着变天。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">把委屈自己当成维持关系的办法</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-高敏感">辩证思维</a>：一味迁就，关系反而失衡。你舒服了，别人才舒服；你委屈，关系也长久不了。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">边界感</span></div><div class="m-val">知道哪些情绪是别人的，不必兜，才不会总替人难受。</div></div>
+<div class="model"><div class="m-head"><span class="name">自我觉察</span></div><div class="m-val">识别「我又在替别人难受」的自动反应，才能停。</div></div>
+<div class="model"><div class="m-head"><span class="name">情绪调节</span></div><div class="m-val">不被外界情绪牵着走，自己才稳。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">面对低气压的环境和人，自己不塌。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-拖延" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>拖延</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">事情一直拖着</span>
+<span class="pain-tag">不到最后不做</span>
+<span class="pain-tag">总是迈不出第一步</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">任务太大，一看就怕</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-拖延">结构化思维</a>：把「我要变好」拆成「今晚写 200 字」。拆小了，第一步就不吓人了。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">目标太模糊，不知道从哪下手</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jia-she-si-wei.html?ref=problem&p=p-拖延">假设思维</a>：先立个假设「我就试 10 分钟」，小成本启动，比想「怎么才能做好」管用。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">看不到即时反馈，动力续不上</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/die-dai-si-wei.html?ref=problem&p=p-拖延">迭代思维</a>：先做出 60 分，再改到 90 分。动起来就有反馈，拖着永远 0 分。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">总想等到状态好才动</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/dong-tai-si-wei.html?ref=problem&p=p-拖延">动态思维</a>：等「状态好」是等不到的。先动起来，状态是做出来的，不是等来的。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">执行力</span></div><div class="m-val">把「想做」变成「正在做」，拖延就断了。</div></div>
+<div class="model"><div class="m-head"><span class="name">时间管理能力</span></div><div class="m-val">知道什么时候该干什么，不把事堆到最后。</div></div>
+<div class="model"><div class="m-head"><span class="name">自律</span></div><div class="m-val">不被即时快感带走，才迈得出第一步。</div></div>
+<div class="model"><div class="m-head"><span class="name">目标管理能力</span></div><div class="m-val">目标不模糊，才有执行路径。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-执行力差" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>执行力差</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">做事三分钟热度</span>
+<span class="pain-tag">间歇性摆烂</span>
+<span class="pain-tag">总是半途而废</span>
+<span class="pain-tag">完美主义</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">目标太大，不知如何开始</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-执行力差">结构化思维</a>：把「我要减肥」变成「今晚散步 20 分钟」。下一步越具体，越动得起来。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">遇到困难就觉得自己做不好</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/cheng-zhang-xing-si-wei.html?ref=problem&p=p-执行力差">成长型思维</a>：不是能力不行，是试得太少。先做最小的一步，能力是在做的过程中长出来的。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">缺少即时反馈</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/die-dai-si-wei.html?ref=problem&p=p-执行力差">迭代思维</a>：把大目标拆成小阶段，每完成一阶段就给自己一点反馈。别等最后才验收。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">环境总在拖你后腿</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xi-tong-si-wei.html?ref=problem&p=p-执行力差">系统思维</a>：自律不是靠意志力，是设计环境。把手机放远点，比硬扛有用十倍。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">执行力</span></div><div class="m-val">从「想」到「做」的转化能力，是执行的根。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">遇到困难不轻易退缩，才走得到终点。</div></div>
+<div class="model"><div class="m-head"><span class="name">自律</span></div><div class="m-val">按计划执行，不被情绪左右。</div></div>
+<div class="model"><div class="m-head"><span class="name">复盘能力</span></div><div class="m-val">做完回头看哪里能更快更好，下次不重蹈。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-专注力差" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>专注力差</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">学一会就走神</span>
+<span class="pain-tag">一看书就困</span>
+<span class="pain-tag">忍不住刷手机</span>
+<span class="pain-tag">容易分心</span>
+<span class="pain-tag">心静不下来</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">同时做太多事，注意力分散</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xi-tong-si-wei.html?ref=problem&p=p-专注力差">系统思维</a>：一边回消息一边看书，脑子来回切，哪件事都进不去。一次只做一件，才进得去深度状态。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">学习和休息没有节奏</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-专注力差">结构化思维</a>：把时间切块：25 分钟专注 + 5 分钟休息，脑子有喘息才坐得住。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">习惯了即时满足，做不到延迟满足</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-专注力差">辩证思维</a>：刷手机马上爽，学习却要看久了才有回报。主动减少刺激源，再把任务切成小段，才能耐下性子。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">专注力</span></div><div class="m-val">一次只做一件事，是专注的基本功。</div></div>
+<div class="model"><div class="m-head"><span class="name">时间管理能力</span></div><div class="m-val">给深度工作设保护时间，不被消息切碎。</div></div>
+<div class="model"><div class="m-head"><span class="name">自律</span></div><div class="m-val">能拒绝即时诱惑，手机才抢不走注意力。</div></div>
+<div class="model"><div class="m-head"><span class="name">精力管理</span></div><div class="m-val">知道自己状态好的时段，把好时间留给重要的事。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-低效瞎忙" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>低效瞎忙</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">整天瞎忙活</span>
+<span class="pain-tag">分不清轻重缓急</span>
+<span class="pain-tag">用战术上的勤奋掩盖战略上的懒惰</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">分不清主次</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-低效瞎忙">结构化思维</a>：把事列出来排优先级，先干重要不紧急的，别被琐事拖着跑。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">用忙碌假装自己有进展</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/di-yi-xing-yuan-li.html?ref=problem&p=p-低效瞎忙">第一性原理</a>：回到「到底要解决什么」——忙了半天没碰核心，就是假勤奋。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">任务总被打断</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xi-tong-si-wei.html?ref=problem&p=p-低效瞎忙">系统思维</a>：给深度工作设保护时间，消息不是随时要回。切断打断源，效率翻倍。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">重复工作没标准</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/mo-xing-si-wei.html?ref=problem&p=p-低效瞎忙">模型思维</a>：把重复的事固化成标准动作，下次直接套，不每次重新想。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">时间管理能力</span></div><div class="m-val">知道时间花在哪，才不瞎忙。</div></div>
+<div class="model"><div class="m-head"><span class="name">专注力</span></div><div class="m-val">减少被干扰的次数，正事才推进得动。</div></div>
+<div class="model"><div class="m-head"><span class="name">目标管理能力</span></div><div class="m-val">能判断什么最重要，不做无用功。</div></div>
+<div class="model"><div class="m-head"><span class="name">执行力</span></div><div class="m-val">少想多做，减少内耗式空转。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-无效学习" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>无效学习</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">收藏一大堆却从来不看</span>
+<span class="pain-tag">学了一堆东西就是记不住</span>
+<span class="pain-tag">懂得很多道理但是不会用</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">只输入、不输出、不复习</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xi-tong-si-wei.html?ref=problem&p=p-无效学习">系统思维</a>：收藏不等于学会。看完就放着，不复习不输出，知识根本留不住。每学一点，马上用自己的话写一遍、用一次。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">学的时候没和生活联系起来</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-无效学习">结构化思维</a>：学一个知识点就问「能用在哪」——逼自己找应用场景，知识才落进脑子里。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">学的知识都是散的，没连成网</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/chou-xiang-si-wei.html?ref=problem&p=p-无效学习">抽象思维</a>：从多个案例里抽共同规律，连成体系，遇事才知道调哪个。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">输出能力</span></div><div class="m-val">能讲出来、写出来，才是真懂。</div></div>
+<div class="model"><div class="m-head"><span class="name">归纳总结能力</span></div><div class="m-val">从具体里抽规律，知识才成体系。</div></div>
+<div class="model"><div class="m-head"><span class="name">学习能力</span></div><div class="m-val">找到适合自己的方式，记得住也用得上。</div></div>
+<div class="model"><div class="m-head"><span class="name">复盘能力</span></div><div class="m-val">学完回头看哪里没吃透，下次不白学。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-选择困难症" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>选择困难症</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">遇事拿不定主意</span>
+<span class="pain-tag">反复纠结</span>
+<span class="pain-tag">做完决定后总是后悔</span>
+<span class="pain-tag">迟迟下不了决心</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">害怕选错</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/gai-lv-si-wei.html?ref=problem&p=p-选择困难症">概率思维</a>：没有绝对正确的选择，只有相对更好的。先选一个，比卡着强。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">总想找一个完美答案</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-选择困难症">结构化思维</a>：把标准列出来打分，比在脑子里乱搅清楚。分够了，答案自己跳出来。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">想要的太多，什么都舍不得放</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/chou-xiang-si-wei.html?ref=problem&p=p-选择困难症">抽象思维</a>：工资高、离家近、有发展、还不累，都想占全，当然选不出来。把要求排个优先级，先抓最重要的两三条。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">判断力</span></div><div class="m-val">信息不全时也能做出相对好的选择。</div></div>
+<div class="model"><div class="m-head"><span class="name">决策力</span></div><div class="m-val">敢拍板、敢承担结果，机会才不溜走。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">选错了也能承受，不会崩。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-经常吃亏上当" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>经常吃亏上当</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">相同的错误重复犯</span>
+<span class="pain-tag">总是踩坑</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">吃了亏不总结，同一类错反复犯</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/yin-guo-si-wei.html?ref=problem&p=p-经常吃亏上当">因果思维</a>：每次吃亏后只骂自己笨，不找原因。写下来：这次我信了什么？为什么信？下次什么信号出现要停。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">把一两次得手当成规律</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/gai-lv-si-wei.html?ref=problem&p=p-经常吃亏上当">概率思维</a>：一两次得手是运气，多看几百次的概率才是真相。别被几个案例骗了。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">识别不出常见的套路</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/chou-xiang-si-wei.html?ref=problem&p=p-经常吃亏上当">抽象思维</a>：传销、PUA、割韭菜的话术都有固定模板。多记几个典型套路，下次看到同类开场白就直接警惕。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">不好意思拒绝别人</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-经常吃亏上当">辩证思维</a>：怕拒绝伤面子，结果吃了亏。拒绝一次关系不会立刻崩，但答应一次错误的事可能代价很大。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">复盘能力</span></div><div class="m-val">错了之后能总结，同样的坑才不踩第二次。</div></div>
+<div class="model"><div class="m-head"><span class="name">独立思考能力</span></div><div class="m-val">不人云亦云，别人的「稳赚」你敢打个问号。</div></div>
+<div class="model"><div class="m-head"><span class="name">风险管控能力</span></div><div class="m-val">看得到馅饼背后的钩子，才不伸把手。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-盲目跟风" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>盲目跟风</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">做事没主见</span>
+<span class="pain-tag">无脑跟风</span>
+<span class="pain-tag">容易被别人忽悠</span>
+<span class="pain-tag">没有自己的判断</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">容易被「大家都在做」影响</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/pi-pan-xing-si-wei.html?ref=problem&p=p-盲目跟风">批判性思维</a>：群众不一定对。「大家都在买」不代表你也需要。先问自己：别人买我就得买吗？我需要吗？</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">容易相信权威或喜欢的人</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/pi-pan-xing-si-wei.html?ref=problem&p=p-盲目跟风">批判性思维</a>：把「人」和「事」分开看。你挺他，不代表他说啥都对。重点看他说的事有没有依据。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">容易被几个成功案例说服</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/pi-pan-xing-si-wei.html?ref=problem&p=p-盲目跟风">批判性思维</a>：你看到的只是你看到的，还有很多你没看到。比如你看到一些人创业成功了，但没成功的人更多。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">独立思考能力</span></div><div class="m-val">不人云亦云，才不会被带着跑。</div></div>
+<div class="model"><div class="m-head"><span class="name">逻辑思维能力</span></div><div class="m-val">能看出论证漏洞，忽悠就站不住。</div></div>
+<div class="model"><div class="m-head"><span class="name">思辨能力</span></div><div class="m-val">敢于质疑权威和大多数，自己的判断才立得住。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-情绪化决策" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>情绪化决策</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">冲动做决定</span>
+<span class="pain-tag">容易情绪上头</span>
+<span class="pain-tag">遇到事冷静不下来</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">情绪一上头，只想争输赢</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-情绪化决策">辩证思维</a>：吵赢这一句，可能输掉这段关系。退一步想，你到底是想要面子，还是想要结果？</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">冲动时被眼前的好处或怕亏带着走</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/pi-pan-xing-si-wei.html?ref=problem&p=p-情绪化决策">批判性思维</a>：商家说「限时特价」，你就怕错过；股票跌了怕亏更多，慌忙割肉。停下来问：换个时间、换个说法，我还会这么选吗？</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">情绪来了冷静不下来</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/dong-tai-si-wei.html?ref=problem&p=p-情绪化决策">动态思维</a>：给自己 10 分钟缓冲。情绪过了再做决定，往往就不一样。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">情绪调节</span></div><div class="m-val">情绪起来能先按暂停，不立刻拍板。</div></div>
+<div class="model"><div class="m-head"><span class="name">自律</span></div><div class="m-val">给自己几秒到几分钟缓冲，冲动的话和决定都憋回去了。</div></div>
+<div class="model"><div class="m-head"><span class="name">判断力</span></div><div class="m-val">情绪平稳时，才看得清对错得失。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">被激、被催、被将，都不慌，才不被牵着走。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-总是讨好别人" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>总是讨好别人</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">讨好型人格</span>
+<span class="pain-tag">习惯性当老好人</span>
+<span class="pain-tag">容易被别人拿捏</span>
+<span class="pain-tag">不敢拒绝</span>
+<span class="pain-tag">不敢得罪人</span>
+<span class="pain-tag">习惯性迁就别人</span>
+<span class="pain-tag">委屈自己</span>
+<span class="pain-tag">害怕冲突</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">害怕被讨厌、被拒绝</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xiang-dui-si-wei.html?ref=problem&p=p-总是讨好别人">相对思维</a>：别人喜不喜欢你，不完全取决于你讨不讨好。你拒绝一次，关系通常不会立刻崩。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">以为退让能换来关系</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-总是讨好别人">辩证思维</a>：你越没底线，别人越不把你当回事。有分寸的拒绝，反而赢得尊重。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">分不清自己的需求和别人的需求</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-总是讨好别人">结构化思维</a>：把「我不想」清楚说出来，不需要理由。你的需求和他的一样重要。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">被小恩小惠绑架</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-总是讨好别人">辩证思维</a>：别人先请你吃顿饭、帮个小忙，你就不好意思拒绝。好意和请求是两件事，不必因为他对你好一次，就答应你不愿意的事。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">边界感</span></div><div class="m-val">知道什么事可以拒绝，才不被无限索取。</div></div>
+<div class="model"><div class="m-head"><span class="name">表达能力</span></div><div class="m-val">敢把自己的需求说出来，不用绕、不用讨好。</div></div>
+<div class="model"><div class="m-head"><span class="name">自信心</span></div><div class="m-val">相信自己值得被尊重，不用靠讨好换关系。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">不怕别人不高兴，才敢说不。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-过度在意他人看法" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>过度在意他人看法</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">怕别人议论</span>
+<span class="pain-tag">怕被评价</span>
+<span class="pain-tag">不敢展示真实的自己</span>
+<span class="pain-tag">极度在意别人的眼光</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">把别人的评价当成事实</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xiang-dui-si-wei.html?ref=problem&p=p-过度在意他人看法">相对思维</a>：那只是他的视角，不是客观真相。同事没夸你，不代表你做得差。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">高估别人对你的关注</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/gai-lv-si-wei.html?ref=problem&p=p-过度在意他人看法">概率思维</a>：别人根本没你想的那么在意你。你纠结半天的细节，人家转头就忘了。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">害怕不被接纳</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-过度在意他人看法">辩证思维</a>：被所有人喜欢本来就不可能。讨好所有人，等于谁也没讨好。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">想控制别人的看法</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xi-tong-si-wei.html?ref=problem&p=p-过度在意他人看法">系统思维</a>：别人的看法是他的事，你控制不了。把精力放回自己身上。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">自我认知</span></div><div class="m-val">清楚自己是谁，才不被评价牵着走。</div></div>
+<div class="model"><div class="m-head"><span class="name">情绪调节</span></div><div class="m-val">外界评价带来的波动能被平复。</div></div>
+<div class="model"><div class="m-head"><span class="name">自信心</span></div><div class="m-val">相信自己值得被尊重，别人的眼光就没那么重。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">面对负面评价不崩溃。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-社恐" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>社恐</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">害怕社交</span>
+<span class="pain-tag">和陌生人说话就紧张</span>
+<span class="pain-tag">怕被点名发言</span>
+<span class="pain-tag">聚会能不去就不去</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">过度关注自己的表现</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/shi-shi-qiu-shi.html?ref=problem&p=p-社恐">实事求是</a>：你总盯着自己——脸红没、说错没，其实别人没那么注意你。把注意力从自己身上挪开，就没那么紧张。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">怕出丑、怕丢脸</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/dong-tai-si-wei.html?ref=problem&p=p-社恐">动态思维</a>：谁都有尴尬的时候，一次出丑不代表你这个人不行。别把它当成你的标签。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">过度在意别人对自己的评价</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-社恐">辩证思维</a>：别人的评价只是他的看法，有对有错，不等于你这个人怎么样。根因就这三样，社交场合想躲只是它们带来的结果。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">表达能力</span></div><div class="m-val">能说两句得体的话，社交就不那么可怕。</div></div>
+<div class="model"><div class="m-head"><span class="name">自信心</span></div><div class="m-val">相信自己值得被听见，才敢开口。</div></div>
+<div class="model"><div class="m-head"><span class="name">抗压能力</span></div><div class="m-val">面对陌生人和目光不崩。</div></div>
+<div class="model"><div class="m-head"><span class="name">应变能力</span></div><div class="m-val">现场被cue、冷场，能接得住。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-总想改变别人" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>总想改变别人</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">总想说服别人</span>
+<span class="pain-tag">强求别人认同自己</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">控制欲强，希望别人按自己的来</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xi-tong-si-wei.html?ref=problem&p=p-总想改变别人">系统思维</a>：每个人都有自己的人生系统，不是你按个按钮就会变的。你能影响的只有环境和你自己的方式。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">太自我，总觉得自己是对的</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-总想改变别人">辩证思维</a>：你的标准是你的，不是放之四海皆准。两个人可以各对一部分，不必非争个输赢。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">把不同意见当成对自己的否定</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xiang-dui-si-wei.html?ref=problem&p=p-总想改变别人">相对思维</a>：他不同意你，不等于否定你这个人。把「人」和「事」分开，就没那么急着去改变他。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">不会换方法，只会反复说</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/yin-guo-si-wei.html?ref=problem&p=p-总想改变别人">因果思维</a>：同样的话说十遍，还是同样的结果。想改变结果，先换方法：换环境、换时机、换说法。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">共情能力</span></div><div class="m-val">理解对方为什么那么想，才不急着改他。</div></div>
+<div class="model"><div class="m-head"><span class="name">沟通能力</span></div><div class="m-val">把「你应该」换成「我是这么想的」，对方才听得进。</div></div>
+<div class="model"><div class="m-head"><span class="name">情绪调节</span></div><div class="m-val">对方不听你的，不急不气，关系才不炸。</div></div>
+<div class="model"><div class="m-head"><span class="name">自我觉察</span></div><div class="m-val">识别「我又在控制欲上头」，才能停。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-沟通能力差" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>沟通能力差</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">说话太直太伤人</span>
+<span class="pain-tag">习惯性反驳</span>
+<span class="pain-tag">情商低</span>
+<span class="pain-tag">不会换位思考</span>
+<span class="pain-tag">不会表达</span>
+<span class="pain-tag">容易产生误会</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">说话没逻辑，抓不住重点</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-沟通能力差">结构化思维</a>：沟通前先想：我要他干什么、为什么。结论先行，对方一下就知道你要说什么。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">太自我，只顾自己想说</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xiang-dui-si-wei.html?ref=problem&p=p-沟通能力差">相对思维</a>：沟通不是自说自话。用对方能听懂、在意的话讲你的需求，他才听得进去。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">习惯性反驳，总想证明自己</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-沟通能力差">辩证思维</a>：一开口就把对方放对立面，沟通变成辩论。先承认对方有对的部分，再讲你的。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">控制不了自己的情绪</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/dong-tai-si-wei.html?ref=problem&p=p-沟通能力差">动态思维</a>：情绪一上来，理性就下线，说的话 90% 会后悔。先处理情绪，再处理事情。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">沟通能力</span></div><div class="m-val">把想法清楚、得体地说出来，误会才少。</div></div>
+<div class="model"><div class="m-head"><span class="name">倾听能力</span></div><div class="m-val">先听懂对方，再说自己的观点，不抢话。</div></div>
+<div class="model"><div class="m-head"><span class="name">共情能力</span></div><div class="m-val">理解对方的情绪和立场，话才说到心里。</div></div>
+<div class="model"><div class="m-head"><span class="name">应变能力</span></div><div class="m-val">现场被怼、被打断，能接住话不冷场。</div></div></div>
+  </section>
+</section>
+
+<section class="pain-section" id="p-没有边界感" style="display:none;">
+  <div class="subhead"><div class="inner"><h1>没有边界感</h1></div></div>
+  <section class="core core-first">
+    <div class="core-head"><h2>常见表现</h2></div>
+    <div class="pain-tags">
+<span class="pain-tag">交浅言深</span>
+<span class="pain-tag">对陌生人掏心掏肺</span>
+<span class="pain-tag">没有分寸感</span>
+<span class="pain-tag">不懂得礼尚往来</span>
+<span class="pain-tag">无意中得罪人</span>
+</div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>问题的根源</h2></div>
+    <div class="solve-board"><div class="solve-rows"><div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">1</span><span class="solve-cause-k">原因一</span></div><div class="solve-cause-t">分不清关系的亲疏远近</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/jie-gou-hua-si-wei.html?ref=problem&p=p-没有边界感">结构化思维</a>：给关系分个层：陌生人、熟人、挚友，说不同的话、交不同的底。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">2</span><span class="solve-cause-k">原因二</span></div><div class="solve-cause-t">对谁都过度暴露自己</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/xiang-dui-si-wei.html?ref=problem&p=p-没有边界感">相对思维</a>：你和别人的交情，决定你能说多深。刚认识就交底，别人接不住也怕。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">3</span><span class="solve-cause-k">原因三</span></div><div class="solve-cause-t">不懂关系需要有来有往</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/yin-guo-si-wei.html?ref=problem&p=p-没有边界感">因果思维</a>：关系是长期互动的结果。只进不出，别人慢慢就疏远了；一味付出，也会失衡。</div></div></div>
+<div class="solve-row"><div class="solve-cause"><div class="solve-cause-h"><span class="solve-num">4</span><span class="solve-cause-k">原因四</span></div><div class="solve-cause-t">说话做事不注意分寸</div></div><div class="solve-arrow-h"><span class="solve-arrow-lab">换个角度</span><svg class="solve-row-arrow" viewBox="0 0 80 40" aria-hidden="true"><path d="M8,20 Q32,12 56,20 T72,20" filter="url(#solveRough)" fill="none" stroke="var(--brand)" stroke-width="2.6" stroke-linecap="round" marker-end="url(#solveAhRed)"/></svg></div><div class="solve-fix"><div class="solve-fix-top"><a href="models/bian-zheng-si-wei.html?ref=problem&p=p-没有边界感">辩证思维</a>：你以为是直爽，对方以为是冒犯。两面都看，说话前过一遍分寸。</div></div></div></div></div>
+  </section>
+  <section class="core">
+    <div class="core-head"><h2>练练这些能力</h2></div>
+    <div class="grid"><div class="model"><div class="m-head"><span class="name">边界感</span></div><div class="m-val">知道什么该说、什么该留，关系才舒服不越界。</div></div>
+<div class="model"><div class="m-head"><span class="name">共情能力</span></div><div class="m-val">感知对方的反应，及时调整分寸。</div></div>
+<div class="model"><div class="m-head"><span class="name">沟通能力</span></div><div class="m-val">把分寸用得体的话表达出来，不得罪人。</div></div>
+<div class="model"><div class="m-head"><span class="name">自我觉察</span></div><div class="m-val">识别自己「又说过头了」，下次收着点。</div></div></div>
+  </section>
+</section>
+
+  </div>
+</div>
+
+<script>
+/* 切换问题 */
+(function(){
+  var sections = document.querySelectorAll('.pain-section');
+  var links = document.querySelectorAll('.side-nav a[data-target]');
+  var groups = document.querySelectorAll('.nav-group');
+  function show(id, noScroll, animate){
+    if(animate === undefined) animate = true;
+    sections.forEach(function(s){ s.style.display = (s.id === id ? 'block' : 'none'); });
+    links.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('data-target') === id);
+    });
+    // 切换问题后回到页面顶部，避免 fixed 顶栏遮挡问题标题
+    // 通过分组标题展开后默认选中第一个痛点时，noScroll=true，避免页面猛然回顶晃动
+    if(!noScroll){
+      setTimeout(function(){ window.scrollTo(0, 0); }, 0);
+    }
+    // 高亮当前问题所属一级分组，并在 PC 端自动展开该分组，其它分组收起
+    var activeLink = document.querySelector('.side-nav a.active');
+    var activeGroup = activeLink ? activeLink.getAttribute('data-group') : null;
+    groups.forEach(function(g){
+      var isActive = g.getAttribute('data-group') === activeGroup;
+      var title = g.querySelector('.group-title');
+      if(title) title.classList.toggle('active', isActive);
+      if(window.innerWidth > 768){
+        if(isActive) g.classList.remove('collapsed');
+        else g.classList.add('collapsed');
+      }
+    });
+    // 渐进 reveal：当前问题区块依次优雅淡入
+    var cur = document.getElementById(id);
+    if(cur){
+      if(animate){
+        // 切换时重放入场动画
+        var cores = cur.querySelectorAll('.core');
+        cores.forEach(function(el, i){
+          el.classList.remove('reveal-in');
+          void el.offsetWidth;
+          setTimeout(function(){ el.classList.add('reveal-in'); }, 60 + i * 90);
+        });
+        // 常见表现标签：stagger 入场，营造「选中」感
+        var tags = cur.querySelectorAll('.pain-tags .pain-tag');
+        tags.forEach(function(t){ t.classList.remove('show'); });
+        tags.forEach(function(t, i){
+          setTimeout(function(){ t.classList.add('show'); }, 120 + i * 55);
+        });
+      } else {
+        // 首屏：直接就位，不播放入场动画（preload 已禁用过渡，避免空白→填满的一闪）
+        cur.querySelectorAll('.core').forEach(function(el){ el.classList.add('reveal-in'); });
+        cur.querySelectorAll('.pain-tags .pain-tag').forEach(function(t){ t.classList.add('show'); });
+      }
+    }
+  }
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+      show(a.getAttribute('data-target'));
+      if(window.innerWidth < 900){
+        var sideNav = document.getElementById('sideNav');
+        var sideOverlay = document.getElementById('sideOverlay');
+        if(sideNav) sideNav.classList.remove('open');
+        if(sideOverlay) sideOverlay.classList.remove('show');
+      }
+    });
+  });
+  var firstGroup = document.querySelector(".side-nav-problems .nav-group");
+    var first = firstGroup ? firstGroup.getAttribute("data-first-target") : (sections[0] ? sections[0].id : "");
+  var rawHash = window.__savedHash || location.hash || '';
+  var hash = rawHash ? decodeURIComponent(rawHash.replace('#','')) : '';
+  // 首屏不播放入场动画（animate=false），避免「空白→填满」闪一下；preload 已禁用过渡
+  show(document.getElementById(hash) ? hash : first, false, false);
+  // 页面加载并 show() 完成后再恢复 hash，避免浏览器默认 hash 滚动覆盖 scrollTo(0,0)
+  if(window.__savedHash){
+    setTimeout(function(){ history.replaceState(null, '', window.__savedHash); }, 120);
+  }
+  // 首屏渲染完成后再启用过渡/动画，让后续切换的入场动画正常播放
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      document.documentElement.classList.remove('preload');
+    });
+  });
+  window.showProblem = show;
+})();
+
+/* 移动端侧边栏 */
+(function(){
+  var menuToggle = document.getElementById('menuToggle');
+  var sideNav = document.getElementById('sideNav');
+  var sideOverlay = document.getElementById('sideOverlay');
+  function openSide(){ if(sideNav){ sideNav.classList.add('open'); sideOverlay && sideOverlay.classList.add('show'); } }
+  function closeSide(){ if(sideNav){ sideNav.classList.remove('open'); sideOverlay && sideOverlay.classList.remove('show'); } }
+  if(menuToggle){
+    function onMenuTap(e){
+      e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+      e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true);
+      sideNav.classList.contains('open') ? closeSide() : openSide();
+    }
+    menuToggle.addEventListener('click', onMenuTap);
+    menuToggle.addEventListener('touchstart', onMenuTap, {passive:false});
+  }
+  if(sideOverlay){ sideOverlay.addEventListener('click', closeSide); sideOverlay.addEventListener('touchstart', closeSide, {passive:false}); }
+})();
+
+/* 侧边栏手动滚动箭头 */
+(function(){
+  var scroll = document.getElementById('sideScroll');
+  var up = document.getElementById('sideUp');
+  var down = document.getElementById('sideDown');
+  var hint = document.getElementById('sideHint');
+  if(!scroll || !up || !down) return;
+  var step = 112;
+  var hideTimer = null;
+  function showHint(text, isTop){
+    if(!hint) return;
+    hint.textContent = text;
+    hint.className = 'side-hint ' + (isTop ? 'top' : 'bottom');
+    requestAnimationFrame(function(){ hint.classList.add('show'); });
+    if(hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(function(){ hint.classList.remove('show'); }, 1400);
+  }
+  function updateArrows(){
+    var sh = scroll.scrollHeight, st = scroll.scrollTop, ch = scroll.clientHeight;
+    var atTop = st <= 1;
+    var atBottom = st + ch >= sh - 1;
+    up.disabled = atTop; up.classList.toggle('disabled', atTop);
+    down.disabled = atBottom; down.classList.toggle('disabled', atBottom);
+  }
+  function scrollBy(delta){ scroll.scrollBy({top: delta, behavior: 'smooth'}); }
+  up.addEventListener('click', function(){ if(scroll.scrollTop <= 1){ showHint('已到达顶部', true); return; } scrollBy(-step); });
+  down.addEventListener('click', function(){ if(scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 1){ showHint('已到达底部', false); return; } scrollBy(step); });
+  scroll.addEventListener('scroll', updateArrows, {passive: true});
+  window.addEventListener('load', updateArrows);
+  updateArrows();
+})();
+
+/* 左侧分组折叠/展开：与箭头无关，独立绑定 */
+(function(){
+  document.querySelectorAll('.side-nav-problems .group-title').forEach(function(title){
+    title.addEventListener('click', function(e){
+      if(e.target.closest('a')) return;
+      var g = title.closest('.nav-group');
+      if(!g) return;
+      var wasCollapsed = g.classList.contains('collapsed');
+      g.classList.toggle('collapsed');
+      if(wasCollapsed){
+        // 手风琴：展开当前分类时收起其它分类，确保只显示所点分类
+        document.querySelectorAll('.nav-group').forEach(function(o){ if(o !== g) o.classList.add('collapsed'); });
+        var target = g.getAttribute('data-first-target') || title.getAttribute('data-first-target');
+        if(target && typeof window.showProblem === 'function'){
+          window.showProblem(target, true); // true = 不强制滚动到顶部，避免晃动
+        }
+      }
+    });
+  });
+})();
+</script>
+
+<script src="assets/free-lock.js?v=2"></script>
+</body>
+</html>

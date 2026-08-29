@@ -1,0 +1,106 @@
+/* 免费传播站锁定样式：只加锁标，不修改原卡片/导航结构 */
+
+/* 通用锁标 */
+.free-lock-icon{
+  width:14px; height:14px;
+  color:#9C928A;
+  stroke:#9C928A; fill:none;
+  pointer-events:none;
+  display:inline-block;
+  vertical-align:-2px;
+  margin-right:0;
+}
+
+/* 被锁定元素：不响应点击 */
+.free-locked{
+  cursor:not-allowed !important;
+  pointer-events:none !important;
+}
+.free-locked *{
+  pointer-events:none !important;
+}
+
+/* 模型卡片：保留原样式，仅把右下角 CTA 换成锁（去掉 H5 红底按钮） */
+a.model.done.free-locked .m-cta{
+  background:none !important;
+  color:#9C928A !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:4px;
+}
+a.model.done.free-locked .m-cta svg{
+  width:14px; height:14px;
+}
+
+/* 分类侧栏锁：不影响原布局 */
+.side-nav ul li a.free-locked{
+  color:#9C928A !important;
+}
+.side-nav ul li a.free-locked .count{ opacity:.5; }
+
+/* 书单卡片统一：pending 视觉上与 done 一致 */
+div.book-card.pending,
+a.book-card.pending{
+  cursor:default;
+}
+div.book-card.pending .book-title,
+a.book-card.pending .book-title{
+  color:var(--title);
+}
+div.book-card.pending .book-author,
+a.book-card.pending .book-author{
+  color:var(--text-2);
+}
+div.book-card.pending .book-rec,
+a.book-card.pending .book-rec{
+  color:var(--text-2);
+}
+div.book-card.pending::before,
+a.book-card.pending::before{
+  background:var(--brand) !important;
+}
+div.book-card.pending:hover,
+a.book-card.pending:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 20px rgba(32,25,20,0.08);
+  border-color:var(--brand);
+}
+
+/* 书单卡片锁：右上角 */
+a.book-card.book-locked,
+div.book-card.book-locked{
+  position:relative;
+}
+a.book-card.book-locked::after,
+div.book-card.book-locked::after{
+  content:"";
+  position:absolute; top:10px; right:10px;
+  width:18px; height:18px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239C928A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='11' width='14' height='10' rx='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
+  background-size:contain;
+  background-repeat:no-repeat;
+  pointer-events:none;
+}
+
+/* 成长之路锁：文字左侧加锁标 */
+.side-nav-problems .nav-group a.problem-locked span{
+  position:relative;
+  padding-left:18px;
+}
+.side-nav-problems .nav-group a.problem-locked span::before{
+  content:"";
+  position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:12px; height:12px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239C928A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='11' width='14' height='10' rx='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
+  background-size:contain;
+  background-repeat:no-repeat;
+  pointer-events:none;
+}
+
+/* 第二大脑来源 */
+.free-source{
+  color:#F4A261;
+}

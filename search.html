@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成长觉醒</title>
+<link rel="stylesheet" href="assets/site.css?v=39">
+<link rel="stylesheet" href="assets/search.css?v=39">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="成长觉醒">
+<meta property="og:title" content="成长觉醒">
+<meta property="og:description" content="在 198 个思维模型与思维陷阱中，搜索你想要的思考框架。">
+<meta property="og:url" content="https://thinking-model-d2gmrpzkyc0e1ae4d-1344110321.tcloudbaseapp.com/">
+<meta property="og:image" content="https://thinking-model-d2gmrpzkyc0e1ae4d-1344110321.tcloudbaseapp.com/assets/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="成长觉醒">
+<meta name="twitter:description" content="在 198 个思维模型与思维陷阱中，搜索你想要的思考框架。">
+<meta name="twitter:image" content="https://thinking-model-d2gmrpzkyc0e1ae4d-1344110321.tcloudbaseapp.com/assets/og-cover.png">
+<meta name="description" content="在 198 个思维模型与思维陷阱中，搜索你想要的思考框架。">
+
+<link rel="stylesheet" href="assets/free-lock.css?v=2">
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="inner">
+    <button class="menu-toggle" id="menuToggle" aria-label="打开分类导航">☰</button>
+    <a class="brand" href="growth-brain.html">
+      <img class="site-icon" src="assets/site-icon.png" alt="成长觉醒" width="32" height="32">
+      <span class="brand-text">
+        <span class="title">成长觉醒</span>
+      </span>
+    </a>
+    <div class="nav-tabs" role="tablist"><a role="tab" class="tab" href="growth-brain.html">第二大脑</a><a role="tab" class="tab active" href="all.html">全部思维模型</a><a role="tab" class="tab" href="growth-stages.html">成长之路</a><a role="tab" class="tab" href="book-list.html">成长书单</a></div>
+    <div class="right">
+      <div class="stat">16 类 · 198 模型 · 已完成 78</div>
+      <div class="gsearch" data-search="search.html"><form class="gsearch-form" role="search"><div class="gsearch-field"><input class="gsearch-input" type="text" placeholder="请输入搜索关键词" aria-label="搜索思维模型"><button class="gsearch-clear" type="button" aria-label="清空搜索"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><button class="gsearch-btn" type="submit" aria-label="搜索"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button></form></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function(){
+  var tabs = document.querySelector('.nav-tabs');
+  function scrollTabIntoView(tab){
+    if(!tab || !tabs) return;
+    var cw = tabs.clientWidth, sw = tabs.scrollWidth;
+    if(sw <= cw) return;
+    // 让 active tab 出现在容器左侧约 1/4 处，确保前面一个 tab 也能露出来
+    var relLeft = tab.offsetLeft - tabs.offsetLeft;
+    var target = relLeft - cw * 0.25;
+    tabs.scrollTo({left: Math.max(0, Math.min(target, sw - cw)), behavior: 'smooth'});
+  }
+  if(tabs){
+    var active = tabs.querySelector('.tab.active');
+    if(active) setTimeout(function(){ scrollTabIntoView(active); }, 0);
+    tabs.addEventListener('click', function(e){
+      var t = e.target.closest('.tab');
+      if(t) setTimeout(function(){ scrollTabIntoView(t); }, 0);
+    });
+  }
+})();
+</script>
+
+<aside class="side-nav" id="sideNav">
+  <button class="side-arrow side-up" id="sideUp" aria-label="向上滚动"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
+  <div class="side-scroll" id="sideScroll">
+    <ul>
+          <li><a href="category/cat-1.html"><span>思维陷阱</span><span class="count">59</span></a></li>
+          <li><a href="category/cat-2.html"><span>顶级思维模型</span><span class="count">15</span></a></li>
+          <li><a href="category/cat-3.html"><span>通用思维模型</span><span class="count">12</span></a></li>
+          <li><a href="category/cat-4.html"><span>进阶思维模型</span><span class="count">14</span></a></li>
+          <li><a href="category/cat-5.html"><span>问题分析工具</span><span class="count">14</span></a></li>
+          <li><a href="category/cat-6.html"><span>问题决策工具</span><span class="count">6</span></a></li>
+          <li><a href="category/cat-7.html"><span>心理学</span><span class="count">7</span></a></li>
+          <li><a href="category/cat-8.html"><span>生物学</span><span class="count">10</span></a></li>
+          <li><a href="category/cat-9.html"><span>经济学</span><span class="count">18</span></a></li>
+          <li><a href="category/cat-10.html"><span>哲学</span><span class="count">6</span></a></li>
+          <li><a href="category/cat-11.html"><span>数学</span><span class="count">11</span></a></li>
+          <li><a href="category/cat-12.html"><span>物理学</span><span class="count">4</span></a></li>
+          <li><a href="category/cat-13.html"><span>化学</span><span class="count">3</span></a></li>
+          <li><a href="category/cat-14.html"><span>系统科学</span><span class="count">11</span></a></li>
+          <li><a href="category/cat-15.html"><span>工程学</span><span class="count">3</span></a></li>
+          <li><a href="category/cat-16.html"><span>信息科学</span><span class="count">5</span></a></li>
+    </ul>
+    <span class="side-hint" id="sideHint"></span>
+  </div>
+  <button class="side-arrow side-down" id="sideDown" aria-label="向下滚动"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+</aside>
+<div class="side-nav-overlay" id="sideOverlay"></div>
+
+<div class="wrap">
+  <div class="stack">
+    <div class="subhead">
+      <div class="inner">
+        <h1>搜索结果</h1>
+      </div>
+    </div>
+    <div class="search-meta" id="searchMeta"></div>
+    <div class="results" id="results"></div>
+  </div>
+</div>
+
+<script>window.INDEX=[{"name": "奖励和惩罚超级反应倾向", "cat": "思维陷阱", "core": false, "file": "jiang-li-he-cheng-fa-qing-xiang.html", "intro": "警惕短期快感绑架长期目标", "b": "我们很容易被眼前的即时好处刺激，为了短期利益冲动做事；也会因为害怕受到惩罚，刻意回避正确但是很痛苦的事。 别人可以利用奖励操控你的行为，而你自己也要警惕被短期快感牵着走。 明明计划减肥，却因为刷短视频、吃零食可以立刻获得快乐，一次次放弃运动，任由短期快感打乱自己的长期目标。 看清短期奖励背后的陷阱，以内在目标主导行动，才不容易被外界操控。", "sub": "人类误判心理倾向"}, {"name": "喜欢 / 热爱倾向", "cat": "思维陷阱", "core": false, "file": "xi-huan-re-ai-qing-xiang.html", "intro": "不要因为偏爱，自动忽略潜在缺陷", "b": "只要我们喜欢一个人、一件事物，就会自动忽略它身上存在的缺点，盲目美化对方，然后丧失客观的判断力。 喜欢属于情绪，而判断需要理性，二者可以共存，我们不能直接让情绪代替理性判断。 因为十分信任一位朋友，当对方提出合伙投资项目的时候，自己不去核查项目存在的风险，直接投入资金，最后因为项目漏洞产生亏损。 在热爱之余保留一份客观审视，才不会被情感蒙蔽双眼。", "sub": "人类误判心理倾向"}, {"name": "讨厌 / 憎恨倾向", "cat": "思维陷阱", "core": false, "file": "tao-yan-zeng-hen-qing-xiang.html", "intro": "区分人和观点，不能因反感全盘否定", "b": "一旦我们反感某个人或者某件事，就会下意识全盘否定对方；哪怕对方提出合理的观点，我们也不愿意接纳。 就算是我们反感的人，也有可能说出正确的道理；而我们认可的好人，也有可能犯下错误，不能一刀切。 和同事闹过矛盾之后，哪怕对方提出可以提升整体效率的方案，自己内心也会下意识抵触，不愿意采纳。 情绪归情绪，道理归道理，不要用憎恨封闭自己获取信息的通道。", "sub": "人类误判心理倾向"}, {"name": "避免怀疑倾向", "cat": "思维陷阱", "core": false, "file": "bi-mian-huai-yi-qing-xiang.html", "intro": "接纳短暂不确定，拒绝仓促下结论", "b": "我们内心很难忍受长时间犹豫不决，迫切想要快速下定结论；就算手里的证据并不充足，也要立刻给出一个答案。 暂时搁置问题，不等于直接放弃思考；很多问题，随着时间推移会出现新的线索。 只看到网上一段碎片化的爆料，没有查证完整的事实经过，就立刻站队、发表结论，等到后续剧情反转，才发现自己判断过早。 接纳暂时的不确定，减少仓促下定论带来的失误。", "sub": "人类误判心理倾向"}, {"name": "避免不一致性倾向", "cat": "思维陷阱", "core": false, "file": "bi-mian-bu-yi-zhi-qing-xiang.html", "intro": "不要为了面子，硬守住错误选择", "b": "为了维护自己从前说过的话、做出过的选择，就算发现原来的想法存在错误，也不愿意推翻旧观点，强行维持前后想法一致。 坚持错误并不是专一，而及时调整方向，才属于理性行为。 买入一只股票之后，出现大量利空信号，但是自己不愿意承认选股失误，还不断加仓摊薄成本，最终造成更大亏损。 敢于推翻过时的旧认知，才能做到及时止损。", "sub": "人类误判心理倾向"}, {"name": "好奇心倾向", "cat": "思维陷阱", "core": false, "file": "hao-qi-xin-qing-xiang.html", "intro": "管控漫无目的猎奇，保护核心注意力", "b": "我们本能对新鲜猎奇的内容充满兴趣，很容易被碎片化八卦、刺激性信息牵着注意力，耽误手头正事。 好奇心可以用来帮助我们学习新知识，但是我们不能任由好奇心漫无目的地四处游走。 本来准备读书写作，刷到一条娱乐热搜之后，顺着各类八卦链接一路浏览，两小时之后才发现原定任务完全没有启动。 引导好奇心投向成长类内容，不要任由它消耗自己的时间。", "sub": "人类误判心理倾向"}, {"name": "追求公平倾向", "cat": "思维陷阱", "core": false, "file": "gong-ping-qing-xiang.html", "intro": "放下对即时绝对公平的执念，着眼长期收益", "b": "本能追求绝对公平，一旦感觉待遇不公平，就心生不满，甚至不惜放弃自身利益也要追求“对等报复”。 很难做到每一件事的收益立刻一模一样，而长期收益，比一时均等更加重要。 团队合作时，自己多承担了一部分工作量，立刻心生不满，直接摆烂停工，导致整体项目失败，所有人收益受损。 守住规则底线，放下对即时绝对公平的执念。", "sub": "人类误判心理倾向"}, {"name": "艳羡 / 妒忌倾向", "cat": "思维陷阱", "core": false, "file": "yan-xian-du-ji-qing-xiang.html", "intro": "停止横向攀比内耗，专注自己的成长节奏", "b": "看到身边人获得财富、机遇、成就之后，内心产生不平衡；不愿意静下心提升自己，反而盯着别人的生活进行精神内耗。 别人的成果属于别人，而你的赛道和节奏，不需要和所有人保持一致。 看到朋友短时间收入暴涨，自己心态失衡，放弃原本稳步推进的长期项目，跟风去做自己完全不熟悉的投机项目，最后产生亏损。 把攀比内耗转化为自我成长动力，走出别人的赛道。", "sub": "人类误判心理倾向"}, {"name": "回馈倾向", "cat": "思维陷阱", "core": false, "file": "hui-kui-qing-xiang.html", "intro": "守住个人边界，避免被人情恩惠绑架", "b": "当别人给予我们一点小恩惠，我们就会产生强烈的亏欠感，急于超额回报对方；当别人恶意对待我们的时候，我们也总想立刻报复回去。 很多销售人员，就是利用赠送小礼品的方式，触发你的回馈心理，促使你下单。 导购赠送一份小样赠品之后，自己心里产生亏欠感，明明不需要这款产品，依旧冲动下单。 心怀感恩，但守住自己的边界，不被人情裹挟。", "sub": "人类误判心理倾向"}, {"name": "受简单联想影响的倾向", "cat": "思维陷阱", "core": false, "file": "jian-dan-lian-xiang-qing-xiang.html", "intro": "区分巧合和因果，拒绝强行关联", "b": "两件事先后发生，我们就下意识认定二者存在因果关系，依靠联想得出结论，而不去深究背后真实的逻辑。 两件事先后发生，不等于二者一定存在因果。 穿某一件衣服的时候刚好赢了一次游戏，就认定这件衣服是幸运战袍，把偶然巧合当成了必然规律。 分清巧合关联和真实因果，不被表面联想误导。", "sub": "人类误判心理倾向"}, {"name": "简单的、避免痛苦的心理否认", "cat": "思维陷阱", "core": false, "file": "bi-mian-tong-ku-qing-xiang.html", "intro": "拒绝长期逃避，接纳现实再解决问题", "b": "当现实过于残酷、让人痛苦的时候，我们会下意识拒绝承认事实，假装坏事没有发生，用这种方式逃避内心痛苦。 心理否认只能做到短期止痛，但是不能真正解决问题。 已经发现业务数据持续下滑，却不愿意承认危机，依旧维持原来的经营策略，直到局面彻底失控。 短暂缓冲之后直面真相，才有机会改变现状。", "sub": "人类误判心理倾向"}, {"name": "自视过高的倾向", "cat": "思维陷阱", "core": false, "file": "zi-shi-guo-gao-qing-xiang.html", "intro": "客观评估自身能力，不要盲目乐观", "b": "习惯性高估自己的能力、判断力，觉得自己的水平高于大多数普通人，同时低估做事过程里潜在的各类风险。 绝大多数人，都认为自己的能力处于中上水平，这本身就是一种认知错觉。 新手进入交易市场，觉得自己悟性远超普通散户，没有系统学习就投入大额资金，最终出现大额亏损。 保持适度谦卑，客观评估自身能力与风险。", "sub": "人类误判心理倾向"}, {"name": "过度乐观倾向", "cat": "思维陷阱", "core": false, "file": "guo-du-le-guan-qing-xiang.html", "intro": "美好期待之外，预留风险预案", "b": "我们习惯性对未来的结果往最好的方向想象，只畅想一切顺利的情景，但是忽略各类阻碍、意外带来的风险。 做事情可以抱着最好的期待，同时也要做好最坏情况的预案。 创业规划，只计算一切顺利情况下的盈利，完全没有预留应对亏损的现金流，遇到市场波动之后，资金直接断裂。 乐观推动行动，预案抵御风险，二者缺一不可。", "sub": "人类误判心理倾向"}, {"name": "被剥夺超级反应倾向", "cat": "思维陷阱", "core": false, "file": "bei-bo-duo-chao-ji-fan-ying-qing-xiang.html", "intro": "警惕损失厌恶情绪，敢于理性止损", "b": "当自己已经拥有的东西即将失去的时候，我们的情绪会剧烈放大，为了守住原有利益，做出很多不理性的举动。 丢掉100元的痛苦，往往大于捡到100元带来的开心。 持仓资产已经开始下跌，自己内心无法接受账面亏损，不愿意卖出止损，一路持有直到深度套牢。 理性看待得失，不要被“害怕失去”的情绪主导决策。", "sub": "人类误判心理倾向"}, {"name": "社会认同倾向", "cat": "思维陷阱", "core": false, "file": "she-hui-ren-tong-qing-xiang.html", "intro": "拒绝无脑跟风，大众行为不等于正确", "b": "不自觉参考周围大多数人的行为来判断一件事的对错；只要大家都在做，自己就默认这件事没有问题。 就算多数人一起犯错，错误也不会因此直接变成正确。 身边朋友纷纷跟风参与热门投机项目，自己没有研究底层逻辑，直接跟随入场，最后项目暴雷。 看懂群体行为，保留独立判断，拒绝无脑跟风。", "sub": "人类误判心理倾向"}, {"name": "对比错误反应倾向", "cat": "思维陷阱", "core": false, "file": "dui-bi-cuo-wu-fan-ying-qing-xiang.html", "intro": "以自身需求为准，不被参照物诱导", "b": "不靠事物本身的真实价值进行判断，而是依靠和周边事物对比之后，得出失真的感受。 商家经常摆放一款高价产品作为“参照物”，让第二款商品看起来性价比很高。 原本只想买基础款商品，看到旁边高价顶配之后，觉得中档款十分划算，于是超出预算下单。 回归自身真实需求，不要被参照物牵着走。", "sub": "人类误判心理倾向"}, {"name": "压力影响倾向", "cat": "思维陷阱", "core": false, "file": "ya-li-ying-xiang-qing-xiang.html", "intro": "重大决策避开情绪高压峰值", "b": "当心理压力急剧增大的时候，我们的心智水平会明显下降，更容易本能冲动、听信迷信说法、做出极端选择。 适度压力可以提升做事效率，但是巨大压力，会直接削弱我们的理性。 背负高额负债、内心极度焦虑的时候，病急乱投医，轻信所谓“快速回本”的项目，进一步扩大亏损。 高压时刻暂缓重大抉择，等心智恢复平稳再行动。", "sub": "人类误判心理倾向"}, {"name": "错误衡量易得性倾向", "cat": "思维陷阱", "core": false, "file": "cuo-wu-heng-liang-yi-de-xing-qing-xiang.html", "intro": "高频可见信息，不等于最重要信息", "b": "只要是容易获得、经常看到的信息，我们就下意识高估它的重要程度；而那些难以获取的信息，就会直接被我们忽略。 新闻天天报道的事故，发生概率未必最高，只是它更容易传播。 刷短视频大量看到副业暴富案例，就高估副业成功的概率，忽略绝大多数人失败的客观事实。 不能只靠脑子里随手浮现的内容，去判断全局。", "sub": "人类误判心理倾向"}, {"name": "不用就忘倾向", "cat": "思维陷阱", "core": false, "file": "bu-yong-jiu-wang-qing-xiang.html", "intro": "知识要定期复盘输出，避免闲置遗忘", "b": "学到的知识、思考方法，如果长期搁置不用，大脑就会慢慢遗忘，等到需要使用的时候，无法快速调取。 知识只有反复调用，才能真正变成属于我们自己的能力。 花大量时间学习谈判沟通方法，学完之后长期不去使用，半年之后遇到谈判场景，脑子里只剩下模糊印象。 知识需要定期激活，只看书不使用就会慢慢归零。", "sub": "人类误判心理倾向"}, {"name": "化学物质错误影响倾向", "cat": "思维陷阱", "core": false, "file": "hua-xue-wu-zhi-cuo-wu-ying-xiang-qing-xiang.html", "intro": "意识受干扰时，暂停重大决策", "b": "在酒精、药物等物质影响下，大脑对行为的约束能力下降，自控力变弱，做出清醒状态下不会选择的冲动行为。 醉酒之后展现出来的性格，是约束消失之后的本能，不能全部当作借口。 喝酒之后情绪上头，在微信群发表过激言论，事后无法撤回，给自己带来人际关系危机。 在意识受干扰时，拒绝处理重大事项。", "sub": "人类误判心理倾向"}, {"name": "衰老 —— 错误影响倾向", "cat": "思维陷阱", "core": false, "file": "shuai-lao-ying-xiang-qing-xiang.html", "intro": "终身保持开放心态，持续接纳新知", "b": "随着年龄增长，一部分人接受新事物的速度变慢，固守老旧观念，排斥新知识，思维更新的能力出现下降。 衰老不等于认知僵化，终身学习，可以延缓思维固化。 部分长辈直接否定线上办公、线上获客这类新模式，完全不去了解运行逻辑，直接认定全部都是骗局。 年龄增长的同时，保持开放学习心态。", "sub": "人类误判心理倾向"}, {"name": "权威 —— 错误影响倾向", "cat": "思维陷阱", "core": false, "file": "quan-wei-cuo-wu-ying-xiang-qing-xiang.html", "intro": "尊重权威，拒绝无脑盲从", "b": "习惯性信任专家、大佬、领导这类拥有权威身份的人；对方给出观点，自己就默认内容正确，放弃独立核验。 权威观点可以提高参考权重，但是不能直接作为最终判定依据。 看到某位大V推荐理财产品，不去核查底层资产，直接买入，最终出现亏损。 尊重权威，但保留自己独立核验的权利。", "sub": "人类误判心理倾向"}, {"name": "废话倾向", "cat": "思维陷阱", "core": false, "file": "fei-hua-qing-xiang.html", "intro": "决策沟通聚焦核心，减少无效表达", "b": "单纯为了表达、刷存在感，输出大量没有实际价值的闲聊观点，耽误自己和他人的决策效率。 闲聊娱乐可以用来放松，但是在决策场景里，我们要尽量剔除废话。 开会讨论方案的时候，很多人发表大量无关感慨，迟迟无法推进核心问题讨论，会议超时，没有得出有效结论。 分清闲聊场景和决策场景，重要沟通聚焦核心问题。", "sub": "人类误判心理倾向"}, {"name": "重视理由倾向", "cat": "思维陷阱", "core": false, "file": "zhong-shi-li-you-qing-xiang.html", "intro": "不被似是而非的解释轻易说服", "b": "只要对方给出一段“看起来像理由”的解释，就算逻辑漏洞很多，我们也更容易顺从对方提出的要求。 存在理由，不等于理由本身有效。 销售给出一段似是而非的产品原理，没有真实数据支撑，自己却因为对方“给出了解释”，就相信产品效果。 不要仅仅满足于“有解释”，还要验证逻辑是否成立。", "sub": "人类误判心理倾向"}, {"name": "多重心理叠加倾向", "cat": "思维陷阱", "core": false, "file": "duo-zhong-xin-li-die-jia-qing-xiang.html", "intro": "警惕多重心理叠加带来的极端非理性", "b": "多种误判心理叠加在一起，互相助推，形成很强的心理合力，让人做出极端、非理性的重大错误决策。溯源备注：芒格原版名称 lollapalooza倾向。 绝大多数重大踩坑事件，都不是单一心理缺陷导致，而是多重倾向叠加之后带来的结果。 一个投资泡沫里，同时叠加社会认同、艳羡妒忌、过度乐观、损失厌恶等多重心理，大量投资者集体高位入场。 警惕多重情绪叠加的时刻，越是头脑狂热，越要冷静刹车。", "sub": "人类误判心理倾向"}, {"name": "可得性启发", "cat": "思维陷阱", "core": false, "file": "ke-de-xing-qi-fa.html", "intro": "别仅凭脑海印象，就判断一件事发生的概率", "b": "我们做判断的时候，习惯拿脑子里很容易想起来的内容作为依据，很少主动去收集完整资料，最后凭着记忆印象去估算一件事发生的可能性。 一件事容易被你想起，不等于这件事发生概率就很高。 你最近刷到好几条飞机出事的新闻，就心里觉得坐飞机特别危险，但从官方统计来看，飞机出事概率其实远低于开车。 我们在做重要决定的时候，不能只靠着脑子里印象深的事例下结论，要主动查真实数据，别直接拍脑袋。", "sub": "认知偏差"}, {"name": "可得性偏差", "cat": "思维陷阱", "core": false, "file": "ke-de-xing-pian-cha.html", "intro": "别把新闻里多见的事件，当成生活里的高概率风险", "b": "我们评估一件事风险大小的时候，会不自觉高估那些经常看见、很容易回忆起来的危险，反而轻视那些天天存在、很少被新闻报道的日常风险。 媒体更喜欢报道极端事件，会放大我们对小众危险的恐惧感。 你刷到多条小孩走失新闻之后，就不敢让孩子出门参加户外活动，过度提防这种低概率事件，却没有留意马路上车辆这种更高频的危险。 一件事曝光多不等于发生概率高，我们要用数据平衡自己对风险的感受。", "sub": "认知偏差"}, {"name": "后见之明偏见（马后炮）", "cat": "思维陷阱", "core": false, "file": "hou-jian-zhi-ming-pian-jian.html", "intro": "不要用结局倒推，美化自己当初的预判能力", "b": "一件事已经尘埃落定之后，我们会高估自己当初预判结果的能力，选择性忘记当时信息不足、局势不确定的客观情况。 事后看懂一切，不等于在事情发生前，我们就拥有精准预判的能力。 股市大跌之后，很多人都说自己早就料到行情会下跌，但是在下跌之前，这些人并没有做出减仓、止损这类避险操作。 放下马后炮的心态，区分运气和真正的预判能力，客观复盘自己每一次决策。", "sub": "认知偏差"}, {"name": "框架效应", "cat": "思维陷阱", "core": false, "file": "kuang-jia-xiao-ying.html", "intro": "警惕话术包装，不要换个说法就改变原有判断", "b": "明明是同一件客观事实，只是换了一套说法，我们就会产生完全不一样的感受，最后做出不一样的选择。 语言可以改变我们的情绪感受，但是不会改变事实本身。 医生说这项手术有 90% 成功率，大部分患者愿意接受；换成 “这项手术存在 10% 死亡率”，很多人就开始抗拒，但两件描述对应的客观事实完全一样。 跳出文字包装，直接看事实本身，不要被不同说法打乱自己的判断。", "sub": "认知偏差"}, {"name": "最省力法则", "cat": "思维陷阱", "core": false, "file": "zui-sheng-li-fa-ze.html", "intro": "别一味追求思考省力，重要问题拒绝只用直觉", "b": "遇到问题时，我们的大脑会本能优先选择最不费脑子的处理方式，依靠直觉快速处理，哪怕这个办法并不是最优方案。 省事的办法见效很快，但是很多时候会埋下长期隐患。 写材料时遇到复杂难题，你不愿意拆解分析，直接跳过难题，只挑简单内容完成，最后整体方案质量达不到预期。 小事可以图省事，遇到关键问题，主动投入精力深度思考。", "sub": "认知偏差"}, {"name": "自我损耗", "cat": "思维陷阱", "core": false, "file": "zi-wo-sun-hao.html", "intro": "意志力会越用越少，不要一次性透支自控力", "b": "我们长时间强迫自己克制欲望、集中自控之后，心理精力会被消耗一空，接下来一段时间里自制力明显下降，更容易做出冲动的决定。 意志力不是无限供应的资源，强行透支，很容易出现情绪和行为失控。 连续高强度加班 4 个小时之后，你很难再管住自己，忍不住点开购物软件下单，或是大吃高热量零食，打破自己原本的计划。 认清意志力存在上限，合理安排任务节奏，避免一次性透支全部自控力。", "sub": "认知偏差"}, {"name": "启动效应", "cat": "思维陷阱", "core": false, "file": "qi-dong-xiao-ying.html", "intro": "警惕隐形暗示，不要在无意识里被信息改变想法", "b": "我们之前看到的词语、图片、观念，会悄悄留在脑子里，在无意识的状态下，影响我们之后的想法和行为。 这类影响藏在潜意识里，光靠意志力硬扛很难完全规避。 你刚刚看完一篇描写老年人生活的文章，出门走路的时候，自己都没发现，脚步不自觉放慢了。 留意身边环境信息带来的隐形暗示，避免在不知不觉中被外界左右选择。", "sub": "认知偏差"}, {"name": "佛罗里达效应", "cat": "思维陷阱", "core": false, "file": "fu-luo-li-da-xiao-ying.html", "intro": "长期接收的词汇，会悄悄改变你的做事习惯", "b": "当我们反复看到某一类关键词之后，行为会不自觉向着词语描述的状态靠拢，自己很难察觉到这份变化。 它属于启动效应里一个很典型的实验案例，是一种更具体的行为偏移。 你连续一段时间经常刷到“慢下来、佛系”这类内容，原本干脆利落的做事节奏，慢慢变得拖沓懒散。 长期接收的文字会悄悄改变行为，主动筛选自己日常接触的信息环境。", "sub": "认知偏差"}, {"name": "麦克白效应", "cat": "思维陷阱", "core": false, "file": "mai-ke-bai-xiao-ying.html", "intro": "不要只用表面行为缓解愧疚，要正视问题根源", "b": "当我们心里产生愧疚、负罪感之后，会下意识产生清洗身体的冲动，希望依靠清洁行为缓解内心的不安。 身体清洁只能短暂安抚情绪，解决不了心里真正纠结的矛盾。 你在背后说了朋友的坏话，心里十分内疚，明明手上并不脏，却反复跑去洗手，靠这个动作缓解心里的不安，却没有主动找朋友沟通道歉。 清洁只能临时安抚情绪，想要消除愧疚，还是要直面问题、主动补救。", "sub": "认知偏差"}, {"name": "曝光效应", "cat": "思维陷阱", "core": false, "file": "bao-guang-xiao-ying.html", "intro": "别因为看得多就产生好感，熟悉不等于优质", "b": "一件事物我们看见的次数越多，我们就越容易对它产生好感，哪怕我们并不了解它真实的好坏。 广告行业就是大量利用这个心理，反复刷存在感博取我们的好感。 一款饮料的广告你刷到过无数次，虽然你从来没有仔细品尝对比过，逛超市的时候，你会下意识优先选择这一款。 不要单凭见过次数多少产生好感，判断好坏要看它本身的真实价值。", "sub": "认知偏差"}, {"name": "规划谬误", "cat": "思维陷阱", "core": false, "file": "gui-hua-miu-wu.html", "intro": "做计划别过度乐观，一定要预留应对意外的缓冲时间", "b": "我们在给自己制定计划的时候，总是习惯性高估自己的效率，低估完成一件事需要的时间、成本以及过程里会出现的意外麻烦。 我们脑海里“一帆风顺”的理想版本，在现实里几乎不会出现。 你预估一份报告3天就可以写完，觉得过程不会遇到阻碍，结果中途不断出现资料查找、沟通调整等问题，最后整整花了两周才做完。 做计划不要只想象理想状态，预留缓冲时间，接纳中途会出现意外。", "sub": "认知偏差"}, {"name": "忽视基础概率", "cat": "思维陷阱", "core": false, "file": "hu-shi-ji-chu-gai-lv.html", "intro": "别拿少数个案当成普遍规律，要参考整体真实概率", "b": "我们很容易被眼前个别鲜活的案例打动，直接忽略这件事在整体环境里真实的发生比例，靠着个案就下判断。 媒体喜欢报道少数传奇案例，不会去描述大多数普通人的普通结果。 身边有一个朋友炒股短期内赚了一大笔，你觉得普通人炒股也很容易暴富，直接重仓入场，却忽略绝大多数散户长期亏钱这个客观事实。 不要被少数传奇案例冲昏头脑，做决策一定要参考整体基础概率。", "sub": "认知偏差"}, {"name": "前景理论", "cat": "思维陷阱", "core": false, "file": "qian-jing-li-lun.html", "intro": "盈利容易保守、亏损容易冒险，提前定规则对抗心态失衡", "b": "面对收益和亏损的时候，我们的风险偏好会自动发生变化；拿到收益时我们倾向保守求稳，面对亏损时反而愿意冒险赌一把，无法保持统一理性标准。 这四种心理经常同时出现，共同影响我们在不确定环境里的每一次选择。 基金刚上涨2%就慌忙卖出，害怕到手利润消失；当持仓出现亏损之后，反而不愿意卖出，一直抱着等待回本，最后亏损持续扩大。 认清自己面对盈亏时心态会失衡，提前定好交易规则，用规则约束情绪化操作。", "sub": "认知偏差"}, {"name": "禀赋效应", "cat": "思维陷阱", "core": false, "file": "bing-fu-xiao-ying.html", "intro": "自己手里的东西更容易被高估，交易要跳出主观情感", "b": "一旦某件东西归我们自己所有之后，我们就会不自觉抬高它的心理价值，哪怕这件东西客观市场价格并没有那么高。 很多商家推出试用体验，就是利用禀赋效应，让我们产生拥有感之后，更容易买单。 一副耳机你自己长期在用，明明市场同款二手价很低，你总觉得自己这一副更有意义，坚持开出很高的售价，长时间卖不出去。 拥有之后容易高估价值，交易时刻意切换视角，用市场行情作为参考。", "sub": "认知偏差"}, {"name": "心理账户", "cat": "思维陷阱", "core": false, "file": "xin-li-zhang-hu.html", "intro": "不要把钱在心里人为分区，站在总资产角度规划开支", "b": "我们会在心里把钱分成一个个独立账户，比如工资、奖金、红包；明明钱本身可以互通，我们却用不一样的标准去花每一笔钱。 各类平台赠送的优惠券、积分，也很容易触发我们的心理账户，诱导额外消费。 辛辛苦苦赚来的工资，每一笔支出你都精打细算；年终奖到手之后，你就很大方直接用来旅游，不会像对待工资那样谨慎。 钱本身没有区别，我们要站在总资产视角，统一规划支出。", "sub": "认知偏差"}, {"name": "处置效应", "cat": "思维陷阱", "core": false, "file": "chu-zhi-xiao-ying.html", "intro": "别着急卖掉盈利标的、死扛亏损标的，按标准执行交易", "b": "在投资的时候，我们总喜欢把小幅盈利的资产快速卖出落袋为安，却死死拿着已经亏损的资产，一直等待回本。 回本并不是合理的卖出理由，资产未来价值才是我们持有与否的核心标准。 你手里两只股票，一只小幅上涨，一只已经下跌；你卖掉上涨那一只保住微薄收益，一直持有下跌那一只等待反弹，结果上涨的继续大涨，下跌的持续创新低。 买卖不要被当下盈亏绑架，提前制定标准，依靠规则执行投资操作。", "sub": "认知偏差"}, {"name": "证实偏差", "cat": "思维陷阱", "core": false, "file": "zheng-shi-pian-cha.html", "intro": "别只看认同自己的观点，主动查看反面证据", "b": "当我们内心已经认定某一个观点之后，就会主动寻找支持自己想法的信息，下意识忽略那些反驳自己的证据。 短视频平台的算法推荐，会不断放大证实偏差，给我们推送同质化内容。 你本身相信星座性格理论，刷到符合自己星座特征的内容就十分认同，看到反驳星座理论的科普视频，直接快速划走，不愿意认真看完。 主动去接触反面观点，不要只收集能够迎合自己想法的信息。", "sub": "认知偏差"}, {"name": "幸存者偏差", "cat": "思维陷阱", "core": false, "file": "xing-cun-zhe-pian-cha.html", "intro": "不要只学习成功者经验，也要看见大量沉默的失败者", "b": "我们只能看到那些成功、留存下来的案例，大量失败消失的案例不会对外发声，我们很容易忽略这群沉默的大多数。 只看胜利者总结经验，得到的结论往往是残缺片面的。 很多年轻人看了几个白手起家创业者的采访，觉得创业赚钱很轻松，却忽略绝大多数创业项目，都会在几年之内倒闭。 不能只参考胜利者的故事，想要完整看清一件事，也要留意失败者的教训。", "sub": "认知偏差"}, {"name": "小数定律", "cat": "思维陷阱", "core": false, "file": "xiao-shu-ding-lv.html", "intro": "别依靠少量案例总结通用规律，小样本不能代表整体", "b": "我们只依靠身边少数几个案例，就急于总结出一条普遍规律，直接认为这套规律放到所有人身上都成立。 3‑5个身边案例，只能代表局部情况，不足以支撑普适结论。 身边三个人做直播赚到了钱，你直接得出“普通人做直播很容易赚钱”的结论，立刻辞职入局，却不知道大量直播间根本没有收入。 少量事例只能当作线索，不要快速提炼放之四海而皆准的大规律。", "sub": "认知偏差"}, {"name": "大数定律", "cat": "思维陷阱", "core": false, "file": "da-shu-ding-lv.html", "intro": "不要拿短期结果判定长期趋势，拉长周期观察规律", "b": "一件事情重复的次数越多，最终结果才会贴近真实概率；但我们常常拿短期少量结果，直接判定长期规律。 短期波动可以是随机运气，只有长期大量重复之后，真实规律才会慢慢显露。 某一只基金近三个月收益暴涨，很多人直接认定它是优质产品，大额买入，却不去查看它过去三五年长期的综合收益水平。 接受短期随机波动，想要看清真实规律，需要拉长时间、积累大量样本。", "sub": "认知偏差"}, {"name": "均值回归", "cat": "思维陷阱", "core": false, "file": "jun-zhi-hui-gui.html", "intro": "极端状态大多难以持续，不要把自然波动强行归因", "b": "当一件数据突然冲到极高或者跌到极低之后，后续大概率会朝着长期平均水平回落；但我们总觉得极端状态可以一直保持，还强行去找因果理由。 冲高之后回落，很多时候只是自然波动，并不一定是谁做错了。 一名运动员超常发挥拿下高分，下一场比赛成绩回归平常；教练觉得是运动员训练松懈了，实际上这只是正常的均值回归现象。 极端表现很难长期维持，出现回落先区分自然波动和人为因素，不要强行找原因。", "sub": "认知偏差"}, {"name": "结果偏见", "cat": "思维陷阱", "core": false, "file": "jie-guo-pian-jian.html", "intro": "不要只靠成败评判决策好坏，要复盘当时思考逻辑", "b": "我们习惯依靠最终的成败结果，直接评判当初那一次决策到底好不好，忽略当时手里掌握的信息、思考逻辑。 好决策也有可能因为运气变差而失败；烂决策也有可能依靠短期运气拿到好结果。 有人凭感觉在大跌之前卖出股票躲过亏损，事后大家都称赞他预判精准，但在当时，他并没有完整的数据和逻辑支撑，只是单纯碰运气。 区分运气和能力，复盘重点看思考过程，而不是单纯看最后输赢。", "sub": "认知偏差"}, {"name": "认知放松", "cat": "思维陷阱", "core": false, "file": "ren-zhi-fang-song.html", "intro": "顺口好懂不等于真相，简单观点也要核查支撑依据", "b": "一段文字、观点读起来通顺顺口、看着简单好懂的时候，我们大脑会放松警惕，下意识认为它大概率是真的，不会主动深究真伪。 很多爆款短视频金句、广告语，都专门利用认知放松降低我们的防备心理。 短视频里一句“每天喝柠檬水可以抗癌”，简单顺口，你下意识觉得说得很对，但这条说法并没有权威科学实验作为支撑。 观点读着顺畅不等于事实，遇到洗脑短句，主动停下来核查证据。", "sub": "认知偏差"}, {"name": "一元思维", "cat": "思维陷阱", "core": false, "file": "yi-yuan-si-wei.html", "intro": "拒绝经验照搬，遇事具体问题具体分析", "b": "习惯性用单一角度、单一原因看待复杂问题，只会盯着一个点归因，忽略整件事是多重因素造成的。 事情可以有主要原因，但几乎没有唯一原因，不要被第一直觉带偏。 孩子成绩下降，只怪孩子贪玩，忽略课程难度、心态压力、学习方法问题，只靠批评施压，问题永远解决不彻底。 一元思维最大问题是视角太窄，复杂问题主动拓宽思路，才能减少错误决策。", "sub": "错误的思维方式"}, {"name": "二元思维", "cat": "思维陷阱", "core": false, "file": "er-yuan-si-wei.html", "intro": "跳出非黑即白，看清事物利弊共存", "b": "习惯把事情强行分成对错、好坏两个极端，不接受中间状态，看不到事物利弊共存的真实状态。 现实绝大多数事情没有绝对对错，只有适不适合、值不值得。 看待金钱，要么觉得钱万能，要么觉得钱没用又肮脏，完全看不到财富在不同场景下的双面性。 跳出非黑即白的极端思维，看懂事情的边界条件，判断才能贴合现实。", "sub": "错误的思维方式"}, {"name": "惯性思维 / 直觉", "cat": "思维陷阱", "core": false, "file": "guan-xing-si-wei.html", "intro": "拒绝经验照搬，遇事具体问题具体分析", "b": "遇到问题只会照搬过去的经验和直觉判断，不会结合当下的新情况具体分析，习惯性用老套路解决新问题。 经验可以参考，但不能直接套用。环境一变，老经验大概率失效。 以前挑水果只选外观好看的，习惯性避开有斑点的果子，哪怕知道斑点水果更甜，也改不了固有挑选习惯，错失更好的选择。 惯性思维就是思维偷懒，懂得结合现状变通，才能避免被老经验拖累。", "sub": "错误的思维方式"}, {"name": "路径依赖", "cat": "思维陷阱", "core": false, "file": "lu-jing-yi-lai.html", "intro": "不困于旧习惯，主动跳出固化做事路径", "b": "长期依赖过去熟悉的方法、习惯和路径，哪怕已经低效、落后、不适用，也不愿意改变和换新方式。 路径依赖不是做错，是低效且不进步，温水煮青蛙式落后。 长辈一辈子只用现金付款，明明手机支付更便捷、省钱、省时，只因习惯旧方式，坚决不学新工具，长期增加生活成本。 守住旧路径，就是堵住新出路，敢于迭代方式，才能持续进步。", "sub": "错误的思维方式"}, {"name": "线性思维", "cat": "思维陷阱", "core": false, "file": "xian-xing-si-wei.html", "intro": "拒绝简单累加思维，看懂现实的复杂规律", "b": "简单认定“一个原因对应一个结果”，认为付出多少就一定收获多少，忽略现实的复杂联动和变量影响。 人生、学习、赚钱都是非线性的，不是累加就必胜，存在波动、瓶颈、突变。 认为每天背10个单词，一年就能学好英语，只机械累加数量，忽略复习、语法、口语、应用等关键环节，最后背了很多单词依然不会用。 摆脱单一因果的执念，看懂事物的复杂多变，决策才不会天真。", "sub": "错误的思维方式"}, {"name": "绝对思维", "cat": "思维陷阱", "core": false, "file": "jue-dui-si-wei.html", "intro": "摒弃死板定论，学会分场景灵活判断", "b": "用绝对、死板的标准看待所有事情，认定规则、道理、结论永远不会变，不接受场景差异和特殊情况。 所有道理都有适用边界，没有任何一句话、一个规则可以通吃所有场景。 死守“做人必须实话实说”的绝对道理，朋友生日送出不合心意的礼物，直白吐槽太丑不好看，不懂场合变通，伤害他人情绪。 原则可以坚定，判断必须灵活，看懂场景差异，做事才成熟靠谱。", "sub": "错误的思维方式"}, {"name": "学生思维", "cat": "思维陷阱", "core": false, "file": "xue-sheng-si-wei.html", "intro": "告别被动等待，主动思考主动解决问题", "b": "习惯等待标准答案、等待别人安排，不会主动思考、主动解决问题，依赖指导、缺少独立探索能力。 社会没有统一标准答案，结果导向、解决问题，就是唯一标准。 领导只安排“做一份活动方案”，自己不主动问需求、不查资料、不构思框架，坐等领导逐条教、逐条安排，完全没有独立做事能力。 学生思维的核心是被动，职场和社会拼的是主动解决问题的能力。", "sub": "错误的思维方式"}, {"name": "穷人思维", "cat": "思维陷阱", "core": false, "file": "qiong-ren-si-wei.html", "intro": "拒绝短视消费，学会为长期成长和未来布局", "b": "只看重当下省钱、即时享受，不愿为长远成长、未来收益投入，只顾眼前，没有长期规划。 省钱攒不下未来，提升能力、积累资源，才能真正改变收入层级。 发了工资优先买新款手机、奢侈品享乐，却舍不得花小钱学技能、报课程、攒备用金，只顾当下舒服，长期毫无积累。 戒掉短视享乐，学会为未来投资，才能跳出越忙越穷的循环。", "sub": "错误的思维方式"}, {"name": "弱者思维", "cat": "思维陷阱", "core": false, "file": "ruo-zhe-si-wei.html", "intro": "停止向外抱怨，向内归因主动自救", "b": "遇到问题先抱怨外部环境、推卸责任，习惯性示弱、依赖他人，从不主动找自己的问题、主动破局。 抱怨只会消耗自己，复盘和改变，才能真正解决问题。 工作进度滞后，不反思自己效率低、方法差，一味抱怨客户多变、同事不配合、时间不够，从不主动推进、主动补救。 强者向内归因，弱者向外抱怨，停止抱怨自我复盘，才会持续变强。", "sub": "错误的思维方式"}, {"name": "打工思维", "cat": "思维陷阱", "core": false, "file": "da-gong-si-wei.html", "intro": "跳出交易心态，把工作当成自我成长的载体", "b": "把工作单纯当成“换工资的交易”，只做分内事、只做给钱的事，拒绝额外付出，完全不关注自我成长。 职场短期看薪资，长期看能力，能力到位，收入自然翻倍。 领导安排额外调研工作，自己觉得不是分内事、没加班费，就敷衍应付，完全看不到调研能积累业务认知、分析能力。 打工思维赚当下小钱，成长思维赚长期人生，跳出交易心态才能突破职场上限。", "sub": "错误的思维方式"}, {"name": "伪科学思维", "cat": "思维陷阱", "core": false, "file": "wei-ke-xue-si-wei.html", "intro": "拒绝主观臆断，重要判断必须讲依据", "b": "判断事情不靠客观事实和真实依据，只凭感觉、传言、个人喜好做判断，容易相信没有根据的信息。 听起来好听、符合自己预期的话，大概率是谣言，越舒服越要警惕。 看到网传“碱性水能防癌”的谣言，不查医学依据，直接高价购买设备，强迫家人使用，白白浪费钱财。 判断要靠事实和依据，而不是感觉和传言，否则容易被谣言收割。", "sub": "错误的思维方式"}, {"name": "结构化思维", "cat": "顶级思维模型", "core": true, "file": "jie-gou-hua-si-wei.html", "intro": "先定目标，再搭不重不漏的框架", "t": "常见痛点 实操落地步骤 误区边界 总结提示 MECE 相互独立 完全穷尽", "m": "思考混乱 抓不住重点 表达条理不清 没有稳定主线 以终为始 目标导向 过度拆分", "b": "明确最终目标 统一拆分标准 搭建顶层框架 复盘迭代 衣柜规整"}, {"name": "第一性原理", "cat": "顶级思维模型", "core": true, "file": "di-yi-xing-yuan-li.html", "intro": "抛开经验，从底层事实重新推导", "t": "常见痛点 实操落地步骤 误区边界 总结提示 类比思维 从零推导", "m": "经验依赖 认知片面 解决低效 固有认知 类比照搬 底层事实", "b": "清空固有认知 深挖底层事实 重构可行方案 5Why 马斯克 电池成本 否定经验"}, {"name": "辩证思维", "cat": "顶级思维模型", "core": true, "file": "bian-zheng-si-wei.html", "intro": "打破非黑即白，多角度看清问题", "t": "常见痛点 实操落地步骤 误区边界 总结提示 对立统一 发展 矛盾 质疑", "m": "非黑即白 绝对化 道德绑架 吃亏 站队 认知局限 环境变化 左右摇摆", "b": "摒弃二元思维 发展视角 矛盾双向 理性质疑 吃亏是福"}, {"name": "逻辑思维", "cat": "顶级思维模型", "core": true, "file": "luo-ji-si-wei.html", "intro": "从经历中找规律，用规律做决定", "t": "常见痛点 实操落地步骤 误区边界 总结提示 归纳法 演绎法", "m": "减少情绪直觉错误判断 总结靠谱规律 自我复盘 决策出错 情绪内耗 底层原因 辩论抬杠", "b": "事实收集 总结规律 匹配现状 推导方案 验证迭代 归纳汇聚 演绎发散 作息精力"}, {"name": "抽象思维", "cat": "顶级思维模型", "core": true, "file": "chou-xiang-si-wei.html", "intro": "遇事聚焦主要矛盾，从多件事件提炼共性，总结可迁移的通用规律", "t": "常见痛点 实操落地步骤 误区边界 总结提示 聚焦主要矛盾 寻找共性 通用规律", "m": "经验复用 信息判断 复盘总结 次要细节 主要矛盾 同类事件 沉淀规律", "b": "复盘真实事件 聚焦主要矛盾 寻找共性 总结通用规律 客户沟通 交付节点 时间节点"}, {"name": "系统思维", "cat": "顶级思维模型", "core": true, "file": "xi-tong-si-wei.html", "intro": "看清事物之间的连接与反馈", "t": "常见痛点 实操落地步骤 误区边界 总结提示 连接 反馈回路 杠杆点 系统结构", "m": "救火式应对 归因片面 忽视延迟 只见树木 牵一发而动全身 局部最优 整体视角", "b": "识别关键要素 梳理连接关系 找到反馈回路 预判系统走向 增强回路 调节回路 团队业绩 客户留存"}, {"name": "批判性思维", "cat": "顶级思维模型", "core": true, "file": "pi-pan-xing-si-wei.html", "intro": "不盲信，自带质疑判断信息", "t": "常见痛点 实操落地步骤 误区边界 总结提示 质疑 独立判断 论证逻辑 信息来源", "m": "轻信盲从 确认偏误 逻辑漏洞 同温层 被带节奏 智商税 以偏概全 相关当因果", "b": "暂停直觉结论 核查信息来源 检验论证逻辑 形成独立判断 补反面证据 食疗包治百病 营销话术"}, {"name": "逆向思维", "cat": "顶级思维模型", "core": true, "file": "ni-xiang-si-wei.html", "intro": "反过来想，先排除失败的可能", "t": "常见痛点 实操落地步骤 误区边界 总结提示 反过来想 倒推 排除失败 排雷", "m": "正面卡死 盲区漏坑 盲目乐观 顺向撞墙 预演失败 风险预案 反向推导 避坑", "b": "明确想要结果 倒推失败路径 排除致命风险 锁定可行方案 跳槽创业公司 最坏结果 行动顺序"}, {"name": "概率思维", "cat": "顶级思维模型", "core": false, "file": "gai-lv-si-wei.html", "intro": "看长期胜率，不被单次结果带偏", "t": "常见痛点 实操落地步骤 误区边界 总结提示 长期概率 单次随机 重复累积 稳定学习", "m": "结果主义 运气实力 非黑即白 单次成败 长期胜率 随机波动 高概率选择 赌徒心态", "b": "判断长期概率 接受单次结果 重复高概率动作 稳定复盘 查漏补缺 临时突击 考试发挥失常"}, {"name": "相对思维", "cat": "顶级思维模型", "core": false, "file": "xiang-dui-si-wei.html", "intro": "没有绝对好坏，只有适配与否", "t": "常见痛点 实操落地步骤 误区边界 总结提示 场景条件 切换视角 适配与否", "m": "绝对化判断 非黑即白 单一标准 刻板偏见 视角单一 条件变化 劣势转优势", "b": "破除绝对定论 匹配当下场景 动态灵活取舍 内向性格 外向优势 岗位匹配 劣势转化"}, {"name": "发散思维", "cat": "顶级思维模型", "core": false, "file": "fa-san-si-wei.html", "intro": "多角度联想，跳出固定答案", "t": "常见痛点 实操落地步骤 误区边界 总结提示 多角度 联想 创新 跳出固定", "m": "钻牛角尖 思维僵化 害怕异想天开 固定答案 多角度 自由联想 筛选收敛", "b": "明确问题边界 多角度自由联想 筛选有价值方向 杯子用途 旧物利用 创意"}, {"name": "聚合思维", "cat": "顶级思维模型", "core": false, "file": "ju-he-si-wei.html", "intro": "从复杂信息中抓关键、聚主线", "t": "常见痛点 实操落地步骤 误区边界 总结提示 信息过载 抓关键 聚焦", "m": "信息过载 抓不住重点 选择困难 多元信息 关键共性 最优方案 决策", "b": "列出选项信息 按目标筛选关键项 整合形成决策 offer选择 工作机会"}, {"name": "类比思维", "cat": "顶级思维模型", "core": false, "file": "lei-bi-si-wei.html", "intro": "找结构相似，借旧经验解新问题", "t": "常见痛点 实操落地步骤 误区边界 总结提示 结构相似 迁移经验 借鉴", "m": "不会迁移经验 照搬表面 忽视差异 抽象结构 相似案例 适配调整", "b": "抽象新问题本质 寻找相似旧案例 迁移调整方案 客户关系 恋爱关系"}, {"name": "假设思维", "cat": "顶级思维模型", "core": false, "file": "jia-she-si-wei.html", "intro": "用最小成本验证，降低试错代价", "t": "常见痛点 实操落地步骤 误区边界 总结提示 假设验证 最小成本 试错", "m": "盲目行动 试错成本高 不敢验证 关键假设 最小验证 快速迭代 MVP", "b": "列出核心假设 设计最小化验证 根据反馈迭代 副业 市场需求 转化"}, {"name": "实事求是", "cat": "顶级思维模型", "core": false, "file": "shi-shi-qiu-shi.html", "intro": "区分事实与观点，用证据说话", "t": "常见痛点 实操落地步骤 误区边界 总结提示 事实 观点 证据", "m": "把观点当事实 被情绪左右 迷信权威 客观事实 区分观点 证据支撑", "b": "收集可验证事实 区分事实观点推测 用证据支撑结论 领导评价 状态不好"}, {"name": "模型思维", "cat": "通用思维模型", "core": false, "file": "mo-xing-si-wei.html", "intro": "用清晰框架把复杂问题拆清楚"}, {"name": "迭代思维", "cat": "通用思维模型", "core": false, "file": "die-dai-si-wei.html", "intro": "小步快跑，在反馈中持续进化"}, {"name": "动态思维", "cat": "通用思维模型", "core": false, "file": "dong-tai-si-wei.html", "intro": "看清变化趋势，及时调整策略"}, {"name": "因果思维", "cat": "通用思维模型", "core": false, "file": "yin-guo-si-wei.html", "intro": "找到真正原因，不被表面关联骗"}, {"name": "博弈思维", "cat": "通用思维模型", "core": false}, {"name": "权衡思维", "cat": "通用思维模型", "core": false}, {"name": "边界思维", "cat": "通用思维模型", "core": false}, {"name": "成长型思维", "cat": "通用思维模型", "core": false}, {"name": "长期主义", "cat": "通用思维模型", "core": false}, {"name": "复利思维", "cat": "通用思维模型", "core": false}, {"name": "双赢思维", "cat": "通用思维模型", "core": false}, {"name": "利他思维", "cat": "通用思维模型", "core": false}, {"name": "用户思维", "cat": "进阶思维模型", "core": false}, {"name": "创新思维", "cat": "进阶思维模型", "core": false}, {"name": "价值思维", "cat": "进阶思维模型", "core": false}, {"name": "富人思维（与“穷人思维”相对）", "cat": "进阶思维模型", "core": false}, {"name": "游戏化思维", "cat": "进阶思维模型", "core": false}, {"name": "敏捷思维", "cat": "进阶思维模型", "core": false}, {"name": "定位理论", "cat": "进阶思维模型", "core": false}, {"name": "能力圈", "cat": "进阶思维模型", "core": false}, {"name": "黑天鹅", "cat": "进阶思维模型", "core": false}, {"name": "反脆弱", "cat": "进阶思维模型", "core": false}, {"name": "灰犀牛", "cat": "进阶思维模型", "core": false}, {"name": "10倍好法则", "cat": "进阶思维模型", "core": false}, {"name": "指数型思维", "cat": "进阶思维模型", "core": false}, {"name": "心流模型", "cat": "进阶思维模型", "core": false}, {"name": "5W1H法", "cat": "问题分析工具", "core": false}, {"name": "5Why分析法", "cat": "问题分析工具", "core": false}, {"name": "SWOT分析法", "cat": "问题分析工具", "core": false}, {"name": "PDCA循环", "cat": "问题分析工具", "core": false}, {"name": "重要紧急程度优先级矩阵", "cat": "问题分析工具", "core": false}, {"name": "BCG矩阵（波士顿矩阵）", "cat": "问题分析工具", "core": false}, {"name": "波特五力模型", "cat": "问题分析工具", "core": false}, {"name": "PEST分析法", "cat": "问题分析工具", "core": false}, {"name": "SMART目标设定法", "cat": "问题分析工具", "core": false}, {"name": "德尔菲法", "cat": "问题分析工具", "core": false}, {"name": "头脑风暴法", "cat": "问题分析工具", "core": false}, {"name": "商业画布", "cat": "问题分析工具", "core": false}, {"name": "金字塔原理（参考“结构化思维”）", "cat": "问题分析工具", "core": false}, {"name": "黄金圈模型（WHY-HOW-WHAT）", "cat": "问题分析工具", "core": false}, {"name": "理性决策模型", "cat": "问题决策工具", "core": false}, {"name": "ROI分析（投资回报率）", "cat": "问题决策工具", "core": false}, {"name": "成本-效益-风险分析", "cat": "问题决策工具", "core": false}, {"name": "风险评估矩阵", "cat": "问题决策工具", "core": false}, {"name": "10/10/10法则", "cat": "问题决策工具", "core": false}, {"name": "决策树模型", "cat": "问题决策工具", "core": false}, {"name": "互惠", "cat": "心理学", "core": false}, {"name": "喜好", "cat": "心理学", "core": false}, {"name": "社会认同（同“从众心理”）", "cat": "心理学", "core": false}, {"name": "权威（同“光环效应”）", "cat": "心理学", "core": false}, {"name": "稀缺", "cat": "心理学", "core": false}, {"name": "承诺与一致", "cat": "心理学", "core": false}, {"name": "联盟", "cat": "心理学", "core": false}, {"name": "自然选择", "cat": "生物学", "core": false}, {"name": "反基因视角", "cat": "生物学", "core": false}, {"name": "生态思维（跟“系统思维”类似）", "cat": "生物学", "core": false}, {"name": "进化思维", "cat": "生物学", "core": false}, {"name": "自组织思维", "cat": "生物学", "core": false}, {"name": "动态平衡思维", "cat": "生物学", "core": false}, {"name": "共生思维", "cat": "生物学", "core": false}, {"name": "种群思维", "cat": "生物学", "core": false}, {"name": "竞争排斥原理", "cat": "生物学", "core": false}, {"name": "生态位思维", "cat": "生物学", "core": false}, {"name": "规模效应", "cat": "经济学", "core": false}, {"name": "资源分配思维", "cat": "经济学", "core": false}, {"name": "机会成本", "cat": "经济学", "core": false}, {"name": "沉没成本", "cat": "经济学", "core": false}, {"name": "交易成本", "cat": "经济学", "core": false}, {"name": "稀缺（同心理学里的概念）", "cat": "经济学", "core": false}, {"name": "供需关系", "cat": "经济学", "core": false}, {"name": "比较优势", "cat": "经济学", "core": false}, {"name": "价值交换", "cat": "经济学", "core": false}, {"name": "边际思维/边际效用递减", "cat": "经济学", "core": false}, {"name": "风险收益权衡", "cat": "经济学", "core": false}, {"name": "杠杆原理 / 不对称性", "cat": "经济学", "core": false}, {"name": "安全边际", "cat": "经济学", "core": false}, {"name": "帕累托法则（二八法则）", "cat": "经济学", "core": false}, {"name": "纳什均衡理论", "cat": "经济学", "core": false}, {"name": "复式簿记模型", "cat": "经济学", "core": false}, {"name": "空间竞争模型", "cat": "经济学", "core": false}, {"name": "Kano模型", "cat": "经济学", "core": false}, {"name": "本质思维", "cat": "哲学", "core": false}, {"name": "归纳与演绎", "cat": "哲学", "core": false}, {"name": "悖论思维", "cat": "哲学", "core": false}, {"name": "思想实验", "cat": "哲学", "core": false}, {"name": "奥卡姆剃刀定律", "cat": "哲学", "core": false}, {"name": "汉隆剃刀定律", "cat": "哲学", "core": false}, {"name": "极值思维", "cat": "数学", "core": false}, {"name": "抽样与随机性", "cat": "数学", "core": false}, {"name": "正态/幂律分布", "cat": "数学", "core": false}, {"name": "排列组合", "cat": "数学", "core": false}, {"name": "均值回归", "cat": "数学", "core": false, "file": "jun-zhi-hui-gui.html", "intro": "极端状态大多难以持续，不要把自然波动强行归因", "b": "当一件数据突然冲到极高或者跌到极低之后，后续大概率会朝着长期平均水平回落；但我们总觉得极端状态可以一直保持，还强行去找因果理由。 冲高之后回落，很多时候只是自然波动，并不一定是谁做错了。 一名运动员超常发挥拿下高分，下一场比赛成绩回归平常；教练觉得是运动员训练松懈了，实际上这只是正常的均值回归现象。 极端表现很难长期维持，出现回落先区分自然波动和人为因素，不要强行找原因。"}, {"name": "函数思维", "cat": "数学", "core": false}, {"name": "对称思维", "cat": "数学", "core": false}, {"name": "集合思维", "cat": "数学", "core": false}, {"name": "递归思维", "cat": "数学", "core": false}, {"name": "贝叶斯定理", "cat": "数学", "core": false}, {"name": "马尔可夫模型", "cat": "数学", "core": false}, {"name": "能量守恒", "cat": "物理学", "core": false}, {"name": "平衡思维", "cat": "物理学", "core": false}, {"name": "熵增定律", "cat": "物理学", "core": false}, {"name": "临界质量", "cat": "物理学", "core": false}, {"name": "反应路径", "cat": "化学", "core": false}, {"name": "能量壁垒", "cat": "化学", "core": false}, {"name": "催化剂思维", "cat": "化学", "core": false}, {"name": "反馈回路", "cat": "系统科学", "core": false}, {"name": "涌现思维", "cat": "系统科学", "core": false}, {"name": "非线性思维", "cat": "系统科学", "core": false}, {"name": "耦合与解耦", "cat": "系统科学", "core": false}, {"name": "混沌思维", "cat": "系统科学", "core": false}, {"name": "网络思维", "cat": "系统科学", "core": false}, {"name": "耗散结构理论", "cat": "系统科学", "core": false}, {"name": "自适应系统", "cat": "系统科学", "core": false}, {"name": "断裂点理论", "cat": "系统科学", "core": false}, {"name": "递弱代偿理论", "cat": "系统科学", "core": false}, {"name": "系统动力学模型", "cat": "系统科学", "core": false}, {"name": "模块化思维", "cat": "工程学", "core": false}, {"name": "冗余思维", "cat": "工程学", "core": false}, {"name": "质量控制理论", "cat": "工程学", "core": false}, {"name": "网络拓扑", "cat": "信息科学", "core": false}, {"name": "信号与噪声", "cat": "信息科学", "core": false}, {"name": "分布式思维", "cat": "信息科学", "core": false}, {"name": "学习模型（多臂老虎机问题、崎岖景观）", "cat": "信息科学", "core": false}, {"name": "扩散模型 / 传染模型", "cat": "信息科学", "core": false}];window.CORE_HTML="<a class=\"model done\" href=\"models/jie-gou-hua-si-wei.html\"><div class=\"m-head\"><span class=\"name\">结构化思维</span></div><div class=\"m-val\">先定目标，再搭不重不漏的框架</div><div class=\"m-foot\"><span class=\"m-cta\">查看详情<svg class=\"cta-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></span></div></a>\n<a class=\"model done\" href=\"models/di-yi-xing-yuan-li.html\"><div class=\"m-head\"><span class=\"name\">第一性原理</span></div><div class=\"m-val\">抛开经验，从底层事实重新推导</div><div class=\"m-foot\"><span class=\"m-cta\">查看详情<svg class=\"cta-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></span></div></a>\n<a class=\"model done\" href=\"models/bian-zheng-si-wei.html\"><div class=\"m-head\"><span class=\"name\">辩证思维</span></div><div class=\"m-val\">打破非黑即白，多角度看清问题</div><div class=\"m-foot\"><span class=\"m-cta\">查看详情<svg class=\"cta-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></span></div></a>\n<a class=\"model done\" href=\"models/luo-ji-si-wei.html\"><div class=\"m-head\"><span class=\"name\">逻辑思维</span></div><div class=\"m-val\">从经历中找规律，用规律做决定</div><div class=\"m-foot\"><span class=\"m-cta\">查看详情<svg class=\"cta-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></span></div></a>\n<a class=\"model done\" href=\"models/chou-xiang-si-wei.html\"><div class=\"m-head\"><span class=\"name\">抽象思维</span></div><div class=\"m-val\">遇事聚焦主要矛盾，从多件事件提炼共性，总结可迁移的通用规律</div><div class=\"m-foot\"><span class=\"m-cta\">查看详情<svg class=\"cta-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></span></div></a>\n<a class=\"model done\" href=\"models/xi-tong-si-wei.html\"><div class=\"m-head\"><span class=\"name\">系统思维</span></div><div class=\"m-val\">看清事物之间的连接与反馈</div><div class=\"m-foot\"><span class=\"m-cta\">查看详情<svg class=\"cta-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></span></div></a>\n<a class=\"model done\" href=\"models/pi-pan-xing-si-wei.html\"><div class=\"m-head\"><span class=\"name\">批判性思维</span></div><div class=\"m-val\">不盲信，自带质疑判断信息</div><div class=\"m-foot\"><span class=\"m-cta\">查看详情<svg class=\"cta-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></span></div></a>\n<a class=\"model done\" href=\"models/ni-xiang-si-wei.html\"><div class=\"m-head\"><span class=\"name\">逆向思维</span></div><div class=\"m-val\">反过来想，先排除失败的可能</div><div class=\"m-foot\"><span class=\"m-cta\">查看详情<svg class=\"cta-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></span></div></a>";</script>
+<script src="assets/search.js?v=9"></script>
+<script>
+var menuToggle = document.getElementById('menuToggle');
+var sideNav = document.getElementById('sideNav');
+var sideOverlay = document.getElementById('sideOverlay');
+function openSide(){ if(sideNav){ sideNav.classList.add('open'); sideOverlay && sideOverlay.classList.add('show'); } }
+function closeSide(){ if(sideNav){ sideNav.classList.remove('open'); sideOverlay && sideOverlay.classList.remove('show'); } }
+if(menuToggle){
+  function onMenuTap(e){
+    e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true);
+    sideNav.classList.contains('open') ? closeSide() : openSide();
+  }
+  menuToggle.addEventListener('click', onMenuTap);
+  menuToggle.addEventListener('touchstart', onMenuTap, {passive:false});
+}
+if(sideOverlay){ sideOverlay.addEventListener('click', closeSide); sideOverlay.addEventListener('touchstart', closeSide, {passive:false}); }
+/* 点击侧边栏链接后，移动端自动关闭抽屉 */
+var sideLinks = document.querySelectorAll('.side-nav a');
+sideLinks.forEach(function(a){ a.addEventListener('click', function(){ if(window.innerWidth <= 900) closeSide(); }); });
+
+/* 侧边栏手动滚动箭头 */
+(function(){
+  var scroll = document.getElementById('sideScroll');
+  var up = document.getElementById('sideUp');
+  var down = document.getElementById('sideDown');
+  var hint = document.getElementById('sideHint');
+  if(!scroll || !up || !down) return;
+  var step = 112;
+  var hideTimer = null;
+  function showHint(text, isTop){
+    if(!hint) return;
+    hint.textContent = text;
+    hint.className = 'side-hint ' + (isTop ? 'top' : 'bottom');
+    requestAnimationFrame(function(){ hint.classList.add('show'); });
+    if(hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(function(){ hint.classList.remove('show'); }, 1400);
+  }
+  function updateArrows(){
+    var sh = scroll.scrollHeight, st = scroll.scrollTop, ch = scroll.clientHeight;
+    var atTop = st <= 1;
+    var atBottom = st + ch >= sh - 1;
+    up.disabled = atTop;
+    up.classList.toggle('disabled', atTop);
+    down.disabled = atBottom;
+    down.classList.toggle('disabled', atBottom);
+  }
+  function scrollBy(delta){
+    scroll.scrollBy({top: delta, behavior: 'smooth'});
+  }
+  up.addEventListener('click', function(){
+    if(scroll.scrollTop <= 1){ showHint('已到达顶部', true); return; }
+    scrollBy(-step);
+  });
+  down.addEventListener('click', function(){
+    if(scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 1){ showHint('已到达底部', false); return; }
+    scrollBy(step);
+  });
+  scroll.addEventListener('scroll', updateArrows, {passive: true});
+  window.addEventListener('load', updateArrows);
+  updateArrows();
+})();
+
+/* 全局流程图悬停提示：避免被 .flow-scroll 的 overflow-x 裁剪 */
+(function(){
+  var globalTip = document.createElement('div');
+  globalTip.id = 'global-tip';
+  globalTip.className = 'global-tip';
+  document.body.appendChild(globalTip);
+  var activeNode = null;
+
+  function positionTip(node){
+    var tip = node.querySelector('.tip');
+    if(!tip) return false;
+    globalTip.innerHTML = tip.innerHTML;
+    var rect = node.getBoundingClientRect();
+    var vw = window.innerWidth || document.documentElement.clientWidth;
+    // H5 下限制 tip 最大宽度，避免溢出屏幕
+    if(vw <= 720){
+      globalTip.style.maxWidth = Math.max(180, vw - 32) + 'px';
+    }else{
+      globalTip.style.maxWidth = '260px';
+    }
+    globalTip.style.width = 'auto';
+    var tipRect = globalTip.getBoundingClientRect();
+    var top = rect.top - tipRect.height - 10;
+    var center = rect.left + rect.width/2;
+    var left = center - tipRect.width/2;
+    var minLeft = 16;
+    var maxLeft = vw - tipRect.width - 16;
+    if(maxLeft < minLeft){ maxLeft = minLeft; }
+    if(left < minLeft) left = minLeft;
+    if(left > maxLeft) left = maxLeft;
+    globalTip.style.left = left + 'px';
+    globalTip.style.top = top + 'px';
+    globalTip.style.transform = 'none';
+    return true;
+  }
+
+  function showTip(node){
+    if(positionTip(node)){
+      activeNode = node;
+      globalTip.classList.add('show');
+    }
+  }
+
+  function hideTip(){
+    activeNode = null;
+    globalTip.classList.remove('show');
+  }
+
+  document.body.addEventListener('mouseover', function(e){
+    var node = e.target.closest('.node');
+    if(node) showTip(node);
+  });
+  document.body.addEventListener('mouseout', function(e){
+    var node = e.target.closest('.node');
+    if(node && activeNode === node) hideTip();
+  });
+
+  /* 移动端：点击节点切换提示 */
+  document.body.addEventListener('click', function(e){
+    var node = e.target.closest('.node');
+    if(!node) return;
+    if(activeNode === node){ hideTip(); }
+    else { showTip(node); }
+  });
+
+  window.addEventListener('scroll', hideTip, {passive:true});
+  window.addEventListener('resize', hideTip);
+})();
+</script>
+
+<script src="assets/free-lock.js?v=2"></script>
+</body>
+</html>
