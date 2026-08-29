@@ -124,18 +124,22 @@
   // 行为：点哪个分类就展开哪个，收起其它，并打开/跳转到该分类下的第一项。
   function patchGroupTitleClick(){
     // 返回 {type:'show', id: 'p-xxx'} 或 {type:'nav', href: 'common-problems.html#p-xxx'}
+    // 铁律：位置驱动。永远以 DOM 里的实际顺序为准，不能优先读 data-first-*
+    // 属性——那是生成时的快照，顺序一调整就失效，会打开旧的固定项。
     function firstUnlocked(g, title){
+      // 第一优先：DOM 里第一个未加锁的项（顺序怎么调都跟得上）
+      var a = g.querySelector("ul li a:not(.problem-locked):not(.free-locked)");
+      if(a){
+        var href = a.getAttribute("href") || "";
+        if(href.indexOf("common-problems.html#p-") !== -1) return {type:"nav", href:href};
+        var dt = a.getAttribute("data-target");
+        if(dt) return {type:"show", id:dt};
+      }
+      // 兜底：DOM 读不到时才退回属性快照
       var t = g.getAttribute("data-first-target") || title.getAttribute("data-first-target");
       if(t) return {type:"show", id:t};
       var h = g.getAttribute("data-first-href") || title.getAttribute("data-first-href");
       if(h) return {type:"nav", href:h};
-      // 兜底：直接读第一个未加锁的链接
-      var a = g.querySelector("ul li a:not(.problem-locked)");
-      if(!a) return null;
-      var href = a.getAttribute("href") || "";
-      if(href.indexOf("common-problems.html#p-") !== -1) return {type:"nav", href:href};
-      var dt = a.getAttribute("data-target");
-      if(dt) return {type:"show", id:dt};
       return null;
     }
     function showTarget(id){
