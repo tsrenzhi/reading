@@ -99,16 +99,26 @@
   }
 
   function lockGrowthRoad(){
-    // 每个分类分组只保留第一个问题可点，其余全部锁死（不 care 名称，只 care 索引）
-    document.querySelectorAll(".side-nav-problems .nav-group").forEach(function(g){
+    // 每个分类分组只保留第一个问题可点，其余全部锁死（不 care 名称，只 care 顺序）
+    // 注意：不用 :scope 选择器，部分 Safari 版本对它有兼容问题，会整段抛错
+    var groups = document.querySelectorAll(".side-nav-problems .nav-group");
+    for(var gi = 0; gi < groups.length; gi++){
+      var g = groups[gi];
       var ul = g.querySelector("ul");
-      if(!ul) return;
-      var links = Array.from(ul.querySelectorAll(":scope > li a[data-target]"));
-      links.forEach(function(a, idx){
-        if(idx === 0){
+      if(!ul) continue;
+      var lis = ul.children;
+      var links = [];
+      for(var li = 0; li < lis.length; li++){
+        if(lis[li].tagName !== "LI") continue;
+        var a = lis[li].querySelector("a[data-target]");
+        if(a) links.push(a);
+      }
+      for(var i = 0; i < links.length; i++){
+        var a = links[i];
+        if(i === 0){
           a.classList.remove("problem-locked");
           a.classList.remove("free-locked");
-          return;
+          continue;
         }
         lockLink(a);
         a.classList.add("problem-locked");
@@ -116,11 +126,57 @@
         // 锁标由 free-lock.css 伪元素统一渲染，这里不再插入 SVG
         // 捕获阶段阻止点击，防止原站局部 show 函数被触发
         a.addEventListener("click", function(e){
-          e.preventDefault();
-          e.stopImmediatePropagation();
+          if(e.preventDefault) e.preventDefault();
+          if(e.stopImmediatePropagation) e.stopImmediatePropagation();
         }, true);
-      });
-    });
+      }
+    }
+  }
+
+  // 一级分类点击：不依赖页面内联脚本，用事件委托 + 捕获阶段绑定，最稳。
+  // 行为：点哪个分类就展开哪个，收起其它，并打开该分类下的第一项。
+  function patchGroupTitleClick(){
+    function firstUnlockedTarget(g){
+      var t = g.getAttribute("data-first-target");
+      if(t) return t;
+      var a = g.querySelector("ul li a:not(.problem-locked)[data-target]");
+      return a ? a.getAttribute("data-target") : "";
+    }
+    function showTarget(id){
+      if(!id) return;
+      if(typeof window.showProblem === "function"){
+        window.showProblem(id, true);
+        return;
+      }
+      // 兜底：内联脚本没跑起来时手动切
+      var secs = document.querySelectorAll(".pain-section");
+      for(var i = 0; i < secs.length; i++){
+        secs[i].style.display = (secs[i].id === id ? "block" : "none");
+      }
+      var links = document.querySelectorAll(".side-nav a[data-target]");
+      for(var j = 0; j < links.length; j++){
+        var isOn = links[j].getAttribute("data-target") === id;
+        if(isOn) links[j].classList.add("active");
+        else links[j].classList.remove("active");
+      }
+    }
+    document.addEventListener("click", function(e){
+      var t = e.target;
+      if(!t || !t.closest) return;
+      if(t.closest("a")) return;
+      var title = t.closest(".side-nav-problems .group-title");
+      if(!title) return;
+      var g = title.closest(".nav-group");
+      if(!g) return;
+      // 手风琴：只保留当前分类展开
+      var all = document.querySelectorAll(".side-nav-problems .nav-group");
+      for(var i = 0; i < all.length; i++){
+        if(all[i] !== g) all[i].classList.add("collapsed");
+      }
+      g.classList.remove("collapsed");
+      showTarget(firstUnlockedTarget(g) || firstUnlockedTarget(title));
+      if(e.stopPropagation) e.stopPropagation();
+    }, true);
   }
 
   function patchGrowthBrain(){
@@ -175,14 +231,18 @@
   }
 
   function run(){
-    lockModelCards();
-    lockSideNav();
-    lockBookCards();
-    lockGrowthRoad();
-    patchGrowthBrain();
-    patchBookListHeader();
-    patchShowProblem();
+    // 每一步单独 try/catch：一个页面结构变化不会连累其它功能
+    var steps = [
+      lockModelCards, lockSideNav, lockBookCards,
+      lockGrowthRoad, patchGrowthBrain, patchBookListHeader, patchShowProblem
+    ];
+    for(var i = 0; i < steps.length; i++){
+      try { steps[i](); } catch(err) { /* 单步失败不阻断其它 */ }
+    }
   }
+
+  // 分类点击用事件委托，尽早绑定：不依赖 DOM 就绪，也不依赖页面内联脚本是否执行成功
+  try { patchGroupTitleClick(); } catch(err) { /* noop */ }
 
   if(document.readyState === "loading"){
     document.addEventListener("DOMContentLoaded", run);

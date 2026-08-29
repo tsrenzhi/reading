@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <script>document.documentElement.classList.add('preload');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -178,7 +181,7 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
 }
 </style>
 
-<link rel="stylesheet" href="assets/free-lock.css?v=3">
+<link rel="stylesheet" href="assets/free-lock.css?v=4">
 </head>
 <body>
 <script>
@@ -1047,33 +1050,9 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
   updateArrows();
 })();
 
-/* 左侧分组：点击分类一律展开本组、收起其它组，并打开该分类的第一项 */
-(function(){
-  document.querySelectorAll('.side-nav-problems .group-title').forEach(function(title){
-    title.addEventListener('click', function(e){
-      if(e.target.closest('a')) return;
-      var g = title.closest('.nav-group');
-      if(!g) return;
-      // 手风琴：只保留当前分类展开，其余收起
-      document.querySelectorAll('.side-nav-problems .nav-group').forEach(function(o){
-        if(o !== g) o.classList.add('collapsed');
-      });
-      g.classList.remove('collapsed');
-      // 取该分类的第一个可点项：优先 data-first-target（不写死具体名称），
-      // 兜底取第一个未加锁的 li，顺序怎么调都不会错
-      var target = g.getAttribute('data-first-target') || title.getAttribute('data-first-target');
-      if(!target){
-        var firstA = g.querySelector('ul li a:not(.problem-locked)[data-target]');
-        target = firstA ? firstA.getAttribute('data-target') : '';
-      }
-      if(target && typeof window.showProblem === 'function'){
-        window.showProblem(target, true); // true = 不强制滚动到顶部，避免晃动
-      }
-    });
-  });
-})();
+
 </script>
 
-<script src="assets/free-lock.js?v=3"></script>
+<script src="assets/free-lock.js?v=4"></script>
 </body>
 </html>
