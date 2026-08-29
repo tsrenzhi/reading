@@ -979,7 +979,13 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
   show(document.getElementById(hash) ? hash : first, false, false);
   // 页面加载并 show() 完成后再恢复 hash，避免浏览器默认 hash 滚动覆盖 scrollTo(0,0)
   if(window.__savedHash){
-    setTimeout(function(){ history.replaceState(null, '', window.__savedHash); }, 120);
+    setTimeout(function(){
+      var h = window.__savedHash.replace('#','');
+      var link = document.querySelector('.side-nav-problems a[data-target="' + h + '"]');
+      if(link && !link.classList.contains('problem-locked') && !link.classList.contains('free-locked')){
+        history.replaceState(null, '', window.__savedHash);
+      }
+    }, 120);
   }
   // 首屏渲染完成后再启用过渡/动画，让后续切换的入场动画正常播放
   requestAnimationFrame(function(){
