@@ -968,6 +968,13 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
   var first = firstGroup ? firstGroup.getAttribute("data-first-target") : (sections[0] ? sections[0].id : "");
   var rawHash = window.__savedHash || location.hash || '';
   var hash = rawHash ? decodeURIComponent(rawHash.replace('#','')) : '';
+  // 免费站：hash 指向被锁内容时回退到第一项
+  if(hash){
+    var hashLink = document.querySelector('.side-nav-problems a[data-target="' + hash + '"]');
+    if(!hashLink || hashLink.classList.contains('problem-locked') || hashLink.classList.contains('free-locked')){
+      hash = '';
+    }
+  }
   // 首屏不播放入场动画（animate=false），避免「空白→填满」闪一下；preload 已禁用过渡
   show(document.getElementById(hash) ? hash : first, false, false);
   // 页面加载并 show() 完成后再恢复 hash，避免浏览器默认 hash 滚动覆盖 scrollTo(0,0)
