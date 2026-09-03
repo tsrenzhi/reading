@@ -135,6 +135,8 @@ h1,h2,h3{font-family:var(--serif);}
 }
 .nav-tabs .tab.active{
   color:#fff;font-weight:600;
+  /* iOS Safari：button/anchor 某些状态下 color 会被系统默认色覆盖，强制用 -webkit-text-fill-color */
+  -webkit-text-fill-color:#fff;
 }
 .nav-tabs .tab.active::after{
   content:'';position:absolute;bottom:0;left:10px;right:10px;height:3px;
@@ -502,7 +504,7 @@ h1,h2,h3{font-family:var(--serif);}
   }
   .nav-tabs::-webkit-scrollbar{display:none}
   .nav-tabs .tab{flex:0 0 auto;height:100%;padding:6px 10px;font-size:13px;}
-  .nav-tabs .tab.active{color:#fff;font-weight:600;}
+  .nav-tabs .tab.active{color:#fff;font-weight:600;-webkit-text-fill-color:#fff;}
   .nav-tabs .tab.active::after{left:6px;right:6px;bottom:0;height:2px;}
   .side-nav{transform:translateX(-100%);transition:transform var(--dur) ease;box-shadow:4px 0 18px rgba(0,0,0,0.10);}
   .side-nav.open{transform:translateX(0);}

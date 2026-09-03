@@ -105,15 +105,24 @@
 /* 分页控件 */
 .books-pager{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:28px;flex-wrap:wrap;}
 .books-pager button{
+  /* -webkit-appearance:none 必须加：iOS Safari 的 button 默认外观会破坏 flex 垂直居中，
+     导致选中页的白色数字被挤到按钮外看不见 */
+  -webkit-appearance:none;appearance:none;
   min-width:36px;height:36px;padding:0 11px;
   font-size:13.5px;color:var(--text);background:#fff;
   border:1px solid var(--line);border-radius:8px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  line-height:1;
+  display:inline-flex;align-items:center;justify-content:center;
+  line-height:1;font-family:inherit;
   transition:background var(--dur) ease,border-color var(--dur) ease,color var(--dur) ease;
 }
 .books-pager button:hover:not(:disabled){border-color:var(--brand);color:var(--brand);}
-.books-pager button.active{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600;}
+.books-pager button.active{
+  /* 改为白底红字：跟 .tab.active 一致风格，避免 iOS Safari 覆盖 color 导致单数字看不见 */
+  background:#fff;border-color:var(--brand);color:var(--brand);
+  -webkit-text-fill-color:var(--brand);
+  font-weight:600;
+  box-shadow:0 0 0 1px var(--brand) inset;
+}
 .books-pager button:disabled{opacity:.4;cursor:not-allowed;}
 .books-pager .pg-info{font-size:12.5px;color:var(--muted);margin-left:6px;}
 
@@ -123,7 +132,7 @@
   .books-chips{gap:8px;margin-bottom:16px;}
   .books-chips .chip{padding:6px 12px;font-size:12.5px;}
   .book-cover{width:64px;height:90px;}
-  .books-pager button{min-width:32px;height:32px;padding:0 9px;font-size:13px;display:flex;align-items:center;justify-content:center;line-height:1;}
+  .books-pager button{min-width:32px;height:32px;padding:0 9px;font-size:13px;-webkit-appearance:none;appearance:none;display:inline-flex;align-items:center;justify-content:center;line-height:1;}
 }
 </style>
 <link rel="stylesheet" href="assets/free-lock.css?v=7">
