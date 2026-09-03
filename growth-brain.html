@@ -7644,7 +7644,7 @@ function canJump(d){
   if(d.type === 'thinking'){
     const rawSlug = d.slug || (d.id && d.id.replace(/^thinking-/, '')) || '';
     const slug = rawSlug.replace(/\s+/g, '-').replace(/\.md$/i, '');
-    const freeModels = new Set(['jie-gou-hua-si-wei', 'di-yi-xing-yuan-li', 'bian-zheng-si-wei', 'luo-ji-si-wei', 'chou-xiang-si-wei', 'xi-tong-si-wei', 'pi-pan-xing-si-wei', 'ni-xiang-si-wei']);
+    const freeModels = new Set(['jie-gou-hua-si-wei', 'di-yi-xing-yuan-li', 'bian-zheng-si-wei', 'luo-ji-si-wei', 'chou-xiang-si-wei', 'xi-tong-si-wei', 'pi-pan-xing-si-wei', 'ni-xiang-si-wei', 'yi-yuan-si-wei', 'er-yuan-si-wei', 'guan-xing-si-wei', 'lu-jing-yi-lai', 'xian-xing-si-wei', 'jue-dui-si-wei', 'xue-sheng-si-wei', 'qiong-ren-si-wei', 'ruo-zhe-si-wei', 'da-gong-si-wei', 'wei-ke-xue-si-wei']);
     return freeModels.has(rawSlug) || freeModels.has(slug);
   }
   return false;

@@ -1,7 +1,7 @@
 /* 免费传播站内容锁定：不修改页面结构，仅运行时加锁 */
 (function(){
   "use strict";
-  var FREE_MODELS = "jie-gou-hua-si-wei|di-yi-xing-yuan-li|bian-zheng-si-wei|luo-ji-si-wei|chou-xiang-si-wei|xi-tong-si-wei|pi-pan-xing-si-wei|ni-xiang-si-wei".split("|");
+  var FREE_MODELS = "jie-gou-hua-si-wei|di-yi-xing-yuan-li|bian-zheng-si-wei|luo-ji-si-wei|chou-xiang-si-wei|xi-tong-si-wei|pi-pan-xing-si-wei|ni-xiang-si-wei|yi-yuan-si-wei|er-yuan-si-wei|guan-xing-si-wei|lu-jing-yi-lai|xian-xing-si-wei|jue-dui-si-wei|xue-sheng-si-wei|qiong-ren-si-wei|ruo-zhe-si-wei|da-gong-si-wei|wei-ke-xue-si-wei".split("|");
   var FREE_BOOKS  = "纳瓦尔宝典|富爸爸穷爸爸|人类简史|国富论|孙子兵法".split("|");
   var FREE_CATS   = "cat-1|cat-2".split("|");
   var PAIN_FIRST  = {"自我认知":"迷茫","情绪管理":"焦虑","思考与决策":"盲目跟风","做事与执行":"拖延","人际关系":"过度在意他人看法"};
