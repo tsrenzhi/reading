@@ -73,35 +73,22 @@
   }
 
   function lockBookCards(){
-    var grid = document.getElementById("booksGrid");
-    if(!grid) return;
-    // 同样不用 :scope，直接遍历子节点，避免 Safari 兼容问题
-    var cards = [];
-    var kids = grid.children;
-    for(var ki = 0; ki < kids.length; ki++){
-      var k = kids[ki];
-      if(k.classList && k.classList.contains("book-card")) cards.push(k);
+    // 书单卡片是前端分页渲染的，翻页会重建 DOM。
+    // 置顶 + 加锁已由数据层完成（patch_book_list_free 改 booksData），
+    // 这里只做运行时兜底：给带 book-locked 的卡片彻底禁用点击。
+    // 翻页后通过 booksRendered 事件重新调用本函数。
+    var cards = document.querySelectorAll("#booksGrid .book-card.book-locked");
+    for(var i = 0; i < cards.length; i++){
+      var c = cards[i];
+      if(c.dataset.freeLocked) continue;
+      c.dataset.freeLocked = "1";
+      c.classList.add("free-locked");
+      c.style.pointerEvents = "none";
+      c.addEventListener("click", function(e){
+        if(e.preventDefault) e.preventDefault();
+        if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+      }, true);
     }
-    var freeCards = [], otherCards = [];
-    cards.forEach(function(c){
-      var href = c.getAttribute("href") || "";
-      var m = href.match(/books\/([^/]+)\.html/);
-      var title = m ? decodeURIComponent(m[1]) : "";
-      var idx = FREE_BOOKS.indexOf(title);
-      if(idx !== -1) freeCards.push({idx: idx, el: c});
-      else otherCards.push(c);
-    });
-    freeCards.sort(function(a,b){ return a.idx - b.idx; });
-    // 重排 DOM：免费书在前
-    freeCards.concat(otherCards).forEach(function(item){
-      var c = item.el || item;
-      grid.appendChild(c);
-    });
-    // 非免费书加锁：仅加 class，锁标由 CSS 右上角显示
-    otherCards.forEach(function(c){
-      lockLink(c);
-      c.classList.add("book-locked");
-    });
   }
 
   function lockGrowthRoad(){
@@ -213,6 +200,39 @@
         return false;
       };
     }
+
+    // 覆盖 showPanel：免费站非免费节点只显示锁定面板，不渲染完整 VIP 正文（防止免费站泄露付费内容）
+    function freeNodeOpen(d){
+      if(!d) return false;
+      if(d.type === "pain") return false;
+      if(d.type === "book"){
+        var t = (typeof normalizeBookTitle === "function") ? normalizeBookTitle(d.label) : d.label;
+        return FREE_BOOKS.indexOf(t) !== -1;
+      }
+      if(d.type === "thinking"){
+        var r = d.slug || (d.id ? d.id.replace(/^thinking-/, "") : "");
+        var s = r.replace(/\s+/g, "-").replace(/\.md$/i, "");
+        return FREE_MODELS.indexOf(r) !== -1 || FREE_MODELS.indexOf(s) !== -1;
+      }
+      return false; // ability / theme / 其它一律锁定
+    }
+    if(typeof window.showPanel === "function"){
+      var _origShowPanel = window.showPanel;
+      window.showPanel = function(d){
+        if(d && freeNodeOpen(d)){
+          return _origShowPanel.apply(this, arguments);
+        }
+        // 非免费：仍让源函数渲染标题与标签（同步执行，浏览器不会中途重绘，无闪烁），
+        // 再把正文替换为锁定提示，避免免费站泄露会员专属完整内容
+        try { _origShowPanel.apply(this, arguments); } catch(e){}
+        var body = document.getElementById("panelBody");
+        if(body){
+          body.innerHTML = '<div class="section">'
+            + '<p style="color:#6A6058;line-height:1.75;margin:0">这是会员专属内容，完整的认知方法、案例与来源已折叠隐藏。</p>'
+            + '</div>';
+        }
+      };
+    }
   }
 
   function patchBookListHeader(){
@@ -249,6 +269,27 @@
 
   // 分类点击用事件委托，尽早绑定：不依赖 DOM 就绪，也不依赖页面内联脚本是否执行成功
   try { patchGroupTitleClick(); } catch(err) { /* noop */ }
+
+  // 书单页是前端分页渲染的，每次翻页/切分类都会重建卡片，
+  // 监听渲染完成事件，重新给锁定卡片上锁
+  try {
+    document.addEventListener("booksRendered", function(){
+      try { lockBookCards(); } catch(err) { /* noop */ }
+    });
+  } catch(err) { /* noop */ }
+
+  // 书卡锁定全局兜底（与渲染时机无关）：任何点中 .book-card.book-locked 的点击都拦截，
+  // 防止初始/翻页卡片因事件顺序竞态漏挂 per-card 监听而跳走到 intro.html。
+  // 仅免费站生效（free-lock.js 只在免费站注入），主站(8080)不受影响、锁定卡照常跳兑换码页。
+  try {
+    document.addEventListener("click", function(e){
+      if(!e.target || !e.target.closest) return;
+      if(e.target.closest(".book-card.book-locked")){
+        if(e.preventDefault) e.preventDefault();
+        if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+      }
+    }, true);
+  } catch(err) { /* noop */ }
 
   if(document.readyState === "loading"){
     document.addEventListener("DOMContentLoaded", run);

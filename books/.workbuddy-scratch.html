@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>intros 改写方案 v2（按反馈重梳 · 文件未动）</title>
+<style>
+  body{margin:0;padding:0;background:#fafaf6;color:#222;font-family:-apple-system,"Helvetica Neue",sans-serif;font-size:14px;line-height:1.6}
+  .wrap{max-width:1120px;margin:0 auto;padding:36px 28px 80px}
+  h1{font-size:22px;font-weight:600;margin:0 0 8px}
+  h2{font-size:16px;font-weight:600;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid #e6e2d8}
+  .meta{color:#888;font-size:13px;margin-bottom:22px}
+  table{border-collapse:collapse;width:100%;margin:0 0 14px}
+  th,td{padding:10px 12px;border-bottom:1px solid #ececec;vertical-align:top;text-align:left;font-size:13.5px}
+  th{background:#f4f1ea;font-weight:600;font-size:12.5px;letter-spacing:.5px;color:#666}
+  tr:hover td{background:#fbfaf6}
+  td.book{font-weight:600;width:120px;color:#333;background:#fbfaf6}
+  td.orig{color:#666;width:27%}
+  td.now{color:#222;background:#fffbf3;width:27%}
+  td.sug{color:#1d5b3a;background:#f0f7f2;width:34%}
+  .tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:3px;margin-right:4px;font-weight:500}
+  .tag.orig{background:#fce7e7;color:#a7322d}
+  .tag.now{background:#fef3d6;color:#92591a}
+  .tag.sug{background:#d8efdf;color:#1d5b3a}
+  .tag.fix{background:#fde0e0;color:#b3261d}
+  .tag.opt{background:#e3eefc;color:#2456a0}
+  .tag.ok{background:#e9f5e1;color:#3b6d11}
+  .small{font-size:12px;color:#888;display:block;margin-top:4px}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 4px;font-size:12.5px;color:#666}
+  .warn{padding:14px 18px;background:#fef7e0;border-left:4px solid #d49b1a;border-radius:4px;margin:18px 0;color:#5b4515;font-size:13.5px}
+  .ok{padding:14px 18px;background:#eaf3de;border-left:4px solid #639922;border-radius:4px;margin:18px 0;color:#3b6d11;font-size:13.5px}
+  .red{color:#c0392b;font-weight:600}
+  .green{color:#1d5b3a;font-weight:600}
+  .blue{color:#2456a0;font-weight:600}
+  .quote{font-style:normal;color:#444}
+  .hl{background:#fff2c2;padding:0 3px;border-radius:2px}
+</style>
+<link rel="stylesheet" href="../assets/free-lock.css?v=7">
+</head>
+<body>
+<div class="wrap">
+
+<h1>intros 改写方案 v2 · 按你反馈重梳（文件未动 · 等审）</h1>
+<div class="meta">
+  2026-09-03 09:00 制作 · 基于你本轮反馈重梳<br>
+  标准：<b>一句话概括 · 抓重点 · 不专业术语 · 不堆作者名 · 不虚空套话</b>
+</div>
+
+<div class="warn">
+  <b class="red">本轮确认要改的 2 条</b>（你点名）：<br>
+  · <b>金字塔原理</b>：MECE 太专业、"把复杂问题写得明明白白"太空 → 改"结构化思考 + 表达"<br>
+  · <b>周期</b>：带作者名"霍华德·马克斯"太长、"看清市场在哪个位置"看不懂 → 一句话概括书在讲啥
+</div>
+
+<div class="ok">
+  <b class="green">你原话认证"其他还好"的 8 条</b>：学会提问、百年孤独、从一到无穷大、财富的本质、人鼠之间、成功动机与目标、经济学家到底在想什么、如何阅读一本书 —— 这 8 条抓重点 OK，<b>建议保留现版</b>。
+</div>
+
+<div class="warn" style="border-left-color:#d49b1a">
+  <b class="blue">我顺手建议收的 3 条</b>（<b>你没点名，可不动</b>，列出供你参考）：<br>
+  · 毛选 / 简单的逻辑学 / 管理的实践 —— 这 3 条带"方法论源头 / 清晰思维的基础 / 德鲁克…奠基之作"这类偏虚或带作者名的尾巴，按你的"不虚空、不堆作者名"标准可微收。
+</div>
+
+<div class="legend">
+  <span><span class="tag fix">必改</span> 你点名要改</span>
+  <span><span class="tag opt">可收</span> 我建议顺手收（你没点名）</span>
+  <span><span class="tag ok">保留</span> 你认证还好，保留现版</span>
+</div>
+
+<h2>13 条 intros 对照表 v2</h2>
+
+<table>
+  <tr>
+    <th>书名</th>
+    <th><span class="tag orig">原</span> 宣传味版</th>
+    <th><span class="tag now">现</span> 0836 改后</th>
+    <th><span class="tag sug">建议</span> v2 新文案（按你标准）</th>
+  </tr>
+
+  <tr>
+    <td class="book">金字塔原理</td>
+    <td class="orig">培养结构化思维</td>
+    <td class="now">结论先行 + MECE 拆解，把复杂问题写得明明白白</td>
+    <td class="sug"><span class="tag fix">必改</span> <b>学会结构化思考，把复杂问题想清楚、也讲清楚</b><span class="small">照你原话：核心 = 结构化思维 + 怎么把复杂问题简单化 + 跟表达相关。去掉 MECE（太专业）、去掉"写得明明白白"（太空，适合所有书）。</span></td>
+  </tr>
+
+  <tr>
+    <td class="book">周期</td>
+    <td class="orig">马克斯的周期心法，判断市场在哪个位置</td>
+    <td class="now">霍华德·马克斯的判断方法，看清市场在哪个位置</td>
+    <td class="sug"><span class="tag fix">必改</span> <b>市场涨涨跌跌有循环，教你怎么判断现在处在哪一步</b><span class="small">照你原话：一句话概括书在讲啥，别带作者名。周期 = 经济/市场周而复始的涨跌规律，教读者识别当前所处阶段。</span></td>
+  </tr>
+
+  <tr>
+    <td class="book">毛选</td>
+    <td class="orig">培养辩证思维</td>
+    <td class="now">矛盾论+实践论+中国革命方法论的源头</td>
+    <td class="sug"><span class="tag opt">可收</span> 建议：<b>用矛盾和实践看问题的底层方法</b><span class="small">去掉"中国革命方法论的源头"这个长尾巴，更抓本质：毛选 = 教你怎么用矛盾分析法看问题。你没点名，可保留现版。</span></td>
+  </tr>
+
+  <tr>
+    <td class="book">简单的逻辑学</td>
+    <td class="orig">逻辑学入门必读，建立清晰思维的基础</td>
+    <td class="now">逻辑学入门读物，建立清晰思维的基础</td>
+    <td class="sug"><span class="tag opt">可收</span> 建议：<b>逻辑学入门读物，把话说明白、把事想清楚</b><span class="small">"建立清晰思维的基础"稍虚，换成"把话说明白、把事想清楚"更抓重点。你没点名，可保留现版。</span></td>
+  </tr>
+
+  <tr>
+    <td class="book">管理的实践</td>
+    <td class="orig">管理学作为一门学科，从这本书开始</td>
+    <td class="now">德鲁克把管理学从经验变成系统学科的奠基之作</td>
+    <td class="sug"><span class="tag opt">可收</span> 建议：<b>管理者怎么把团队带成一套系统</b><span class="small">去掉作者名"德鲁克"+"奠基之作"宣传味，直接说书在讲啥。你没点名，可保留现版。</span></td>
+  </tr>
+
+  <tr>
+    <td class="book">学会提问</td>
+    <td class="orig">培养批判性思维</td>
+    <td class="now">教你怎么反问，避免被人忽悠的批判性思维入门</td>
+    <td class="sug"><span class="tag ok">保留</span> 抓重点 OK（"反问 + 不被忽悠"是动作，不虚）<span class="small">可微调成"教你怎么反问，别被人牵着走"更白话，但不强制。</span></td>
+  </tr>
+
+  <tr>
+    <td class="book">百年孤独</td>
+    <td class="orig">七代人的孤独轮回，拉美文学的世纪巅峰</td>
+    <td class="now">七代人的孤独轮回，拉美文学的代表作</td>
+    <td class="sug"><span class="tag ok">保留</span> 抓重点 OK</td>
+  </tr>
+
+  <tr>
+    <td class="book">从一到无穷大</td>
+    <td class="orig">从数到宇宙，一本让你爱上科学的科普神作</td>
+    <td class="now">从数到宇宙，物理数学一网打尽的科普入门</td>
+    <td class="sug"><span class="tag ok">保留</span> 抓重点 OK</td>
+  </tr>
+
+  <tr>
+    <td class="book">财富的本质</td>
+    <td class="orig">财富创造的底层逻辑</td>
+    <td class="now">财富创造到底是怎么运转的</td>
+    <td class="sug"><span class="tag ok">保留</span> 抓重点 OK（口语、不虚空）</td>
+  </tr>
+
+  <tr>
+    <td class="book">人鼠之间</td>
+    <td class="orig">两个底层人的农场梦，注定被现实碾碎</td>
+    <td class="now">两个流浪汉的农场梦，注定被现实碾碎</td>
+    <td class="sug"><span class="tag ok">保留</span> 抓重点 OK</td>
+  </tr>
+
+  <tr>
+    <td class="book">成功，动机与目标</td>
+    <td class="orig">目标怎么定、动机怎么来，这本书有实证</td>
+    <td class="now">目标怎么定、动机怎么来，用实证数据说话</td>
+    <td class="sug"><span class="tag ok">保留</span> 抓重点 OK</td>
+  </tr>
+
+  <tr>
+    <td class="book">经济学家到底在想什么</td>
+    <td class="orig">一本书读懂各派经济学家怎么看待世界</td>
+    <td class="now">一篇读懂各派经济学家怎么看待世界</td>
+    <td class="sug"><span class="tag ok">保留</span> 抓重点 OK</td>
+  </tr>
+
+  <tr>
+    <td class="book">如何阅读一本书</td>
+    <td class="orig">主动阅读的方法论，让每本书都物超所值</td>
+    <td class="now">主动阅读的方法论，让阅读事半功倍</td>
+    <td class="sug"><span class="tag ok">保留</span> 抓重点 OK</td>
+  </tr>
+</table>
+
+<h2>一句话文案的质量标准（你这轮定的，我记下了）</h2>
+<div class="opt" style="background:#fff;border:1px solid #e6e2d8;border-radius:6px;padding:14px 16px;margin:8px 0">
+  <p style="margin:4px 0;color:#555;font-size:13px">① 一句话概括，让人看懂<b>这本书在讲啥</b></p>
+  <p style="margin:4px 0;color:#555;font-size:13px">② <span class="hl">抓重点</span>，不写"适用于所有书"的套话（如"把复杂问题写得明明白白"）</p>
+  <p style="margin:4px 0;color:#555;font-size:13px">③ <span class="hl">不堆专业术语</span>（MECE 这类太专业的词，读者看不懂）</p>
+  <p style="margin:4px 0;color:#555;font-size:13px">④ <span class="hl">不堆作者名</span>（霍华德·马克斯这种长名，占字数还看不出书在讲啥）</p>
+  <p style="margin:4px 0;color:#555;font-size:13px">⑤ <span class="hl">不虚空</span>，要落到具体动作/内容（"学会表达""判断处在哪一步"）</p>
+</div>
+
+<h2>下一步</h2>
+<p style="color:#555;font-size:13.5px;margin:0">
+  你拍板后我再改文件：<br>
+  · <b class="red">必改 2 条</b>：金字塔原理、周期 —— 直接用 v2 新文案<br>
+  · <b class="blue">可收 3 条</b>：毛选、简单的逻辑学、管理的实践 —— 你说收就收，说不收就留现版<br>
+  · <b class="green">保留 8 条</b>：学会提问等 —— 不动<br>
+  <br>
+  文件当前<b>未动</b>。等你一句"改"或"收哪几条"。
+</p>
+
+<p style="text-align:right;color:#aaa;font-size:12px;margin-top:40px">
+  v1（0850）对照表仍保留在 .workbuddy-scratch/，可作对比。
+</p>
+
+</div>
+<script src="../assets/free-lock.js?v=7"></script>
+</body>
+</html>

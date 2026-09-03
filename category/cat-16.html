@@ -21,7 +21,7 @@
 <meta name="twitter:image" content="https://thinking-model-d2gmrpzkyc0e1ae4d-1344110321.tcloudbaseapp.com/assets/og-cover.png">
 <meta name="description" content="信息科学分类下共 5 个思维模型与思维陷阱知识卡片。">
 
-<link rel="stylesheet" href="../assets/free-lock.css?v=4">
+<link rel="stylesheet" href="../assets/free-lock.css?v=7">
 </head>
 <body>
 
@@ -248,18 +248,40 @@ sideLinks.forEach(function(a){ a.addEventListener('click', function(){ if(window
 (function(){
   var tabs = document.querySelectorAll('.tab[data-sub]');
   if(!tabs.length) return;
+  function switchTo(sub){
+    if(!sub) return false;
+    var found = false;
+    tabs.forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.subblock[data-sub]').forEach(function(sb){ sb.hidden = true; });
+    document.querySelectorAll('.tab-desc[data-desc]').forEach(function(d){ d.hidden = true; });
+    tabs.forEach(function(tab){
+      if(tab.getAttribute('data-sub') === sub){
+        tab.classList.add('active');
+        found = true;
+      }
+    });
+    document.querySelectorAll('.subblock[data-sub]').forEach(function(sb){
+      if(sb.getAttribute('data-sub') === sub) sb.hidden = false;
+    });
+    document.querySelectorAll('.tab-desc[data-desc]').forEach(function(d){
+      if(d.getAttribute('data-desc') === sub) d.hidden = false;
+    });
+    return found;
+  }
   tabs.forEach(function(tab){
     tab.addEventListener('click', function(){
-      var sub = tab.getAttribute('data-sub');
-      tabs.forEach(function(t){ t.classList.remove('active'); });
-      tab.classList.add('active');
-      document.querySelectorAll('.subblock[data-sub]').forEach(function(sb){ sb.hidden = sb.getAttribute('data-sub') !== sub; });
-      document.querySelectorAll('.tab-desc[data-desc]').forEach(function(d){ d.hidden = d.getAttribute('data-desc') !== sub; });
+      switchTo(tab.getAttribute('data-sub'));
+      if(history.replaceState) history.replaceState(null, '', '#'+tab.getAttribute('data-sub'));
     });
   });
+  var hash = decodeURIComponent(location.hash.replace(/^#/, ''));
+  if(hash) switchTo(hash);
+  // 带 hash 返回时（如从详情页点“返回”），只切换 tab，不要主动滚动。
+  // 主动滚动会把分类标题顶到固定导航上方，导致用户看不到“思维陷阱 59 个模型”这段。
 })();
 </script>
 
-<script src="../assets/free-lock.js?v=4"></script>
+
+<script src="../assets/free-lock.js?v=7"></script>
 </body>
 </html>

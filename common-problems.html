@@ -181,7 +181,7 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
 }
 </style>
 
-<link rel="stylesheet" href="assets/free-lock.css?v=4">
+<link rel="stylesheet" href="assets/free-lock.css?v=7">
 </head>
 <body>
 <script>
@@ -967,8 +967,11 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
       }
     });
   });
-  var firstGroup = document.querySelector(".side-nav-problems .nav-group");
-  var first = firstGroup ? firstGroup.getAttribute("data-first-target") : (sections[0] ? sections[0].id : "");
+  // 首屏默认显示：左侧第一个分类下的第一项（置顶项，顺序由静态 HTML 保证）
+  var firstGroupNav = document.querySelector('.side-nav-problems .nav-group');
+  var firstNavLink = firstGroupNav ? firstGroupNav.querySelector('ul li a') : null;
+  var first = firstNavLink ? (firstNavLink.getAttribute('data-target') || firstNavLink.getAttribute('href') || '') : (sections[0] ? sections[0].id : '');
+  first = first.replace(/^#/, '');
   var rawHash = window.__savedHash || location.hash || '';
   var hash = rawHash ? decodeURIComponent(rawHash.replace('#','')) : '';
   // 免费站：hash 指向被锁内容时回退到第一项
@@ -1053,6 +1056,7 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
 
 </script>
 
-<script src="assets/free-lock.js?v=4"></script>
+
+<script src="assets/free-lock.js?v=7"></script>
 </body>
 </html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="needs-final-tune" content="true" />     <!-- ← 待最终优化标记 -->
+<title>《学会提问》· 白板手绘逻辑图</title>
+<style>
+@font-face{font-family:'LXGW WenKai';src:local('LXGW WenKai'),local('LXGWWenKai-Regular');font-display:swap}
+</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet" onerror="this.remove()">
+<style>
+  :root{
+    --paper:#FBF6F0;
+    --ink:#201914;
+    --muted:#9C928A;
+    --accent:#E0432E;
+    --accent-soft:rgba(224,67,46,.07);
+    --line:#6A6058;
+    --card:#FFFDFA;
+    --font-hand:"LXGW WenKai","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-hand);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(circle at 18% 12%,rgba(224,67,46,.04),transparent 42%),
+      radial-gradient(circle at 86% 82%,rgba(224,67,46,.03),transparent 46%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:40px 24px 80px}
+  .section{margin-top:48px;scroll-margin-top:96px}
+  .section:first-child{margin-top:0}
+
+  .sec-title{font-size:40px;font-weight:400;color:var(--ink);letter-spacing:1px;display:inline-block;position:relative}
+  .sec-title::after{content:"";position:absolute;left:0;right:-6px;bottom:-9px;height:5px;background:var(--accent);border-radius:3px;transform:rotate(-.6deg)}
+  .sec-sub{margin-top:16px;font-size:22px;color:var(--muted);line-height:1.5}
+  .red{color:var(--accent);font-weight:400}
+
+  .prose{margin-top:24px;font-size:25px;line-height:1.62;color:var(--ink)}
+  .prose p+p{margin-top:14px}
+  .indent{margin-left:14px;padding-left:18px;border-left:3px solid var(--line);margin-top:16px;color:var(--muted);font-size:23px;line-height:1.55}
+  .indent b{color:var(--ink)}
+
+  .points{margin-top:24px;display:flex;flex-direction:column;gap:11px}
+  .points .pt{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:15px 18px}
+  .points .pt .n{flex:0 0 42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;font-size:24px;font-weight:400;display:flex;align-items:center;justify-content:center}
+  .points .pt p{font-size:24px;line-height:1.5;color:var(--ink)}
+
+  .quote{margin-top:26px;background:var(--card);border:3px solid var(--accent);border-radius:18px;padding:26px 28px;position:relative}
+  .quote .mark{position:absolute;top:-24px;left:26px;font-size:60px;color:var(--accent);font-weight:400;line-height:1}
+  .quote blockquote{font-size:29px;font-weight:400;line-height:1.55;color:var(--ink)}
+  .quote .ex{margin-top:14px;font-size:23px;color:var(--muted);line-height:1.55}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:22px;border:2.5px solid var(--line);border-radius:16px;overflow:hidden}
+  .vs .col{padding:20px 22px}
+  .vs .col:first-child{border-right:2.5px dashed var(--line)}
+  .vs .vt{font-size:28px;font-weight:400;color:var(--accent)}
+  .vs .vd{margin-top:10px;font-size:23px;color:var(--ink);line-height:1.5}
+  .vs .ve{margin-top:10px;font-size:21px;color:var(--muted);line-height:1.5}
+  .vs .tag{display:inline-block;font-size:19px;color:#fff;background:var(--line);padding:4px 12px;border-radius:13px;margin-bottom:8px;text-align:center}
+  .vs.old .tag{background:var(--line)}
+  .vs.old .vt{color:var(--accent)}
+  .vs .col.new{background:var(--accent-soft)}
+
+  .core-cards{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .ccard{background:var(--card);border:2.5px solid var(--line);border-radius:14px;
+    padding:18px 14px 20px;box-shadow:3px 4px 0 rgba(0,0,0,.06);display:flex;flex-direction:column;align-items:center}
+  .ccard .ctitle{font-size:25px;font-weight:400;color:var(--accent);text-align:center;line-height:1.2}
+  .ccard .ctag{margin-top:7px;font-size:19px;font-weight:400;color:var(--ink);text-align:center;line-height:1.3;min-height:44px;display:flex;align-items:center;justify-content:center}
+  .ccard .cfig{margin-top:10px;width:100%}
+  .ccard .cfig svg{width:100%;height:auto;display:block}
+  .ccard .cdesc{margin-top:10px;font-size:18px;color:var(--muted);text-align:center;line-height:1.45;max-width:260px;margin-left:auto;margin-right:auto}
+
+  .concept-list{margin-top:28px;display:flex;flex-direction:column;gap:22px}
+  .concept{background:var(--card);border:2.5px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:3px 4px 0 rgba(0,0,0,.06)}
+  .concept .chead{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+  .concept .cnum{flex:0 0 46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center}
+  .concept .cmeta{flex:1;min-width:260px}
+  .concept .cname{font-size:29px;color:var(--accent);line-height:1.2}
+  .concept .cone{font-size:20px;color:var(--muted);margin-top:4px;line-height:1.45}
+  .concept .cbody{margin-top:18px}
+  .concept .cbody p{font-size:23px;line-height:1.55;color:var(--ink);margin-top:10px}
+  .concept .cbody p:first-child{margin-top:0}
+  .concept .cbody b{font-weight:400;color:var(--accent)}
+
+  .mini-vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  .mini-vs .mcol{padding:14px 16px;border-radius:12px;background:rgba(106,96,88,.08)}
+  .mini-vs .mcol.good{background:rgba(224,67,46,.08);border:2px solid var(--accent)}
+  .mini-vs .mt{font-size:20px;color:var(--accent);margin-bottom:6px}
+  .mini-vs .mp{font-size:21px;color:var(--ink);line-height:1.5}
+
+  .example{margin-top:16px;padding:14px 18px;border:2px dashed var(--line);border-radius:12px;background:rgba(251,246,240,.7)}
+  .example .ex-title{font-size:19px;color:var(--muted);margin-bottom:6px}
+  .example p{font-size:22px;color:var(--ink);line-height:1.5}
+
+  .tabs{position:sticky;top:0;z-index:30;margin-top:18px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);padding:10px 8px;border-bottom:2px solid var(--line)}
+  .tab{font-size:18px;font-weight:400;color:var(--ink);text-decoration:none;padding:7px 13px;border:2px solid var(--line);border-radius:20px;background:var(--card);transition:all .2s;white-space:nowrap}
+  .tab:hover{border-color:var(--accent);color:var(--accent)}
+  .tab.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 0 0 3px rgba(224,67,46,.25);transform:scale(1.04)}
+
+  @media (max-width:900px){.core-cards{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:720px){
+    .wrap{padding:32px 16px 70px}
+    .sec-title{font-size:34px}
+    .tab{font-size:17px;padding:6px 10px}
+    .vs{grid-template-columns:1fr}
+    .vs .col:first-child{border-right:none;border-bottom:2.5px dashed var(--line)}
+    .mini-vs{grid-template-columns:1fr}
+  }
+</style>
+<link rel="stylesheet" href="../assets/free-lock.css?v=7">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero" style="text-align:center;padding:4px 0 0">
+    <h1 style="font-size:64px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1">《学会提问》</h1>
+    <div style="margin-top:10px;font-size:21px;color:var(--muted);letter-spacing:2px">尼尔·布朗、斯图尔特·基利 · 2019</div>
+    <div style="margin-top:6px;font-size:20px;color:var(--muted)">机械工业出版社（吴礼敬 译）</div>
+    <div style="margin-top:18px;font-size:42px;font-weight:400;line-height:1.3;letter-spacing:1px;color:var(--accent);max-width:980px;margin-left:auto;margin-right:auto;white-space:nowrap">想不被别人忽悠，先学会反问！</div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <a href="#s1" class="tab">① 书籍定位</a>
+    <a href="#s2" class="tab">② 核心误区</a>
+    <a href="#s3" class="tab">③ 提问破局</a>
+    <a href="#s4" class="tab">④ 核心内容</a>
+    <a href="#s5" class="tab">⑤ 核心价值</a>
+  </nav>
+
+  <section class="section" id="s1">
+    <div class="sec-title">一 · 这本书到底在讲什么</div>
+    <div class="prose">
+      <p>现在社会上的信息非常多，每个人都在发表自己的观点，尤其是短视频上的信息更多。</p>
+      <p><b>怎么区分他们？怎么知道他们说的对不对？怎么形成自己的判断、自己的结论？</b></p>
+      <p>这本书教的就是这个——<span class="red">学会独立思考和判断、学会分析、学会提问</span>。它的核心是<b>质疑</b>和<b>批判性思维</b>：面对别人的观点时，能<b>独立思考和判断</b>，而不是<b>全盘接受</b>；找出到底<b>什么是真正的事实、什么是观点</b>。</p>
+      <p>作者把批判性思维拆成<b>一整套环环相扣的关键问题</b>——这一套问题就是这本书的全部内容。</p>
+    </div>
+  </section>
+
+  <section class="section" id="s2">
+    <div class="sec-title">二 · 核心误区</div>
+    <div class="sec-sub">批判性思维有两种，差很远。<b>假批判是只批判别人、捍卫自己的观点；真批判是先批判自己。</b>多数人以为自己会的，其实只是假批判。</div>
+    <div class="vs">
+      <div class="col">
+        <span class="tag">假批判性思维</span>
+        <div class="vt">批判别人 + 捍卫自己的观点</div>
+        <div class="vd">别人一开口，你的第一反应就是挑他的刺。因为你的目的是<span class="red">捍卫自己的观点</span>，而不是站在对方的角度考虑问题。</div>
+      </div>
+      <div class="col">
+        <span class="tag">真批判性思维</span>
+        <div class="vt">先批判自己</div>
+        <div class="vd">自己有了一个想法、一个观点以后，先去问自己：<b>这个结论到底对不对？有没有什么明确的理由支持我的观点？</b>因为每个人都是有认知局限的，不能因为我觉得是对的，就认为这个观点是对的，而是要找到支持它的理由，支持它的证据。</div>
+        <div class="ve">真正的批判性思维，应该先用来批判自己，再去批判别人。</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="s3">
+    <div class="sec-title">三 · 提问破局</div>
+    <div class="sec-sub">怎么学会提问？四步——按顺序问一遍：</div>
+    <div class="points">
+      <div class="pt"><div class="n">①</div><p><b>先问论题和结论是什么。</b>他到底在讨论什么问题？想让你接受什么观点？这两件不先问清就开口，你回应的根本不是他那个——是你自己以为的那个。一开始你俩就没对上话。</p></div>
+      <div class="pt"><div class="n">②</div><p><b>再问凭什么这么说。</b>理由是什么？证据从哪来？数据怎么收的？推理有没有跳步？大多数观点光这一问就站不住，因为大多数人本来就没拿出经得起追问的证据。</p></div>
+      <div class="pt"><div class="n">③</div><p><b>还有别的解释吗？</b>同一件事往往不只一种解释，换个角度看，结论可能完全不同。所以别把听起来合理的那一种直接当事实。</p></div>
+      <div class="pt"><div class="n">④</div><p><b>谁想说服你，谁就要负责解释清楚。</b>词有歧义让他说清楚、证据不给他给来源、数字不给他口径让他报——这三样缺一样，这个论证就没立住，于是你就有理由不接受。</p></div>
+    </div>
+
+    <div class="quote">
+      <span class="mark">"</span>
+      <blockquote>我们倾听他们，是为了构建出自己的答案，而不是听了他们的话以后，马上就按他们说的去做，就好像自己是只无助的羔羊，或者是个牵线的木偶似的。</blockquote>
+      <div class="ex">——作者尼尔·布朗、斯图尔特·基利。听专家的话，是为了自己能判断，不是把判断这件事交出去。</div>
+    </div>
+  </section>
+
+  <section class="section" id="s4">
+    <div class="sec-title">四 · 核心内容</div>
+    <div class="sec-sub">九问，按「看清 → 挖藏 → 查漏」三层的顺序走一遍。</div>
+
+    <div class="core-cards">
+      <div class="ccard">
+        <div class="ctitle">结论</div>
+        <div class="ctag">他要你信什么</div>
+        <div class="cfig">
+          <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+            <text x="110" y="16" font-size="13" fill="#201914" text-anchor="middle" font-family="LXGW WenKai">他要你接受的那句</text>
+            <path d="M110,24 L110,48" stroke="#E0432E" stroke-width="2.5"/>
+            <path d="M110,48 L104,40 M110,48 L116,40" stroke="#E0432E" stroke-width="2.5"/>
+            <rect x="55" y="54" width="110" height="46" rx="8" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2.5"/>
+            <text x="110" y="82" font-size="16" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">结论</text>
+            <text x="110" y="126" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">先找到它，再谈别的</text>
+          </svg>
+        </div>
+        <div class="cdesc">找不准结论，你回应的是自己脑补的那个立场。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">理由</div>
+        <div class="ctag">他凭什么这么说</div>
+        <div class="cfig">
+          <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+            <rect x="62" y="34" width="96" height="34" rx="6" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2.5"/>
+            <text x="110" y="56" font-size="15" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">结论</text>
+            <path d="M88,68 L88,88 M132,68 L132,88" stroke="#6A6058" stroke-width="2.5"/>
+            <rect x="46" y="88" width="56" height="30" rx="6" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <text x="74" y="108" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">理由</text>
+            <rect x="118" y="88" width="56" height="30" rx="6" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <text x="146" y="108" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">理由</text>
+            <text x="110" y="140" font-size="13" fill="#201914" text-anchor="middle" font-family="LXGW WenKai">结论本身不是证据</text>
+          </svg>
+        </div>
+        <div class="cdesc">看到理由，才知道这个结论值多少钱。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">概念</div>
+        <div class="ctag">这个词指什么</div>
+        <div class="cfig">
+          <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+            <text x="110" y="18" font-size="13" fill="#201914" text-anchor="middle" font-family="LXGW WenKai">同一个词</text>
+            <circle cx="110" cy="48" r="17" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2.5"/>
+            <path d="M96,62 L52,102 M124,62 L168,102" stroke="#6A6058" stroke-width="2"/>
+            <rect x="20" y="102" width="66" height="32" rx="6" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <text x="53" y="123" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">你理解的</text>
+            <rect x="134" y="102" width="66" height="32" rx="6" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <text x="167" y="123" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">他指的</text>
+          </svg>
+        </div>
+        <div class="cdesc">关键概念一有歧义，整段论证就立不住。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">假设</div>
+        <div class="ctag">他没说出口的那句</div>
+        <div class="cfig">
+          <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="84,74 110,26 136,74" fill="rgba(224,67,46,.15)" stroke="#E0432E" stroke-width="2.5"/>
+            <polygon points="52,138 110,74 168,138" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <line x1="8" y1="74" x2="212" y2="74" stroke="#6A6058" stroke-width="2" stroke-dasharray="5 4"/>
+            <text x="110" y="18" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">说出来的</text>
+            <text x="110" y="126" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">没说出口的假设</text>
+          </svg>
+        </div>
+        <div class="cdesc">那句"理所当然"，才是决定结论往哪边倒的东西。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">推理</div>
+        <div class="ctag">中间有没有断环</div>
+        <div class="cfig">
+          <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="62" width="40" height="28" rx="5" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <rect x="70" y="62" width="40" height="28" rx="5" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <rect x="124" y="62" width="40" height="28" rx="5" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2.5" stroke-dasharray="4 3"/>
+            <rect x="178" y="62" width="34" height="28" rx="5" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <text x="144" y="81" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">?</text>
+            <path d="M56,76 L68,76 M110,76 L122,76 M164,76 L176,76" stroke="#6A6058" stroke-width="2"/>
+            <text x="110" y="126" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">中间断一环，结论就悬着</text>
+          </svg>
+        </div>
+        <div class="cdesc">谬误就是论证里的欺骗手段，多数穿着"很有道理"的外衣。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">证据</div>
+        <div class="ctag">效力够不够</div>
+        <div class="cfig">
+          <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+            <text x="110" y="18" font-size="13" fill="#201914" text-anchor="middle" font-family="LXGW WenKai">效力不一样</text>
+            <rect x="80" y="30" width="60" height="24" rx="4" fill="rgba(224,67,46,.15)" stroke="#E0432E" stroke-width="2.5"/>
+            <text x="110" y="46" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">研究报告</text>
+            <rect x="55" y="60" width="110" height="24" rx="4" fill="rgba(106,96,88,.14)" stroke="#6A6058" stroke-width="2"/>
+            <text x="110" y="76" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">专家意见 · 当事人证言</text>
+            <rect x="30" y="90" width="160" height="24" rx="4" fill="rgba(106,96,88,.10)" stroke="#6A6058" stroke-width="2"/>
+            <text x="110" y="106" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">直觉 · 个人经历</text>
+            <text x="110" y="136" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">分清事实和观点</text>
+          </svg>
+        </div>
+        <div class="cdesc">一个例子能说明"发生过一次"，说明不了"普遍如此"。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">替代</div>
+        <div class="ctag">有没有别的解释</div>
+        <div class="cfig">
+          <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+            <text x="52" y="26" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">原因A</text>
+            <text x="110" y="20" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">原因B</text>
+            <text x="168" y="26" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">原因C</text>
+            <path d="M52,34 L98,98" stroke="#6A6058" stroke-width="2.5"/>
+            <path d="M110,28 L110,98" stroke="#6A6058" stroke-width="2.5"/>
+            <path d="M168,34 L122,98" stroke="#6A6058" stroke-width="2.5"/>
+            <circle cx="110" cy="116" r="18" fill="rgba(224,67,46,.15)" stroke="#E0432E" stroke-width="2.5"/>
+            <text x="110" y="121" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">结果</text>
+          </svg>
+        </div>
+        <div class="cdesc">先后发生不等于因果，中间可能还隔着第三样东西。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">欺骗</div>
+        <div class="ctag">数据有没有骗你</div>
+        <div class="cfig">
+          <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+            <line x1="24" y1="122" x2="204" y2="122" stroke="#6A6058" stroke-width="2"/>
+            <rect x="38" y="96" width="28" height="26" fill="rgba(106,96,88,.15)" stroke="#6A6058" stroke-width="1.5"/>
+            <rect x="80" y="102" width="28" height="20" fill="rgba(106,96,88,.15)" stroke="#6A6058" stroke-width="1.5"/>
+            <rect x="122" y="106" width="28" height="16" fill="rgba(106,96,88,.15)" stroke="#6A6058" stroke-width="1.5"/>
+            <rect x="164" y="30" width="28" height="92" fill="rgba(224,67,46,.18)" stroke="#E0432E" stroke-width="2"/>
+            <line x1="24" y1="70" x2="204" y2="70" stroke="#E0432E" stroke-width="2" stroke-dasharray="5 4"/>
+            <text x="196" y="62" font-size="12" fill="#E0432E" text-anchor="end" font-family="LXGW WenKai">平均线</text>
+            <text x="110" y="144" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">一个高值把平均抬走了</text>
+          </svg>
+        </div>
+        <div class="cdesc">挑哪一段、用哪个口径，都是人定的。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">忽略</div>
+        <div class="ctag">什么被省掉了</div>
+        <div class="cfig">
+          <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="104" cy="80" r="52" fill="rgba(106,96,88,.08)" stroke="#6A6058" stroke-width="2.5"/>
+            <path d="M104,80 L104,28 A52,52 0 0,1 149,47 Z" fill="rgba(224,67,46,.25)" stroke="#E0432E" stroke-width="2.5"/>
+            <text x="92" y="86" font-size="13" fill="#201914" text-anchor="middle" font-family="LXGW WenKai">他说的</text>
+            <text x="175" y="52" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">被省掉的</text>
+            <text x="104" y="146" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">没说的往往更关键</text>
+          </svg>
+        </div>
+        <div class="cdesc">没提不等于不重要，常常是提了你就不会点头。</div>
+      </div>
+    </div>
+
+    <div class="concept-list">
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">1</div>
+          <div class="cmeta">
+            <div class="cname">结论</div>
+            <div class="cone">先找论题，再找结论；找不准结论，你回应的是自己脑补的那个立场</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>结论</b>就是说话的人希望你接受的信息。<b>论题</b>是引起这场对话或争论的那个问题，后面所有讨论都由它推动。论题分两类：<b>描述性论题</b>问的是过去、现在、将来是什么样；<b>规定性论题</b>问的是该不该做、对不对、好不好。</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">你以为</div>
+              <div class="mp">听完一段话，先判断它说得对不对。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">实际上</div>
+              <div class="mp">得先分清他要你接受的是"事实描述"还是"该不该做"——两类论题的评判标准根本不是一回事。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>朋友圈有人转"年轻人不该买车，养车一年至少两万"。评论区立刻有人拿"我同事买车一年才花八千"去怼。两个人吵了三十多条，谁也没说服谁——一个在讲该不该买，一个在讲花多少钱。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">2</div>
+          <div class="cmeta">
+            <div class="cname">理由</div>
+            <div class="cone">结论本身不是证据，得有别的信念或证据撑着它</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>理由</b>是拿来支撑结论的证据或其他信念。只有在找到支撑结论的那些理由之后，你才评得出这个结论的价值。找理由有提示词帮忙：因为、鉴于、研究显示、首先……其次……。</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">你以为</div>
+              <div class="mp">听他讲得有没有道理就行。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">实际上</div>
+              <div class="mp">先看他有没有给理由。没有理由的结论，讲得再顺也只是个观点。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>主播举着瓶子说"这款精华我自己连着用了三个月，真的好用"。听着诚恳，可这是个人经历，不是理由——没说成分、没给对照、也没讲一百个人里多少人说有用。他敢这么讲，是因为多数人听到"我自己用了三个月"就默认它算证据。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">3</div>
+          <div class="cmeta">
+            <div class="cname">概念</div>
+            <div class="cone">关键概念只要有歧义，整段论证就立不住</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>歧义</b>是指一个词或一句话有不只一种意思。判断歧义要看<b>语境</b>——说话人的背景、这个词在具体论证里的习惯用法、以及它前后挨着的其他词句。谁想说服你，谁就要负责解释清楚。</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">你以为</div>
+              <div class="mp">词的意思大家都懂，不用问。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">实际上</div>
+              <div class="mp">越是关键的那个词，越容易被两边各取所需地理解。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>招聘启事写着"提供有竞争力的薪资"。四个人来面试，有人理解成月薪一万五，有人理解成有年终奖，还有人以为只是"不低于同行"。等 offer 发下来，三个人转头就走——公司没撒谎，它只是没说清楚那个词指什么。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">4</div>
+          <div class="cmeta">
+            <div class="cname">假设</div>
+            <div class="cone">那些"理所当然"的想法，才是决定结论往哪边倒的东西</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>假设</b>是作者认为理所当然、没有明说出来的想法。它有三个特点：作者当成理所当然、对结论影响很大、可能有一定的欺骗性。分两类：<b>价值观假设</b>是对世界应该什么样的信念，<b>描述性假设</b>是对世界过去、现在、未来什么样的信念。</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">你以为</div>
+              <div class="mp">他说出来的那几句就是全部论证。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">实际上</div>
+              <div class="mp">没说出来的那句才是真正决定结论的——把它换了，结论跟着换。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>有人说"该给外卖骑手上社保，他们风里来雨里去太辛苦了"。这句藏着的价值观假设是"照顾劳动者比控制企业成本更重要"。把这句换成"控制成本比涨配送费更重要"，同一个事实能推出完全相反的结论。他没说，但整段话都压在这上面。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">5</div>
+          <div class="cmeta">
+            <div class="cname">推理</div>
+            <div class="cone">谬误就是论证里的欺骗手段，多数穿着"很有道理"的外衣</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>谬误</b>是论证中的欺骗手段，说话的人可能靠这些手法说服你采纳结论。常见的有：<b>稻草人</b>（把对方立场说极端再攻击）、<b>乱扣帽子</b>（起了个名字当找了原因）、<b>诉诸感情</b>、<b>诉诸可疑权威</b>、<b>诉诸公众</b>、<b>虚假两难</b>、<b>循环论证</b>、<b>转移话题</b>、<b>以偏概全</b>、<b>错误类比</b>。</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">你以为</div>
+              <div class="mp">有漏洞的论证一眼就能看出来。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">实际上</div>
+              <div class="mp">多数谬误听起来比正确答案还顺耳，因为听的人不用动脑就能接受。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>有人提议"小区里车速该限到 15 公里"。反对的人立刻说："照这个说法，是不是干脆禁止开车算了？"提议人说的是限速，被他说成了禁车，然后他再攻击"禁车"这个没人提过的主张。吵到最后，大家反驳的是一个根本不存在的立场。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">6</div>
+          <div class="cmeta">
+            <div class="cname">证据</div>
+            <div class="cone">直觉、个人经历、专家意见、研究报告，分量差得很远</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p>不同来源的证据效力不同。直觉最弱；个人经历容易以偏概全；当事人证言有选择性；典型案例只挑最好看的讲；专家意见要看他是不是这个领域的专家；研究报告要看样本怎么抽的、变量怎么测的。核心动作只有一个：<b>分清事实和观点</b>。</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">你以为</div>
+              <div class="mp">有人举了例子，就算有证据了。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">实际上</div>
+              <div class="mp">一个例子只能说明"发生过一次"，说明不了"普遍如此"。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>代餐广告里的人说自己"连吃三天瘦了五斤"。可那三天她同时把晚饭省了、每天走一万步——瘦下来未必是代餐的功劳。一个人的经历说明她瘦了，说明不了这个产品让别人也能瘦。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">7</div>
+          <div class="cmeta">
+            <div class="cname">替代</div>
+            <div class="cone">两件事一起出现，不等于一件导致了另一件</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>替代原因</b>是一个说得通的替代解释，能说明同样的结果为什么会发生。人天生愿意相信"先发生的那件导致了后发生的那件"，这个倾向要压住。看到因果断言，先问三句：还有别的解释吗？它是唯一原因还是原因之一？换个视角看会怎么样？</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">你以为</div>
+              <div class="mp">A 之后发生了 B，就是 A 导致的 B。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">实际上</div>
+              <div class="mp">可能有第三样东西同时导致 A 和 B，也可能只是碰巧一起出现。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>有调查说"每天读书一小时的人收入更高"。于是有人说多读书能变有钱。可读书的人往往本来就更坐得住、更能坚持——这两样既让人读得下去书，也让人工作更稳。读书和高收入一起出现，中间还隔着一样谁都没提的东西。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">8</div>
+          <div class="cmeta">
+            <div class="cname">欺骗</div>
+            <div class="cone">挑哪一段、用哪个口径，都是人定的</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p>数据可能不知来历、带有偏见，也可能被平均值抹平了差距。三种常见手法：<b>令人困惑的平均值</b>（平均数、中位数、众数差别很大）、<b>用一件事的结论证明另一件事</b>、<b>通过省略信息欺骗</b>。遇到"更大""更多""更快""在……之后"这类说法，坚持要看到具体数字。</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">你以为</div>
+              <div class="mp">只要有数字，就等于客观了。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">实际上</div>
+              <div class="mp">用平均数、中位数还是众数，换个口径结论能反过来。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>公司招聘写着"员工平均年薪 30 万"。一共十个人，老板一人拿 200 万，剩下 9 人加起来才 100 万——多数人拿到手的是 11 万出头。"平均"这两个字把差距抹得干干净净，你不问一句"怎么算的"，看到的就是一个跟自己无关的数字。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">9</div>
+          <div class="cmeta">
+            <div class="cname">忽略</div>
+            <div class="cone">没说的那部分，常常比说出来的更关键</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>重要的省略信息</b>就是那些会影响你判断的信息。识别它有固定几问：反对的人会给出什么理由？换个价值观会不会有别的处理办法？这些"事实"的来源是什么？有没有被漏掉的数字、图表、表格？有没有负面效果没提？</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">你以为</div>
+              <div class="mp">他没提，说明那部分不重要。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">实际上</div>
+              <div class="mp">他没提，往往是因为提了你就不会点头。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>理财推文写着"历史年化 8%"。没写的是：这个 8% 取自它成立那年赶上涨幅的区间，去年只有 2.3%，而且赎回要锁三年。被省掉的这三句，才是决定你要不要掏钱的部分——写的人不是忘了，是知道写了你就走了。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="s5">
+    <div class="sec-title">五 · 核心价值</div>
+    <div class="sec-sub">书合上之后，你听别人说话的方式会变。</div>
+    <div class="points">
+      <div class="pt"><div class="n">①</div><p><b>听到一个观点，不再默认它对——先问"我凭什么信它"。</b>因为独立的判断从来不是顺耳就先点头。判断的结论要是自己的，不是被谁讲得漂亮牵走的。</p></div>
+      <div class="pt"><div class="n">②</div><p><b>"大家都这样""专家说的""权威说的"不再自动是理由。</b>一个观点的支撑是"大家都信"，那它就没支撑；一个观点靠"专家说"立住，那它得先证明这个专家跟这事真相关。否则这就不叫理由，叫偷懒。</p></div>
+      <div class="pt"><div class="n">③</div><p><b>敢于拒掉一个立不住的论证。</b>谁想说服你，谁就要负责解释清楚。词没说清让他说清、证据没给让他给、数字没口径让他报——这三样缺一样，这个论证就没立住，你就有理由不接受。</p></div>
+      <div class="pt"><div class="n">④</div><p><b>自己发表观点时，会先把没说出口的那句摆出来。</b>因为假设藏得越深，被别人点出来的时候越被动；主动讲出来，讨论才真在同一层。</p></div>
+    </div>
+  </section>
+
+</div>
+<script>
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var sections=tabs.map(function(t){return document.querySelector(t.getAttribute('href'));}).filter(Boolean);
+  var spy=new IntersectionObserver(function(entries){
+    var best=null,bestRatio=-1;
+    entries.forEach(function(e){
+      if(e.isIntersecting && e.intersectionRatio>bestRatio){best=e.target;bestRatio=e.intersectionRatio;}
+    });
+    if(best){
+      var id='#'+best.id;
+      tabs.forEach(function(t){t.classList.toggle('active', t.getAttribute('href')===id);});
+    }
+  },{rootMargin:'-40% 0px -45% 0px',threshold:[0,0.25,0.5,0.75,1]});
+  sections.forEach(function(s){spy.observe(s);});
+</script>
+<script src="../assets/free-lock.js?v=7"></script>
+</body>
+</html>

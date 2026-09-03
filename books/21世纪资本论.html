@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>《21世纪资本论》· 知识卡片</title>
+<meta name="needs-final-tune" content="true">
+<style>
+/* 本地后备：霞鹜文楷加载失败时使用系统字体 */
+@font-face{font-family:'LXGW WenKai';src:local('LXGW WenKai'),local('LXGWWenKai-Regular');font-display:swap}
+</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet" onerror="this.remove()">
+<style>
+  :root{
+    --paper:#FBF6F0;
+    --ink:#201914;
+    --muted:#9C928A;
+    --accent:#E0432E;
+    --accent-soft:rgba(224,67,46,.07);
+    --line:#6A6058;
+    --card:#FFFDFA;
+    --font-hand:"LXGW WenKai","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-hand);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(circle at 18% 12%,rgba(224,67,46,.04),transparent 42%),
+      radial-gradient(circle at 86% 82%,rgba(224,67,46,.03),transparent 46%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:40px 24px 80px}
+  .section{margin-top:48px;scroll-margin-top:96px}
+  .section:first-child{margin-top:0}
+
+  .sec-title{font-size:40px;font-weight:400;color:var(--ink);letter-spacing:1px;display:inline-block;position:relative}
+  .sec-title::after{content:"";position:absolute;left:0;right:-6px;bottom:-9px;height:5px;background:var(--accent);border-radius:3px;transform:rotate(-.6deg)}
+  .sec-sub{margin-top:16px;font-size:22px;color:var(--muted);line-height:1.5}
+
+  .card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;
+    box-shadow:3px 4px 0 rgba(0,0,0,.06);padding:24px 26px}
+  .item-title{font-size:31px;font-weight:400;color:var(--ink);line-height:1.25}
+  .item-desc{margin-top:10px;font-size:23px;color:var(--muted);line-height:1.5}
+  .red{color:var(--accent);font-weight:400}
+  .strike{position:relative;display:inline-block;color:var(--muted);font-weight:400}
+  .strike::after{content:"";position:absolute;left:-4px;right:-4px;top:52%;height:4px;background:var(--accent);border-radius:3px;transform:rotate(-2deg)}
+
+  .rise{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
+  .rise.show{opacity:1;transform:translateY(0)}
+  .no-anim .rise{opacity:1;transform:none}
+
+  /* HERO：一行红色大字问题 */
+  .hero{text-align:center;padding:4px 0 0}
+  .bigq{margin:0 auto;max-width:920px;font-size:44px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
+
+  /* 顶部 tab */
+  .tabs{position:sticky;top:0;z-index:30;margin-top:18px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
+    background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+    padding:10px 8px;border-bottom:2px solid var(--line)}
+  .tab{font-size:18px;font-weight:400;color:var(--ink);text-decoration:none;padding:7px 13px;border:2px solid var(--line);border-radius:20px;background:var(--card);transition:all .2s;white-space:nowrap}
+  .tab:hover{border-color:var(--accent);color:var(--accent)}
+  .tab.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 0 0 3px rgba(224,67,46,.25);transform:scale(1.04)}
+
+  .prose{margin-top:24px;font-size:25px;line-height:1.62;color:var(--ink)}
+  .prose p+p{margin-top:14px}
+  .prose .lead{color:var(--accent);font-weight:400}
+  .indent{margin-left:14px;padding-left:18px;border-left:3px solid var(--line);margin-top:16px;color:var(--muted);font-size:23px;line-height:1.55}
+  .indent b{color:var(--ink)}
+
+  .points{margin-top:24px;display:flex;flex-direction:column;gap:11px}
+  .points .pt{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:15px 18px}
+  .points .pt .n{flex:0 0 42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;font-size:24px;font-weight:400;display:flex;align-items:center;justify-content:center}
+  .points .pt p{font-size:24px;line-height:1.5;color:var(--ink)}
+
+  .quote{margin-top:26px;background:var(--card);border:3px solid var(--accent);border-radius:18px;padding:26px 28px;position:relative}
+  .quote .mark{position:absolute;top:-24px;left:26px;font-size:60px;color:var(--accent);font-weight:400;line-height:1}
+  .quote blockquote{font-size:29px;font-weight:400;line-height:1.55;color:var(--ink)}
+  .quote .ex{margin-top:14px;font-size:23px;color:var(--muted);line-height:1.55}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:22px;border:2.5px solid var(--line);border-radius:16px;overflow:hidden}
+  .vs .col{padding:20px 22px}
+  .vs .col:first-child{border-right:2.5px dashed var(--line)}
+  .vs .vt{font-size:28px;font-weight:400;color:var(--accent)}
+  .vs .vd{margin-top:10px;font-size:23px;color:var(--ink);line-height:1.5}
+  .vs .ve{margin-top:10px;font-size:21px;color:var(--muted);line-height:1.5}
+  .vs .tag{display:inline-block;font-size:19px;color:#fff;background:var(--line);padding:4px 12px;border-radius:13px;margin-bottom:8px}
+
+  .divider{margin:60px auto 0;max-width:520px;height:26px}
+
+  .sec-title.old::after{background:var(--accent)}
+  .vs.old .tag{background:var(--line)}
+  .vs.old .vt{color:var(--accent)}
+
+  /* 核心内容：概念卡 = 标题 + 标签 + 小图 + 一句话，和主线融为一体 */
+  .core-cards{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .ccard{background:var(--card);border:2.5px solid var(--line);border-radius:14px;
+    padding:18px 14px 20px;box-shadow:3px 4px 0 rgba(0,0,0,.06);display:flex;flex-direction:column;align-items:center}
+  .ccard .ctitle{font-size:25px;font-weight:400;color:var(--accent);text-align:center;line-height:1.2}
+  .ccard .ctag{margin-top:7px;font-size:19px;font-weight:400;color:var(--ink);text-align:center;line-height:1.3;min-height:44px;display:flex;align-items:center;justify-content:center}
+  .ccard .cfig{margin-top:10px;width:100%}
+  .ccard .cfig svg{width:100%;height:auto;display:block}
+  .ccard .cdesc{margin-top:10px;font-size:18px;color:var(--muted);text-align:center;line-height:1.45;max-width:250px;margin-left:auto;margin-right:auto}
+
+  /* 概念展开模块：结构化、层级化、关键词标签 */
+  .concept-list{margin-top:28px;display:flex;flex-direction:column;gap:22px}
+  .concept{background:var(--card);border:2.5px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:3px 4px 0 rgba(0,0,0,.06)}
+  .concept .chead{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+  .concept .cnum{flex:0 0 46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center}
+  .concept .cmeta{flex:1;min-width:260px}
+  .concept .cname{font-size:29px;color:var(--accent);line-height:1.2}
+  .concept .cone{font-size:20px;color:var(--muted);margin-top:4px;line-height:1.45}
+  .concept .cbody{margin-top:18px}
+  .concept .cbody p{font-size:23px;line-height:1.55;color:var(--ink);margin-top:10px}
+  .concept .cbody p:first-child{margin-top:0}
+  .concept .cbody b{font-weight:400;color:var(--accent)}
+  .concept .cline{margin-top:18px;padding:16px 18px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px}
+  .concept .cline .lab{font-size:19px;color:var(--accent);font-weight:400}
+  .concept .cline p{font-size:22px;color:var(--ink);line-height:1.5;margin-top:6px}
+
+  /* 关键词标签 */
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .tagx{font-size:18px;color:var(--ink);background:rgba(106,96,88,.10);border:2px solid var(--line);border-radius:20px;padding:5px 12px;white-space:nowrap}
+
+  /* 两栏小对比 */
+  .mini-vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  .mini-vs .mcol{padding:14px 16px;border-radius:12px;background:rgba(106,96,88,.08)}
+  .mini-vs .mcol.good{background:rgba(224,67,46,.08);border:2px solid var(--accent)}
+  .mini-vs .mt{font-size:20px;color:var(--accent);margin-bottom:6px}
+  .mini-vs .mp{font-size:21px;color:var(--ink);line-height:1.5}
+
+  /* 层级编号列表 */
+  .levels{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .lv{display:flex;gap:12px;align-items:flex-start}
+  .lv .lvn{flex:0 0 30px;height:30px;border-radius:50%;background:var(--line);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center}
+  .lv .lvc{font-size:22px;color:var(--ink);line-height:1.5;flex:1}
+  .lv .lvc b{color:var(--accent);font-weight:400}
+
+  /* 例子/故事框 */
+  .example{margin-top:16px;padding:14px 18px;border:2px dashed var(--line);border-radius:12px;background:rgba(251,246,240,.7)}
+  .example .ex-title{font-size:19px;color:var(--muted);margin-bottom:6px}
+  .example p{font-size:22px;color:var(--ink);line-height:1.5}
+
+  @media (max-width:900px){.core-cards{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:720px){
+    .wrap{padding:32px 16px 70px}
+    .bigq{font-size:40px}
+    .sec-title{font-size:34px}
+    .tab{font-size:17px;padding:6px 10px}
+    .vs{grid-template-columns:1fr}
+    .vs .col:first-child{border-right:none;border-bottom:2.5px dashed var(--line)}
+    .mini-vs{grid-template-columns:1fr}
+  }
+</style>
+<link rel="stylesheet" href="../assets/free-lock.css?v=7">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO：书名 + 作者 + 核心问题 -->
+  <header class="hero rise">
+    <h1 style="font-size:64px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1">《21世纪资本论》</h1>
+    <div style="margin-top:10px;font-size:21px;color:var(--muted);letter-spacing:2px">托马斯·皮凯蒂 著 · 巴曙松等 译 · 2014</div>
+    <div style="margin-top:6px;font-size:20px;color:var(--muted)">全名《Le Capital au XXIe siècle》：用 300 年数据，重新回答"贫富差距从哪来"</div>
+    <div class="bigq" style="margin-top:18px">为什么富人的钱，比你的工资涨得更快？</div>
+  </header>
+
+  <!-- 顶部 tab 导航 -->
+  <nav class="tabs" id="tabs">
+    <a href="#s1" class="tab">① 书籍定位</a>
+    <a href="#s2" class="tab">② 核心误区</a>
+    <a href="#s3" class="tab">③ 皮凯蒂破局</a>
+    <a href="#s4" class="tab">④ 核心内容</a>
+    <a href="#s5" class="tab">⑤ 核心价值</a>
+  </nav>
+
+  <!-- 一、书籍定位 -->
+  <section class="section rise" id="s1">
+    <div class="sec-title">一 · 这本书到底在讲什么</div>
+    <div class="prose">
+      <p>这本书不是讲"怎么理财"，而是用英国、法国、美国等欧美国家<b>过去 300 年的税收与继承数据</b>，回答一个更大的问题：贫富差距到底是会自己缩小，还是越拉越大？</p>
+      <div class="indent"><b>皮凯蒂的结论很直白：</b>近几十年，财富和收入的不平等在明显扩大，而且按现在的趋势，还会继续扩大。他甚至说，我们正倒退回一种"承袭制资本主义"——一个人处在什么阶层，越来越由他出生在哪个家庭、继承了多厚家底决定，而不是由他后天多努力决定。</div>
+      <p style="margin-top:12px">一句话：这不是一本教人赚钱的书，而是一本把"贫富差距为什么会越来越大"这件事，用硬数据讲清楚的书。</p>
+    </div>
+  </section>
+
+  <!-- 二、核心误区：多数人卡在哪 -->
+  <section class="section rise" id="s2">
+    <div class="sec-title old">二 · 核心误区：多数人卡在哪</div>
+    <div class="sec-sub">我们默认"努力就能追上富人""不平等会自动变好"，但这两个直觉都站不住脚。</div>
+    <div class="prose">
+      <p>很多人心里有两个默认设定。一个是"只要肯努力、受教育，就能追上富人的位置"；另一个是"社会越来越富裕，贫富差距自然会慢慢变小"。皮凯蒂用三百年数据，把这两个设定都拆开讲了一遍。</p>
+      <p>真正的麻烦不在个人够不够拼，而在于<b>财富本身的增值速度，比工资的增长速度更快</b>。这就导致一个扎心的事实：一个含着金汤匙出生的人，哪怕什么都不做，他继承的财富也在不停变大；而靠工资生活的人，再勤奋，涨薪的速度也追不上前者钱生钱的速度。</p>
+    </div>
+    <div class="vs old" style="margin-top:26px">
+      <div class="col">
+        <span class="tag">旧认知（多数人的默认设定）</span>
+        <div class="vt">努力 = 阶层跃迁</div>
+        <div class="vd">默认"只要够努力、学历够高，就能追上富人"。把贫富差距解释成个人努力的差距，差距大是因为有人懒、有人不争气。</div>
+        <div class="ve">后果：把结构问题个人化——穷人被怪"不努力"，富人被赞"能力强"。</div>
+      </div>
+      <div class="col">
+        <span class="tag">皮凯蒂的重新审视</span>
+        <div class="vt">出身 &gt; 努力</div>
+        <div class="vd">当继承财富的年增值速度长期高于工资增速，出生在哪个家庭，就比你自己多努力更决定财富位置。阶层位置越来越由"继承"而非"奋斗"决定。</div>
+        <div class="ve">关键转变：贫富差距首先是机制问题，不是个人努力问题。</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>所以这本书整本要破的，正是"努力万能"这个错觉。它先把这个错觉背后的数据拆给你看，再告诉你差距拉大的真正原因是什么。</p>
+    </div>
+  </section>
+
+  <!-- 三、皮凯蒂破局 -->
+  <section class="section rise" id="s3">
+    <div class="sec-title">三 · 皮凯蒂破局</div>
+    <div class="sec-sub">先用 300 年数据拆掉"会自动变好"的迷思，再抛出全书最硬的那条不等式。</div>
+    <div class="points">
+      <div class="pt"><div class="n">1</div><p><b>重建历史数据。</b>他把各国能找到的遗产税、收入税档案翻出来，拼出一条跨越三代人的财富与收入曲线，让"不平等"第一次有了可对照的长期证据，而不是凭印象争论。</p></div>
+      <div class="pt"><div class="n">2</div><p><b>提出核心不等式 r &gt; g。</b>他发现，资本的收益率（r）长期高于收入和产出的增长率（g）。只要这个不等式成立，拥有资产的人就会比靠工资的人富得更快。</p></div>
+      <div class="pt"><div class="n">3</div><p><b>指出倒退方向。</b>当 r 长期大于 g，财富会不断向旧财富集中，社会正在退回"承袭制资本主义"——经济地位由继承决定。</p></div>
+      <div class="pt"><div class="n">4</div><p><b>开出药方：累进资本税。</b>对"财富存量"而非只对劳动征税，并且税率随财富增加，用来让财富透明、被公众看见，从而能被民主调节。</p></div>
+    </div>
+
+    <div class="quote">
+      <div class="mark">"</div>
+      <blockquote>"当 21 世纪的今天依然重复着 19 世纪上演过的资本收益率超过产出与收入增长率的剧情时，资本主义不自觉地产生了不可控且不可持续的社会不平等，这从根本上破坏了以民主社会为基础的精英价值观。"</blockquote>
+      <div class="ex">皮凯蒂把全书最核心的警告写成了这一句：只要"钱生钱的速度"长期压过"大家挣工资的速度"，不平等就会持续扩大，并且反过来侵蚀公平的机会。</div>
+    </div>
+  </section>
+
+  <!-- 四、核心内容 -->
+  <section class="section rise" id="s4">
+    <div class="sec-title">四 · 核心内容</div>
+    <div class="sec-sub">六张概念卡，串起皮凯蒂解释贫富差距的完整逻辑：从核心不等式，到承袭制，到平等与分化的两股力量，再到他的政策主张。</div>
+
+    <div class="core-cards">
+      <div class="ccard">
+        <div class="ctitle">r &gt; g</div>
+        <div class="ctag">资本回报长期高于工资增长</div>
+        <div class="cfig">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="m1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
+            <rect x="16" y="14" width="168" height="26" rx="5" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/>
+            <text x="100" y="31" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">r 资本收益率</text>
+            <rect x="16" y="78" width="168" height="26" rx="5" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <text x="100" y="95" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">g 收入增长率</text>
+            <path d="M100,40 L100,78" fill="none" stroke="#E0432E" stroke-width="2" marker-end="url(#m1)"/>
+            <text x="150" y="62" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">长期更高</text>
+          </svg>
+        </div>
+        <div class="cdesc">资本带来的回报，长期高于工资和产出的增长。这条不等式，是全书解释贫富差距的核心原因。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">承袭制资本主义</div>
+        <div class="ctag">出身比努力更决定阶层</div>
+        <div class="cfig">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="m2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
+            <circle cx="100" cy="60" r="44" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="2"/>
+            <text x="100" y="54" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">继承的财富</text>
+            <text x="100" y="72" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">决定地位</text>
+            <path d="M160,30 L160,90" fill="none" stroke="#6A6058" stroke-width="2" stroke-dasharray="4 3"/>
+            <text x="150" y="20" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">努力只是配角</text>
+          </svg>
+        </div>
+        <div class="cdesc">经济制高点由继承的财富决定，出身比后天努力更重要——这是皮凯蒂担心我们正在回去的旧制度。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">财富分配两维度</div>
+        <div class="ctag">要素分配 + 个体分配</div>
+        <div class="cfig">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="20" width="168" height="34" rx="5" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="2"/>
+            <text x="100" y="42" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">要素：资本 vs 劳动力</text>
+            <rect x="16" y="66" width="168" height="34" rx="5" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <text x="100" y="88" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">个体：人与人差多少</text>
+          </svg>
+        </div>
+        <div class="cdesc">不平等有两层：一层是资本和劳动这两类"生产要素"怎么分，一层是具体到每个人差多少。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">趋同的力量</div>
+        <div class="ctag">知识与技能的扩散</div>
+        <div class="cfig">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="m3" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
+            <circle cx="60" cy="60" r="26" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/>
+            <text x="60" y="64" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">教育</text>
+            <path d="M88,60 L120,60" fill="none" stroke="#E0432E" stroke-width="2" marker-end="url(#m3)"/>
+            <circle cx="148" cy="60" r="26" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <text x="148" y="64" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">平等</text>
+          </svg>
+        </div>
+        <div class="cdesc">知识和技能扩散得越广，收入越趋于平等——这是历史上少数能真正缩小差距的力量。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">分化的力量</div>
+        <div class="ctag">资本向"收租"转化</div>
+        <div class="cfig">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="m4" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
+            <rect x="16" y="40" width="60" height="40" rx="5" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/>
+            <text x="46" y="63" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">创业</text>
+            <path d="M78,60 L118,60" fill="none" stroke="#E0432E" stroke-width="2" marker-end="url(#m4)"/>
+            <rect x="124" y="40" width="60" height="40" rx="5" fill="rgba(106,96,88,.14)" stroke="#6A6058" stroke-width="2"/>
+            <text x="154" y="63" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">收租</text>
+          </svg>
+        </div>
+        <div class="cdesc">财富小的时候是冒险创业，积累到足够大，就慢慢变成"坐收租金"——只占有、少创造。</div>
+      </div>
+
+      <div class="ccard">
+        <div class="ctitle">累进资本税</div>
+        <div class="ctag">让财富透明、可调节</div>
+        <div class="cfig">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="m5" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
+            <rect x="16" y="40" width="52" height="40" rx="5" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/>
+            <text x="42" y="63" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">少收</text>
+            <path d="M70,60 L104,60" fill="none" stroke="#E0432E" stroke-width="2" marker-end="url(#m5)"/>
+            <rect x="110" y="40" width="74" height="40" rx="5" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/>
+            <text x="147" y="63" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">越多越高</text>
+          </svg>
+        </div>
+        <div class="cdesc">对财富本身按量加税，逼出财富的透明度，让社会能看见、也能调节资本的集中。</div>
+      </div>
+    </div>
+
+    <!-- ④ 核心内容：6 个概念展开模块 -->
+    <div class="concept-list">
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">1</div>
+          <div class="cmeta">
+            <div class="cname">r &gt; g</div>
+            <div class="cone">资本收益率（r）长期高于收入与产出的增长率（g）</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>r 和 g 分别是什么？</b>r 是资本带来的回报——房租、股息、利息、企业利润这些"钱生钱"的速度；g 是整个经济里工资和产出增长的速度。皮凯蒂把几百年的数据摆出来，发现 r 长期比 g 高。</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">靠工资（g 这一侧）</div>
+              <div class="mp">你一年涨薪、奖金加总，增速大致等于经济大盘的增长。再拼命，也只是在 g 这条线附近波动。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">靠资产（r 这一侧）</div>
+              <div class="mp">只要手里有一定量的资产，它就会持续增值，速度长期高于工资增速。哪怕人躺着，财富也在变大。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>一个人年薪涨 5%，一个继承了房产和股票的人，资产年回报 6%——前者多干一年，后者啥也不干，财富的差距却在一年年里被拉大。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">2</div>
+          <div class="cmeta">
+            <div class="cname">承袭制资本主义</div>
+            <div class="cone">当 r 长期大于 g，财富向旧财富集中，出身决定地位</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>为什么叫"承袭制"？</b>因为财富越来越多地靠"继承"传递，而不是靠这代人自己挣。一个人处在社会的哪个位置，越来越由他父母留给他多少家底决定，而不是由他后天多努力决定。</p>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">财富靠自己挣</div>
+              <div class="mp">地位由后天努力决定，多拼多得上。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">财富靠继承（承袭制）</div>
+              <div class="mp">地位由出生家庭、继承家底决定，努力只是配角。</div>
+            </div>
+          </div>
+          <p><b>皮凯蒂的担心</b>：19 世纪那种"出身定终身"的旧制度，正借着 r &gt; g 回潮。他不是反对市场经济，而是反对"机会公平"变成一句空话——当起点差距大到靠努力填不平，努力就只是配角。</p>
+          <div class="example">
+            <div class="ex-title">关键提醒</div>
+            <p>这不等于"努力没用"。而是说：在 r &gt; g 的环境里，只靠工资往上走，难度远比想象中大；想办法拥有能增值的资产，才是另一个维度的杠杆。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">3</div>
+          <div class="cmeta">
+            <div class="cname">财富分配两维度</div>
+            <div class="cone">一层看"资本和劳动怎么分"，一层看"人和人差多少"</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <div class="levels">
+            <div class="lv"><div class="lvn">①</div><div class="lvc"><b>要素分配</b>：把劳动力和资本当成两种"生产要素"，看产出在二者之间怎么切。资本拿得多，还是劳动拿得多，这一刀切法决定了大框架。</div></div>
+            <div class="lv"><div class="lvn">②</div><div class="lvc"><b>个体分配</b>：在要素分配之下，再看具体到每个人——同样出卖劳动力，有人是高管、有人是临时工，资本收入也高度集中在少数人手里。</div></div>
+          </div>
+          <p style="margin-top:14px"><b>为什么分两层？</b>因为光看"资本 vs 劳动"会漏掉另一半：就算资本整体拿得不多，只要资本集中在极少数人手里，人和人之间的差距照样能大到离谱。</p>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">4</div>
+          <div class="cmeta">
+            <div class="cname">趋同的力量</div>
+            <div class="cone">教育和培训的普及，是历史上真正能缩小差距的力量</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>什么能让差距变小？</b>皮凯蒂给出的主要答案是：知识和技能的扩散。当越来越多人能接受教育、获得培训，收入的分布就会更平均——更多人参与到增长的成果里来。</p>
+          <div class="tags">
+            <span class="tagx">普及教育拉平起点</span>
+            <span class="tagx">技能培训提高议价能力</span>
+            <span class="tagx">历史上战争与冲击也曾打散旧财富</span>
+          </div>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">技能被少数人垄断</div>
+              <div class="mp">知识和技能集中在少数人手里，收入的差距就难被打开，也难缩小。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">知识技能扩散</div>
+              <div class="mp">教育、培训让更多人获得议价能力，分享到经济增长的成果，差距才真正缩小。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">例子</div>
+            <p>工业化早期，只有少数人吃到新财富的红利，差距一度拉大；后来随着更多人被纳入增长、分享成果，差距才出现过一段缓解期。但皮凯蒂强调，那只是特定历史窗口，不是必然规律。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">5</div>
+          <div class="cmeta">
+            <div class="cname">分化的力量</div>
+            <div class="cone">财富小的时候是创业，大到一定程度就变成坐收租金</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <div class="quote" style="margin-top:0">
+            <div class="mark">"</div>
+            <blockquote>"资本从来不是一成不变的，至少在初期总是伴随着风险与企业家精神，但也总是在积累到足够大的数额后向租金的形式转化，那是它的使命，也是它的逻辑终点。"</blockquote>
+            <div class="ex">书中这句话点破了分化的去向：资本规模还小的时候，确实在推动创新、承担风险；可一旦积到足够大，赚钱的主要方式就从"创业"变成了"收租"。</div>
+          </div>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">资本还小的时候</div>
+              <div class="mp">在推动创新、承担风险，靠创业创造价值。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">资本积到足够大</div>
+              <div class="mp">赚钱的主要方式变成"收租"——占有已有的优势，而不是新创造。</div>
+            </div>
+          </div>
+          <p style="margin-top:14px"><b>为什么这是分化的力量？</b>因为"收租"本质上是占有已有的优势、而不是新创造。财富越大，越容易靠存量吃存量，差距于是不断累积、越来越大。</p>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">6</div>
+          <div class="cmeta">
+            <div class="cname">累进资本税</div>
+            <div class="cone">对财富本身征税，且越多越高，先让财富公开透明</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p><b>为什么不直接加税了事？</b>皮凯蒂真正的发力点是"透明"。他主张对财富存量征收累进税，税率随财富增加，首要作用不是收多少钱，而是<b>让收入和资产的变化透明化、公开化</b>——社会先得看得见资本在哪、有多大，才谈得上调节。</p>
+          <div class="cline">
+            <div class="lab">他更大的主张</div>
+            <p>民主可以重新控制资本主义，让公众利益高于个人利益，同时保持经济开放、不滑向保护主义。也就是说，靠看得见、可调的民主机制，让资本处在公众监督之下。</p>
+          </div>
+          <div class="mini-vs">
+            <div class="mcol">
+              <div class="mt">常见误解</div>
+              <div class="mp">以为累进资本税就是"劫富"，把富人的钱分掉。</div>
+            </div>
+            <div class="mcol good">
+              <div class="mt">皮凯蒂的真实主张</div>
+              <div class="mp">先让财富存量透明化、公开化——看得见资本在哪、有多大，才谈得上民主调节。</div>
+            </div>
+          </div>
+          <div class="example">
+            <div class="ex-title">他用的一个比方</div>
+            <p>"不要体温计是不能让发热的人降温的。"——统计和透明就像体温计，它本身不治病，但没有它，你连问题有多大、在哪都看不清，更别提下手解决。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- 五、核心价值 -->
+  <section class="section rise" id="s5">
+    <div class="sec-title">五 · 核心价值</div>
+    <div class="sec-sub">这本书把"贫富差距"从情绪争论，变成了可以拆解的机制问题。</div>
+    <div class="prose">
+      <p>皮凯蒂想回答的不是"今年该买哪只股票"，而是一组更根本的问题：差距为什么会拉大、它会不会自己变好、普通人能做点什么。这套思路放到今天，仍能帮我们避开好几个常见误区。</p>
+      <p>几个最值得记住的核心价值：</p>
+    </div>
+
+    <div class="points">
+      <div class="pt" style="flex-direction:column;align-items:stretch">
+        <div style="display:flex;gap:14px;align-items:center">
+          <div class="n">①</div>
+          <div style="font-size:26px;color:var(--accent);line-height:1.3">别只靠工资，得让收入变成资产</div>
+        </div>
+        <p style="font-size:24px;line-height:1.5;color:var(--ink);margin-top:6px">r 长期大于 g，意味着光靠工资往上爬，永远比不过"已经有资产的人钱生钱"。所以与其只盯着涨薪，不如早点把一部分收入转成能增值的资产——房产、能分红的股权、能复用产出的技能产品，都是这一类。</p>
+      </div>
+
+      <div class="pt" style="flex-direction:column;align-items:stretch">
+        <div style="display:flex;gap:14px;align-items:center">
+          <div class="n">②</div>
+          <div style="font-size:26px;color:var(--accent);line-height:1.3">看懂贫富议题，先看 r 和 g 谁大</div>
+        </div>
+        <p style="font-size:24px;line-height:1.5;color:var(--ink);margin-top:6px">以后再看"贫富差距是不是问题"的争论，别急着站队，先问一句：这个社会里，资本回报和工资增长，谁跑在前面？只要 r 压着 g，差距大概率还在拉大，所谓"经济增长会自动抹平差距"只是特定时期的错觉。</p>
+      </div>
+
+      <div class="pt" style="flex-direction:column;align-items:stretch">
+        <div style="display:flex;gap:14px;align-items:center">
+          <div class="n">③</div>
+          <div style="font-size:26px;color:var(--accent);line-height:1.3">少拿"不努力"解释贫富差距</div>
+        </div>
+        <p style="font-size:24px;line-height:1.5;color:var(--ink);margin-top:6px">这本书最解气的一点，是把差距从"个人努力问题"还原成"机制问题"。看懂 r &gt; g，你就明白：很多人穷，不是因为懒，而是站在了一条更陡的坡上。这既能少一点对别人的苛责，也能少一点对自己的自我攻击。</p>
+      </div>
+
+      <div class="pt" style="flex-direction:column;align-items:stretch">
+        <div style="display:flex;gap:14px;align-items:center">
+          <div class="n">④</div>
+          <div style="font-size:26px;color:var(--accent);line-height:1.3">支持财富透明，就是支持公平的机会</div>
+        </div>
+        <p style="font-size:24px;line-height:1.5;color:var(--ink);margin-top:6px">皮凯蒂的药方核心不是"劫富"，而是"看得见"。当财富能被公开统计、被公众监督，机会才不至于被旧财富堵死。所以关心公平的人，真正该推动的是透明与可调节，而不是情绪化的仇富。</p>
+      </div>
+    </div>
+    <div class="indent">它也有明显的局限：这是一本用历史数据说话的宏观著作，擅长解释"差距为什么这么大"，但<b>不擅长预测明年具体怎么变</b>，也没能完全回答技术变革（比如人工智能）会怎样重新改写分配；他主张的累进资本税，在操作和跨国协调上争议极大，远不是定论。所以把它当作"理解财富与不平等的入门框架"来读最合适——看清背后的机制，再去想自己该怎么办，而不是把它当成一本讲具体政策的指南。</div>
+  </section>
+
+</div>
+
+<script>
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var sections=tabs.map(function(t){return document.querySelector(t.getAttribute('href'));}).filter(Boolean);
+  var spy=new IntersectionObserver(function(entries){
+    var best=null,bestRatio=-1;
+    entries.forEach(function(e){
+      if(e.isIntersecting && e.intersectionRatio>bestRatio){best=e.target;bestRatio=e.intersectionRatio;}
+    });
+    if(best){
+      var id='#'+best.id;
+      tabs.forEach(function(t){t.classList.toggle('active', t.getAttribute('href')===id);});
+    }
+  },{rootMargin:'-40% 0px -45% 0px',threshold:[0,0.25,0.5,0.75,1]});
+  sections.forEach(function(s){spy.observe(s);});
+
+  // 内容块默认已可见（CSS .rise opacity:1），不再用 IntersectionObserver 控制显隐，避免滚动时出现空白断层。
+</script>
+<script src="../assets/free-lock.js?v=7"></script>
+</body>
+</html>
