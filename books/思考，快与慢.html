@@ -1,0 +1,490 @@
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>思考，快与慢 · 白板手绘知识卡片</title>
+<style>
+/* 本地后备：霞鹜文楷加载失败时使用系统字体 */
+@font-face{font-family:'LXGW WenKai';src:local('LXGW WenKai'),local('LXGWWenKai-Regular');font-display:swap}
+</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet" onerror="this.remove()">
+<style>
+  :root{
+    --paper:#FBF6F0;
+    --ink:#201914;
+    --muted:#9C928A;
+    --accent:#E0432E;
+    --accent-soft:rgba(224,67,46,.07);
+    --line:#6A6058;
+    --card:#FFFDFA;
+    --font-hand:"LXGW WenKai","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-hand);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(circle at 18% 12%,rgba(224,67,46,.04),transparent 42%),
+      radial-gradient(circle at 86% 82%,rgba(224,67,46,.03),transparent 46%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:40px 24px 80px}
+  .section{margin-top:48px;scroll-margin-top:96px}
+  .section:first-child{margin-top:0}
+
+  .sec-title{font-size:40px;font-weight:400;color:var(--ink);letter-spacing:1px;display:inline-block;position:relative}
+  .sec-title::after{content:"";position:absolute;left:0;right:-6px;bottom:-9px;height:5px;background:var(--accent);border-radius:3px;transform:rotate(-.6deg)}
+  .sec-sub{margin-top:16px;font-size:22px;color:var(--muted);line-height:1.5}
+
+  .card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;
+    box-shadow:3px 4px 0 rgba(0,0,0,.06);padding:24px 26px}
+  .item-title{font-size:31px;font-weight:400;color:var(--ink);line-height:1.25}
+  .item-desc{margin-top:10px;font-size:23px;color:var(--muted);line-height:1.5}
+  .red{color:var(--accent);font-weight:400}
+  .strike{position:relative;display:inline-block;color:var(--muted);font-weight:400}
+  .strike::after{content:"";position:absolute;left:-4px;right:-4px;top:52%;height:4px;background:var(--accent);border-radius:3px;transform:rotate(-2deg)}
+
+  .rise{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
+  .rise.show{opacity:1;transform:translateY(0)}
+  .no-anim .rise{opacity:1;transform:none}
+
+  /* HERO：一行红色大字问题 */
+  .hero{text-align:center;padding:4px 0 0}
+  .bigq{margin:0 auto;max-width:920px;font-size:44px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
+
+  /* 顶部 tab */
+  .tabs{position:sticky;top:0;z-index:30;margin-top:18px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
+    background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+    padding:10px 8px;border-bottom:2px solid var(--line)}
+  .tab{font-size:18px;font-weight:400;color:var(--ink);text-decoration:none;padding:7px 13px;border:2px solid var(--line);border-radius:20px;background:var(--card);transition:all .2s;white-space:nowrap}
+  .tab:hover{border-color:var(--accent);color:var(--accent)}
+  .tab.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 0 0 3px rgba(224,67,46,.25);transform:scale(1.04)}
+
+  .prose{margin-top:24px;font-size:25px;line-height:1.62;color:var(--ink)}
+  .prose p+p{margin-top:14px}
+  .prose .lead{color:var(--accent);font-weight:400}
+  .indent{margin-left:14px;padding-left:18px;border-left:3px solid var(--line);margin-top:16px;color:var(--muted);font-size:23px;line-height:1.55}
+  .indent b{color:var(--ink)}
+
+  .points{margin-top:24px;display:flex;flex-direction:column;gap:11px}
+  .points .pt{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:15px 18px}
+  .points .pt .n{flex:0 0 42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;font-size:24px;font-weight:400;display:flex;align-items:center;justify-content:center}
+  .points .pt p{font-size:24px;line-height:1.5;color:var(--ink)}
+
+  .quote{margin-top:26px;background:var(--card);border:3px solid var(--accent);border-radius:18px;padding:26px 28px;position:relative}
+  .quote .mark{position:absolute;top:-24px;left:26px;font-size:60px;color:var(--accent);font-weight:400;line-height:1}
+  .quote blockquote{font-size:29px;font-weight:400;line-height:1.55;color:var(--ink)}
+  .quote .ex{margin-top:14px;font-size:23px;color:var(--muted);line-height:1.55}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:22px;border:2.5px solid var(--line);border-radius:16px;overflow:hidden}
+  .vs .col{padding:20px 22px}
+  .vs .col:first-child{border-right:2.5px dashed var(--line)}
+  .vs .vt{font-size:28px;font-weight:400;color:var(--accent)}
+  .vs .vd{margin-top:10px;font-size:23px;color:var(--ink);line-height:1.5}
+  .vs .ve{margin-top:10px;font-size:21px;color:var(--muted);line-height:1.5}
+  .vs .tag{display:inline-block;font-size:19px;color:#fff;background:var(--line);padding:4px 12px;border-radius:13px;margin-bottom:8px}
+
+  .divider{margin:60px auto 0;max-width:520px;height:26px}
+
+  .sec-title.old::after{background:var(--accent)}
+  .vs.old .tag{background:var(--line)}
+  .vs.old .vt{color:var(--accent)}
+
+  /* 核心内容：概念卡 = 标题 + 标签 + 小图 + 一句话，和主线融为一体 */
+  .core-cards{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .ccard{background:var(--card);border:2.5px solid var(--line);border-radius:14px;
+    padding:18px 14px 20px;box-shadow:3px 4px 0 rgba(0,0,0,.06);display:flex;flex-direction:column;align-items:center}
+  .ccard .ctitle{font-size:25px;font-weight:400;color:var(--accent);text-align:center;line-height:1.2}
+  .ccard .ctag{margin-top:7px;font-size:19px;font-weight:400;color:var(--ink);text-align:center;line-height:1.3;min-height:44px;display:flex;align-items:center;justify-content:center}
+  .ccard .cfig{margin-top:10px;width:100%}
+  .ccard .cfig svg{width:100%;height:auto;display:block}
+  .ccard .cdesc{margin-top:10px;font-size:18px;color:var(--muted);text-align:center;line-height:1.45;max-width:250px;margin-left:auto;margin-right:auto}
+
+  /* 概念展开模块：结构化、层级化、关键词标签 */
+  .concept-list{margin-top:28px;display:flex;flex-direction:column;gap:22px}
+  .concept{background:var(--card);border:2.5px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:3px 4px 0 rgba(0,0,0,.06)}
+  .concept .chead{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+  .concept .cnum{flex:0 0 46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center}
+  .concept .cmeta{flex:1;min-width:260px}
+  .concept .cname{font-size:29px;color:var(--accent);line-height:1.2}
+  .concept .cone{font-size:20px;color:var(--muted);margin-top:4px;line-height:1.45}
+  .concept .cbody{margin-top:18px}
+  .concept .cbody p{font-size:23px;line-height:1.55;color:var(--ink);margin-top:10px}
+  .concept .cbody p:first-child{margin-top:0}
+  .concept .cbody b{font-weight:400;color:var(--accent)}
+  .concept .cline{margin-top:18px;padding:16px 18px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px}
+  .concept .cline .lab{font-size:19px;color:var(--accent);font-weight:400}
+  .concept .cline p{font-size:22px;color:var(--ink);line-height:1.5;margin-top:6px}
+
+  /* 关键词标签 */
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .tagx{font-size:18px;color:var(--ink);background:rgba(106,96,88,.10);border:2px solid var(--line);border-radius:20px;padding:5px 12px;white-space:nowrap}
+
+  /* 两栏小对比 */
+  .mini-vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  .mini-vs .mcol{padding:14px 16px;border-radius:12px;background:rgba(106,96,88,.08)}
+  .mini-vs .mcol.good{background:rgba(224,67,46,.08);border:2px solid var(--accent)}
+  .mini-vs .mt{font-size:20px;color:var(--accent);margin-bottom:6px}
+  .mini-vs .mp{font-size:21px;color:var(--ink);line-height:1.5}
+
+  /* 层级编号列表 */
+  .levels{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .lv{display:flex;gap:12px;align-items:flex-start}
+  .lv .lvn{flex:0 0 30px;height:30px;border-radius:50%;background:var(--line);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center}
+  .lv .lvc{font-size:22px;color:var(--ink);line-height:1.5;flex:1}
+  .lv .lvc b{color:var(--accent);font-weight:400}
+
+  /* 例子/故事框 */
+  .example{margin-top:16px;padding:14px 18px;border:2px dashed var(--line);border-radius:12px;background:rgba(251,246,240,.7)}
+  .example .ex-title{font-size:19px;color:var(--muted);margin-bottom:6px}
+  .example p{font-size:22px;color:var(--ink);line-height:1.5}
+
+  @media (max-width:900px){.core-cards{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:720px){
+    .wrap{padding:32px 16px 70px}
+    .bigq{font-size:40px}
+    .sec-title{font-size:34px}
+    .tab{font-size:17px;padding:6px 10px}
+    .vs{grid-template-columns:1fr}
+    .vs .col:first-child{border-right:none;border-bottom:2.5px dashed var(--line)}
+    .mini-vs{grid-template-columns:1fr}
+  }
+</style>
+<link rel="stylesheet" href="../assets/free-lock.css?v=7">
+</head>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#6A6058"/>
+    </marker>
+  </defs>
+</svg>
+
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero rise">
+    <h1 style="font-size:64px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1">《思考，快与慢》</h1>
+    <div style="margin-top:10px;font-size:21px;color:var(--muted);letter-spacing:2px">丹尼尔·卡尼曼 · 2011</div>
+    <div style="margin-top:6px;font-size:20px;color:var(--muted)">全名《Thinking, Fast and Slow》</div>
+    <div class="bigq" style="margin-top:18px">为什么聪明人也会做出系统性错误的判断？</div>
+  </header>
+
+  <!-- 顶部 tab 导航 -->
+  <nav class="tabs" id="tabs">
+    <a href="#s1" class="tab">① 书籍定位</a>
+    <a href="#s2" class="tab">② 核心误区</a>
+    <a href="#s3" class="tab">③ 卡尼曼破局</a>
+    <a href="#s4" class="tab">④ 核心内容</a>
+    <a href="#s5" class="tab">⑤ 核心价值</a>
+  </nav>
+
+  <!-- 一、书籍定位 -->
+  <section class="section rise" id="s1">
+    <div class="sec-title">一 · 这本书到底在讲什么</div>
+    <div class="prose">
+      <p>这本书不是教你怎么变聪明，而是把卡尼曼做了几十年的研究，整理成一本讲清"人到底是怎么思考的"的书。</p>
+      <div class="indent"><b>第一件是两套系统。</b>卡尼曼把人的思维分成系统1和系统2：系统1是快速、自动、无意识的思考方式；系统2是慢速、理性、有意识的思考方式，但后者要主动集中注意力才上线，而且很懒，能不动就不动。</div>
+      <div class="indent"><b>第二件是认知偏差。</b>既然大部分判断由系统1做出，而系统1靠的是直觉和联想，那它的判断就常常跑偏——在固定的地方，以固定的方式。卡尼曼把这些错逐个列出来：锚定效应、可得性偏差、损失厌恶、过度自信。</div>
+      <p style="margin-top:12px">一句话：这不是一本成功学，而是一本讲清楚<b>"你以为的深思熟虑，其实大部分是直觉代劳"</b>的书。</p>
+    </div>
+  </section>
+
+  <!-- 二、核心误区 -->
+  <section class="section rise" id="s2">
+    <div class="sec-title old">二 · 核心误区：理性人假设</div>
+    <div class="sec-sub">把"人会自动算清楚得失"当成默认设定，是经济学用了两百年的默认设定。</div>
+    <div class="prose">
+      <p>古典经济学里有个"理性人"的假设：人会精确计算得失、最大化自己的利益，不受情绪干扰。这个假设撑起了整个经济学的基本盘将近两百年。</p>
+      <p>但卡尼曼是心理学家，他整天在实验室里观察真实的人怎么做决定。结果发现，真实的人和理论上的"理性人"差得很远:对损失的恐惧远超对同等收益的渴望,对概率的直觉常常是错的,判断还会被刚看到一个不相干的数字影响。</p>
+    </div>
+    <div class="vs old" style="margin-top:26px">
+      <div class="col">
+        <span class="tag">旧认知（经济学沿用两百年的假设）</span>
+        <div class="vt">人会自动算清楚得失</div>
+        <div class="vd">古典经济学假设人是理性的：会精确计算每个选项的收益和代价，再挑出对自己最有利的那个，情绪和无关信息不会干扰这个过程。</div>
+        <div class="ve">后果：这套假设撑起了传统经济学的模型，但它描述的那种人，在实验室里找不到。</div>
+      </div>
+      <div class="col">
+        <span class="tag">实验室里的真实的人</span>
+        <div class="vt">判断会被无关因素影响</div>
+        <div class="vd">卡尼曼在实验里看到的是：同一个问题换个说法，答案就反了；刚看过一个随机的数字，后面的估计就被带偏；赔一百块的痛苦，要赚两百块才补得回来。</div>
+        <div class="ve">关键转变：从"人算得清"转向"人的判断有固定的、可预测的漏洞"。</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>所以卡尼曼整本书破的就是这一个假设：我们默认自己是理性的，但大部分决定在"想"之前，已经被直觉做完了。他把这个误会揭开后，才有后面双系统、认知偏差、前景理论的一整套解释。</p>
+    </div>
+  </section>
+
+  <!-- 三、卡尼曼破局 -->
+  <section class="section rise" id="s3">
+    <div class="sec-title">三 · 卡尼曼破局</div>
+    <div class="sec-sub">先打破理性人假设，再立起四个支点。这四条，就是全书的方法论骨架。</div>
+    <div class="points">
+      <div class="pt"><div class="n">1</div><p><b>两套系统分工不同。</b>系统1负责快速、自动、无意识的判断，处理日常绝大部分事；系统2负责慢速、理性、有意识的判断，处理需要集中注意力的复杂事。</p></div>
+      <div class="pt"><div class="n">2</div><p><b>系统2默认放行系统1。</b>系统1给出一个答案后，系统2通常不核查，直接放过去，哪怕这个答案很离谱。</p></div>
+      <div class="pt"><div class="n">3</div><p><b>偏误是系统性的，不是偶然出错。</b>判断错误有规律、可预测，知道规律在哪儿，就能提前防。</p></div>
+      <div class="pt"><div class="n">4</div><p><b>决策看的是参照点，不是绝对财富。</b>同样是赚一千块，从亏一千变持平和从持平变赚一千，感受完全不同。这就是前景理论的核心，也是卡尼曼拿诺贝尔奖的那块工作。</p></div>
+    </div>
+    <div class="quote" style="margin-top:26px">
+      <div class="ex">"我们的大脑有快与慢两种作决定的方式。"</div>
+      <p style="margin-top:10px">这句话是全书最底层的一句。快的那套负责大部分决定，慢的那套做的是事后核查。你以为在认真想，其实常常是在给直觉的答案补个说法。</p>
+    </div>
+  </section>
+
+  <!-- 四、核心内容 -->
+  <section class="section rise" id="s4">
+    <div class="sec-title">四 · 核心内容</div>
+    <div class="sec-sub">下面先看 8 个核心概念的速览，再逐个展开讲清楚它们怎么影响你的判断。</div>
+
+    <div class="core-cards">
+      <div class="ccard"><div class="ctitle">两个系统</div><div class="ctag">系统1先答,系统2接手</div><div class="cfig"><svg viewBox="0 0 200 100"><rect x="14" y="26" width="76" height="46" rx="10" fill="#FFFDFA" stroke="#E0432E" stroke-width="2"/><text x="52" y="47" font-size="14" fill="#E0432E" text-anchor="middle">系统1</text><text x="52" y="64" font-size="11" fill="#9C928A" text-anchor="middle">快·自动</text><rect x="110" y="26" width="76" height="46" rx="10" fill="#FFFDFA" stroke="#6A6058" stroke-width="2"/><text x="148" y="47" font-size="14" fill="#201914" text-anchor="middle">系统2</text><text x="148" y="64" font-size="11" fill="#9C928A" text-anchor="middle">慢·费力</text><path d="M94,49 L106,49" stroke="#6A6058" stroke-width="1.6" marker-end="url(#ar)"/></svg></div><div class="cdesc">一套自动跑，一套要你叫才上线。</div></div>
+      <div class="ccard"><div class="ctitle">锚定效应</div><div class="ctag">先看到的数字，影响后面的估计</div><div class="cfig"><svg viewBox="0 0 200 100"><rect x="20" y="34" width="52" height="34" rx="8" fill="#FFFDFA" stroke="#E0432E" stroke-width="2"/><text x="46" y="56" font-size="15" fill="#E0432E" text-anchor="middle">先看</text><path d="M78,51 L108,51" stroke="#6A6058" stroke-width="1.6" marker-end="url(#ar)"/><rect x="112" y="34" width="66" height="34" rx="8" fill="#FFFDFA" stroke="#6A6058" stroke-width="2"/><text x="145" y="56" font-size="15" fill="#201914" text-anchor="middle">被影响</text></svg></div><div class="cdesc">随机数字也能把你的估计带偏。</div></div>
+      <div class="ccard"><div class="ctitle">可得性偏差</div><div class="ctag">越容易想起，越觉得常见</div><div class="cfig"><svg viewBox="0 0 200 100"><rect x="26" y="30" width="44" height="40" rx="8" fill="#FFFDFA" stroke="#E0432E" stroke-width="2"/><text x="48" y="55" font-size="12" fill="#E0432E" text-anchor="middle">新闻</text><path d="M76,50 L104,50" stroke="#6A6058" stroke-width="1.6" marker-end="url(#ar)"/><circle cx="134" cy="50" r="26" fill="#FFFDFA" stroke="#6A6058" stroke-width="2"/><text x="134" y="55" font-size="13" fill="#201914" text-anchor="middle">感觉很常见</text></svg></div><div class="cdesc">记得住的不等于发生得多。</div></div>
+      <div class="ccard"><div class="ctitle">损失厌恶</div><div class="ctag">亏的痛苦，大约是赚的快乐的两倍</div><div class="cfig"><svg viewBox="0 0 200 100"><path d="M40,32 L160,32" stroke="#6A6058" stroke-width="2"/><path d="M100,32 L100,58" stroke="#6A6058" stroke-width="2"/><rect x="44" y="58" width="50" height="24" rx="6" fill="#FFFDFA" stroke="#E0432E" stroke-width="2"/><text x="69" y="74" font-size="11" fill="#E0432E" text-anchor="middle">亏100</text><rect x="106" y="44" width="50" height="24" rx="6" fill="#FFFDFA" stroke="#6A6058" stroke-width="2"/><text x="131" y="60" font-size="11" fill="#201914" text-anchor="middle">赚100</text></svg></div><div class="cdesc">同样一百块，亏的那一边分量更重。</div></div>
+      <div class="ccard"><div class="ctitle">过度自信</div><div class="ctag">高估自己知道的，低估事情不确定</div><div class="cfig"><svg viewBox="0 0 200 100"><rect x="30" y="30" width="80" height="42" rx="8" fill="#FFFDFA" stroke="#E0432E" stroke-width="2"/><text x="70" y="50" font-size="12" fill="#E0432E" text-anchor="middle">我以为我懂</text><text x="70" y="65" font-size="11" fill="#9C928A" text-anchor="middle">实际只懂一点</text><path d="M118,51 L146,51" stroke="#6A6058" stroke-width="1.6" marker-end="url(#ar)"/><text x="164" y="56" font-size="18" fill="#E0432E" text-anchor="middle">?</text></svg></div><div class="cdesc">事后看得很准，事前并没有那么准。</div></div>
+      
+<div class="ccard">
+        <div class="ctitle">代表性偏差</div>
+        <div class="ctag">用相似性判断概率</div>
+        <div class="cfig">
+          <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="14" width="152" height="92" fill="rgba(106,96,88,.10)" stroke="#6A6058" stroke-width="2" rx="6"/>
+            <text x="90" y="36" font-size="14" fill="#6A6058" text-anchor="middle" font-family="inherit">"像工程师" → 概率高？</text>
+            <text x="90" y="58" font-size="11" fill="#6A6058" text-anchor="middle" font-family="inherit">忽略：全国 800 人里有 1 个工程师</text>
+            <text x="90" y="78" font-size="11" fill="#E0432E" text-anchor="middle" font-family="inherit">相似 ≠ 概率</text>
+            <text x="90" y="100" font-size="11" fill="#6A6058" text-anchor="middle" font-family="inherit">基础概率比刻板印象重要</text>
+          </svg>
+        </div>
+        <div class="cdesc">看到一个符合刻板印象的人，下意识就觉得他属于那个群体——忽略基础概率。</div>
+      </div>
+      <div class="ccard">
+        <div class="ctitle">框架效应</div>
+        <div class="ctag">同一件事，换种说法你做不同选择</div>
+        <div class="cfig">
+          <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="20" width="152" height="38" fill="rgba(106,96,88,.10)" stroke="#6A6058" stroke-width="2" rx="4"/>
+            <text x="90" y="36" font-size="12" fill="#6A6058" text-anchor="middle" font-family="inherit">"手术能救 200 人中 100 人"</text>
+            <text x="90" y="50" font-size="10" fill="#6A6058" text-anchor="middle" font-family="inherit">→ 大多数人同意做</text>
+            <rect x="14" y="64" width="152" height="38" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="2" rx="4"/>
+            <text x="90" y="80" font-size="12" fill="#E0432E" text-anchor="middle" font-family="inherit">"手术会让 200 人死 100 人"</text>
+            <text x="90" y="94" font-size="10" fill="#E0432E" text-anchor="middle" font-family="inherit">→ 大多数人拒绝做</text>
+          </svg>
+        </div>
+        <div class="cdesc">同一件事，说法不同，选择可以完全相反。</div>
+      </div>
+
+      <div class="ccard"><div class="ctitle">峰终定律</div><div class="ctag">记忆只按高峰和结尾打分</div><div class="cfig"><svg viewBox="0 0 200 100"><path d="M20,72 L60,72 L84,28 L108,66 L136,40 L176,52" fill="none" stroke="#E0432E" stroke-width="2.4"/><circle cx="84" cy="28" r="4" fill="#E0432E"/><circle cx="176" cy="52" r="4" fill="#E0432E"/><text x="84" y="20" font-size="11" fill="#E0432E" text-anchor="middle">峰</text><text x="176" y="44" font-size="11" fill="#E0432E" text-anchor="middle">终</text></svg></div><div class="cdesc">一段经历的高峰和结尾，决定你记住什么。</div></div>
+    </div>
+
+    <div class="concept-list">
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">1</div>
+          <div class="cmeta">
+            <div class="cname">两个系统</div>
+            <div class="cone">系统1快、自动、常犯错 vs 系统2慢、理性、常偷懒</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <p>系统1是一种靠直觉的判断方式。看到熟人的脸立刻认出来、听到语气不对马上警觉、回答 2+2 这种简单算术不用动脑子。它也容易让我们跟着感觉走——看到打折就冲动下单，看到新闻就下判断。</p>
+          <p>系统2是一种靠推理的判断方式。它要你主动集中注意力才会上线，比如算 17×24、对比两份保险条款、在想下单的那一刻先停一下。它准但费脑子，能不用就不用。</p>
+          <div class="mini-vs">
+            <div class="mcol"><div class="mt">系统1·快思考</div><div class="mp">靠直觉、自动启动、不需要集中注意力。处理日常绝大部分判断。</div></div>
+            <div class="mcol good"><div class="mt">系统2·慢思考</div><div class="mp">靠推理、需要集中注意力、能修正系统1的错误。</div></div>
+          </div>
+          <p style="margin-top:12px">所以关键不是哪个更好，而是怎么分工：系统1负责日常处理，系统2负责核查判断。系统2常常不核查、直接放过去——这时判断就出了错。</p>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">2</div>
+          <div class="cmeta">
+            <div class="cname">锚定效应</div>
+            <div class="cone">先看到的那个数，会把你后面的估计带偏</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <div class="mini-vs">
+            <div class="mcol"><div class="mt">你以为</div><div class="mp">你在独立判断。看了价格之后估一个值，觉得这是自己的主见，没受划掉的原价影响。</div></div>
+            <div class="mcol good"><div class="mt">实际上</div><div class="mp">先看到的那个数字成了起点，你后面只是从它往下挪一点，以为调过了，其实还停在原点附近。</div></div>
+          </div>
+          <p>卡尼曼做过一个实验：先让受试者转一个随机数转盘，再问他们"非洲国家在联合国里占多大比例"。转盘转出来的数字明明是随机的，但转到大的那组，估出来的比例就明显更高。</p>
+          <p>原因不复杂：系统1拿到一个数字，会把它当成起点，后面的估计都从这个起点往上或往下挪。问题是你挪得通常不够,以为自己调整过了,其实还停在原点附近。</p>
+          <div class="example"><div class="ex-title">生活里的样子</div><div class="ex">标价 999，划掉改成 499，你会觉得"省了五百"。但 499 才是它本来要卖的价，999 只是先亮出来的一个数，把你的感觉往它身上带。</div></div>
+          <p>所以谈判里先出价的人占便宜，不是因为他更有道理，而是因为他先把一个数字摆出来。从此刻起，对方的估计就从那个数字开始——不管表面看起来多独立，起点已经被定下了。</p>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">3</div>
+          <div class="cmeta">
+            <div class="cname">可得性偏差</div>
+            <div class="cone">越容易想起来的事，你越觉得它常见</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <div class="mini-vs">
+            <div class="mcol"><div class="mt">你以为</div><div class="mp">最近刷到的就是常见的。飞机失事的新闻一出来，立刻觉得坐飞机不安全；新闻密度越大，你越觉得这事普遍。</div></div>
+            <div class="mcol good"><div class="mt">实际上</div><div class="mp">每年死于车祸的人数是空难的几十倍。数据没变，变的是你脑子里被推送挑过的样本。</div></div>
+          </div>
+          <p>飞机失事的新闻一出来，很多人立刻觉得坐飞机危险。但，每年死于车祸的人数是空难的几十倍。数据没变，变的是你脑子里什么最容易冒出来。</p>
+          <p>问题出在系统1判断"这件事常不常见"用的是"我能不能很快想起例子"，而不是真实的发生率。新闻越密集、画面越具体，你越容易想起来，于是越觉得它常见。</p>
+          <div class="levels">
+            <div class="lvc">新闻刷得越多,样本越偏;样本一偏,风险估计就跟着偏;估计一偏,决定也就跟着偏。</div>
+          </div>
+          <p style="margin-top:12px">所以刷了三小时裁员帖子之后，你会觉得全世界都在裁员——那不是现实变了，是你脑子里的样本变了。</p>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">4</div>
+          <div class="cmeta">
+            <div class="cname">损失厌恶</div>
+            <div class="cone">损失带来的痛，大约是同等收益带来的快乐的两倍</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <div class="mini-vs">
+            <div class="mcol"><div class="mt">你以为</div><div class="mp">亏和赚两边分量一样。</div></div>
+            <div class="mcol good"><div class="mt">实际上</div><div class="mp">亏的痛苦大约是赚的快乐的两倍。</div></div>
+          </div>
+          <p>研究发现，损失带来的痛苦，大约是同等收益带来的快乐的两倍。这个不对称深深刻在本能里：在野外，丢掉一顿饭可能就活不到明天，多捡一顿却只是锦上添花。</p>
+          <p>但放到今天的市场里，它就变成了最贵的认知陷阱。股票跌了一半，你死扛着不卖，理由是"一卖就是真亏了"。结果越亏越多。你不是在判断,是在躲那个承认亏了的感觉。</p>
+          <div class="quote"><div class="ex">"损失所带来的负面影响大约是同等收益所带来的正面影响的两倍。"</div></div>
+          <p style="margin-top:12px">止损比止盈难，核心障碍是承认自己亏了这件事。</p>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">5</div>
+          <div class="cmeta">
+            <div class="cname">过度自信</div>
+            <div class="cone">高估自己知道的，低估事情不确定的</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <div class="mini-vs">
+            <div class="mcol"><div class="mt">你以为</div><div class="mp">我早就知道会发生。</div></div>
+            <div class="mcol good"><div class="mt">实际上</div><div class="mp">事后来看的清晰，事前并不存在。</div></div>
+          </div>
+          <p>卡尼曼把这种状态叫"知道的错觉"：我们都觉得自己看明白过以前的事,所以也能预测未来。但其实，很多事能成,运气占的比例比你愿意承认的大得多。</p>
+          <p>它有两个最常见的表现。一个是规划谬误:做计划时低估要花的时间和钱,脑子里跑的是一切顺利那条线。另一个是后见之明:事情发生了,你觉得我早就知道,下次还敢这么赌。</p>
+          <div class="cline">越觉得自己看得准的人,意外真来的时候越容易傻眼。</div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">6</div>
+          <div class="cmeta">
+            <div class="cname">代表性偏差</div>
+            <div class="cone">用相似性判断概率，但相似不等于常见</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <div class="mini-vs">
+            <div class="mcol"><div class="mt">你以为</div><div class="mp">看起来像 → 概率就高。</div></div>
+            <div class="mcol good"><div class="mt">实际上</div><div class="mp">基础概率比表面印象重要得多。</div></div>
+          </div>
+          <p>看到一个符合刻板印象的人，下意识就觉得他属于那个群体。系统1在按"像不像"快速分类，但它忘了看基础概率。</p>
+          <p>经典例子是"琳达问题"：给受试者一段描述，说"琳达是银行职员，关注女权运动"，然后让人判断"琳达是银行职员"和"琳达是关注女权运动的银行职员"哪个更可能。大多数人选了后者——但后者同时发生的概率，永远不会高于前者单独发生的概率。</p>
+          <p>类似的还有"工程师 vs 律师"：读了一段"史蒂夫内向、严谨、喜欢读书"的描述后，让人猜他是工程师还是律师。很多人因为描述"像工程师"就选工程师，但忽略了在工程师和律师的总数上，律师的人数远高于工程师。</p>
+          <div class="cline">直觉告诉你"像"，概率告诉你"常"——这两个不是同一个答案。</div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">7</div>
+          <div class="cmeta">
+            <div class="cname">框架效应</div>
+            <div class="cone">同一件事，换种说法，你会做不同选择</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <div class="mini-vs">
+            <div class="mcol"><div class="mt">你以为</div><div class="mp">我在评估方案本身。</div></div>
+            <div class="mcol good"><div class="mt">实际上</div><div class="mp">我在被框架里的措辞带着走。</div></div>
+          </div>
+          <p>卡尼曼和特沃斯基做过一个实验：一种说法是"手术能救 200 人里的 100 人"，另一种是"手术会让 200 人死 100 人"。两种数字完全一样，只是措辞换了。结果选前者的人明显更多。</p>
+          <p>原因在于人对损失比对收益更敏感。框架决定了你是按"能救多少人"在想，还是按"会死多少人"在想。框架一换，重点就跟着挪。</p>
+          <p>现实里到处都是框架：商家标"八折"和"先涨价再八折"是同一件事；基金"年化收益 8%"和"手续费先扣 2%"也是同一笔钱的两种说法。你看的是同一笔数字，但你的选择倾向已经被换到另一边去了。</p>
+          <div class="cline">同样一件事，换一种说法，你的决策也跟着不同——这就是语言描述的力量。</div>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="chead">
+          <div class="cnum">8</div>
+          <div class="cmeta">
+            <div class="cname">峰终定律</div>
+            <div class="cone">一段经历的记忆，只按高峰和结尾打分</div>
+          </div>
+        </div>
+        <div class="cbody">
+          <div class="mini-vs">
+            <div class="mcol"><div class="mt">你以为</div><div class="mp">全程的体验决定评价。</div></div>
+            <div class="mcol good"><div class="mt">实际上</div><div class="mp">只有最强烈的瞬间和最后那一刻算数。</div></div>
+          </div>
+          <p>卡尼曼区分了两个自我：体验自我是正在经历的那个你，它一秒一秒地活着；记忆自我是事后回想那个你，它只做一件事——把这段经历的高峰和结尾平均一下，当作全部。</p>
+          <p>所以一段假期中间再怎么无聊，只要最后两天玩得开心，你回想起来就会觉得这趟很值。反过来，一段很长的舒服体验，如果结尾被一件小事搞砸了，你记住的就是那个烂尾。</p>
+          <p>所以想改善一段经历留给别人的记忆,改结尾比改全程更管用。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 五、对今天的核心价值 -->
+  <section class="section rise" id="s5">
+    <div class="sec-title">五 · 核心价值</div>
+    <div class="sec-sub">知道偏误不等于能避免偏误，但至少能在关键那几步上给自己多设一道坎。</div>
+    <div class="quote">
+      <div class="ex">"我们总是高估自己对世界的了解，却低估了事件中存在的偶然性。"</div>
+      <p style="margin-top:10px">这句话是全书最该记住的一句。它说的不是"你不够聪明"，而是"你对自己聪明的程度，估计错了"。</p>
+    </div>
+    <div class="points" style="margin-top:26px">
+      <div class="pt"><div class="n">1</div><p><b>重大决定前，先停一下再拍板。</b>系统1给答案很快，但买房、换工作、投一笔钱这类事，值得多花十分钟把系统2叫上线。哪怕只是写下我为什么这么想三个理由，也够拦住一半的冲动。</p></div>
+      <div class="pt"><div class="n">2</div><p><b>要估一个数，先自己想，再看别人的。</b>买东西、谈价格、做预算，先独立想一个自己的数字，再去碰对方的报价。顺序反了，你的判断就先入为主了，后面怎么调都调不干净。</p></div>
+      <div class="pt"><div class="n">3</div><p><b>判断风险，去查数据，别靠想不想得起来。</b>担心某件事，先去查它真实的发生率，而不是凭最近刷到多少条新闻。你脑子里的样本，是被推送挑过的。</p></div>
+    </div>
+    <div class="indent" style="margin-top:26px">这本书也有边界。它依赖的部分经典实验，尤其是"启动效应"那一类，在后来的可重复性危机中没能复现；而更大的问题是，知道偏误不等于能避免偏误——系统1没法靠意志关掉，能做的是在关键决定上给自己设几道坎。</div>
+  </section>
+
+</div>
+
+
+<script>
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var sections=tabs.map(function(t){return document.querySelector(t.getAttribute('href'));}).filter(Boolean);
+  var spy=new IntersectionObserver(function(entries){
+    var best=null,bestRatio=-1;
+    entries.forEach(function(e){
+      if(e.isIntersecting && e.intersectionRatio>bestRatio){best=e.target;bestRatio=e.intersectionRatio;}
+    });
+    if(best){
+      var id='#'+best.id;
+      tabs.forEach(function(t){t.classList.toggle('active', t.getAttribute('href')===id);});
+    }
+  },{rootMargin:'-40% 0px -45% 0px',threshold:[0,0.25,0.5,0.75,1]});
+  sections.forEach(function(s){spy.observe(s);});
+</script>
+<script src="../assets/free-lock.js?v=7"></script>
+</body>
+</html>
