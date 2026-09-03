@@ -75,7 +75,13 @@
   function lockBookCards(){
     var grid = document.getElementById("booksGrid");
     if(!grid) return;
-    var cards = Array.from(grid.querySelectorAll(":scope > a.book-card, :scope > div.book-card"));
+    // 同样不用 :scope，直接遍历子节点，避免 Safari 兼容问题
+    var cards = [];
+    var kids = grid.children;
+    for(var ki = 0; ki < kids.length; ki++){
+      var k = kids[ki];
+      if(k.classList && k.classList.contains("book-card")) cards.push(k);
+    }
     var freeCards = [], otherCards = [];
     cards.forEach(function(c){
       var href = c.getAttribute("href") || "";
@@ -99,28 +105,84 @@
   }
 
   function lockGrowthRoad(){
-    // 每个分类分组只保留第一个问题可点，其余全部锁死（不 care 名称，只 care 索引）
-    document.querySelectorAll(".side-nav-problems .nav-group").forEach(function(g){
-      var ul = g.querySelector("ul");
-      if(!ul) return;
-      var links = Array.from(ul.querySelectorAll(":scope > li a[data-target]"));
-      links.forEach(function(a, idx){
-        if(idx === 0){
-          a.classList.remove("problem-locked");
-          a.classList.remove("free-locked");
-          return;
-        }
-        lockLink(a);
-        a.classList.add("problem-locked");
-        a.setAttribute("href", "javascript:void(0)");
-        // 锁标由 free-lock.css 伪元素统一渲染，这里不再插入 SVG
-        // 捕获阶段阻止点击，防止原站局部 show 函数被触发
-        a.addEventListener("click", function(e){
-          e.preventDefault();
-          e.stopImmediatePropagation();
-        }, true);
-      });
-    });
+    // 排序/加锁已由静态 patch 完成；这里只确保加锁链接真的点不动。
+    // 静态 patch 会给锁定项加 class="problem-locked free-locked" 和 href="javascript:void(0)"，
+    // 运行时再补 pointer-events:none + 捕获阶段拦截，双重保险。
+    var locked = document.querySelectorAll(".side-nav-problems a.problem-locked");
+    for(var i = 0; i < locked.length; i++){
+      var a = locked[i];
+      lockLink(a);
+      a.setAttribute("href", "javascript:void(0)");
+      a.addEventListener("click", function(e){
+        if(e.preventDefault) e.preventDefault();
+        if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+      }, true);
+    }
+  }
+
+  // 一级分类点击：不依赖页面内联脚本，用事件委托 + 捕获阶段绑定，最稳。
+  // 行为：点哪个分类就展开哪个，收起其它，并打开/跳转到该分类下的第一项。
+  function patchGroupTitleClick(){
+    // 返回 {type:'show', id: 'p-xxx'} 或 {type:'nav', href: 'common-problems.html#p-xxx'}
+    // 铁律：位置驱动。永远以 DOM 里的实际顺序为准，不能优先读 data-first-*
+    // 属性——那是生成时的快照，顺序一调整就失效，会打开旧的固定项。
+    function firstUnlocked(g, title){
+      // 第一优先：DOM 里第一个未加锁的项（顺序怎么调都跟得上）
+      var a = g.querySelector("ul li a:not(.problem-locked):not(.free-locked)");
+      if(a){
+        var href = a.getAttribute("href") || "";
+        if(href.indexOf("common-problems.html#p-") !== -1) return {type:"nav", href:href};
+        var dt = a.getAttribute("data-target");
+        if(dt) return {type:"show", id:dt};
+      }
+      // 兜底：DOM 读不到时才退回属性快照
+      var t = g.getAttribute("data-first-target") || title.getAttribute("data-first-target");
+      if(t) return {type:"show", id:t};
+      var h = g.getAttribute("data-first-href") || title.getAttribute("data-first-href");
+      if(h) return {type:"nav", href:h};
+      return null;
+    }
+    function showTarget(id){
+      if(!id) return;
+      if(typeof window.showProblem === "function"){
+        window.showProblem(id, true);
+        return;
+      }
+      // 兜底：内联脚本没跑起来时手动切
+      var secs = document.querySelectorAll(".pain-section");
+      for(var i = 0; i < secs.length; i++){
+        secs[i].style.display = (secs[i].id === id ? "block" : "none");
+      }
+      var links = document.querySelectorAll(".side-nav a[data-target]");
+      for(var j = 0; j < links.length; j++){
+        var isOn = links[j].getAttribute("data-target") === id;
+        if(isOn) links[j].classList.add("active");
+        else links[j].classList.remove("active");
+      }
+    }
+    document.addEventListener("click", function(e){
+      var t = e.target;
+      if(!t || !t.closest) return;
+      if(t.closest("a")) return;
+      var title = t.closest(".side-nav-problems .group-title");
+      if(!title) return;
+      var g = title.closest(".nav-group");
+      if(!g) return;
+      // 手风琴：只保留当前分类展开
+      var all = document.querySelectorAll(".side-nav-problems .nav-group");
+      for(var i = 0; i < all.length; i++){
+        if(all[i] !== g) all[i].classList.add("collapsed");
+      }
+      g.classList.remove("collapsed");
+      var action = firstUnlocked(g, title);
+      if(!action) return;
+      if(action.type === "show"){
+        showTarget(action.id);
+      } else if(action.type === "nav"){
+        window.location.href = action.href;
+      }
+      if(e.stopPropagation) e.stopPropagation();
+    }, true);
   }
 
   function patchGrowthBrain(){
@@ -175,14 +237,18 @@
   }
 
   function run(){
-    lockModelCards();
-    lockSideNav();
-    lockBookCards();
-    lockGrowthRoad();
-    patchGrowthBrain();
-    patchBookListHeader();
-    patchShowProblem();
+    // 每一步单独 try/catch：一个页面结构变化不会连累其它功能
+    var steps = [
+      lockModelCards, lockSideNav, lockBookCards,
+      lockGrowthRoad, patchGrowthBrain, patchBookListHeader, patchShowProblem
+    ];
+    for(var i = 0; i < steps.length; i++){
+      try { steps[i](); } catch(err) { /* 单步失败不阻断其它 */ }
+    }
   }
+
+  // 分类点击用事件委托，尽早绑定：不依赖 DOM 就绪，也不依赖页面内联脚本是否执行成功
+  try { patchGroupTitleClick(); } catch(err) { /* noop */ }
 
   if(document.readyState === "loading"){
     document.addEventListener("DOMContentLoaded", run);
