@@ -13,6 +13,8 @@
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet" onerror="this.remove()">
+<!-- 包内字体兜底：CDN 断网/离线时仍保住霞鹜文楷手绘感（相对本卡 → ../assets/fonts/）；铁律见 books/规范/知识卡片-标准可执行模板.md §一-B.7 -->
+<link href="../assets/fonts/lxgw/lxgwwenkai-regular.css" rel="stylesheet">
 <style>
   :root{
     --paper:#FBF6F0;
@@ -20,6 +22,7 @@
     --muted:#9C928A;
     --accent:#E0432E;
     --accent-soft:rgba(224,67,46,.07);
+    --gold:#C8860F;
     --line:#6A6058;
     --card:#FFFDFA;
     --font-hand:"LXGW WenKai","PingFang SC","Microsoft YaHei",sans-serif;
@@ -43,7 +46,7 @@
   .section{margin-top:48px;scroll-margin-top:96px}
   .section:first-child{margin-top:0}
 
-  .sec-title{font-size:40px;font-weight:400;color:var(--ink);letter-spacing:1px;display:inline-block;position:relative}
+  .sec-title{font-size:36px;font-weight:400;color:var(--ink);letter-spacing:1px;display:inline-block;position:relative}
   .sec-title::after{content:"";position:absolute;left:0;right:-6px;bottom:-9px;height:5px;background:var(--accent);border-radius:3px;transform:rotate(-.6deg)}
   .sec-sub{margin-top:16px;font-size:22px;color:var(--muted);line-height:1.5}
 
@@ -59,14 +62,16 @@
   .rise.show{opacity:1;transform:translateY(0)}
   .no-anim .rise{opacity:1;transform:none}
 
-  
+  /* HERO：一行红色大字问题 */
   .hero{text-align:center;padding:4px 0 0}
-  .bigq{margin:0 auto;max-width:920px;font-size:44px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
+  .hero h1{font-size:56px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1}
+  .hero .bk-author{margin-top:10px;font-size:19px;color:var(--muted);letter-spacing:2px}
+  .hero .bk-fullname{margin-top:6px;font-size:20px;color:var(--muted)}
+  .bigq{margin:0 auto;max-width:920px;font-size:40px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
 
-  
-  .tabs{position:sticky;top:0;z-index:30;margin-top:18px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
-    background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
-    padding:10px 8px;border-bottom:2px solid var(--line)}
+  /* 顶部 tab */
+  .tabsbar{position:sticky;top:0;z-index:30;margin-top:18px;background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);border-bottom:2px solid var(--line)}
+  .tabs{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;padding:10px 8px}
   .tab{font-size:18px;font-weight:400;color:var(--ink);text-decoration:none;padding:7px 13px;border:2px solid var(--line);border-radius:20px;background:var(--card);transition:all .2s;white-space:nowrap}
   .tab:hover{border-color:var(--accent);color:var(--accent)}
   .tab.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 0 0 3px rgba(224,67,46,.25);transform:scale(1.04)}
@@ -79,7 +84,8 @@
 
   .points{margin-top:24px;display:flex;flex-direction:column;gap:11px}
   .points .pt{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:15px 18px}
-  .points .pt .n{flex:0 0 42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;font-size:24px;font-weight:400;display:flex;align-items:center;justify-content:center}
+  .points .gold{color:var(--gold);font-weight:700}
+  .pt .n{flex:0 0 42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;font-size:24px;font-weight:400;display:flex;align-items:center;justify-content:center}
   .points .pt p{font-size:24px;line-height:1.5;color:var(--ink)}
 
   .quote{margin-top:26px;background:var(--card);border:3px solid var(--accent);border-radius:18px;padding:26px 28px;position:relative}
@@ -98,10 +104,12 @@
   .divider{margin:60px auto 0;max-width:520px;height:26px}
 
   .sec-title.old::after{background:var(--accent)}
+  .vs.old .tag.old{background:#E0432E;color:#fff}
+  .vs.old .tag.new{background:#4ECDC4;color:#fff}
   .vs.old .tag{background:var(--line)}
   .vs.old .vt{color:var(--accent)}
 
-  
+  /* 核心内容：概念卡 = 标题 + 标签 + 小图 + 一句话，和主线融为一体 */
   .core-cards{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .ccard{background:var(--card);border:2.5px solid var(--line);border-radius:14px;
     padding:18px 14px 20px;box-shadow:3px 4px 0 rgba(0,0,0,.06);display:flex;flex-direction:column;align-items:center}
@@ -111,7 +119,7 @@
   .ccard .cfig svg{width:100%;height:auto;display:block}
   .ccard .cdesc{margin-top:10px;font-size:18px;color:var(--muted);text-align:center;line-height:1.45;max-width:250px;margin-left:auto;margin-right:auto}
 
-  
+  /* 概念展开模块：结构化、层级化、关键词标签 */
   .concept-list{margin-top:28px;display:flex;flex-direction:column;gap:22px}
   .concept{background:var(--card);border:2.5px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:3px 4px 0 rgba(0,0,0,.06)}
   .concept .chead{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
@@ -127,38 +135,85 @@
   .concept .cline .lab{font-size:19px;color:var(--accent);font-weight:400}
   .concept .cline p{font-size:22px;color:var(--ink);line-height:1.5;margin-top:6px}
 
-  
+  /* 关键词标签 */
   .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
   .tagx{font-size:18px;color:var(--ink);background:rgba(106,96,88,.10);border:2px solid var(--line);border-radius:20px;padding:5px 12px;white-space:nowrap}
 
-  
+  /* 两栏小对比 */
   .mini-vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
   .mini-vs .mcol{padding:14px 16px;border-radius:12px;background:rgba(106,96,88,.08)}
   .mini-vs .mcol.good{background:rgba(224,67,46,.08);border:2px solid var(--accent)}
   .mini-vs .mt{font-size:20px;color:var(--accent);margin-bottom:6px}
   .mini-vs .mp{font-size:21px;color:var(--ink);line-height:1.5}
 
-  
+  /* 层级编号列表 */
   .levels{margin-top:16px;display:flex;flex-direction:column;gap:10px}
   .lv{display:flex;gap:12px;align-items:flex-start}
   .lv .lvn{flex:0 0 30px;height:30px;border-radius:50%;background:var(--line);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center}
   .lv .lvc{font-size:22px;color:var(--ink);line-height:1.5;flex:1}
   .lv .lvc b{color:var(--accent);font-weight:400}
 
-  
+  /* 例子/故事框 */
   .example{margin-top:16px;padding:14px 18px;border:2px dashed var(--line);border-radius:12px;background:rgba(251,246,240,.7)}
-  .example .ex-title{font-size:19px;color:var(--muted);margin-bottom:6px}
+  .example .ex-title,.example .box-title{font-size:19px;color:var(--muted);margin-bottom:6px}
   .example p{font-size:22px;color:var(--ink);line-height:1.5}
 
   @media (max-width:900px){.core-cards{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:720px){
-    .wrap{padding:32px 16px 70px}
-    .bigq{font-size:40px}
-    .sec-title{font-size:34px}
-    .tab{font-size:17px;padding:6px 10px}
-    .vs{grid-template-columns:1fr}
+    .wrap{padding:26px 15px 64px}
+
+    /* 书名 / 作者 / 全称：走 class，别用内联 */
+    .hero h1{font-size:32px;letter-spacing:1px;line-height:1.22}
+    .hero .bk-author{margin-top:8px;font-size:14px;letter-spacing:1px}
+    .hero .bk-fullname{margin-top:5px;font-size:14px}
+    .bigq{font-size:24px;line-height:1.45;letter-spacing:0}
+
+    /* 顶部 tab：一行不折 + 横向滚动。两侧“还能滑”渐变＝.tabsbar 的伪元素画的实色遮罩，
+       条子本身不透明 → 正文绝不会透上来跟按钮重叠 */
+    .tabsbar{background:var(--paper);backdrop-filter:none;-webkit-backdrop-filter:none}
+    .tabsbar::before,.tabsbar::after{content:"";position:absolute;top:0;bottom:0;width:28px;pointer-events:none;opacity:0;transition:opacity .18s;z-index:2}
+    .tabsbar::before{left:0;background:linear-gradient(90deg,var(--paper) 0%,rgba(251,246,240,.9) 45%,rgba(251,246,240,0) 100%)}
+    .tabsbar::after{right:0;background:linear-gradient(270deg,var(--paper) 0%,rgba(251,246,240,.9) 45%,rgba(251,246,240,0) 100%)}
+    .tabsbar.fade-l::before{opacity:1}
+    .tabsbar.fade-r::after{opacity:1}
+    .tabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;
+      scroll-behavior:smooth;-webkit-overflow-scrolling:touch;
+      scrollbar-width:none;-ms-overflow-style:none;padding:9px 12px 11px;gap:7px}
+    .tabs::-webkit-scrollbar{display:none}
+    .tab{font-size:15px;padding:6px 11px;flex:0 0 auto}
+
+    /* 段落与组件 */
+    .section{margin-top:34px;scroll-margin-top:62px}
+    .sec-title{font-size:24px}
+    .sec-title::after{height:4px;bottom:-7px}
+    .sec-title.old{font-size:24px}
+    .sec-sub{margin-top:12px;font-size:16px}
+    .prose{margin-top:18px;font-size:18px;line-height:1.78}
+    .prose p+p{margin-top:12px}
+    .indent{margin-left:0;padding-left:13px;margin-top:13px;font-size:17px;line-height:1.7}
+    .points{margin-top:18px;gap:9px}
+    .points .pt{padding:12px 14px;gap:11px;border-radius:10px}
+    .points .gold{color:var(--gold);font-weight:700}
+  .pt .n{flex:0 0 32px;height:32px;font-size:18px}
+    .points .pt p{font-size:17px;line-height:1.6}
+    .quote{margin-top:20px;padding:18px;border-radius:14px;border-width:2.5px}
+    .quote .mark{top:-17px;left:16px;font-size:42px}
+    .quote blockquote{font-size:20px;line-height:1.62}
+    .quote .ex{margin-top:11px;font-size:16px}
+    .vs{grid-template-columns:1fr;margin-top:18px}
+    .vs .col{padding:15px 16px}
     .vs .col:first-child{border-right:none;border-bottom:2.5px dashed var(--line)}
+    .vs .vt{font-size:20px}
+    .vs .vd{margin-top:8px;font-size:16px;line-height:1.6}
+    .vs .ve{margin-top:8px;font-size:14px;line-height:1.6}
+    .vs .tag{font-size:14px;padding:3px 10px;border-radius:11px;margin-bottom:6px}
     .mini-vs{grid-template-columns:1fr}
+    .ccard{padding:14px 12px 15px;border-radius:12px}
+    .ccard .ctitle{font-size:19px}
+    .ccard .ctag{font-size:15px;min-height:0;margin-top:5px}
+    .ccard .cdesc{font-size:14px;max-width:none;margin-top:8px}
+    .divider{margin-top:36px;max-width:320px}
+    .visual svg{max-width:100%}
   }
 </style>
 <link rel="stylesheet" href="../assets/free-lock.css?v=7">
@@ -166,109 +221,16 @@
 <body>
 <div class="wrap">
 
-  
+  <!-- HERO：书名 + 作者 + 核心问题 -->
   <header class="hero rise">
-    <h1 style="font-size:64px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1">《纳瓦尔宝典》</h1>
-    <div style="margin-top:10px;font-size:21px;color:var(--muted);letter-spacing:2px">埃里克·乔根森 编 · 2020</div>
-    <div style="margin-top:6px;font-size:20px;color:var(--muted)">全名《The Almanack of Naval Ravikant：财富与幸福的指南》</div>
+    <h1>《纳瓦尔宝典》</h1>
+    <div class="bk-author">埃里克·乔根森 编 · 2020</div>
+    <div class="bk-fullname">全名《The Almanack of Naval Ravikant：财富与幸福的指南》</div>
     <div class="bigq" style="margin-top:18px">怎样才能不靠运气，就变得富有？</div>
   </header>
-<div id="apPlayer" class="ap-player">
-    
-    <div class="ap-content" id="apContent">
-      <div class="ap-top">
-        <span class="ap-time-cur" id="apCur">00:00</span>
-        <div class="ap-progress" id="apProgress"><div class="ap-bar" id="apBar"></div></div>
-        <span class="ap-time-dur" id="apDur">--:--</span>
-      </div>
-      <div class="ap-bottom">
-        <button class="ap-pill" id="apSpeed" type="button">1.0x</button>
-        <button class="ap-jump" id="apBack" type="button" title="后退15秒" aria-label="后退15秒">
-          <span class="ap-num">15</span><span class="ap-glyph">↺</span>
-        </button>
-        <button class="ap-jump" id="apFwd" type="button" title="前进15秒" aria-label="前进15秒">
-          <span class="ap-glyph">↻</span><span class="ap-num">15</span>
-        </button>
-        <button class="ap-pill" id="apVoice" type="button">云希</button>
-      </div>
-      <div class="ap-menu" id="apSpeedMenu" hidden>
-        <div class="ap-opt" data-v="0.75">0.75x</div>
-        <div class="ap-opt" data-v="1">1.0x</div>
-        <div class="ap-opt" data-v="1.25">1.25x</div>
-        <div class="ap-opt" data-v="1.5">1.5x</div>
-        <div class="ap-opt" data-v="2">2.0x</div>
-      </div>
-      <div class="ap-menu" id="apVoiceMenu" hidden>
-        <div class="ap-opt" data-f="纳瓦尔宝典_yunxi.mp3" data-n="云希">云希 · 男</div>
-        <div class="ap-opt" data-f="纳瓦尔宝典_xiaoxiao.mp3" data-n="晓晓">晓晓 · 女</div>
-        <div class="ap-opt" data-f="纳瓦尔宝典_xiaoyi.mp3" data-n="晓伊">晓伊 · 新闻</div>
-        <div class="ap-opt" data-f="纳瓦尔宝典_yunxia.mp3" data-n="云夏">云夏 · 温柔</div>
-        <div class="ap-opt" data-f="纳瓦尔宝典_yunjian.mp3" data-n="云健">云健 · 男</div>
-      </div>
-    </div>
-    
-    <button class="ap-play" id="apPlay" type="button" aria-label="播放/暂停">
-      <span class="ap-icon-play" aria-hidden="true"></span>
-      <span class="ap-icon-pause" aria-hidden="true"></span>
-    </button>
-  </div>
-<style>
-    
-    
-    
-    .ap-player{position:fixed;top:80px;right:32px;display:flex;align-items:center;justify-content:flex-start;height:92px;width:48px;background:transparent;border:1.5px solid transparent;border-radius:14px;box-shadow:none;padding:0;overflow:visible;z-index:9999;font-family:var(--font-hand),sans-serif;-webkit-font-smoothing:antialiased;transition:width .36s cubic-bezier(.22,1,.36,1),background .3s,border-color .3s,box-shadow .3s,padding-left .36s cubic-bezier(.22,1,.36,1),padding-right .36s cubic-bezier(.22,1,.36,1),height .36s cubic-bezier(.22,1,.36,1)}
 
-    
-    .ap-player.is-open{width:256px;height:92px;background:#fff;border:1.5px solid var(--accent,#E0432E);box-shadow:0 8px 22px rgba(224,67,46,.20);padding-left:14px;padding-right:14px;justify-content:space-between}
-
-    
-    .ap-content{display:flex;flex-direction:column;justify-content:center;gap:5px;width:0;max-width:0;height:92px;overflow:hidden;opacity:0;padding:0;flex:0 0 auto;box-sizing:border-box;transition:width .36s cubic-bezier(.22,1,.36,1),max-width .36s cubic-bezier(.22,1,.36,1),opacity .25s}
-    .ap-player.is-open .ap-content{width:auto;max-width:none;opacity:1}
-
-    
-    .ap-play{flex-shrink:0;width:48px;height:48px;border-radius:50%;border:none;background:var(--accent,#E0432E);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(224,67,46,.4);padding:0;transition:transform .12s}
-    .ap-play:active{transform:scale(.94)}
-    .ap-play .ap-icon-play{display:block;width:0;height:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #fff;margin-left:3px}
-    .ap-play .ap-icon-pause{display:none;width:14px;height:15px;position:relative}
-    .ap-play .ap-icon-pause::before,.ap-play .ap-icon-pause::after{content:"";position:absolute;top:0;width:5px;height:15px;background:#fff;border-radius:1px}
-    .ap-play .ap-icon-pause::before{left:0}
-    .ap-play .ap-icon-pause::after{right:0}
-    .ap-play.is-playing .ap-icon-play{display:none}
-    .ap-play.is-playing .ap-icon-pause{display:block}
-
-    
-    
-    .ap-top{display:flex;align-items:center;gap:5px}
-    .ap-time-cur,.ap-time-dur{font-size:11px;color:#B5321F;font-weight:600;font-variant-numeric:tabular-nums;opacity:.78;white-space:nowrap;line-height:1;flex-shrink:0}
-    .ap-time-cur{text-align:left}
-    .ap-time-dur{text-align:right}
-    
-    .ap-progress{flex:1 1 auto;min-width:60px;height:4px;background:#f3e1de;border-radius:2px;cursor:pointer}
-    .ap-bar{height:100%;width:0;background:var(--accent,#E0432E);border-radius:2px;transition:width .12s linear}
-
-    
-    .ap-bottom{display:flex;align-items:center;gap:3px}
-    .ap-pill{font-size:12.5px;color:#B5321F;background:#FCEAE6;border:none;border-radius:14px;padding:3px 7px;cursor:pointer;font-family:inherit;white-space:nowrap;line-height:1.2;transition:transform .12s,background .12s}
-    .ap-pill:hover{background:#fbd9d3}
-    .ap-pill:active{transform:scale(.96)}
-    .ap-jump{position:relative;width:auto;height:32px;border:none;background:transparent;color:var(--accent,#E0432E);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:1px;padding:0 6px;transition:background .12s,transform .12s;flex-shrink:0;border-radius:16px;white-space:nowrap}
-    .ap-jump:hover{background:#FCEAE6}
-    .ap-jump:active{transform:scale(.92)}
-    .ap-jump .ap-num{position:static;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;font-family:inherit;line-height:1;pointer-events:none}
-    
-    .ap-jump .ap-glyph{position:static;font-size:19px;font-weight:700;line-height:1;pointer-events:none;font-family:"Apple Symbols","Segoe UI Symbol","Symbola","DejaVu Sans","Noto Sans Symbols2",sans-serif}
-
-    
-    .ap-menu{position:absolute;top:calc(100% + 8px);background:#fff;border:1px solid #f0d9d4;border-radius:10px;box-shadow:0 8px 22px rgba(0,0,0,.14);padding:4px;min-width:96px;z-index:10003;max-height:240px;overflow-y:auto}
-    .ap-menu[hidden]{display:none}
-    #apSpeedMenu{left:14px;right:auto}
-    #apVoiceMenu{right:14px;left:auto}
-    .ap-opt{padding:7px 11px;font-size:12.5px;color:#333;border-radius:7px;cursor:pointer;white-space:nowrap;line-height:1.3}
-    .ap-opt:hover{background:#FCEAE6}
-    .ap-opt.active{color:#B5321F;font-weight:700;background:#FCEAE6}
-  </style>
-
-  
+  <!-- 顶部 tab 导航 -->
+  <div class="tabsbar" id="tabsbar">
   <nav class="tabs" id="tabs">
     <a class="tab" data-target="s1" tabindex="0" role="button">① 书籍定位</a>
     <a class="tab" data-target="s2" tabindex="0" role="button">② 核心误区</a>
@@ -276,67 +238,66 @@
     <a class="tab" data-target="s4" tabindex="0" role="button">④ 核心内容</a>
     <a class="tab" data-target="s5" tabindex="0" role="button">⑤ 核心价值</a>
   </nav>
+  </div>
 
-  
+  <!-- 一、书籍定位：这本书研究什么 -->
   <section class="section rise" id="s1">
     <div class="sec-title">一 · 这本书到底在讲什么</div>
     <div class="prose">
-      <p>这本书不是教你怎么找工作、怎么升职加薪，而是把纳瓦尔几十年的推特长文、播客访谈、公开谈话，整理成一本关于两件人生大事的"现代智者语录"。</p>
-      <div class="indent"><b>第一件是财富。</b>纳瓦尔关心的不是"怎么拿高薪"，而是"怎么在不靠运气的情况下变富"——也就是建立一套哪怕你睡着也在为你赚钱的系统。</div>
+      <p>这本书把纳瓦尔几十年写的推特长文、播客访谈、公开谈话都整理到一起，其实就讲了两件人生大事。</p>
+      <div class="indent"><b>第一件是财富。</b>纳瓦尔关心的不是"怎么拿高薪"，而是"怎么在不靠运气的情况下变富，就是建立一套哪怕你睡着也在为你赚钱的系统。</div>
       <div class="indent"><b>第二件是幸福。</b>他花了同样多的篇幅讲怎么获得内心的平静，因为在他看来，光有钱而内心焦躁，人生仍然失败。</div>
-      <p style="margin-top:12px">这是一本讲清楚财富和幸福关系的书。</p>
           </div>
   </section>
 
-  
+  <!-- 二、核心误区：多数人卡在哪（合并原"现实矛盾"与"核心误区"） -->
   <section class="section rise" id="s2">
-    <div class="sec-title old">二 · 核心误区：多数人卡在哪</div>
-    <div class="sec-sub">把"高工资"当成"财富"，越忙越穷；这背后是一个没说出口的默认设定。</div>
+    <div class="sec-title old">二 · 核心误区</div>
+    <div class="sec-sub">把高工资当成财富，结果为了赚钱越忙越穷。</div>
     <div class="prose">
-      <p>很多人默认：只要努力工作、拿到高薪，就是在积累财富。于是拼命加班、不敢休息，把全部时间出卖给老板。</p>
-      <p>但另一面是：这种收入完全绑在"你在场"这件事上。一旦生病、被裁员、想休息，收入立刻断掉。更麻烦的是，每天被工作占满，反而没时间想清楚自己到底该往哪个方向走。表面在赚钱，实际上困在一条停不下来的流水线上。</p>
+      <p>很多人以为，只要努力工作、拿到高薪，就能积累财富，所以他们会拼命加班，不敢休息，把全部的时间都卖给了老板。</p>
+      <p>但这就存在一个问题，只要你不干活，就没收入了。更麻烦的是，你的时间每天都被工作占满，反而没时间去思考自己的人生方向。</p>
     </div>
     <div class="vs old" style="margin-top:26px">
       <div class="col">
-        <span class="tag">旧认知（多数人的默认设定）</span>
+        <span class="tag old">你以为</span>
         <div class="vt">财富 = 高薪 / 存款 / 头衔</div>
-        <div class="vd">默认"赚钱 = 出卖时间"：要想赚钱，就一定得付出时间，就得出卖自己的时间才行。工资越高、职位越高，就是在变富。</div>
+        <div class="vd">很多人以为，工资越高、职位越高，就是在变富。所以他们为了追求更高的工资、更高的职位，就不断出卖自己的时间，拼命加班工作。</div>
         <div class="ve">后果：收入绑在你的体力上，一停就归零；越忙越没空想清楚方向。</div>
       </div>
       <div class="col">
-        <span class="tag">纳瓦尔的重定义</span>
+        <span class="tag new">实际上</span>
         <div class="vt">财富 = 你睡着也在赚钱的资产</div>
         <div class="vd">你真正应该追求的是财富，而不是金钱或地位。因为金钱只是转移财富的工具，地位只是社会排名。真正的财富是，能够持续为你创造价值的资产。要致富，就要积累别人学不来的专长，再用杠杆来放大你的专长。</div>
         <div class="ve">关键转变：从"用时间换钱"转向"用专长 + 杠杆，造一个自动运转的系统"。</div>
       </div>
     </div>
-    <div class="prose">
-      <p>所以纳瓦尔整本致富篇，破的就是这一个误会：我们从小把"工资、存款、头衔"当成了财富，却从没拥有过"不工作也有收入"的东西。他把这层误会揭开后，才有后面"专长 → 杠杆 → 复利 → 产品化"的一整套方法论。</p>
-    </div>
+    
   </section>
 
-  
+  <!-- 三、纳瓦尔破局 -->
   <section class="section rise" id="s3">
     <div class="sec-title">三 · 纳瓦尔破局</div>
 
     <div class="points">
-      <div class="pt"><div class="n">1</div><p><b>积累专长。</b>专长指的是无法通过培训获得的知识；如果社会能培训你，那也能培训别人来取代你，所以你得发展只有你能做、别人学不来的那部分。</p></div>
-      <div class="pt"><div class="n">2</div><p><b>善用杠杆。</b>劳动力、资本之外，最重要的是零边际成本的杠杆——代码、媒体、产品，一份产出能同时服务无数人。</p></div>
-      <div class="pt"><div class="n">3</div><p><b>相信复利。</b>财富、人际关系、知识，所有回报都来自长期坚持后的复利，而不是一夜暴富。</p></div>
-      <div class="pt"><div class="n">4</div><p><b>把自己产品化。</b>把"独特的自己"和"可规模化的产品"结合起来，让自己变成一个能复制、能放大价值的产品。</p></div>
-    </div>
-
-    <div class="quote">
-      <div class="mark">"</div>
-      <blockquote>"获得财富的一个途径，就是为社会提供其有需求但无从获得的东西，并实现规模化。"</blockquote>
-      <div class="ex">纳瓦尔把"致富"这样定义：你不需要比别人更拼命，只需要提供别人想要、却到处找不到的东西，并且能大规模地提供出去。</div>
+      <div class="pt"><div class="n">1</div><p><span class="gold">积累专长</span>：专长就是那种别人培训不出来的知识。如果社会能培训你，那也能培训别人来取代你，所以你得找到只有你能做、别人学不来的东西。</p></div>
+      <div class="pt"><div class="n">2</div><p><span class="gold">善用杠杆</span>：劳动力、资本之外，最重要的是零边际成本的杠杆，比如代码、媒体、产品，一份产出就能同时服务无数人。</p></div>
+      <div class="pt"><div class="n">3</div><p><span class="gold">相信复利</span>：财富、人际关系、知识，所有回报都来自长期坚持后的复利，而不是一夜暴富。</p></div>
+      <div class="pt"><div class="n">4</div><p><span class="gold">把自己产品化</span>：把"独特的自己"和"可规模化的产品"结合起来，让自己变成一个能复制、能放大价值的产品。</p></div>
+      <div class="pt" style="border:3px solid var(--accent);background:rgba(224,67,46,.05)">
+        <div class="n">5</div>
+        <p>
+          <span class="gold">获得财富的途径，就是为社会提供有需求但无法获得的东西，并实现规模化</span>：<br>
+          <span style="font-size:22px;color:var(--muted)">纳瓦尔觉得，要致富不需要比别人更拼命，只要你能提供别人想要、却到处找不到的东西，而且能批量提供出去就行。</span>
+        </p>
+      </div>
     </div>
   </section>
 
-  
+  <!-- 四、核心内容 -->
   <section class="section rise" id="s4">
     <div class="sec-title">四 · 核心内容</div>
-    <div class="sec-sub">纳瓦尔用一条主线串起致富逻辑：先有专长，再用劳动力、资本、代码和媒体这四种杠杆放大，靠复利积累，把自己产品化，并掌握销售与构建两大核心能力。</div>
+    <div class="sec-sub">纳瓦尔的致富思路是先去锻炼自己的专长，再用劳动力、资本、代码和媒体这四种杠杆来放大自己的价值，最终靠复利实现积累。</div>
 
     <div class="core-cards">
       <div class="ccard">
@@ -430,12 +391,12 @@
             <text x="185" y="76" font-size="11" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">倍</text>
           </svg>
         </div>
-        <div class="cdesc">不再靠单纯出卖时间赚钱，而是把经验、专长、技能封装成有社会需求、可规模化的产品。</div>
+        <div class="cdesc">不再单纯靠出卖时间赚钱，而是把自己的经验、专长、技能做成别人有需要而且可批量售卖的产品。</div>
       </div>
 
       <div class="ccard">
         <div class="ctitle">销售与构建</div>
-        <div class="ctag">势不可挡的两种能力</div>
+        <div class="ctag">两种很重要的能力</div>
         <div class="cfig">
           <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="m6" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
@@ -447,11 +408,11 @@
             <text x="100" y="104" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">同时掌握 = 势不可挡</text>
           </svg>
         </div>
-        <div class="cdesc">构建是把优势变成可复制方案，销售是让价值抵达需要它的人。两者兼备，才能放大财富。</div>
+        <div class="cdesc">构建是把你的优势变成能复制的东西，销售是让需要它的人知道。这两样都会了，才能把财富放大。</div>
       </div>
     </div>
 
-    
+    <!-- ④ 核心内容：6 个概念展开模块 -->
     <div class="concept-list">
 
       <div class="concept">
@@ -470,7 +431,7 @@
             </div>
             <div class="mcol good">
               <div class="mt">财富</div>
-              <div class="mp">财富是你睡着也在为你赚钱的资产，积累财富需要你拥有某类资产的所有权，通过资产的持续增值，来让你的财富像滚雪球一样越滚越大，实现"睡后收入"。</div>
+              <div class="mp">财富是你睡着也在为你赚钱的资产，积累财富就是你得拥有某类资产的所有权。当这类资产越来越值钱的时候，你的财富就会像滚雪球一样越滚越大，让你睡觉的时候也在赚钱。</div>
             </div>
           </div>
           <div class="tags">
@@ -493,7 +454,7 @@
           <div class="cnum">2</div>
           <div class="cmeta">
             <div class="cname">专长 · 人生支点</div>
-            <div class="cone">专长者，无法被培训取代的知识；支点即你独特的天赋和优势。</div>
+            <div class="cone">专长就是别人培训不出来、取代不了的知识；支点就是你天生擅长的东西。</div>
           </div>
         </div>
         <div class="cbody">
@@ -509,12 +470,12 @@
             </div>
             <div class="mcol good">
               <div class="mt">正解：长板理论</div>
-              <div class="mp">发现优势、把长板拉得足够长，再围绕它建护城河。</div>
+              <div class="mp">找到自己的优势，把它练得足够强，别人才抢不走你的饭碗。</div>
             </div>
           </div>
           <div class="example">
             <div class="ex-title">关键提醒</div>
-            <p>钱只是社会价值的欠条。想要什么直接去追，别绕到"先赚钱"上舍本逐末。在"做自己"这件事上，没有人能和你竞争。</p>
+            <p>钱只是社会给你的欠条。想要什么就直接去追，别想着先赚够钱再说，那样反而跑偏了。做你自己这件事，没人能跟你抢。</p>
           </div>
         </div>
       </div>
@@ -529,14 +490,14 @@
         </div>
         <div class="cbody">
           <div class="levels">
-            <div class="lv"><div class="lvn">①</div><div class="lvc"><b>劳动力杠杆</b>：借别人的力——团队、协作、人脉、合作。</div></div>
-            <div class="lv"><div class="lvn">②</div><div class="lvc"><b>资本杠杆</b>：借资本的力——产权、复利、认知资本。</div></div>
-            <div class="lv"><div class="lvn">③</div><div class="lvc"><b>产品杠杆</b>：借工具的力——实体/软件/工具，零边际成本规模化。</div></div>
-            <div class="lv"><div class="lvn">④</div><div class="lvc"><b>媒体杠杆</b>：借流量的力——内容、个人 IP，一次创作多次传播。</div></div>
+            <div class="lv"><div class="lvn">①</div><div class="lvc"><b>劳动力杠杆</b>：借别人的力，比如带团队、找合伙人、建人脉圈子，比自己干高效得多。</div></div>
+            <div class="lv"><div class="lvn">②</div><div class="lvc"><b>资本杠杆</b>：借资本的力，比如买房收租、买股票分红、提升认知，让钱为你赚钱。</div></div>
+            <div class="lv"><div class="lvn">③</div><div class="lvc"><b>产品杠杆</b>：借工具的力，比如做课程、做软件、做模板，做一次能卖无数份。</div></div>
+            <div class="lv"><div class="lvn">④</div><div class="lvc"><b>媒体杠杆</b>：借流量的力，比如写文章、做短视频、做个人 IP，一次创作能传播很多次。</div></div>
           </div>
           <div class="cline">
             <div class="lab">对普通人最友好的</div>
-            <p>后两类零边际成本杠杆：写代码、做内容。一份产出能同时服务无数人。</p>
+            <p>就是产品杠杆和媒体杠杆。只需要做一次就能服务无数人，就不需要靠时间换钱了。</p>
           </div>
         </div>
       </div>
@@ -546,24 +507,24 @@
           <div class="cnum">4</div>
           <div class="cmeta">
             <div class="cname">复利</div>
-            <div class="cone">财富、人际关系、知识，所有回报都来自长期复利。</div>
+            <div class="cone">财富、人脉、知识，都是靠长期复利积累的。</div>
           </div>
         </div>
         <div class="cbody">
           <div class="mini-vs">
             <div class="mcol">
               <div class="mt">前期</div>
-              <div class="mp">增长平缓，几乎看不出变化，最容易放弃。</div>
+              <div class="mp">前期增长很慢，你自己都感觉不到。</div>
             </div>
             <div class="mcol good">
               <div class="mt">后期</div>
-              <div class="mp">突破临界点后陡峭上扬，回报远超线性努力。</div>
+              <div class="mp">但过了那个坎以后，增长就会突然变快。</div>
             </div>
           </div>
-          <p><b>警惕</b>：这个世界上没有一夜暴富的神话，如果有的话，那也只是昙花一现。所以也别信那些"快速致富教程"——真有这种神话，卖教程的人也只是想从你身上赚钱。</p>
+          <p><b>警惕</b>：这个世界上没有一夜暴富的好事，就算有也长久不了。所以别信那些"快速致富教程"，真有这种好事，人家自己偷偷赚就好了，干嘛卖教程给你？</p>
           <div class="example">
             <div class="ex-title">例子</div>
-            <p>每天写 500 字，前半年阅读量几乎为零。坚持三年后，内容资产、读者信任、写作能力会互相放大，合作和机会自然找上门。</p>
+            <p>每天写 500 字，前半年阅读量几乎为零。坚持三年后，你写的东西、积累的读者信任、写作能力都会互相加分，自然会有人来找你合作。</p>
           </div>
         </div>
       </div>
@@ -581,7 +542,7 @@
             <div class="lab">公式</div>
             <p>经验 · 专长 · 技能 → 产品 → N 倍复制（一次投入，多次售卖，边际成本趋近于零）</p>
           </div>
-          <p><b>关键</b>：产品必须有真实的社会需求，且你能用杠杆规模化交付。</p>
+          <p><b>关键</b>：做的产品得是真有人需要的，而且你能用杠杆把它批量做出来。</p>
           <div class="example">
             <div class="ex-title">例子</div>
             <p>老师一对一讲课，时间会被锁死，只能教固定的几十个人；但是如果把课程录成视频，就可以同时卖给一万个人，时间就解放了。</p>
@@ -594,7 +555,7 @@
           <div class="cnum">6</div>
           <div class="cmeta">
             <div class="cname">销售与构建</div>
-            <div class="cone">构建把优势变方案，销售让价值抵达需要它的人。</div>
+            <div class="cone">构建是把你的优势变成能复制的东西，销售是让需要它的人知道。</div>
           </div>
         </div>
         <div class="cbody">
@@ -610,14 +571,14 @@
             <div class="lab">销售的四个层级</div>
           </div>
           <div class="levels">
-            <div class="lv"><div class="lvn">①</div><div class="lvc"><b>推销</b>：把别人不需要的硬塞给他，最 low 也最招烦。</div></div>
-            <div class="lv"><div class="lvn">②</div><div class="lvc"><b>卖东西</b>：知道对方需要什么，把解决痛点的东西卖给他。</div></div>
-            <div class="lv"><div class="lvn">③</div><div class="lvc"><b>分享</b>：不带功利心地推荐真正好的东西，积累信任。</div></div>
-            <div class="lv"><div class="lvn">④</div><div class="lvc"><b>卖自己</b>：卖的不再是具体商品，而是观点、方案、人格和信任。</div></div>
+            <div class="lv"><div class="lvn">①</div><div class="lvc"><b>推销</b>：把别人不需要的硬塞给他，比如骚扰电话，最 low 也最招人烦。</div></div>
+            <div class="lv"><div class="lvn">②</div><div class="lvc"><b>卖东西</b>：知道对方需要什么，把解决痛点的东西卖给他，你情我愿，各取所需。</div></div>
+            <div class="lv"><div class="lvn">③</div><div class="lvc"><b>分享</b>：不带功利心地推荐真正好的东西，对方买不买随他，反而能积累信任。</div></div>
+            <div class="lv"><div class="lvn">④</div><div class="lvc"><b>卖自己</b>：卖的不再是具体商品，而是你的观点、方案、人格和信任。</div></div>
           </div>
           <div class="example">
             <div class="ex-title">例子</div>
-            <p>年薪百万的销售高手，往往不是最会说话的，而是最懂客户痛点的人：跟老板汇报是推销方案，跟朋友聊天是推销想法，找对象本质也是"卖自己"。</p>
+            <p>跟老板汇报是在推销你的方案，跟朋友聊天是在推销你的想法，找对象本质上也是在"卖自己"。马斯克身边的人都说他有一种"扭曲现实的力量"，能把看似不可能的目标卖给团队，这就是顶级的销售能力。</p>
           </div>
         </div>
       </div>
@@ -626,12 +587,12 @@
 
   </section>
 
-  
+  <!-- 五、核心价值 -->
   <section class="section rise" id="s5">
     <div class="sec-title">五 · 核心价值</div>
-    <div class="sec-sub">这本书把"致富"和"幸福"都还原成了可以操作的底层逻辑。</div>
+    <div class="sec-sub">这本书把怎么致富和怎么获得幸福都讲得很清楚。</div>
     <div class="prose">
-      <p>纳瓦尔想回答的不是某一招赚钱技巧，而是一组根本问题：财富到底是什么、怎么在不靠运气的情况下获得、以及钱之外，人怎样才能内心平静。这套思路放到今天，仍能帮我们看清很多误会。</p>
+      <p>纳瓦尔讲的不是某一招赚钱的技巧，而是把财富到底是什么、怎么不靠运气赚钱、怎么才能获得内心的平静，都讲清楚了。</p>
       <p>几个最值得记住的核心价值：</p>
     </div>
 
@@ -652,15 +613,15 @@
         <p style="font-size:24px;line-height:1.5;color:var(--ink);margin-top:6px">钱只有两个去处：消费和投资。你把它花在哪里，决定了你最终是穷人还是富人。</p>
         <div class="vs old" style="margin-top:12px">
           <div class="col">
-            <span class="tag">消费</span>
+            <span class="tag old">消费</span>
             <div class="vt">用钱买即时满足、买面子、买别人的羡慕</div>
-            <div class="vd">吃大餐、买衣服、买奢侈品、刷短视频、玩游戏——只要你的钱和时间花在了"消耗"别人的产出上，你就是消费者。花完就没了，财富只出不进。</div>
+            <div class="vd">吃大餐、买衣服、买奢侈品、刷短视频、玩游戏，只要你的钱和时间花在了消耗别人的产出上，你就是消费者。花完就没了，财富只出不进。</div>
             <div class="ve">后果：越消耗越穷，永远为钱奔波。</div>
           </div>
           <div class="col">
-            <span class="tag">投资</span>
+            <span class="tag new">投资</span>
             <div class="vt">用钱买资产、买未来现金流</div>
-            <div class="vd">买书、学技能、买股权、做产品、积累能持续产生收益的资产——你的钱在帮你工作，而不是你一直在为钱工作。</div>
+            <div class="vd">买书、学技能、买股权、做产品、积累能持续产生收益的资产，这时候是你的钱在帮你工作，不是你一直在为钱工作。</div>
             <div class="ve">关键：把劳动收入转成能带来被动收入的资产，财富才会越滚越大。</div>
           </div>
         </div>
@@ -675,15 +636,15 @@
         <p style="font-size:24px;line-height:1.5;color:var(--ink);margin-top:6px">很多人之所以赚不到钱、积累不下财富，核心就是长期停留在"消费者"角色里，只想着消耗，却从没想过创造。</p>
         <div class="vs old" style="margin-top:12px">
           <div class="col">
-            <span class="tag">消费者</span>
+            <span class="tag old">消费者</span>
             <div class="vt">花钱买、花时间、花自己的资产，去买别人的产品或服务</div>
             <div class="vd">不管是买衣服、吃大餐，还是刷短视频、玩游戏，只要是在"消耗"别人的产出，你就是消费者。这种持续的消耗，只会让你的财富不断流失。</div>
             <div class="ve">后果：财富只出不进，越消耗越穷。</div>
           </div>
           <div class="col">
-            <span class="tag">生产者</span>
+            <span class="tag new">生产者</span>
             <div class="vt">主动创造产品、提供服务，供别人去消费</div>
-            <div class="vd">写一篇干货文章、做一套PPT模板、开一家小店卖东西，这些都是生产行为。只有生产，才能让财富主动流向你，实现财富的积累。</div>
+            <div class="vd">写一篇干货文章、做一套PPT模板、开一家小店卖东西，这些都是生产行为。只有自己生产，才能把钱赚到自己口袋里，财富才能越积越多。</div>
             <div class="ve">更重要的是：一旦你变成生产者，你看待问题的视角会完全不一样。刷短视频时你不会再只是傻乐，而是会下意识地想：这个视频为什么能火？它满足了什么需求？博主是怎么变现的？我能不能借鉴这个逻辑，做出自己的内容或产品？</div>
           </div>
         </div>
@@ -695,7 +656,7 @@
           <div class="n">④</div>
           <div style="font-size:26px;color:var(--accent);line-height:1.3">幸福是一种不需要主动作为的状态</div>
         </div>
-        <p style="font-size:24px;line-height:1.5;color:var(--ink);margin-top:6px">当把"缺憾感"从生活中剔除时，幸福感就会油然而生。成功来自对现状的不满，幸福则来自满足现状——这是两件事，别用赚钱去填补内心的空洞。</p>
+        <p style="font-size:24px;line-height:1.5;color:var(--ink);margin-top:6px">当你不再觉得生活里缺这缺那的时候，自然就会觉得幸福。成功是因为对现状不满意，幸福是因为对现状满意，这是两回事，别想着靠赚钱来填补内心的空虚。</p>
       </div>
 
       <div class="pt" style="flex-direction:column;align-items:stretch">
@@ -706,7 +667,7 @@
         <p style="font-size:24px;line-height:1.5;color:var(--ink);margin-top:6px">在哪里生活、和谁在一起、从事什么职业。最重要的是，在重大决定上花更多时间，因为选对方向，比埋头蛮干更关键。</p>
       </div>
     </div>
-    <div class="indent">它当然也有局限：这是一本按主题整理的"智者语录"，不是体系严谨的学术著作，很多观点是推文式的金句，需要你自己串联和验证。但作为一本帮人想清楚"财富与幸福"的入门书，它足够真诚、足够可操作。把它当作一份值得反复翻的笔记读，别当作致富保证书用。</div>
+    <div class="indent">它当然也有不足：这是按主题整理的语录，不是什么严谨的学术著作，很多观点就是推特长文里的金句，需要你自己串起来看、自己去验证。但作为一本能帮你想明白财富和幸福的入门书，很值得你读。</div>
   </section>
 
 </div>
@@ -738,7 +699,7 @@
     }
   },{rootMargin:'-40% 0px -45% 0px',threshold:[0,0.25,0.5,0.75,1]});
   
-  
+  // tab 点击/键盘平滑滚动（去 href 防暴露文件路径）
   tabs.forEach(function(t){
     t.addEventListener('click', function(e){
       e.preventDefault();
@@ -751,300 +712,53 @@
   });
   sections.forEach(function(s){spy.observe(s);});
 
-  
+  // 内容块默认已可见（CSS .rise opacity:1），不再用 IntersectionObserver 控制显隐，避免滚动时出现空白断层。
 </script>
 
   
-  </script>
+  </style>
+
+</script>
+<!-- mobile-fit: 移动端 tab 横向滚动 · 自包含，勿与上方 JS 耦合 · 规范见 books/规范/移动端适配规范.md §三
+     铁律：渐变提示画在 .tabsbar 伪元素上；禁用 mask（会把条子变透明，正文透上来跟按钮重叠） -->
 <script>
-  function fitStage(wrap){
-    var stage=wrap.querySelector('.stage');
-    var logical=1000;
-    var avail=wrap.clientWidth;
-    var scale=Math.min(1, avail/logical);
-    stage.style.transform='scale('+scale+')';
-    var h=parseFloat(stage.dataset.h)||stage.offsetHeight;
-    wrap.style.height=(h*scale)+'px';
-    wrap.style.width=(logical*scale)+'px';
+(function(){
+  var el=document.getElementById('tabs');
+  if(!el) return;
+  var bar=document.getElementById('tabsbar')||el;   // 渐变遮罩挂不透明外层 .tabsbar，绝不挂滚动容器本身
+  var tabs=Array.prototype.slice.call(el.querySelectorAll('.tab'));
+  // ① 左右渐变：按滚动位置开合，提示"还能滑"（画在 .tabsbar 伪元素上，不用 mask）
+  function fade(){
+    var max=el.scrollWidth-el.clientWidth;
+    bar.classList.toggle('fade-l', el.scrollLeft>4);
+    bar.classList.toggle('fade-r', max-el.scrollLeft>4);
   }
-  function fitAll(){document.querySelectorAll('.stage-wrap').forEach(fitStage);}
-  window.addEventListener('resize',fitAll); fitAll();
-
-  var tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  var sections=tabs.map(function(t){return document.querySelector('#'+t.dataset.target);}).filter(Boolean);
-  var spy=new IntersectionObserver(function(entries){
-    var best=null,bestRatio=-1;
-    entries.forEach(function(e){
-      if(e.isIntersecting && e.intersectionRatio>bestRatio){best=e.target;bestRatio=e.intersectionRatio;}
-    });
-    if(best){
-      var id='#'+best.id;
-      tabs.forEach(function(t){t.classList.toggle('active', '#'+t.dataset.target===id);});
-    }
-  },{rootMargin:'-40% 0px -45% 0px',threshold:[0,0.25,0.5,0.75,1]});
-  
-  
-  tabs.forEach(function(t){
-    t.addEventListener('click', function(e){
-      e.preventDefault();
-      var sec=document.querySelector('#'+t.dataset.target);
-      if(sec){sec.scrollIntoView({behavior:'smooth',block:'start'});}
-    });
-    t.addEventListener('keydown', function(e){
-      if(e.key==='Enter'||e.key===' '){e.preventDefault();t.click();}
-    });
+  // ② 把某个 tab 滑到容器中间
+  function center(t){
+    if(!t) return;
+    if(el.scrollWidth<=el.clientWidth+2) return;   // 一屏放得下就不用动
+    var left=t.offsetLeft-(el.clientWidth-t.offsetWidth)/2;
+    el.scrollTo({left:Math.max(0,left),behavior:'smooth'});
+  }
+  el.addEventListener('scroll',fade,{passive:true});
+  window.addEventListener('resize',fade);
+  fade();
+  // ③ 点击 tab 后居中
+  el.addEventListener('click',function(e){
+    var t=e.target&&e.target.closest?e.target.closest('.tab'):null;
+    if(t) setTimeout(function(){center(t);},60);
   });
-  sections.forEach(function(s){spy.observe(s);});
-
-  
-</script>
-
-  
-  <div id="apPlayer" class="ap-player">
-    
-    <div class="ap-content" id="apContent">
-      <div class="ap-top">
-        <span class="ap-time-cur" id="apCur">00:00</span>
-        <div class="ap-progress" id="apProgress"><div class="ap-bar" id="apBar"></div></div>
-        <span class="ap-time-dur" id="apDur">--:--</span>
-      </div>
-      <div class="ap-bottom">
-        <button class="ap-pill" id="apSpeed" type="button">1.0x</button>
-        <button class="ap-jump" id="apBack" type="button" title="后退15秒" aria-label="后退15秒">
-          <span class="ap-num">15</span><span class="ap-glyph">↺</span>
-        </button>
-        <button class="ap-jump" id="apFwd" type="button" title="前进15秒" aria-label="前进15秒">
-          <span class="ap-glyph">↻</span><span class="ap-num">15</span>
-        </button>
-        <button class="ap-pill" id="apVoice" type="button">云希</button>
-      </div>
-      <div class="ap-menu" id="apSpeedMenu" hidden>
-        <div class="ap-opt" data-v="0.75">0.75x</div>
-        <div class="ap-opt" data-v="1">1.0x</div>
-        <div class="ap-opt" data-v="1.25">1.25x</div>
-        <div class="ap-opt" data-v="1.5">1.5x</div>
-        <div class="ap-opt" data-v="2">2.0x</div>
-      </div>
-      <div class="ap-menu" id="apVoiceMenu" hidden>
-        <div class="ap-opt" data-f="纳瓦尔宝典_yunxi.mp3" data-n="云希">云希 · 男</div>
-        <div class="ap-opt" data-f="纳瓦尔宝典_xiaoxiao.mp3" data-n="晓晓">晓晓 · 女</div>
-        <div class="ap-opt" data-f="纳瓦尔宝典_xiaoyi.mp3" data-n="晓伊">晓伊 · 新闻</div>
-        <div class="ap-opt" data-f="纳瓦尔宝典_yunxia.mp3" data-n="云夏">云夏 · 温柔</div>
-        <div class="ap-opt" data-f="纳瓦尔宝典_yunjian.mp3" data-n="云健">云健 · 男</div>
-      </div>
-    </div>
-    
-    <button class="ap-play" id="apPlay" type="button" aria-label="播放/暂停">
-      <span class="ap-icon-play" aria-hidden="true"></span>
-      <span class="ap-icon-pause" aria-hidden="true"></span>
-    </button>
-  </div>
-  <style>
-    
-    
-    
-    .ap-player{position:fixed;top:80px;right:32px;display:flex;align-items:center;justify-content:flex-start;height:92px;width:48px;background:transparent;border:1.5px solid transparent;border-radius:14px;box-shadow:none;padding:0;overflow:visible;z-index:9999;font-family:var(--font-hand),sans-serif;-webkit-font-smoothing:antialiased;transition:width .36s cubic-bezier(.22,1,.36,1),background .3s,border-color .3s,box-shadow .3s,padding-left .36s cubic-bezier(.22,1,.36,1),padding-right .36s cubic-bezier(.22,1,.36,1),height .36s cubic-bezier(.22,1,.36,1)}
-
-    
-    .ap-player.is-open{width:256px;height:92px;background:#fff;border:1.5px solid var(--accent,#E0432E);box-shadow:0 8px 22px rgba(224,67,46,.20);padding-left:14px;padding-right:14px;justify-content:space-between}
-
-    
-    .ap-content{display:flex;flex-direction:column;justify-content:center;gap:5px;width:0;max-width:0;height:92px;overflow:hidden;opacity:0;padding:0;flex:0 0 auto;box-sizing:border-box;transition:width .36s cubic-bezier(.22,1,.36,1),max-width .36s cubic-bezier(.22,1,.36,1),opacity .25s}
-    .ap-player.is-open .ap-content{width:auto;max-width:none;opacity:1}
-
-    
-    .ap-play{flex-shrink:0;width:48px;height:48px;border-radius:50%;border:none;background:var(--accent,#E0432E);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(224,67,46,.4);padding:0;transition:transform .12s}
-    .ap-play:active{transform:scale(.94)}
-    .ap-play .ap-icon-play{display:block;width:0;height:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #fff;margin-left:3px}
-    .ap-play .ap-icon-pause{display:none;width:14px;height:15px;position:relative}
-    .ap-play .ap-icon-pause::before,.ap-play .ap-icon-pause::after{content:"";position:absolute;top:0;width:5px;height:15px;background:#fff;border-radius:1px}
-    .ap-play .ap-icon-pause::before{left:0}
-    .ap-play .ap-icon-pause::after{right:0}
-    .ap-play.is-playing .ap-icon-play{display:none}
-    .ap-play.is-playing .ap-icon-pause{display:block}
-
-    
-    
-    .ap-top{display:flex;align-items:center;gap:5px}
-    .ap-time-cur,.ap-time-dur{font-size:11px;color:#B5321F;font-weight:600;font-variant-numeric:tabular-nums;opacity:.78;white-space:nowrap;line-height:1;flex-shrink:0}
-    .ap-time-cur{text-align:left}
-    .ap-time-dur{text-align:right}
-    
-    .ap-progress{flex:1 1 auto;min-width:60px;height:4px;background:#f3e1de;border-radius:2px;cursor:pointer}
-    .ap-bar{height:100%;width:0;background:var(--accent,#E0432E);border-radius:2px;transition:width .12s linear}
-
-    
-    .ap-bottom{display:flex;align-items:center;gap:3px}
-    .ap-pill{font-size:12.5px;color:#B5321F;background:#FCEAE6;border:none;border-radius:14px;padding:3px 7px;cursor:pointer;font-family:inherit;white-space:nowrap;line-height:1.2;transition:transform .12s,background .12s}
-    .ap-pill:hover{background:#fbd9d3}
-    .ap-pill:active{transform:scale(.96)}
-    .ap-jump{position:relative;width:auto;height:32px;border:none;background:transparent;color:var(--accent,#E0432E);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:1px;padding:0 6px;transition:background .12s,transform .12s;flex-shrink:0;border-radius:16px;white-space:nowrap}
-    .ap-jump:hover{background:#FCEAE6}
-    .ap-jump:active{transform:scale(.92)}
-    .ap-jump .ap-num{position:static;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;font-family:inherit;line-height:1;pointer-events:none}
-    
-    .ap-jump .ap-glyph{position:static;font-size:19px;font-weight:700;line-height:1;pointer-events:none;font-family:"Apple Symbols","Segoe UI Symbol","Symbola","DejaVu Sans","Noto Sans Symbols2",sans-serif}
-
-    
-    .ap-menu{position:absolute;top:calc(100% + 8px);background:#fff;border:1px solid #f0d9d4;border-radius:10px;box-shadow:0 8px 22px rgba(0,0,0,.14);padding:4px;min-width:96px;z-index:10003;max-height:240px;overflow-y:auto}
-    .ap-menu[hidden]{display:none}
-    #apSpeedMenu{left:14px;right:auto}
-    #apVoiceMenu{right:14px;left:auto}
-    .ap-opt{padding:7px 11px;font-size:12.5px;color:#333;border-radius:7px;cursor:pointer;white-space:nowrap;line-height:1.3}
-    .ap-opt:hover{background:#FCEAE6}
-    .ap-opt.active{color:#B5321F;font-weight:700;background:#FCEAE6}
-  </style>
-  </style>
-<script>
-  (function(){
-    
-    var VOICES=[
-      {f:'纳瓦尔宝典_yunxi.mp3',n:'云希'},
-      {f:'纳瓦尔宝典_xiaoxiao.mp3',n:'晓晓'},
-      {f:'纳瓦尔宝典_xiaoyi.mp3',n:'晓伊'},
-      {f:'纳瓦尔宝典_yunxia.mp3',n:'云夏'},
-      {f:'纳瓦尔宝典_yunjian.mp3',n:'云健'},
-    ];
-    var cur=0, rate=1;
-    var audio=new Audio();
-    audio.preload='metadata';
-    audio.src=VOICES[cur].f;
-
-    var player=document.getElementById('apPlayer');
-    var bar=document.getElementById('apBar');
-    var curT=document.getElementById('apCur');
-    var durT=document.getElementById('apDur');
-    var playBtn=document.getElementById('apPlay');
-    var speedBtn=document.getElementById('apSpeed');
-    var voiceBtn=document.getElementById('apVoice');
-    var speedMenu=document.getElementById('apSpeedMenu');
-    var voiceMenu=document.getElementById('apVoiceMenu');
-    var progress=document.getElementById('apProgress');
-
-    function fmt(s){ s=Math.max(0,Math.floor(s||0)); var m=Math.floor(s/60); return (m<10?'0':'')+m+':'+(s%60<10?'0':'')+(s%60); }
-    function tick(){
-      var pct=audio.duration?audio.currentTime/audio.duration*100:0;
-      bar.style.width=pct+'%';
-      curT.textContent=fmt(audio.currentTime);
-      if(audio.duration && !isNaN(audio.duration)) durT.textContent=fmt(audio.duration);
-    }
-    audio.ontimeupdate=tick;
-    audio.onloadedmetadata=tick;
-
-    function syncPlayState(){ playBtn.classList.toggle('is-playing', !audio.paused); }
-    audio.onplay=syncPlayState;
-    audio.onpause=syncPlayState;
-    audio.onended=function(){ syncPlayState(); };
-
-    playBtn.onclick=function(){
-      forceExpand();
-      if(audio.paused){
-        var p=audio.play();
-        if(p && p.then){ p.then(syncPlayState).catch(function(){}); } else syncPlayState();
-      } else {
-        audio.pause();
-        syncPlayState();
+  // ④ 滚动换段导致 active 变化时自动居中（监听 class 变化，与原 IntersectionObserver 解耦）
+  if(window.MutationObserver){
+    var mo=new MutationObserver(function(muts){
+      for(var i=0;i<muts.length;i++){
+        var t=muts[i].target;
+        if(t.classList&&t.classList.contains('active')){center(t);break;}
       }
-    };
-
-    progress.onclick=function(e){
-      var r=this.getBoundingClientRect();
-      var x=(e.clientX-r.left)/r.width;
-      if(audio.duration){ audio.currentTime=Math.max(0,Math.min(audio.duration,x*audio.duration)); }
-    };
-
-    document.getElementById('apBack').onclick=function(){ audio.currentTime=Math.max(0,(audio.currentTime||0)-15); };
-    document.getElementById('apFwd').onclick=function(){
-      var ct=(audio.currentTime||0)+15;
-      audio.currentTime=Math.min(audio.duration||ct,ct);
-    };
-
-    speedBtn.onclick=function(e){ e.stopPropagation(); speedMenu.hidden=!speedMenu.hidden; voiceMenu.hidden=true; };
-    voiceBtn.onclick=function(e){ e.stopPropagation(); voiceMenu.hidden=!voiceMenu.hidden; speedMenu.hidden=true; };
-
-    speedMenu.querySelectorAll('.ap-opt').forEach(function(o){
-      o.onclick=function(){
-        rate=parseFloat(o.getAttribute('data-v'));
-        audio.playbackRate=rate;
-        speedBtn.textContent=rate+'x';
-        speedMenu.hidden=true;
-        speedMenu.querySelectorAll('.ap-opt').forEach(function(x){x.classList.toggle('active',x===o);});
-      };
     });
-
-    
-    voiceMenu.querySelectorAll('.ap-opt').forEach(function(o){
-      o.onclick=function(){
-        var target=o.getAttribute('data-f');
-        if(!target) return;
-        var sameSrc=audio.src.endsWith(target);
-        if(sameSrc){ voiceMenu.hidden=true; return; }
-        var ratio=audio.duration?audio.currentTime/audio.duration:0;
-        var wasPlaying=!audio.paused;
-        cur=VOICES.findIndex(function(v){return v.f===target;});
-        audio.src=target;
-        audio.playbackRate=rate;
-        audio.onloadedmetadata=function(){
-          audio.onloadedmetadata=null;
-          try{ audio.currentTime=ratio*(audio.duration||0); }catch(e){}
-          tick();
-          if(wasPlaying){
-            var p=audio.play();
-            if(p && p.then){ p.then(syncPlayState).catch(function(){}); } else syncPlayState();
-          }
-        };
-        voiceBtn.textContent=o.getAttribute('data-n');
-        voiceMenu.hidden=true;
-        voiceMenu.querySelectorAll('.ap-opt').forEach(function(x){x.classList.toggle('active',x===o);});
-      };
-    });
-
-    speedMenu.querySelector('[data-v="1"]').classList.add('active');
-    voiceMenu.querySelector('[data-n="云希"]').classList.add('active');
-
-    
-    var content=document.getElementById('apContent');
-    var closeTimer=null;
-    function clearCloseTimer(){ if(closeTimer){clearTimeout(closeTimer); closeTimer=null;} }
-    function expandNow(){ clearCloseTimer(); player.classList.add('is-open'); }
-    function collapseNow(){ clearCloseTimer(); speedMenu.hidden=voiceMenu.hidden=true; player.classList.remove('is-open'); }
-    function scheduleCollapse(){
-      clearCloseTimer();
-      closeTimer=setTimeout(function(){
-        
-        if(!player.matches(':hover')) collapseNow();
-      }, 1500);
-    }
-    function forceExpand(){ clearCloseTimer(); player.classList.add('is-open'); }
-
-    
-    player.addEventListener('mouseenter', expandNow);
-    player.addEventListener('mouseleave', scheduleCollapse);
-
-    
-    var scrollRAF=null;
-    window.addEventListener('scroll', function(){
-      if(!player.classList.contains('is-open')) return;
-      if(scrollRAF) return;
-      scrollRAF=requestAnimationFrame(function(){
-        scrollRAF=null;
-        collapseNow();
-      });
-    }, {passive:true});
-    window.addEventListener('wheel', function(){
-      if(player.classList.contains('is-open')) collapseNow();
-    }, {passive:true});
-    window.addEventListener('touchmove', function(){
-      if(player.classList.contains('is-open')) collapseNow();
-    }, {passive:true});
-
-    
-    document.addEventListener('click', function(){
-      speedMenu.hidden=true; voiceMenu.hidden=true;
-      if(!player.matches(':hover')) collapseNow();
-    });
-    player.addEventListener('click', function(e){ e.stopPropagation(); });
-  })();
+    tabs.forEach(function(t){mo.observe(t,{attributes:true,attributeFilter:['class']});});
+  }
+})();
 </script>
 <script src="../assets/free-lock.js?v=7"></script>
 </body>
