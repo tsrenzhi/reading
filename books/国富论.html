@@ -59,11 +59,11 @@
   .rise.show{opacity:1;transform:translateY(0)}
   .no-anim .rise{opacity:1;transform:none}
 
-  /* HERO：一行红色大字问题 */
+  
   .hero{text-align:center;padding:4px 0 0}
   .bigq{margin:0 auto;max-width:920px;font-size:44px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
 
-  /* 顶部 tab */
+  
   .tabs{position:sticky;top:0;z-index:30;margin-top:18px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
     background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
     padding:10px 8px;border-bottom:2px solid var(--line)}
@@ -97,12 +97,12 @@
 
   .divider{margin:60px auto 0;max-width:520px;height:26px}
 
-  /* 模块配色：旧观念用原版深棕+红色，保持清晰 */
+  
   .sec-title.old::after{background:var(--accent)}
   .vs.old .tag{background:var(--line)}
   .vs.old .vt{color:var(--accent)}
 
-  /* 核心内容：概念卡 = 标题 + 标签 + 小图 + 一句话，和主线融为一体 */
+  
   .core-cards{margin-top:30px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
   .ccard{background:var(--card);border:2.5px solid var(--line);border-radius:14px;
     padding:18px 14px 20px;box-shadow:3px 4px 0 rgba(0,0,0,.06);display:flex;flex-direction:column;align-items:center}
@@ -127,7 +127,7 @@
 <body>
 <div class="wrap">
 
-  <!-- HERO：书名 + 作者 + 核心问题 -->
+  
   <header class="hero rise">
     <h1 style="font-size:64px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1">《国富论》</h1>
     <div style="margin-top:10px;font-size:21px;color:var(--muted);letter-spacing:2px">亚当·斯密 · 1776</div>
@@ -135,17 +135,17 @@
     <div class="bigq" style="margin-top:18px">一个国家，究竟靠什么变富？</div>
   </header>
 
-  <!-- 顶部 tab 导航 -->
+  
   <nav class="tabs" id="tabs">
-    <a href="#s1" class="tab">① 书籍定位</a>
-    <a href="#s2" class="tab">② 现实矛盾</a>
-    <a href="#s3" class="tab">③ 旧观念</a>
-    <a href="#s4" class="tab">④ 斯密破局</a>
-    <a href="#s5" class="tab">⑤ 核心内容</a>
-    <a href="#s6" class="tab">⑥ 核心价值</a>
+    <a class="tab" data-target="s1" tabindex="0" role="button">① 书籍定位</a>
+    <a class="tab" data-target="s2" tabindex="0" role="button">② 现实矛盾</a>
+    <a class="tab" data-target="s3" tabindex="0" role="button">③ 旧观念</a>
+    <a class="tab" data-target="s4" tabindex="0" role="button">④ 斯密破局</a>
+    <a class="tab" data-target="s5" tabindex="0" role="button">⑤ 核心内容</a>
+    <a class="tab" data-target="s6" tabindex="0" role="button">⑥ 核心价值</a>
   </nav>
 
-  <!-- 一、书籍定位：这本书研究什么 -->
+  
   <section class="section rise" id="s1">
     <div class="sec-title">一 · 这本书到底研究什么问题</div>
     <div class="prose">
@@ -156,7 +156,7 @@
     </div>
   </section>
 
-  <!-- 二、当时面对的现实矛盾 -->
+  
   <section class="section rise" id="s2">
     <div class="sec-title old">二 · 当时面对的现实矛盾</div>
     <div class="sec-sub">18 世纪欧洲各国追求的"强国之策"，反而让老百姓的日子越过越差。</div>
@@ -166,7 +166,7 @@
     </div>
   </section>
 
-  <!-- 三、两套旧观念 -->
+  
   <section class="section rise" id="s3">
     <div class="sec-title old">三 · 两套旧观念：斯密要破的局</div>
     <div class="sec-sub">在两套主导国策的思路里，斯密找到了同一个盲区。</div>
@@ -189,7 +189,7 @@
     </div>
   </section>
 
-  <!-- 四、斯密的核心主张 -->
+  
   <section class="section rise" id="s4">
     <div class="sec-title">四 · 斯密的核心主张</div>
     <div class="sec-sub">先打破旧观念，再立起四个支点。这四条，就是全书的方法论骨架。</div>
@@ -207,7 +207,7 @@
     </div>
   </section>
 
-  <!-- 五、核心内容 -->
+  
   <section class="section rise" id="s5">
     <div class="sec-title">五 · 核心内容</div>
     <div class="sec-sub">斯密用一条主线串起全书：财富从哪来，市场如何运转。</div>
@@ -350,7 +350,7 @@
 
   </section>
 
-  <!-- 六、核心价值 -->
+  
   <section class="section rise" id="s6">
     <div class="sec-title">六 · 核心价值</div>
     <div class="sec-sub">这本书写于 1776 年，但它解决的是一组关于财富的底层认知问题。</div>
@@ -396,7 +396,7 @@
   window.addEventListener('resize',fitAll); fitAll();
 
   var tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  var sections=tabs.map(function(t){return document.querySelector(t.getAttribute('href'));}).filter(Boolean);
+  var sections=tabs.map(function(t){return document.querySelector('#'+t.dataset.target);}).filter(Boolean);
   var spy=new IntersectionObserver(function(entries){
     var best=null,bestRatio=-1;
     entries.forEach(function(e){
@@ -404,12 +404,22 @@
     });
     if(best){
       var id='#'+best.id;
-      tabs.forEach(function(t){t.classList.toggle('active', t.getAttribute('href')===id);});
+      tabs.forEach(function(t){t.classList.toggle('active', '#'+t.dataset.target===id);});
     }
   },{rootMargin:'-40% 0px -45% 0px',threshold:[0,0.25,0.5,0.75,1]});
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(e){
+      e.preventDefault();
+      var sec=document.querySelector('#'+t.dataset.target);
+      if(sec){sec.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+    t.addEventListener('keydown', function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();t.click();}
+    });
+  });
   sections.forEach(function(s){spy.observe(s);});
 
-  // 内容块默认已可见（CSS .rise opacity:1），不再用 IntersectionObserver 控制显隐，避免滚动时出现空白断层。
+  
 </script>
 <script src="../assets/free-lock.js?v=7"></script>
 </body>

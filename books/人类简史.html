@@ -59,11 +59,11 @@
   .rise.show{opacity:1;transform:translateY(0)}
   .no-anim .rise{opacity:1;transform:none}
 
-  /* HERO：一行红色大字问题 */
+  
   .hero{text-align:center;padding:4px 0 0}
   .bigq{margin:0 auto;max-width:920px;font-size:44px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
 
-  /* 顶部 tab */
+  
   .tabs{position:sticky;top:0;z-index:30;margin-top:18px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
     background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
     padding:10px 8px;border-bottom:2px solid var(--line)}
@@ -97,12 +97,12 @@
 
   .divider{margin:60px auto 0;max-width:520px;height:26px}
 
-  /* 模块配色：旧观念用原版深棕+红色，保持清晰 */
+  
   .sec-title.old::after{background:var(--accent)}
   .vs.old .tag{background:var(--line)}
   .vs.old .vt{color:var(--accent)}
 
-  /* 核心内容：概念卡 = 标题 + 标签 + 小图 + 一句话，和主线融为一体 */
+  
   .core-cards{margin-top:30px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
   .ccard{background:var(--card);border:2.5px solid var(--line);border-radius:14px;
     padding:18px 14px 20px;box-shadow:3px 4px 0 rgba(0,0,0,.06);display:flex;flex-direction:column;align-items:center}
@@ -127,7 +127,7 @@
 <body>
 <div class="wrap">
 
-  <!-- HERO：书名 + 作者 + 全称 -->
+  
   <header class="hero rise">
     <h1 style="font-size:64px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1">《人类简史》</h1>
     <div style="margin-top:10px;font-size:21px;color:var(--muted);letter-spacing:2px">尤瓦尔·赫拉利 · 2011</div>
@@ -135,7 +135,7 @@
     <div class="bigq" style="margin-top:18px">人类征服了世界，可身体里的远古猿还在。</div>
   </header>
 
-  <!-- 顶部 tab 导航 -->
+  
   <nav class="tabs" id="tabs">
     <a class="tab" data-target="s1" tabindex="0" role="button">① 书籍定位</a>
     <a class="tab" data-target="s2" tabindex="0" role="button">② 核心误区</a>
@@ -144,7 +144,7 @@
     <a class="tab" data-target="s5" tabindex="0" role="button">⑤ 核心价值</a>
   </nav>
 
-  <!-- 一、书籍定位：这本书到底在讲什么 -->
+  
   <section class="section rise" id="s1">
     <div class="sec-title">一 · 这本书到底在讲什么</div>
     <div class="sec-sub">赫拉利用"三场革命"串起整个人类史。</div>
@@ -154,7 +154,7 @@
     </div>
   </section>
 
-  <!-- 二、核心误区：人天生就该统治地球 -->
+  
   <section class="section rise" id="s2">
     <div class="sec-title old">二 · 一个核心误区：人天生就该统治地球</div>
     <div class="sec-sub">我们从小被灌输"人类高级、进步=幸福"，赫拉利把这层想当然拆开看。</div>
@@ -177,7 +177,7 @@
     </div>
   </section>
 
-  <!-- 三、三场革命 -->
+  
   <section class="section rise" id="s3">
     <div class="sec-title">三 · 三场革命</div>
     <div class="sec-sub">赫拉利给出的主线：认知革命、农业革命、科学革命。</div>
@@ -243,7 +243,7 @@
     </div>
   </section>
 
-  <!-- 四、核心内容 -->
+  
   <section class="section rise" id="s4">
     <div class="sec-title">四 · 核心内容</div>
     <div class="sec-sub">三场革命背后，是这几个扭转常识的观点。</div>
@@ -363,7 +363,7 @@
 
   </section>
 
-  <!-- 五、核心价值 -->
+  
   <section class="section rise" id="s5">
     <div class="sec-title">五 · 核心价值</div>
     <div class="points">
@@ -410,7 +410,7 @@
     }
   },{rootMargin:'-40% 0px -45% 0px',threshold:[0,0.25,0.5,0.75,1]});
   
-  // tab 点击/键盘平滑滚动（去 href 防暴露文件路径）
+  
   tabs.forEach(function(t){
     t.addEventListener('click', function(e){
       e.preventDefault();
@@ -423,257 +423,10 @@
   });
   sections.forEach(function(s){spy.observe(s);});
 
-  // 内容块默认已可见（CSS .rise opacity:1），不再用 IntersectionObserver 控制显隐，避免滚动时出现空白断层。
+  
 </script>
 
   
-  <div id="apPlayer" class="ap-player">
-    <!-- 折叠内容：默认 width:0 折叠在 ▶ 左侧，hover 时撑开 -->
-    <div class="ap-content" id="apContent">
-      <div class="ap-top">
-        <span class="ap-time-cur" id="apCur">00:00</span>
-        <div class="ap-progress" id="apProgress"><div class="ap-bar" id="apBar"></div></div>
-        <span class="ap-time-dur" id="apDur">--:--</span>
-      </div>
-      <div class="ap-bottom">
-        <button class="ap-pill" id="apSpeed" type="button">1.0x</button>
-        <button class="ap-jump" id="apBack" type="button" title="后退15秒" aria-label="后退15秒">
-          <span class="ap-num">15</span><span class="ap-glyph">↺</span>
-        </button>
-        <button class="ap-jump" id="apFwd" type="button" title="前进15秒" aria-label="前进15秒">
-          <span class="ap-glyph">↻</span><span class="ap-num">15</span>
-        </button>
-        <button class="ap-pill" id="apVoice" type="button">云希</button>
-      </div>
-      <div class="ap-menu" id="apSpeedMenu" hidden>
-        <div class="ap-opt" data-v="0.75">0.75x</div>
-        <div class="ap-opt" data-v="1">1.0x</div>
-        <div class="ap-opt" data-v="1.25">1.25x</div>
-        <div class="ap-opt" data-v="1.5">1.5x</div>
-        <div class="ap-opt" data-v="2">2.0x</div>
-      </div>
-      <div class="ap-menu" id="apVoiceMenu" hidden>
-        <div class="ap-opt" data-f="人类简史_yunxi.mp3" data-n="云希">云希 · 男</div>
-        <div class="ap-opt" data-f="人类简史_xiaoxiao.mp3" data-n="晓晓">晓晓 · 女</div>
-        <div class="ap-opt" data-f="人类简史_xiaoyi.mp3" data-n="晓伊">晓伊 · 新闻</div>
-        <div class="ap-opt" data-f="人类简史_yunxia.mp3" data-n="云夏">云夏 · 温柔</div>
-        <div class="ap-opt" data-f="人类简史_yunjian.mp3" data-n="云健">云健 · 男</div>
-      </div>
-    </div>
-    <!-- ▶ / ⏸ —— 独立固定，永远在面板右侧垂直居中、位置不动 -->
-    <button class="ap-play" id="apPlay" type="button" aria-label="播放/暂停">
-      <span class="ap-icon-play" aria-hidden="true"></span>
-      <span class="ap-icon-pause" aria-hidden="true"></span>
-    </button>
-  </div>
-  <style>
-    
-    
-    
-    .ap-player{position:fixed;top:80px;right:32px;display:flex;align-items:center;justify-content:flex-start;height:92px;width:48px;background:transparent;border:1.5px solid transparent;border-radius:14px;box-shadow:none;padding:0;overflow:visible;z-index:9999;font-family:var(--font-hand),sans-serif;-webkit-font-smoothing:antialiased;transition:width .36s cubic-bezier(.22,1,.36,1),background .3s,border-color .3s,box-shadow .3s,padding-left .36s cubic-bezier(.22,1,.36,1),padding-right .36s cubic-bezier(.22,1,.36,1),height .36s cubic-bezier(.22,1,.36,1)}
-
-    
-    .ap-player.is-open{width:256px;height:92px;background:#fff;border:1.5px solid var(--accent,#E0432E);box-shadow:0 8px 22px rgba(224,67,46,.20);padding-left:14px;padding-right:14px;justify-content:space-between}
-
-    
-    .ap-content{display:flex;flex-direction:column;justify-content:center;gap:5px;width:0;max-width:0;height:92px;overflow:hidden;opacity:0;padding:0;flex:0 0 auto;box-sizing:border-box;transition:width .36s cubic-bezier(.22,1,.36,1),max-width .36s cubic-bezier(.22,1,.36,1),opacity .25s}
-    .ap-player.is-open .ap-content{width:auto;max-width:none;opacity:1}
-
-    /* ▶ 圆按钮：胶囊最右端垂直居中、永远不动。space-between 已推右，不需 margin-left:auto */
-    .ap-play{flex-shrink:0;width:48px;height:48px;border-radius:50%;border:none;background:var(--accent,#E0432E);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(224,67,46,.4);padding:0;transition:transform .12s}
-    .ap-play:active{transform:scale(.94)}
-    .ap-play .ap-icon-play{display:block;width:0;height:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #fff;margin-left:3px}
-    .ap-play .ap-icon-pause{display:none;width:14px;height:15px;position:relative}
-    .ap-play .ap-icon-pause::before,.ap-play .ap-icon-pause::after{content:"";position:absolute;top:0;width:5px;height:15px;background:#fff;border-radius:1px}
-    .ap-play .ap-icon-pause::before{left:0}
-    .ap-play .ap-icon-pause::after{right:0}
-    .ap-play.is-playing .ap-icon-play{display:none}
-    .ap-play.is-playing .ap-icon-pause{display:block}
-
-    /* 第1行：当前时间(左，贴左) | 进度条(紧跟 00:00 gap 5) | 总时长(右，margin-left:auto 推右紧贴 ▶ 圆) —— 让 25:05 跟 ▶ 圆距离 = panel padding-right 12px */
-    
-    .ap-top{display:flex;align-items:center;gap:5px}
-    .ap-time-cur,.ap-time-dur{font-size:11px;color:#B5321F;font-weight:600;font-variant-numeric:tabular-nums;opacity:.78;white-space:nowrap;line-height:1;flex-shrink:0}
-    .ap-time-cur{text-align:left}
-    .ap-time-dur{text-align:right}
-    
-    .ap-progress{flex:1 1 auto;min-width:60px;height:4px;background:#f3e1de;border-radius:2px;cursor:pointer}
-    .ap-bar{height:100%;width:0;background:var(--accent,#E0432E);border-radius:2px;transition:width .12s linear}
-
-    /* 控件行（第2行）：1.0x / ‹15 / 15› / 云希，间距 10px 紧凑 */
-    .ap-bottom{display:flex;align-items:center;gap:3px}
-    .ap-pill{font-size:12.5px;color:#B5321F;background:#FCEAE6;border:none;border-radius:14px;padding:3px 7px;cursor:pointer;font-family:inherit;white-space:nowrap;line-height:1.2;transition:transform .12s,background .12s}
-    .ap-pill:hover{background:#fbd9d3}
-    .ap-pill:active{transform:scale(.96)}
-    .ap-jump{position:relative;width:auto;height:32px;border:none;background:transparent;color:var(--accent,#E0432E);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:1px;padding:0 6px;transition:background .12s,transform .12s;flex-shrink:0;border-radius:16px;white-space:nowrap}
-    .ap-jump:hover{background:#FCEAE6}
-    .ap-jump:active{transform:scale(.92)}
-    .ap-jump .ap-num{position:static;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;font-family:inherit;line-height:1;pointer-events:none}
-    
-    .ap-jump .ap-glyph{position:static;font-size:19px;font-weight:700;line-height:1;pointer-events:none;font-family:"Apple Symbols","Segoe UI Symbol","Symbola","DejaVu Sans","Noto Sans Symbols2",sans-serif}
-
-    /* 菜单：倍速左下、音色右下（相对面板定位） */
-    .ap-menu{position:absolute;top:calc(100% + 8px);background:#fff;border:1px solid #f0d9d4;border-radius:10px;box-shadow:0 8px 22px rgba(0,0,0,.14);padding:4px;min-width:96px;z-index:10003;max-height:240px;overflow-y:auto}
-    .ap-menu[hidden]{display:none}
-    #apSpeedMenu{left:14px;right:auto}
-    #apVoiceMenu{right:14px;left:auto}
-    .ap-opt{padding:7px 11px;font-size:12.5px;color:#333;border-radius:7px;cursor:pointer;white-space:nowrap;line-height:1.3}
-    .ap-opt:hover{background:#FCEAE6}
-    .ap-opt.active{color:#B5321F;font-weight:700;background:#FCEAE6}
-  </style>
-  </style>
-<script>
-  (function(){
-    
-    var VOICES=[
-      {f:'人类简史_yunxi.mp3',n:'云希'},
-      {f:'人类简史_xiaoxiao.mp3',n:'晓晓'},
-      {f:'人类简史_xiaoyi.mp3',n:'晓伊'},
-      {f:'人类简史_yunxia.mp3',n:'云夏'},
-      {f:'人类简史_yunjian.mp3',n:'云健'},
-    ];
-    var cur=0, rate=1;
-    var audio=new Audio();
-    audio.preload='metadata';
-    audio.src=VOICES[cur].f;
-
-    var player=document.getElementById('apPlayer');
-    var bar=document.getElementById('apBar');
-    var curT=document.getElementById('apCur');
-    var durT=document.getElementById('apDur');
-    var playBtn=document.getElementById('apPlay');
-    var speedBtn=document.getElementById('apSpeed');
-    var voiceBtn=document.getElementById('apVoice');
-    var speedMenu=document.getElementById('apSpeedMenu');
-    var voiceMenu=document.getElementById('apVoiceMenu');
-    var progress=document.getElementById('apProgress');
-
-    function fmt(s){ s=Math.max(0,Math.floor(s||0)); var m=Math.floor(s/60); return (m<10?'0':'')+m+':'+(s%60<10?'0':'')+(s%60); }
-    function tick(){
-      var pct=audio.duration?audio.currentTime/audio.duration*100:0;
-      bar.style.width=pct+'%';
-      curT.textContent=fmt(audio.currentTime);
-      if(audio.duration && !isNaN(audio.duration)) durT.textContent=fmt(audio.duration);
-    }
-    audio.ontimeupdate=tick;
-    audio.onloadedmetadata=tick;
-
-    function syncPlayState(){ playBtn.classList.toggle('is-playing', !audio.paused); }
-    audio.onplay=syncPlayState;
-    audio.onpause=syncPlayState;
-    audio.onended=function(){ syncPlayState(); };
-
-    playBtn.onclick=function(){
-      forceExpand();
-      if(audio.paused){
-        var p=audio.play();
-        if(p && p.then){ p.then(syncPlayState).catch(function(){}); } else syncPlayState();
-      } else {
-        audio.pause();
-        syncPlayState();
-      }
-    };
-
-    progress.onclick=function(e){
-      var r=this.getBoundingClientRect();
-      var x=(e.clientX-r.left)/r.width;
-      if(audio.duration){ audio.currentTime=Math.max(0,Math.min(audio.duration,x*audio.duration)); }
-    };
-
-    document.getElementById('apBack').onclick=function(){ audio.currentTime=Math.max(0,(audio.currentTime||0)-15); };
-    document.getElementById('apFwd').onclick=function(){
-      var ct=(audio.currentTime||0)+15;
-      audio.currentTime=Math.min(audio.duration||ct,ct);
-    };
-
-    speedBtn.onclick=function(e){ e.stopPropagation(); speedMenu.hidden=!speedMenu.hidden; voiceMenu.hidden=true; };
-    voiceBtn.onclick=function(e){ e.stopPropagation(); voiceMenu.hidden=!voiceMenu.hidden; speedMenu.hidden=true; };
-
-    speedMenu.querySelectorAll('.ap-opt').forEach(function(o){
-      o.onclick=function(){
-        rate=parseFloat(o.getAttribute('data-v'));
-        audio.playbackRate=rate;
-        speedBtn.textContent=rate+'x';
-        speedMenu.hidden=true;
-        speedMenu.querySelectorAll('.ap-opt').forEach(function(x){x.classList.toggle('active',x===o);});
-      };
-    });
-
-    /* 切音色无缝续播：wasPlaying 锁定切换前状态，等 onloadedmetadata 设完 currentTime 再 play() */
-    voiceMenu.querySelectorAll('.ap-opt').forEach(function(o){
-      o.onclick=function(){
-        var target=o.getAttribute('data-f');
-        if(!target) return;
-        var sameSrc=audio.src.endsWith(target);
-        if(sameSrc){ voiceMenu.hidden=true; return; }
-        var ratio=audio.duration?audio.currentTime/audio.duration:0;
-        var wasPlaying=!audio.paused;
-        cur=VOICES.findIndex(function(v){return v.f===target;});
-        audio.src=target;
-        audio.playbackRate=rate;
-        audio.onloadedmetadata=function(){
-          audio.onloadedmetadata=null;
-          try{ audio.currentTime=ratio*(audio.duration||0); }catch(e){}
-          tick();
-          if(wasPlaying){
-            var p=audio.play();
-            if(p && p.then){ p.then(syncPlayState).catch(function(){}); } else syncPlayState();
-          }
-        };
-        voiceBtn.textContent=o.getAttribute('data-n');
-        voiceMenu.hidden=true;
-        voiceMenu.querySelectorAll('.ap-opt').forEach(function(x){x.classList.toggle('active',x===o);});
-      };
-    });
-
-    speedMenu.querySelector('[data-v="1"]').classList.add('active');
-    voiceMenu.querySelector('[data-n="云希"]').classList.add('active');
-
-    
-    var content=document.getElementById('apContent');
-    var closeTimer=null;
-    function clearCloseTimer(){ if(closeTimer){clearTimeout(closeTimer); closeTimer=null;} }
-    function expandNow(){ clearCloseTimer(); player.classList.add('is-open'); }
-    function collapseNow(){ clearCloseTimer(); speedMenu.hidden=voiceMenu.hidden=true; player.classList.remove('is-open'); }
-    function scheduleCollapse(){
-      clearCloseTimer();
-      closeTimer=setTimeout(function(){
-        /* 兜底：若 1500ms 后鼠标已不在 toggle 也未在 panel 上，才收起（覆盖 12px 间隙） */
-        if(!player.matches(':hover')) collapseNow();
-      }, 1500);
-    }
-    function forceExpand(){ clearCloseTimer(); player.classList.add('is-open'); }
-
-    
-    player.addEventListener('mouseenter', expandNow);
-    player.addEventListener('mouseleave', scheduleCollapse);
-
-    /* 滚动/wheel/touchmove：立即收起（让出视野；不影响 audio 继续播放） */
-    var scrollRAF=null;
-    window.addEventListener('scroll', function(){
-      if(!player.classList.contains('is-open')) return;
-      if(scrollRAF) return;
-      scrollRAF=requestAnimationFrame(function(){
-        scrollRAF=null;
-        collapseNow();
-      });
-    }, {passive:true});
-    window.addEventListener('wheel', function(){
-      if(player.classList.contains('is-open')) collapseNow();
-    }, {passive:true});
-    window.addEventListener('touchmove', function(){
-      if(player.classList.contains('is-open')) collapseNow();
-    }, {passive:true});
-
-    /* 点击页面空白：收起菜单 + 收起面板（toggle/panel 内部 click 已被拦截） */
-    document.addEventListener('click', function(){
-      speedMenu.hidden=true; voiceMenu.hidden=true;
-      if(!player.matches(':hover')) collapseNow();
-    });
-    player.addEventListener('click', function(e){ e.stopPropagation(); });
-  })();
-</script>
-</script>
-<script src="../assets/free-lock.js?v=7"></script>
+  <script src="../assets/free-lock.js?v=7"></script>
 </body>
 </html>

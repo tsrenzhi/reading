@@ -59,11 +59,11 @@
   .rise.show{opacity:1;transform:translateY(0)}
   .no-anim .rise{opacity:1;transform:none}
 
-  /* HERO：一行红色大字问题 */
+  
   .hero{text-align:center;padding:4px 0 0}
   .bigq{margin:0 auto;max-width:920px;font-size:44px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
 
-  /* 顶部 tab */
+  
   .tabs{position:sticky;top:0;z-index:30;margin-top:18px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
     background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
     padding:10px 8px;border-bottom:2px solid var(--line)}
@@ -97,12 +97,12 @@
 
   .divider{margin:60px auto 0;max-width:520px;height:26px}
 
-  /* 模块配色：旧观念用原版深棕+红色，保持清晰 */
+  
   .sec-title.old::after{background:var(--accent)}
   .vs.old .tag{background:var(--line)}
   .vs.old .vt{color:var(--accent)}
 
-  /* 核心内容：4 张 ccard（保留为视觉锚点，不放内容主体） */
+  
   .core-cards{margin-top:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   .ccard{background:var(--card);border:2.5px solid var(--line);border-radius:14px;
     padding:18px 14px 20px;box-shadow:3px 4px 0 rgba(0,0,0,.06);display:flex;flex-direction:column;align-items:center}
@@ -112,7 +112,7 @@
   .ccard .cfig svg{width:100%;height:auto;display:block}
   .ccard .cdesc{margin-top:10px;font-size:18px;color:var(--muted);text-align:center;line-height:1.45;max-width:200px}
 
-  /* 收入三种类型展开（三栏）—— 严格按纳瓦尔宝典白名单复制 */
+  
   .income-grid{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   .income-col{background:var(--card);border:2.5px solid var(--line);border-radius:14px;padding:18px 16px}
   .income-col .ic-title{font-size:24px;font-weight:400;color:var(--accent);line-height:1.3}
@@ -122,7 +122,7 @@
   .income-col .ic-purpose{margin-top:10px;font-size:19px;color:var(--ink);line-height:1.5;padding-top:8px;border-top:1px dashed var(--line)}
   .income-col .ic-purpose b{color:var(--accent)}
 
-  /* 概念展开模块：结构化、层级化（学自纳瓦尔宝典） */
+  
   .concept-list{margin-top:28px;display:flex;flex-direction:column;gap:22px}
   .concept{background:var(--card);border:2.5px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:3px 4px 0 rgba(0,0,0,.06)}
   .concept .chead{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
@@ -138,7 +138,7 @@
   .concept .cline .lab{font-size:19px;color:var(--accent);font-weight:400}
   .concept .cline p{font-size:22px;color:var(--ink);line-height:1.5;margin-top:6px}
 
-  /* 例子/故事框 */
+  
   .example{margin-top:16px;padding:14px 18px;border:2px dashed var(--line);border-radius:12px;background:rgba(251,246,240,.7)}
   .example .ex-title{font-size:19px;color:var(--muted);margin-bottom:6px}
   .example p{font-size:22px;color:var(--ink);line-height:1.5}
@@ -158,7 +158,7 @@
 <body>
 <div class="wrap">
 
-  <!-- HERO：书名 + 作者 + 核心问题 -->
+  
   <header class="hero rise">
     <h1 style="font-size:64px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1">《富爸爸穷爸爸》</h1>
     <div style="margin-top:10px;font-size:21px;color:var(--muted);letter-spacing:2px">罗伯特·清崎 · 1997</div>
@@ -166,7 +166,7 @@
     <div class="bigq" style="margin-top:18px">穷人思维和富人思维的差异</div>
   </header>
 
-  <!-- 顶部 tab 导航 -->
+  
   <nav class="tabs" id="tabs">
     <a class="tab" data-target="s1" tabindex="0" role="button">① 书籍定位</a>
     <a class="tab" data-target="s2" tabindex="0" role="button">② 老鼠赛跑陷阱</a>
@@ -176,7 +176,7 @@
     <a class="tab" data-target="s6" tabindex="0" role="button">⑥ 核心价值</a>
   </nav>
 
-  <!-- 一、书籍定位：这本书研究什么 -->
+  
   <section class="section rise" id="s1">
     <div class="sec-title">一 · 这本书到底在讲什么</div>
     <div class="prose">
@@ -186,7 +186,7 @@
     </div>
   </section>
 
-  <!-- 二、当时面对的现实矛盾 -->
+  
   <section class="section rise" id="s2">
     <div class="sec-title old">二 · 大多数人掉进的"老鼠赛跑"陷阱</div>
     <div class="sec-sub">普通人就像笼子里的老鼠：一直在拼命跑，却一直停在原地。</div>
@@ -196,7 +196,7 @@
     </div>
   </section>
 
-  <!-- 三、两种金钱观 -->
+  
   <section class="section rise" id="s3">
     <div class="sec-title old">三 · 两种金钱观：穷爸爸 vs 富爸爸</div>
     <div class="sec-sub">同样一件事，两位爸爸的看法完全相反。差别就藏在每一句里。</div>
@@ -219,19 +219,19 @@
     </div>
   </section>
 
-  <!-- 四、核心主张 -->
+  
   <section class="section rise" id="s4">
     <div class="sec-title">四 · 富爸爸的核心主张</div>
     <div class="sec-sub">收入只有三种；财富来自第二种和第三种。</div>
 
-    <!-- 收入三种类型大图：最该显眼的图 -->
+    
     <div style="margin-top:22px;background:var(--card);border:2.5px solid var(--accent);border-radius:14px;padding:22px 24px;box-shadow:3px 4px 0 rgba(0,0,0,.06)">
       <div style="font-size:25px;font-weight:400;color:var(--ink);line-height:1.35">所有收入只有三种</div>
       <svg viewBox="0 0 980 200" xmlns="http://www.w3.org/2000/svg" style="margin-top:18px;width:100%;height:auto">
         <defs>
           <marker id="f1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker>
         </defs>
-        <!-- 三个等大盒子，加宽间距 -->
+        
         <rect x="20" y="36" width="290" height="100" rx="10" fill="rgba(106,96,88,.08)" stroke="#6A6058" stroke-width="2.5"/>
         <text x="165" y="72" font-size="28" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">劳动性收入</text>
         <text x="165" y="106" font-size="17" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">工资 · 奖金 · 时薪</text>
@@ -244,11 +244,11 @@
         <text x="815" y="72" font-size="28" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">被动收入</text>
         <text x="815" y="106" font-size="17" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">租金 · 版税 · 利息</text>
 
-        <!-- 之间的箭头 -->
+        
         <path d="M310,86 L345,86" fill="none" stroke="#E0432E" stroke-width="3" marker-end="url(#f1)"/>
         <path d="M635,86 L670,86" fill="none" stroke="#E0432E" stroke-width="3" marker-end="url(#f1)"/>
 
-        <!-- 三个盒子下方核心句：足够大，让读者一眼抓住 -->
+        
         <text x="490" y="174" font-size="24" fill="#201914" text-anchor="middle" font-family="LXGW WenKai" font-weight="400">成为富人的关键，就是具备把<tspan fill="#E0432E" font-weight="700">劳动性收入</tspan>变成<tspan fill="#E0432E" font-weight="700">投资组合收入</tspan>和<tspan fill="#E0432E" font-weight="700">被动收入</tspan>的能力</text>
       </svg>
     </div>
@@ -267,11 +267,11 @@
 
   </section>
 
-  <!-- 五、核心内容 -->
+  
   <section class="section rise" id="s5">
     <div class="sec-title">五 · 核心内容</div>
 
-    <!-- ▇▇▇▇▇ 第一层：先框架（4 张 ccard 速览卡，让人一眼看到 4 个核心点） ▇▇▇▇▇ -->
+    
     <div class="core-cards">
       <div class="ccard">
         <div class="ctitle">思维差异</div>
@@ -295,22 +295,22 @@
         <div class="ctitle">先支付自己</div>
         <div class="ctag">优先投资自己</div>
         <div class="cfig"><svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
-          <!-- 左：工资 -->
+          
           <rect x="10" y="30" width="34" height="30" rx="5" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="1.6"/>
           <text x="27" y="49" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">工资</text>
-          <!-- 上箭头：先划走 10%-30% 投到资产 -->
+          
           <path d="M48,38 Q70,18 105,18" fill="none" stroke="#E0432E" stroke-width="2.2" marker-end="url(#s5flow6)"/>
           <defs><marker id="s5flow6" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
           <text x="80" y="12" font-size="11" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">10%-30%</text>
           <text x="80" y="26" font-size="10" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">先划走</text>
-          <!-- 右上：红框·资产 -->
+          
           <rect x="105" y="10" width="50" height="22" rx="5" fill="rgba(224,67,46,.14)" stroke="#E0432E" stroke-width="1.8"/>
           <text x="130" y="25" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">资产</text>
-          <!-- 下箭头：剩下的 70%-90% 用于生活 -->
+          
           <path d="M48,52 Q72,72 105,72" fill="none" stroke="#6A6058" stroke-width="2" marker-end="url(#s5flow7)"/>
           <defs><marker id="s5flow7" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6A6058"/></marker></defs>
           <text x="80" y="84" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">剩下的</text>
-          <!-- 右下：灰框·生活 -->
+          
           <rect x="105" y="60" width="50" height="22" rx="5" fill="rgba(106,96,88,.10)" stroke="#6A6058" stroke-width="1.6"/>
           <text x="130" y="75" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">生活</text>
         </svg></div>
@@ -318,10 +318,10 @@
       </div>
     </div>
 
-    <!-- ▇▇▇▇▇ 第二层：后展开（4 张 concept 大卡 + 编号 1/2/3/4，每个概念配结构件） ▇▇▇▇▇ -->
+    
     <div class="concept-list" style="margin-top:36px">
 
-      <!-- 概念 1：思维差异 -->
+      
       <div class="concept">
         <div class="chead">
           <div class="cnum">1</div>
@@ -348,7 +348,7 @@
         </div>
       </div>
 
-      <!-- 概念 2：资产 vs 负债 -->
+      
       <div class="concept">
         <div class="chead">
           <div class="cnum">2</div>
@@ -379,7 +379,7 @@
         </div>
       </div>
 
-      <!-- 概念 3：三种人三种现金流 -->
+      
       <div class="concept">
         <div class="chead">
           <div class="cnum">3</div>
@@ -394,7 +394,7 @@
               <marker id="g1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker>
             </defs>
 
-            <!-- 穷人 -->
+            
             <text x="150" y="34" font-size="24" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">穷人</text>
             <rect x="50" y="58" width="200" height="92" rx="8" fill="rgba(106,96,88,.08)" stroke="#6A6058" stroke-width="2"/>
             <text x="150" y="84" font-size="15" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">收入：工资</text>
@@ -409,7 +409,7 @@
             <path d="M150,150 L150,184" fill="none" stroke="#E0432E" stroke-width="3" marker-end="url(#g1)"/>
             <text x="160" y="172" font-size="12" fill="#E0432E" font-family="LXGW WenKai">全花光</text>
 
-            <!-- 中产 -->
+            
             <text x="450" y="34" font-size="24" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">中产阶级</text>
             <rect x="350" y="58" width="200" height="92" rx="8" fill="rgba(106,96,88,.08)" stroke="#6A6058" stroke-width="2"/>
             <text x="450" y="82" font-size="15" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">收入：工资</text>
@@ -422,11 +422,11 @@
             <text x="500" y="216" font-size="14" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">负债</text>
             <text x="500" y="234" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">房贷、车贷、</text>
             <text x="500" y="252" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">信用卡</text>
-            <!-- 中产：箭头从收入框右下斜落负债栏中心（被负债吃掉）——大空间用 L 直角不拐弯 -->
+            
             <path d="M462,150 L500,184" fill="none" stroke="#E0432E" stroke-width="3" marker-end="url(#g1)"/>
             <text x="510" y="172" font-size="12" fill="#E0432E" font-family="LXGW WenKai">被负债吃掉</text>
 
-            <!-- 富人 -->
+            
             <text x="750" y="34" font-size="24" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">富人</text>
             <rect x="650" y="58" width="200" height="92" rx="8" fill="rgba(224,67,46,.08)" stroke="#E0432E" stroke-width="2"/>
             <text x="750" y="82" font-size="15" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">收入：租金、股息、</text>
@@ -440,7 +440,7 @@
             <text x="700" y="266" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">知识产权</text>
             <text x="800" y="216" font-size="14" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">负债</text>
             <text x="800" y="236" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">房贷、信用卡</text>
-            <!-- 富人：从资产栏（x=700）斜上指向收入框正中（x=750）——大空间 Q 弧线，钱回流进口袋 -->
+            
             <path d="M700,184 Q725,168 750,150" fill="none" stroke="#E0432E" stroke-width="3" marker-end="url(#g1)"/>
             <text x="778" y="172" font-size="12" fill="#E0432E" font-family="LXGW WenKai">钱回流</text>
           </svg>
@@ -448,7 +448,7 @@
         </div>
       </div>
 
-      <!-- 概念 4：先支付自己 -->
+      
       <div class="concept">
         <div class="chead">
           <div class="cnum">4</div>
@@ -470,7 +470,7 @@
     </div>
   </section>
 
-  <!-- 六、核心价值 -->
+  
   <section class="section rise" id="s6">
     <div class="sec-title">六 · 核心价值</div>
     <div class="sec-sub">写于 1997 年，但它点破的金钱盲区，今天一点没过时。</div>
@@ -499,7 +499,7 @@
     }
   },{rootMargin:'-40% 0px -45% 0px',threshold:[0,0.25,0.5,0.75,1]});
   
-  // tab 点击/键盘平滑滚动（去 href 防暴露文件路径）
+  
   tabs.forEach(function(t){
     t.addEventListener('click', function(e){
       e.preventDefault();
@@ -512,257 +512,10 @@
   });
   sections.forEach(function(s){spy.observe(s);});
 
-  // 内容块默认已可见（CSS .rise opacity:1），不再用 IntersectionObserver 控制显隐，避免滚动时出现空白断层。
+  
 </script>
 
   
-  <div id="apPlayer" class="ap-player">
-    <!-- 折叠内容：默认 width:0 折叠在 ▶ 左侧，hover 时撑开 -->
-    <div class="ap-content" id="apContent">
-      <div class="ap-top">
-        <span class="ap-time-cur" id="apCur">00:00</span>
-        <div class="ap-progress" id="apProgress"><div class="ap-bar" id="apBar"></div></div>
-        <span class="ap-time-dur" id="apDur">--:--</span>
-      </div>
-      <div class="ap-bottom">
-        <button class="ap-pill" id="apSpeed" type="button">1.0x</button>
-        <button class="ap-jump" id="apBack" type="button" title="后退15秒" aria-label="后退15秒">
-          <span class="ap-num">15</span><span class="ap-glyph">↺</span>
-        </button>
-        <button class="ap-jump" id="apFwd" type="button" title="前进15秒" aria-label="前进15秒">
-          <span class="ap-glyph">↻</span><span class="ap-num">15</span>
-        </button>
-        <button class="ap-pill" id="apVoice" type="button">云希</button>
-      </div>
-      <div class="ap-menu" id="apSpeedMenu" hidden>
-        <div class="ap-opt" data-v="0.75">0.75x</div>
-        <div class="ap-opt" data-v="1">1.0x</div>
-        <div class="ap-opt" data-v="1.25">1.25x</div>
-        <div class="ap-opt" data-v="1.5">1.5x</div>
-        <div class="ap-opt" data-v="2">2.0x</div>
-      </div>
-      <div class="ap-menu" id="apVoiceMenu" hidden>
-        <div class="ap-opt" data-f="《富爸爸穷爸爸》_yunxi.mp3" data-n="云希">云希 · 男</div>
-        <div class="ap-opt" data-f="《富爸爸穷爸爸》_xiaoxiao.mp3" data-n="晓晓">晓晓 · 女</div>
-        <div class="ap-opt" data-f="《富爸爸穷爸爸》_xiaoyi.mp3" data-n="晓伊">晓伊 · 新闻</div>
-        <div class="ap-opt" data-f="《富爸爸穷爸爸》_yunxia.mp3" data-n="云夏">云夏 · 温柔</div>
-        <div class="ap-opt" data-f="《富爸爸穷爸爸》_yunjian.mp3" data-n="云健">云健 · 男</div>
-      </div>
-    </div>
-    <!-- ▶ / ⏸ —— 独立固定，永远在面板右侧垂直居中、位置不动 -->
-    <button class="ap-play" id="apPlay" type="button" aria-label="播放/暂停">
-      <span class="ap-icon-play" aria-hidden="true"></span>
-      <span class="ap-icon-pause" aria-hidden="true"></span>
-    </button>
-  </div>
-  <style>
-    
-    
-    
-    .ap-player{position:fixed;top:80px;right:32px;display:flex;align-items:center;justify-content:flex-start;height:92px;width:48px;background:transparent;border:1.5px solid transparent;border-radius:14px;box-shadow:none;padding:0;overflow:visible;z-index:9999;font-family:var(--font-hand),sans-serif;-webkit-font-smoothing:antialiased;transition:width .36s cubic-bezier(.22,1,.36,1),background .3s,border-color .3s,box-shadow .3s,padding-left .36s cubic-bezier(.22,1,.36,1),padding-right .36s cubic-bezier(.22,1,.36,1),height .36s cubic-bezier(.22,1,.36,1)}
-
-    
-    .ap-player.is-open{width:256px;height:92px;background:#fff;border:1.5px solid var(--accent,#E0432E);box-shadow:0 8px 22px rgba(224,67,46,.20);padding-left:14px;padding-right:14px;justify-content:space-between}
-
-    
-    .ap-content{display:flex;flex-direction:column;justify-content:center;gap:5px;width:0;max-width:0;height:92px;overflow:hidden;opacity:0;padding:0;flex:0 0 auto;box-sizing:border-box;transition:width .36s cubic-bezier(.22,1,.36,1),max-width .36s cubic-bezier(.22,1,.36,1),opacity .25s}
-    .ap-player.is-open .ap-content{width:auto;max-width:none;opacity:1}
-
-    /* ▶ 圆按钮：胶囊最右端垂直居中、永远不动。space-between 已推右，不需 margin-left:auto */
-    .ap-play{flex-shrink:0;width:48px;height:48px;border-radius:50%;border:none;background:var(--accent,#E0432E);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(224,67,46,.4);padding:0;transition:transform .12s}
-    .ap-play:active{transform:scale(.94)}
-    .ap-play .ap-icon-play{display:block;width:0;height:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #fff;margin-left:3px}
-    .ap-play .ap-icon-pause{display:none;width:14px;height:15px;position:relative}
-    .ap-play .ap-icon-pause::before,.ap-play .ap-icon-pause::after{content:"";position:absolute;top:0;width:5px;height:15px;background:#fff;border-radius:1px}
-    .ap-play .ap-icon-pause::before{left:0}
-    .ap-play .ap-icon-pause::after{right:0}
-    .ap-play.is-playing .ap-icon-play{display:none}
-    .ap-play.is-playing .ap-icon-pause{display:block}
-
-    /* 第1行：当前时间(左，贴左) | 进度条(紧跟 00:00 gap 5) | 总时长(右，margin-left:auto 推右紧贴 ▶ 圆) —— 让 25:05 跟 ▶ 圆距离 = panel padding-right 12px */
-    
-    .ap-top{display:flex;align-items:center;gap:5px}
-    .ap-time-cur,.ap-time-dur{font-size:11px;color:#B5321F;font-weight:600;font-variant-numeric:tabular-nums;opacity:.78;white-space:nowrap;line-height:1;flex-shrink:0}
-    .ap-time-cur{text-align:left}
-    .ap-time-dur{text-align:right}
-    
-    .ap-progress{flex:1 1 auto;min-width:60px;height:4px;background:#f3e1de;border-radius:2px;cursor:pointer}
-    .ap-bar{height:100%;width:0;background:var(--accent,#E0432E);border-radius:2px;transition:width .12s linear}
-
-    /* 控件行（第2行）：1.0x / ‹15 / 15› / 云希，间距 10px 紧凑 */
-    .ap-bottom{display:flex;align-items:center;gap:3px}
-    .ap-pill{font-size:12.5px;color:#B5321F;background:#FCEAE6;border:none;border-radius:14px;padding:3px 7px;cursor:pointer;font-family:inherit;white-space:nowrap;line-height:1.2;transition:transform .12s,background .12s}
-    .ap-pill:hover{background:#fbd9d3}
-    .ap-pill:active{transform:scale(.96)}
-    .ap-jump{position:relative;width:auto;height:32px;border:none;background:transparent;color:var(--accent,#E0432E);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:1px;padding:0 6px;transition:background .12s,transform .12s;flex-shrink:0;border-radius:16px;white-space:nowrap}
-    .ap-jump:hover{background:#FCEAE6}
-    .ap-jump:active{transform:scale(.92)}
-    .ap-jump .ap-num{position:static;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;font-family:inherit;line-height:1;pointer-events:none}
-    
-    .ap-jump .ap-glyph{position:static;font-size:19px;font-weight:700;line-height:1;pointer-events:none;font-family:"Apple Symbols","Segoe UI Symbol","Symbola","DejaVu Sans","Noto Sans Symbols2",sans-serif}
-
-    /* 菜单：倍速左下、音色右下（相对面板定位） */
-    .ap-menu{position:absolute;top:calc(100% + 8px);background:#fff;border:1px solid #f0d9d4;border-radius:10px;box-shadow:0 8px 22px rgba(0,0,0,.14);padding:4px;min-width:96px;z-index:10003;max-height:240px;overflow-y:auto}
-    .ap-menu[hidden]{display:none}
-    #apSpeedMenu{left:14px;right:auto}
-    #apVoiceMenu{right:14px;left:auto}
-    .ap-opt{padding:7px 11px;font-size:12.5px;color:#333;border-radius:7px;cursor:pointer;white-space:nowrap;line-height:1.3}
-    .ap-opt:hover{background:#FCEAE6}
-    .ap-opt.active{color:#B5321F;font-weight:700;background:#FCEAE6}
-  </style>
-  </style>
-<script>
-  (function(){
-    
-    var VOICES=[
-      {f:'《富爸爸穷爸爸》_yunxi.mp3',n:'云希'},
-      {f:'《富爸爸穷爸爸》_xiaoxiao.mp3',n:'晓晓'},
-      {f:'《富爸爸穷爸爸》_xiaoyi.mp3',n:'晓伊'},
-      {f:'《富爸爸穷爸爸》_yunxia.mp3',n:'云夏'},
-      {f:'《富爸爸穷爸爸》_yunjian.mp3',n:'云健'},
-    ];
-    var cur=0, rate=1;
-    var audio=new Audio();
-    audio.preload='metadata';
-    audio.src=VOICES[cur].f;
-
-    var player=document.getElementById('apPlayer');
-    var bar=document.getElementById('apBar');
-    var curT=document.getElementById('apCur');
-    var durT=document.getElementById('apDur');
-    var playBtn=document.getElementById('apPlay');
-    var speedBtn=document.getElementById('apSpeed');
-    var voiceBtn=document.getElementById('apVoice');
-    var speedMenu=document.getElementById('apSpeedMenu');
-    var voiceMenu=document.getElementById('apVoiceMenu');
-    var progress=document.getElementById('apProgress');
-
-    function fmt(s){ s=Math.max(0,Math.floor(s||0)); var m=Math.floor(s/60); return (m<10?'0':'')+m+':'+(s%60<10?'0':'')+(s%60); }
-    function tick(){
-      var pct=audio.duration?audio.currentTime/audio.duration*100:0;
-      bar.style.width=pct+'%';
-      curT.textContent=fmt(audio.currentTime);
-      if(audio.duration && !isNaN(audio.duration)) durT.textContent=fmt(audio.duration);
-    }
-    audio.ontimeupdate=tick;
-    audio.onloadedmetadata=tick;
-
-    function syncPlayState(){ playBtn.classList.toggle('is-playing', !audio.paused); }
-    audio.onplay=syncPlayState;
-    audio.onpause=syncPlayState;
-    audio.onended=function(){ syncPlayState(); };
-
-    playBtn.onclick=function(){
-      forceExpand();
-      if(audio.paused){
-        var p=audio.play();
-        if(p && p.then){ p.then(syncPlayState).catch(function(){}); } else syncPlayState();
-      } else {
-        audio.pause();
-        syncPlayState();
-      }
-    };
-
-    progress.onclick=function(e){
-      var r=this.getBoundingClientRect();
-      var x=(e.clientX-r.left)/r.width;
-      if(audio.duration){ audio.currentTime=Math.max(0,Math.min(audio.duration,x*audio.duration)); }
-    };
-
-    document.getElementById('apBack').onclick=function(){ audio.currentTime=Math.max(0,(audio.currentTime||0)-15); };
-    document.getElementById('apFwd').onclick=function(){
-      var ct=(audio.currentTime||0)+15;
-      audio.currentTime=Math.min(audio.duration||ct,ct);
-    };
-
-    speedBtn.onclick=function(e){ e.stopPropagation(); speedMenu.hidden=!speedMenu.hidden; voiceMenu.hidden=true; };
-    voiceBtn.onclick=function(e){ e.stopPropagation(); voiceMenu.hidden=!voiceMenu.hidden; speedMenu.hidden=true; };
-
-    speedMenu.querySelectorAll('.ap-opt').forEach(function(o){
-      o.onclick=function(){
-        rate=parseFloat(o.getAttribute('data-v'));
-        audio.playbackRate=rate;
-        speedBtn.textContent=rate+'x';
-        speedMenu.hidden=true;
-        speedMenu.querySelectorAll('.ap-opt').forEach(function(x){x.classList.toggle('active',x===o);});
-      };
-    });
-
-    /* 切音色无缝续播：wasPlaying 锁定切换前状态，等 onloadedmetadata 设完 currentTime 再 play() */
-    voiceMenu.querySelectorAll('.ap-opt').forEach(function(o){
-      o.onclick=function(){
-        var target=o.getAttribute('data-f');
-        if(!target) return;
-        var sameSrc=audio.src.endsWith(target);
-        if(sameSrc){ voiceMenu.hidden=true; return; }
-        var ratio=audio.duration?audio.currentTime/audio.duration:0;
-        var wasPlaying=!audio.paused;
-        cur=VOICES.findIndex(function(v){return v.f===target;});
-        audio.src=target;
-        audio.playbackRate=rate;
-        audio.onloadedmetadata=function(){
-          audio.onloadedmetadata=null;
-          try{ audio.currentTime=ratio*(audio.duration||0); }catch(e){}
-          tick();
-          if(wasPlaying){
-            var p=audio.play();
-            if(p && p.then){ p.then(syncPlayState).catch(function(){}); } else syncPlayState();
-          }
-        };
-        voiceBtn.textContent=o.getAttribute('data-n');
-        voiceMenu.hidden=true;
-        voiceMenu.querySelectorAll('.ap-opt').forEach(function(x){x.classList.toggle('active',x===o);});
-      };
-    });
-
-    speedMenu.querySelector('[data-v="1"]').classList.add('active');
-    voiceMenu.querySelector('[data-n="云希"]').classList.add('active');
-
-    
-    var content=document.getElementById('apContent');
-    var closeTimer=null;
-    function clearCloseTimer(){ if(closeTimer){clearTimeout(closeTimer); closeTimer=null;} }
-    function expandNow(){ clearCloseTimer(); player.classList.add('is-open'); }
-    function collapseNow(){ clearCloseTimer(); speedMenu.hidden=voiceMenu.hidden=true; player.classList.remove('is-open'); }
-    function scheduleCollapse(){
-      clearCloseTimer();
-      closeTimer=setTimeout(function(){
-        /* 兜底：若 1500ms 后鼠标已不在 toggle 也未在 panel 上，才收起（覆盖 12px 间隙） */
-        if(!player.matches(':hover')) collapseNow();
-      }, 1500);
-    }
-    function forceExpand(){ clearCloseTimer(); player.classList.add('is-open'); }
-
-    
-    player.addEventListener('mouseenter', expandNow);
-    player.addEventListener('mouseleave', scheduleCollapse);
-
-    /* 滚动/wheel/touchmove：立即收起（让出视野；不影响 audio 继续播放） */
-    var scrollRAF=null;
-    window.addEventListener('scroll', function(){
-      if(!player.classList.contains('is-open')) return;
-      if(scrollRAF) return;
-      scrollRAF=requestAnimationFrame(function(){
-        scrollRAF=null;
-        collapseNow();
-      });
-    }, {passive:true});
-    window.addEventListener('wheel', function(){
-      if(player.classList.contains('is-open')) collapseNow();
-    }, {passive:true});
-    window.addEventListener('touchmove', function(){
-      if(player.classList.contains('is-open')) collapseNow();
-    }, {passive:true});
-
-    /* 点击页面空白：收起菜单 + 收起面板（toggle/panel 内部 click 已被拦截） */
-    document.addEventListener('click', function(){
-      speedMenu.hidden=true; voiceMenu.hidden=true;
-      if(!player.matches(':hover')) collapseNow();
-    });
-    player.addEventListener('click', function(e){ e.stopPropagation(); });
-  })();
-</script>
-</script>
-<script src="../assets/free-lock.js?v=7"></script>
+  <script src="../assets/free-lock.js?v=7"></script>
 </body>
 </html>
