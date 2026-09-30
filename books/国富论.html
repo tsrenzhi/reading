@@ -6,10 +6,13 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>《国富论》· 白板手绘逻辑图</title>
+<title>《国富论》· 知识卡片</title>
 <style>
 /* 本地后备：霞鹜文楷加载失败时使用系统字体 */
 @font-face{font-family:'LXGW WenKai';src:local('LXGW WenKai'),local('LXGWWenKai-Regular');font-display:swap}
+
+/* 从毛选母版补充的组件样式 */
+
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet" onerror="this.remove()">
@@ -63,12 +66,19 @@
 
   /* HERO：一行红色大字问题 */
   .hero{text-align:center;padding:4px 0 0}
+  .hero h1{font-size:56px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1}
+  .hero .bk-author{margin-top:10px;font-size:19px;color:var(--muted);letter-spacing:2px}
   .bigq{margin:0 auto;max-width:920px;font-size:40px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
 
   /* 顶部 tab */
-  .tabs{position:sticky;top:0;z-index:30;margin-top:18px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
-    background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
-    padding:10px 8px;border-bottom:2px solid var(--line)}
+  .tabsbar{position:sticky;top:0;z-index:30;margin-top:18px;background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);border-bottom:2px solid var(--line)}
+  .tabsbar::before,.tabsbar::after{content:"";position:absolute;top:0;bottom:0;width:28px;pointer-events:none;opacity:0;transition:opacity .18s;z-index:2}
+  .tabsbar::before{left:0;background:linear-gradient(90deg,var(--paper) 0%,rgba(251,246,240,.9) 45%,rgba(251,246,240,0) 100%)}
+  .tabsbar::after{right:0;background:linear-gradient(270deg,var(--paper) 0%,rgba(251,246,240,.9) 45%,rgba(251,246,240,0) 100%)}
+  .tabsbar.fade-l::before{opacity:1}
+  .tabsbar.fade-r::after{opacity:1}
+  .tabs{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
+    padding:10px 8px}
   .tab{font-size:18px;font-weight:400;color:var(--ink);text-decoration:none;padding:7px 13px;border:2px solid var(--line);border-radius:20px;background:var(--card);transition:all .2s;white-space:nowrap}
   .tab:hover{border-color:var(--accent);color:var(--accent)}
   .tab.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 0 0 3px rgba(224,67,46,.25);transform:scale(1.04)}
@@ -119,13 +129,68 @@
   @media (max-width:900px){.core-cards{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:720px){
     .wrap{padding:32px 16px 70px}
-    .bigq{font-size:40px}
-    .sec-title{font-size:34px}
-    .tab{font-size:17px;padding:6px 10px}
+    .hero h1{font-size:32px;letter-spacing:1px;line-height:1.22}
+    .hero .bk-author{margin-top:8px;font-size:14px;letter-spacing:1px}
+    .bigq{font-size:24px;line-height:1.45;letter-spacing:0}
+    .tabsbar{background:var(--paper);backdrop-filter:none;-webkit-backdrop-filter:none}
+    .tabsbar::before,.tabsbar::after{width:20px}
+    .tabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;
+      scroll-behavior:smooth;-webkit-overflow-scrolling:touch;
+      scrollbar-width:none;-ms-overflow-style:none;padding:9px 12px 11px;gap:7px}
+    .tabs::-webkit-scrollbar{display:none}
+    .tab{font-size:15px;padding:6px 11px;flex:0 0 auto}
+    .sec-title{font-size:30px}
+    .sec-title::after{height:4px;bottom:-7px}
+    .sec-sub{margin-top:12px;font-size:16px}
+    .prose{margin-top:18px;font-size:18px;line-height:1.78}
     .vs{grid-template-columns:1fr}
     .vs .col:first-child{border-right:none;border-bottom:2.5px dashed var(--line)}
   }
+
+/* 从毛选母版补充的全量组件样式 */
+.concept{background:var(--card);border:2.5px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:3px 4px 0 rgba(0,0,0,.06);margin-top:22px}
+  .concept .chead{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+  .concept .cnum{flex:0 0 46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center}
+  .concept .cmeta{flex:1;min-width:260px}
+  .concept .cname{font-size:29px;color:var(--accent);line-height:1.2}
+  .concept .cone{font-size:20px;color:var(--muted);margin-top:4px;line-height:1.45}
+  .concept .cbody{margin-top:18px}
+  .concept .cbody p{font-size:23px;line-height:1.55;color:var(--ink);margin-top:10px}
+  .concept .cbody p:first-child{margin-top:0}
+  .concept .cbody b{font-weight:400;color:var(--accent)}
+  .cline{margin-top:16px;padding:14px 18px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px}
+  .cline .lab{font-size:19px;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cline p{font-size:22px;color:var(--ink);line-height:1.5}
+  .concept .cline{margin-top:18px}
+
+  /* 关键词标签 chip（卡内同类项横排） */
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .tagx{font-size:18px;color:var(--ink);background:rgba(106,96,88,.10);border:2px solid var(--line);border-radius:20px;padding:5px 12px;white-space:nowrap}
+
+  /* 两栏小对比（卡内子条目，不写错vs对，写精准标签对） */
+  .mini-vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  .mini-vs .mcol{padding:14px 16px;border-radius:12px;background:rgba(106,96,88,.08)}
+  .mini-vs .mcol.good{background:rgba(224,67,46,.08);border:2px solid var(--accent)}
+  .mini-vs .mt{font-size:20px;color:var(--accent);margin-bottom:6px}
+  .mini-vs .mp{font-size:21px;color:var(--ink);line-height:1.5}
+
+  /* 层级编号列表（机制下并列子点） */
+  .levels{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .lv{display:flex;gap:12px;align-items:flex-start;background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:12px 16px}
+  .lv.good{background:rgba(224,67,46,.06);border:2px solid var(--accent)}
+  .lv .lvn{flex:0 0 30px;height:30px;border-radius:50%;background:var(--line);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center}
+  .lv.good .lvn{background:var(--accent)}
+  .lv .lvc{font-size:22px;color:var(--ink);line-height:1.5;flex:1}
+  .lv .lvc b{color:var(--accent);font-weight:400}
+
+  /* 例子 / 故事框（卡内具体场景） */
+  .example{margin-top:16px;padding:14px 18px;border:2px dashed var(--line);border-radius:12px;background:rgba(251,246,240,.7)}
+  .example .ex-title{font-size:19px;color:var(--muted);margin-bottom:6px}
+  .example p{font-size:22px;color:var(--ink);line-height:1.5}
+
+  /* 🔴 流程图 
 </style>
+  <link href="../assets/fonts/lxgw/lxgwwenkai-regular.css" rel="stylesheet">
 <link rel="stylesheet" href="../assets/free-lock.css?v=7">
 </head>
 <body>
@@ -133,21 +198,22 @@
 
   <!-- HERO：书名 + 作者 + 核心问题 -->
   <header class="hero rise">
-    <h1 style="font-size:56px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1">《国富论》</h1>
-    <div style="margin-top:10px;font-size:19px;color:var(--muted);letter-spacing:2px">亚当·斯密 · 1776</div>
-    <div style="margin-top:6px;font-size:20px;color:var(--muted)">全称《国民财富的性质和原因的研究》</div>
+    <h1>《国富论》</h1>
+    <div class="bk-author">亚当·斯密 · 1776 · 全名《国民财富的性质和原因的研究》</div>
     <div class="bigq" style="margin-top:18px">一个国家，究竟靠什么变富？</div>
   </header>
 
   <!-- 顶部 tab 导航 -->
+  <div class="tabsbar" id="tabsbar">
   <nav class="tabs" id="tabs">
-    <a href="#s1" class="tab">① 书籍定位</a>
-    <a href="#s2" class="tab">② 现实矛盾</a>
-    <a href="#s3" class="tab">③ 旧观念</a>
-    <a href="#s4" class="tab">④ 斯密破局</a>
-    <a href="#s5" class="tab">⑤ 核心内容</a>
-    <a href="#s6" class="tab">⑥ 核心价值</a>
+    <a class="tab" data-target="s1">① 书籍定位</a>
+    <a class="tab" data-target="s2">② 现实矛盾</a>
+    <a class="tab" data-target="s3">③ 旧观念</a>
+    <a class="tab" data-target="s4">④ 斯密破局</a>
+    <a class="tab" data-target="s5">⑤ 核心内容</a>
+    <a class="tab" data-target="s6">⑥ 核心价值</a>
   </nav>
+  </div>
 
   <!-- 一、书籍定位：这本书研究什么 -->
   <section class="section rise" id="s1">
@@ -156,7 +222,7 @@
       <p>这本书要回答的根本问题，可以简化成两个：</p>
       <div class="indent"><b>第一，金钱到底是不是财富？</b>如果金银就是财富，那国家只要拼命囤积金银就够了；但如果不是，真正的财富又是什么？</div>
       <div class="indent"><b>第二，一个国家究竟靠什么变富？</b>是殖民掠夺？是贸易保护？还是土地、劳动、分工、市场？斯密要找出增长的真正原因。</div>
-      <p style="margin-top:12px">这本书讲清楚了<b>财富到底是什么，财富到底是从哪里来的，以及市场和国家各自都该做什么</b>。</p>
+      <p style="margin-top:12px">围绕这两个问题，斯密把财富是什么、财富从哪来、市场和政府各自该做什么，都讲清楚了。</p>
     </div>
   </section>
 
@@ -204,10 +270,7 @@
     </div>
 
     <div class="points" style="margin-top:16px">
-      <div class="pt" style="border:3px solid var(--accent);background:rgba(224,67,46,.05)">
-        <div class="n">④</div>
-        <p><span class="gold">屠夫、酿酒家或烙面师供给我们每天所需的食物和饮料，不是出自恩惠，而是因为他们自利的打算</span>：这就是对看不见的手最好的解释。面包师想赚钱，才会好好做面包卖给你。他并不是出于好心，但结果却让所有人都有饭吃。市场就是这样，虽然每个人看似都是自私自利的，但这却促进了整个社会的发展。</p>
-      </div>
+      <div class="pt"><div class="n">④</div><p><span class="gold">屠夫、酿酒家或烙面师供给我们每天所需的食物和饮料，不是出自恩惠，而是因为他们自利的打算</span>：面包师想赚钱，才会好好做面包卖给你。他并不是出于好心，但结果却让所有人都有饭吃。市场就是这样，虽然每个人看似都是自私自利的，但这却促进了整个社会的发展。</p></div>
     </div>
   </section>
 
@@ -221,15 +284,15 @@
         <div class="ctitle">社会分工</div>
         <div class="ctag">财富来源于社会分工</div>
         <div class="cfig">
-          <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 213" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="m1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
-            <line x1="14" y1="104" x2="166" y2="104" stroke="#6A6058" stroke-width="2"/>
-            <rect x="34" y="80" width="28" height="24" fill="rgba(106,96,88,.22)" stroke="#6A6058" stroke-width="2" rx="3"/>
-            <text x="48" y="97" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">一人做</text>
-            <rect x="116" y="34" width="28" height="70" fill="rgba(224,67,46,.16)" stroke="#E0432E" stroke-width="2" rx="3"/>
-            <text x="130" y="97" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">分工做</text>
-            <path d="M72,90 Q82,46 114,52" fill="none" stroke="#E0432E" stroke-width="2" marker-end="url(#m1)"/>
-            <text x="92" y="40" font-size="12" fill="#E0432E" font-family="LXGW WenKai">产量高</text>
+            <line x1="25" y1="185" x2="295" y2="185" stroke="#6A6058" stroke-width="3.5"/>
+            <rect x="60" y="142" width="49" height="43" fill="rgba(106,96,88,.22)" stroke="#6A6058" stroke-width="3.5" rx="5"/>
+            <text x="84" y="172" font-size="20" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">一人做</text>
+            <rect x="206" y="60" width="49" height="125" fill="rgba(224,67,46,.16)" stroke="#E0432E" stroke-width="3.5" rx="5"/>
+            <text x="231" y="172" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">分工做</text>
+            <path d="M128,160 Q146,82 203,93" fill="none" stroke="#E0432E" stroke-width="3.5" marker-end="url(#m1)"/>
+            <text x="164" y="72" font-size="20" fill="#E0432E" font-family="LXGW WenKai">产量高</text>
           </svg>
         </div>
         <div class="cdesc">把工序拆细、专人专岗，效率会远高于一人包办。</div>
@@ -239,18 +302,18 @@
         <div class="ctitle">价值与价格</div>
         <div class="ctag">劳动决定价值</div>
         <div class="cfig">
-          <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
-            <line x1="24" y1="34" x2="156" y2="34" stroke="#6A6058" stroke-width="2"/>
-            <path d="M90,18 L84,34 L96,34 Z" fill="#6A6058"/>
-            <line x1="90" y1="34" x2="90" y2="104" stroke="#6A6058" stroke-width="2"/>
-            <line x1="24" y1="34" x2="24" y2="62" stroke="#6A6058" stroke-width="2"/>
-            <ellipse cx="24" cy="66" rx="20" ry="6" fill="rgba(106,96,88,.18)" stroke="#6A6058" stroke-width="2"/>
-            <line x1="156" y1="34" x2="156" y2="48" stroke="#6A6058" stroke-width="2"/>
-            <ellipse cx="156" cy="52" rx="20" ry="6" fill="rgba(224,67,46,.18)" stroke="#E0432E" stroke-width="2"/>
-            <text x="24" y="86" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">水</text>
-            <text x="24" y="100" font-size="10" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">有用·便宜</text>
-            <text x="156" y="76" font-size="11" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">钻石</text>
-            <text x="156" y="90" font-size="10" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">用处小·贵</text>
+          <svg viewBox="0 0 320 213" xmlns="http://www.w3.org/2000/svg">
+            <line x1="43" y1="60" x2="277" y2="60" stroke="#6A6058" stroke-width="3.5"/>
+            <path d="M160,32 L150,60 L170,60 Z" fill="#6A6058"/>
+            <line x1="160" y1="60" x2="160" y2="185" stroke="#6A6058" stroke-width="3.5"/>
+            <line x1="43" y1="60" x2="43" y2="110" stroke="#6A6058" stroke-width="3.5"/>
+            <ellipse cx="43" cy="117" rx="36" ry="11" fill="rgba(106,96,88,.18)" stroke="#6A6058" stroke-width="3.5"/>
+            <line x1="277" y1="60" x2="277" y2="85" stroke="#6A6058" stroke-width="3.5"/>
+            <ellipse cx="277" cy="93" rx="36" ry="11" fill="rgba(224,67,46,.18)" stroke="#E0432E" stroke-width="3.5"/>
+            <text x="43" y="153" font-size="20" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">水</text>
+            <text x="43" y="178" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">有用·便宜</text>
+            <text x="277" y="135" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">钻石</text>
+            <text x="277" y="160" font-size="18" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">用处小·贵</text>
           </svg>
         </div>
         <div class="cdesc">一件东西贵不贵，关键看获得它需要多少劳动，不是看用处大小。</div>
@@ -260,23 +323,23 @@
         <div class="ctitle">资本积累</div>
         <div class="ctag">财富增长来源于资本积累</div>
         <div class="cfig">
-          <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 213" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <marker id="m3a" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker>
               <marker id="m3b" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6A6058"/></marker>
             </defs>
-            <circle cx="34" cy="60" r="18" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/>
-            <text x="34" y="64" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">收入</text>
-            <path d="M52,50 Q86,36 120,36" fill="none" stroke="#E0432E" stroke-width="2" marker-end="url(#m3a)"/>
-            <path d="M52,70 Q86,90 120,90" fill="none" stroke="#6A6058" stroke-width="2" marker-end="url(#m3b)"/>
-            <rect x="120" y="22" width="50" height="32" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2" rx="3"/>
-            <text x="145" y="34" font-size="11" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">创造</text>
-            <text x="145" y="48" font-size="11" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">价值</text>
-            <rect x="120" y="76" width="50" height="32" fill="rgba(106,96,88,.14)" stroke="#6A6058" stroke-width="2" rx="3"/>
-            <text x="145" y="88" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">消耗</text>
-            <text x="145" y="102" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">掉</text>
-            <text x="86" y="30" font-size="11" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">生产</text>
-            <text x="86" y="102" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">消费</text>
+            <circle cx="60" cy="107" r="32" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="3.5"/>
+            <text x="60" y="114" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">收入</text>
+            <path d="M93,89 Q153,64 213,64" fill="none" stroke="#E0432E" stroke-width="3.5" marker-end="url(#m3a)"/>
+            <path d="M93,124 Q153,160 213,160" fill="none" stroke="#6A6058" stroke-width="3.5" marker-end="url(#m3b)"/>
+            <rect x="213" y="39" width="89" height="57" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="3.5" rx="5"/>
+            <text x="258" y="60" font-size="18" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">创造</text>
+            <text x="258" y="85" font-size="18" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">价值</text>
+            <rect x="213" y="135" width="89" height="57" fill="rgba(106,96,88,.14)" stroke="#6A6058" stroke-width="3.5" rx="5"/>
+            <text x="258" y="156" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">消耗</text>
+            <text x="258" y="181" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">掉</text>
+            <text x="153" y="53" font-size="18" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">生产</text>
+            <text x="153" y="181" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">消费</text>
           </svg>
         </div>
         <div class="cdesc">收入投向生产性劳动会留下价值，投向非生产性劳动只会被消耗掉。</div>
@@ -286,21 +349,21 @@
         <div class="ctitle">看不见的手</div>
         <div class="ctag">市场自由调节</div>
         <div class="cfig">
-          <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 213" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="m4" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
-            <rect x="8" y="42" width="44" height="38" rx="5" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="2"/>
-            <text x="30" y="58" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">人人</text>
-            <text x="30" y="73" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">自利</text>
-            <path d="M54,61 L66,61" fill="none" stroke="#E0432E" stroke-width="2" marker-end="url(#m4)"/>
-            <rect x="68" y="42" width="44" height="38" rx="5" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="2"/>
-            <text x="90" y="58" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">价格</text>
-            <text x="90" y="73" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">涨落</text>
-            <path d="M114,61 L126,61" fill="none" stroke="#E0432E" stroke-width="2" marker-end="url(#m4)"/>
-            <rect x="128" y="42" width="44" height="38" rx="5" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="2"/>
-            <text x="150" y="58" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">资源</text>
-            <text x="150" y="73" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">分配</text>
-            <path d="M150,80 L150,92 L34,92 L34,80" fill="none" stroke="#E0432E" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#m4)"/>
-            <text x="90" y="114" font-size="11" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">社会福利增加</text>
+            <rect x="14" y="75" width="78" height="67" rx="8" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="3.5"/>
+            <text x="53" y="104" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">人人</text>
+            <text x="53" y="130" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">自利</text>
+            <path d="M95,108 L117,108" fill="none" stroke="#E0432E" stroke-width="3.5" marker-end="url(#m4)"/>
+            <rect x="121" y="75" width="78" height="67" rx="8" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="3.5"/>
+            <text x="160" y="104" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">价格</text>
+            <text x="160" y="130" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">涨落</text>
+            <path d="M203,108 L225,108" fill="none" stroke="#E0432E" stroke-width="3.5" marker-end="url(#m4)"/>
+            <rect x="229" y="75" width="78" height="67" rx="8" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="3.5"/>
+            <text x="268" y="104" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">资源</text>
+            <text x="268" y="130" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">分配</text>
+            <path d="M268,141 L268,163 L61,163 L61,141" fill="none" stroke="#E0432E" stroke-width="3.5" stroke-dasharray="7 5" marker-end="url(#m4)"/>
+            <text x="160" y="202" font-size="18" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">社会福利增加</text>
           </svg>
         </div>
         <div class="cdesc">人人追求自己的利益，价格信号反而把资源导向最需要的地方。</div>
@@ -310,16 +373,16 @@
         <div class="ctitle">政府边界</div>
         <div class="ctag">政府的边界</div>
         <div class="cfig">
-          <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="18" width="74" height="86" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="2" rx="6"/>
-            <rect x="96" y="18" width="74" height="86" fill="rgba(106,96,88,.14)" stroke="#6A6058" stroke-width="2" rx="6"/>
-            <text x="47" y="40" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">市场</text>
-            <text x="133" y="40" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">政府</text>
-            <text x="47" y="64" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">自由运行</text>
-            <text x="47" y="80" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">也有局限</text>
-            <text x="133" y="64" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">国防</text>
-            <text x="133" y="80" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">司法</text>
-            <text x="133" y="96" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">公共工程</text>
+          <svg viewBox="0 0 320 213" xmlns="http://www.w3.org/2000/svg">
+            <rect x="18" y="32" width="131" height="153" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="3.5" rx="10"/>
+            <rect x="171" y="32" width="131" height="153" fill="rgba(106,96,88,.14)" stroke="#6A6058" stroke-width="3.5" rx="10"/>
+            <text x="84" y="71" font-size="22" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">市场</text>
+            <text x="236" y="71" font-size="22" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">政府</text>
+            <text x="84" y="114" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">自由运行</text>
+            <text x="84" y="143" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">也有局限</text>
+            <text x="236" y="114" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">国防</text>
+            <text x="236" y="143" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">司法</text>
+            <text x="236" y="172" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">公共工程</text>
           </svg>
         </div>
         <div class="cdesc">市场自己做不好的事，才需要政府出面兜底。</div>
@@ -327,7 +390,7 @@
     </div>
 
     <div class="points" style="margin-top:28px">
-      <div class="pt"><div class="n">①</div><p><b>财富来源于社会分工。</b>国民财富要增长，关键是让劳动分工更精细，生产效率才会更高。书里举了一个扣针工厂的例子：一个人从头做到尾，一天生产不到 20 枚；但是拆成 18 道工序之后，每个人只需要负责其中一道，一人一天就能产出两千多枚。</p></div>
+      <div class="pt"><div class="n">①</div><p><b>财富来源于社会分工。</b>国民财富要增长，关键是让劳动分工更精细，生产效率才会更高。书里举了一个扣针工厂的例子：一个人从头做到尾，一天连20枚都造不出来；但拆成18道工序之后，十个人分工协作，一天能造48000枚扣针，平均每人4800枚。</p></div>
       <div class="pt"><div class="n">②</div><p><b>劳动决定价值。</b>一个东西到底值多少钱，不能只看它的标价，而是要看它背后凝结了多少劳动。比如，水对人的用处很大，却很便宜；钻石用处不大，却很贵。原因是挖钻石要花费更多的劳动，而水相对来说很容易获得。</p></div>
       <div class="pt" style="flex-direction:column;align-items:stretch"><div style="display:flex;gap:14px;align-items:center"><div class="n">③</div><p style="flex:1"><b>财富增长来源于资本积累。</b>国家要变富，不仅要看生产出多少，更要看收入最终流向哪里。斯密把劳动分成两种：</p></div>
       <div class="vs" style="margin-top:12px">
@@ -344,7 +407,7 @@
       </div>
     </div>
     <div class="points" style="margin-top:16px">
-      <div class="pt"><div class="n">④</div><p><b>市场靠"看不见的手"自我调节。</b>每个人在市场上都想着赚自己的钱、买自己需要的东西，结果价格和供求会自动匹配，社会资源也被引导到了最需要的地方。人人都只顾自己，最后反而让整个社会运转起来。</p></div>
+      <div class="pt"><div class="n">④</div><p><b>市场靠“看不见的手”自我调节。</b>每个人在市场上都想着赚自己的钱、买自己需要的东西，结果价格和供求会自动匹配，社会资源也被引导到了最需要的地方。人人都只顾自己，最后反而让整个社会运转起来。</p></div>
       <div class="pt"><div class="n">⑤</div><p><b>政府的边界。</b>市场可以自由运行，但也有局限性。公共工程、司法、国防这些事市场做不好，必须由政府来管控；其他事情尽量交给市场，政府不要事事插手。</p></div>
     </div>
 
@@ -361,7 +424,7 @@
       <div class="col">
         <span class="tag old">金银就是财富</span>
         <div class="vt">囤积的金银</div>
-        <div class="vd">把金银的积累当成国家财富的象征，靠奖励出口、限制进口来保住本国的金银不外流。这样做不但限制了国内消费者的选择，而且阻碍了国际自由贸易。</div>
+        <div class="vd">把金银的积累当成国家财富的象征。这样做不但限制了国内消费者的选择，而且阻碍了国际自由贸易。</div>
       </div>
       <div class="col">
         <span class="tag new">真正的财富</span>
@@ -373,27 +436,14 @@
       <div class="pt"><div class="n">①</div><p><b>分工和比较优势能提高效率。</b>与其什么事都自己做，不如把精力放在自己最擅长的部分，其他的通过交换来解决。不管是对个人、企业还是国家都是这个道理：做自己最擅长的事，然后互相交换，整体产出比自己单打独斗高得多。</p></div>
       <div class="pt"><div class="n">②</div><p><b>市场不是万能的。</b>国防、司法、公共工程这些事，市场自己做不好，就得由政府来管。其他的事尽量交给市场，不要事事都干预。</p></div>
     </div>
-    <div class="indent">这本书写于1776年，后来出现的很多经济学问题，它都没来得及解释。但它奠定了经济学的基础，适合用来了解经济的运转逻辑。</div>
+    <div class="indent">后来出现的很多经济学问题，它都没来得及解释。但它奠定了经济学的基础，适合用来了解经济的运转逻辑。</div>
   </section>
 
 </div>
 
 <script>
-  function fitStage(wrap){
-    var stage=wrap.querySelector('.stage');
-    var logical=1000;
-    var avail=wrap.clientWidth;
-    var scale=Math.min(1, avail/logical);
-    stage.style.transform='scale('+scale+')';
-    var h=parseFloat(stage.dataset.h)||stage.offsetHeight;
-    wrap.style.height=(h*scale)+'px';
-    wrap.style.width=(logical*scale)+'px';
-  }
-  function fitAll(){document.querySelectorAll('.stage-wrap').forEach(fitStage);}
-  window.addEventListener('resize',fitAll); fitAll();
-
   var tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  var sections=tabs.map(function(t){return document.querySelector(t.getAttribute('href'));}).filter(Boolean);
+  var sections=tabs.map(function(t){return document.querySelector('#'+t.dataset.target);}).filter(Boolean);
   var spy=new IntersectionObserver(function(entries){
     var best=null,bestRatio=-1;
     entries.forEach(function(e){
@@ -401,13 +451,59 @@
     });
     if(best){
       var id='#'+best.id;
-      tabs.forEach(function(t){t.classList.toggle('active', t.getAttribute('href')===id);});
+      tabs.forEach(function(t){t.classList.toggle('active', '#'+t.dataset.target===id);});
     }
   },{rootMargin:'-40% 0px -45% 0px',threshold:[0,0.25,0.5,0.75,1]});
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(e){
+      e.preventDefault();
+      var sec=document.querySelector('#'+t.dataset.target);
+      if(sec){sec.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+    t.addEventListener('keydown', function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();t.click();}
+    });
+  });
   sections.forEach(function(s){spy.observe(s);});
 
-  // 内容块默认已可见（CSS .rise opacity:1），不再用 IntersectionObserver 控制显隐，避免滚动时出现空白断层。
+  (function(){
+    var el=document.getElementById('tabs');
+    if(!el) return;
+    var tabsbar=document.getElementById('tabsbar');
+    var tabsArr=Array.prototype.slice.call(el.querySelectorAll('.tab'));
+    function center(t){
+      if(!t) return;
+      if(el.scrollWidth<=el.clientWidth+2) return;
+      var left=t.offsetLeft-(el.clientWidth-t.offsetWidth)/2;
+      el.scrollTo({left:Math.max(0,left),behavior:'smooth'});
+    }
+    function updateFade(){
+      if(!tabsbar) return;
+      var atStart=el.scrollLeft<=8;
+      var atEnd=el.scrollLeft+el.clientWidth>=el.scrollWidth-8;
+      tabsbar.classList.toggle('fade-l', !atStart);
+      tabsbar.classList.toggle('fade-r', !atEnd);
+    }
+    el.addEventListener('scroll',updateFade);
+    el.addEventListener('click',function(e){
+      var t=e.target&&e.target.closest?e.target.closest('.tab'):null;
+      if(t) setTimeout(function(){center(t);},60);
+    });
+    window.addEventListener('resize',updateFade);
+    updateFade();
+    if(window.MutationObserver){
+      var mo=new MutationObserver(function(muts){
+        for(var i=0;i<muts.length;i++){
+          var t=muts[i].target;
+          if(t.classList&&t.classList.contains('active')){center(t);break;}
+        }
+      });
+      tabsArr.forEach(function(t){mo.observe(t,{attributes:true,attributeFilter:['class']});});
+    }
+  })();
 </script>
+</div>
 <script src="../assets/free-lock.js?v=7"></script>
 </body>
 </html>

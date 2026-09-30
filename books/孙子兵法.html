@@ -10,6 +10,15 @@
 <style>
 /* 本地后备：霞鹜文楷加载失败时使用系统字体 */
 @font-face{font-family:'LXGW WenKai';src:local('LXGW WenKai'),local('LXGWWenKai-Regular');font-display:swap}
+
+/* levels 组件 */
+.levels{display:flex;gap:14px;margin-top:16px}
+.levels .lvl{flex:1;padding:16px;border-radius:12px;background:rgba(106,96,88,.08)}
+.levels .lvl h4{margin:0 0 8px;font-size:18px;color:var(--accent)}
+.levels .lvl p{margin:0;font-size:15px;line-height:1.7}
+/* cline 组件 */
+.cline{margin:16px 0;padding:12px 16px;border-left:3px solid var(--accent);background:rgba(224,67,46,.05);font-size:15px;line-height:1.7}
+
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet" onerror="this.remove()">
@@ -66,7 +75,6 @@
   .hero{text-align:center;padding:4px 0 0}
   .hero h1{font-size:56px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1}
   .hero .bk-author{margin-top:10px;font-size:19px;color:var(--muted);letter-spacing:2px}
-  .hero .bk-fullname{margin-top:6px;font-size:20px;color:var(--muted)}
   .bigq{margin:0 auto;max-width:920px;font-size:40px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
 
   /* 顶部 tab */
@@ -149,10 +157,9 @@
     /* 书名 / 作者 / 全称：走 class，别用内联 */
     .hero h1{font-size:32px;letter-spacing:1px;line-height:1.22}
     .hero .bk-author{margin-top:8px;font-size:14px;letter-spacing:1px}
-    .hero .bk-fullname{margin-top:5px;font-size:14px}
     .bigq{font-size:24px;line-height:1.45;letter-spacing:0}
 
-    /* 顶部 tab：一行不折 + 横向滚动。两侧“还能滑”渐变＝.tabsbar 的伪元素画的实色遮罩，
+    /* 顶部 tab：一行不折 + 横向滚动。两侧"还能滑"渐变＝.tabsbar 的伪元素画的实色遮罩，
        条子本身不透明 → 正文绝不会透上来跟按钮重叠 */
     .tabsbar{background:var(--paper);backdrop-filter:none;-webkit-backdrop-filter:none}
     .tabsbar::before,.tabsbar::after{content:"";position:absolute;top:0;bottom:0;width:28px;pointer-events:none;opacity:0;transition:opacity .18s;z-index:2}
@@ -225,8 +232,7 @@
   <!-- HERO：书名 + 作者 + 核心问题 -->
   <header class="hero rise">
     <h1>《孙子兵法》</h1>
-    <div class="bk-author">[春秋] 孙武 · 约公元前 512 年（春秋末期）</div>
-    <div class="bk-fullname">全称《吴孙子兵法》，传世十三篇、六千余字</div>
+    <div class="bk-author">[春秋] 孙武 · 约公元前 512 年 · 全名《吴孙子兵法》</div>
     <div class="bigq" style="margin-top:18px">真正的高手想的从来不是怎么赢，<br>而是怎么才不会输。</div>
   </header>
 
@@ -246,7 +252,7 @@
     <div class="sec-title">一 · 这本书到底在讲什么</div>
     <div class="prose">
       <p>这本《孙子兵法》是<b>中国现存最早的兵书</b>，虽然只有<b>6000多字</b>，却影响了后世<b>2000多年</b>的军事思想。</p>
-      <p>很多人以为它讲的是怎么排兵布阵、怎么出奇制胜，但其实并不是。它在开篇就给出了一个核心观点：<b style="color:var(--accent)">"兵者，国之大事，死生之地，存亡之道，不可不察也。"</b>一场仗到底该不该打，是关系到生死存亡的，必须想清楚了才能动手。</p>
+      <p>很多人以为它讲的是怎么排兵布阵、怎么出奇制胜，但其实并不是。它在开篇就给出了一个核心观点：<b style="color:var(--accent)">“兵者，国之大事，死生之地，存亡之道，不可不察也。”</b>一场仗到底该不该打，是关系到生死存亡的，必须想清楚了才能动手。</p>
       <p style="margin-top:12px">虽然这本书是写战争的，但它的核心思想放到今天仍然适用。也就是，在做一件事之前，你要先想清楚这件事到底值不值得做，<b>怎么才能用更小的代价把它做成</b>。而不是上来就想着怎么才能成功，怎么才能赢。</p>
     </div>
   </section>
@@ -257,12 +263,12 @@
     <div class="sec-sub">大多数人以为它讲的是军事奇谋，但实际上，它讲的是等待。</div>
     <div class="vs old">
       <div class="col">
-        <span class="tag old">旧认知</span>
+        <span class="tag old">你以为</span>
         <div class="vt">怎么才能赢</div>
         <div class="vd">做事的时候，第一反应就是怎么才能把这件事做成，怎么才能做得比别人好。总想着去超越别人，总想着去证明自己，结果就是容易贪功冒进。为了达成目的，不计后果，最后让自己一败涂地。</div>
       </div>
       <div class="col">
-        <span class="tag new">新认知</span>
+        <span class="tag new">实际上</span>
         <div class="vt">怎么才不会输</div>
         <div class="vd">做事的时候，不要总想着怎么才能成功，而是先去想这件事的背后，有哪些可能会让自己失败的潜在风险。只有把这些导致自己失败的因素都想清楚了，才能提高自己的容错率，让自己一直留在牌桌上。所以，在没有把握的时候，能不动手就不动手，等待机会比盲目的追求成功更重要。</div>
       </div>
@@ -277,9 +283,9 @@
     <div class="sec-title">三 · 孙武的核心思想</div>
     <div class="sec-sub">从怎么赢转换到怎么才不会输。</div>
     <div class="points">
-      <div class="pt" style="border:3px solid var(--accent);background:rgba(224,67,46,.05)"><div class="n">①</div><p><span class="gold">兵者，国之大事，死生之地，存亡之道，不可不察也</span>：打仗是关系到生死存亡的大事，必须慎重对待。一场仗到底该不该打，是关系到国家的生死存亡的，所以必须想清楚了才能动手。换成做其他的事，也是一样的道理，要想清楚其中的利害关系，尽量用最小的代价，取得最大的收益。如果风险过大，就不要做。</p></div>
+      <div class="pt"><div class="n">①</div><p><span class="gold">兵者，国之大事，死生之地，存亡之道，不可不察也</span>：打仗是关系到生死存亡的大事，必须慎重对待。一场仗到底该不该打，是关系到国家的生死存亡的，所以必须想清楚了才能动手。换成做其他的事，也是一样的道理，要想清楚其中的利害关系，尽量用最小的代价，取得最大的收益。如果风险过大，就不要做。</p></div>
       <div class="pt"><div class="n">②</div><p><span class="gold">先胜而后求战</span>：能取胜的军队都是先有了必胜的把握再去打的，而总是打败仗的军队都是先打起来了，才去考虑怎么才能让自己获胜。</p></div>
-      <div class="pt"><div class="n">③</div><p><span class="gold">不战而屈人之兵</span>：真正的高手追求的从来不是百战百胜，而是不用打就让对方认输。这就是"上兵伐谋，其次伐交，其次伐兵，其下攻城。"</p></div>
+      <div class="pt"><div class="n">③</div><p><span class="gold">不战而屈人之兵</span>：真正的高手追求的从来不是百战百胜，而是不用打就让对方认输。这就是“上兵伐谋，其次伐交，其次伐兵，其下攻城。”</p></div>
       <div class="pt"><div class="n">④</div><p><span class="gold">先为不可胜，以待敌之可胜</span>：先让自己处于优势地位，然后等待敌人露出破绽，这样才能把主动权把握在自己的手里。</p></div>
     </div>
 
@@ -295,57 +301,57 @@
         <div class="ctitle">五事七计</div>
         <div class="ctag">开打前先算胜算</div>
         <div class="cfig">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 192" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="m1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
-            <rect x="10" y="18" width="28" height="30" rx="4" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/>
-            <rect x="45" y="18" width="28" height="30" rx="4" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/>
-            <rect x="80" y="18" width="28" height="30" rx="4" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/>
-            <rect x="115" y="18" width="28" height="30" rx="4" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/>
-            <rect x="150" y="18" width="28" height="30" rx="4" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/>
-            <text x="24" y="38" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">道</text>
-            <text x="59" y="38" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">天</text>
-            <text x="94" y="38" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">地</text>
-            <text x="129" y="38" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">将</text>
-            <text x="164" y="38" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">法</text>
-            <line x1="24" y1="48" x2="164" y2="48" stroke="#6A6058" stroke-width="1.6"/>
-            <path d="M94,48 L94,72" fill="none" stroke="#6A6058" stroke-width="1.6" marker-end="url(#m1)"/>
-            <rect x="70" y="72" width="60" height="28" rx="4" fill="rgba(106,96,88,.14)" stroke="#6A6058" stroke-width="2"/>
-            <text x="100" y="91" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">七计</text>
+            <rect x="16" y="28" width="45" height="45" rx="6" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="3"/>
+            <rect x="72" y="28" width="45" height="45" rx="6" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="3"/>
+            <rect x="128" y="28" width="45" height="45" rx="6" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="3"/>
+            <rect x="184" y="28" width="45" height="45" rx="6" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="3"/>
+            <rect x="240" y="28" width="45" height="45" rx="6" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="3"/>
+            <text x="38" y="57" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">道</text>
+            <text x="94" y="57" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">天</text>
+            <text x="150" y="57" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">地</text>
+            <text x="206" y="57" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">将</text>
+            <text x="262" y="57" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">法</text>
+            <line x1="38" y1="73" x2="262" y2="73" stroke="#6A6058" stroke-width="2.5"/>
+            <path d="M150,73 L150,108" fill="none" stroke="#6A6058" stroke-width="2.5" marker-end="url(#m1)"/>
+            <rect x="112" y="108" width="96" height="42" rx="6" fill="rgba(106,96,88,.14)" stroke="#6A6058" stroke-width="3"/>
+            <text x="160" y="135" font-size="20" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">七计</text>
           </svg>
         </div>
-        <div class="cdesc">开打前先对比"道天地将法"五项、再算"七计"，算清敌我强弱；没胜算就别打。</div>
+        <div class="cdesc">开打前先对比“道天地将法”五项、再算“七计”，算清敌我强弱；没胜算就别打。</div>
       </div>
 
       <div class="ccard">
         <div class="ctitle">先胜而后求战</div>
         <div class="ctag">先立于不败之地</div>
         <div class="cfig">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 192" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="m2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
-            <path d="M100,18 L150,40 L150,86 L100,108 L50,86 L50,40 Z" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="2.4"/>
-            <path d="M88,62 L96,74 L116,50" fill="none" stroke="#E0432E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <text x="100" y="112" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">不可胜</text>
-            <circle cx="168" cy="58" r="13" fill="rgba(106,96,88,.16)" stroke="#6A6058" stroke-width="2"/>
-            <path d="M150,58 Q160,58 156,58" fill="none" stroke="#E0432E" stroke-width="2" marker-end="url(#m2)"/>
-            <text x="168" y="92" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">待敌隙</text>
+            <path d="M160,29 L240,64 L240,138 L160,173 L80,138 L80,64 Z" fill="rgba(224,67,46,.10)" stroke="#E0432E" stroke-width="3.5"/>
+            <path d="M141,99 L154,118 L186,80" fill="none" stroke="#E0432E" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="160" y="179" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">不可胜</text>
+            <circle cx="268" cy="93" r="21" fill="rgba(106,96,88,.16)" stroke="#6A6058" stroke-width="3"/>
+            <path d="M240,93 Q256,93 250,93" fill="none" stroke="#E0432E" stroke-width="3" marker-end="url(#m2)"/>
+            <text x="268" y="147" font-size="17" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">待敌隙</text>
           </svg>
         </div>
-        <div class="cdesc">"先为不可胜，以待敌之可胜"，意思是先让自己不可战胜，再等敌人露出破绽。</div>
+        <div class="cdesc">“先为不可胜，以待敌之可胜”，意思是先让自己不可战胜，再等敌人露出破绽。</div>
       </div>
 
       <div class="ccard">
         <div class="ctitle">不战而屈人之兵</div>
         <div class="ctag">全胜优于死战</div>
         <div class="cfig">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 192" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="m3" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
-            <circle cx="64" cy="60" r="22" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2.4"/>
-            <text x="64" y="65" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">我</text>
-            <circle cx="140" cy="60" r="22" fill="rgba(106,96,88,.16)" stroke="#6A6058" stroke-width="2.4"/>
-            <text x="140" y="65" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">敌</text>
-            <path d="M86,56 Q112,44 118,54" fill="none" stroke="#E0432E" stroke-width="2" marker-end="url(#m3)"/>
-            <text x="102" y="38" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">伐谋</text>
-            <text x="102" y="96" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">不攻城·不流血</text>
+            <circle cx="102" cy="96" r="35" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="3.5"/>
+            <text x="102" y="103" font-size="20" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">我</text>
+            <circle cx="224" cy="96" r="35" fill="rgba(106,96,88,.16)" stroke="#6A6058" stroke-width="3.5"/>
+            <text x="224" y="103" font-size="20" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">敌</text>
+            <path d="M138,90 Q179,70 188,86" fill="none" stroke="#E0432E" stroke-width="3" marker-end="url(#m3)"/>
+            <text x="163" y="61" font-size="18" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">伐谋</text>
+            <text x="163" y="154" font-size="17" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">不攻城·不流血</text>
           </svg>
         </div>
         <div class="cdesc">上兵伐谋，其次伐交，其次伐兵；能用利害让对方屈服，就不必攻城流血。</div>
@@ -355,31 +361,31 @@
         <div class="ctitle">避实击虚</div>
         <div class="ctag">致人而不致于人</div>
         <div class="cfig">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 192" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="m4" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
-            <path d="M20,96 Q60,40 180,30" fill="none" stroke="#6A6058" stroke-width="2" stroke-dasharray="5 4"/>
-            <circle cx="64" cy="76" r="16" fill="rgba(106,96,88,.16)" stroke="#6A6058" stroke-width="2.2"/>
-            <text x="64" y="80" font-size="12" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">实</text>
-            <circle cx="150" cy="46" r="16" fill="rgba(224,67,46,.14)" stroke="#E0432E" stroke-width="2.2"/>
-            <text x="150" y="50" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">虚</text>
-            <path d="M40,104 Q90,90 134,60" fill="none" stroke="#E0432E" stroke-width="2.4" marker-end="url(#m4)"/>
-            <text x="100" y="112" font-size="11" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">兵形象水·避实击虚</text>
+            <path d="M32,154 Q96,64 288,48" fill="none" stroke="#6A6058" stroke-width="3" stroke-dasharray="8 6"/>
+            <circle cx="102" cy="122" r="26" fill="rgba(106,96,88,.16)" stroke="#6A6058" stroke-width="3.5"/>
+            <text x="102" y="128" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">实</text>
+            <circle cx="240" cy="74" r="26" fill="rgba(224,67,46,.14)" stroke="#E0432E" stroke-width="3.5"/>
+            <text x="240" y="80" font-size="18" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">虚</text>
+            <path d="M64,166 Q144,144 214,96" fill="none" stroke="#E0432E" stroke-width="3.5" marker-end="url(#m4)"/>
+            <text x="160" y="179" font-size="17" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">兵形象水·避实击虚</text>
           </svg>
         </div>
-        <div class="cdesc">"兵形象水，避实而击虚"，意思是调动敌人而不被敌人调动，专打它薄弱处。</div>
+        <div class="cdesc">“兵形象水，避实而击虚”，意思是调动敌人而不被敌人调动，专打它薄弱处。</div>
       </div>
 
       <div class="ccard">
         <div class="ctitle">奇正相生</div>
         <div class="ctag">以正合，以奇胜</div>
         <div class="cfig">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 192" xmlns="http://www.w3.org/2000/svg">
             <defs><marker id="m5" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs>
-            <circle cx="100" cy="60" r="38" fill="none" stroke="#6A6058" stroke-width="2.2" stroke-dasharray="5 4"/>
-            <path d="M100,60 m0,-38 a38,38 0 0 1 38,38" fill="none" stroke="#E0432E" stroke-width="3"/>
-            <text x="100" y="55" font-size="14" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">正</text>
-            <text x="100" y="74" font-size="14" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">奇</text>
-            <path d="M138,60 a38,38 0 0 1 0,1" fill="none" stroke="#E0432E" stroke-width="2.4" marker-end="url(#m5)"/>
+            <circle cx="160" cy="96" r="61" fill="none" stroke="#6A6058" stroke-width="3.5" stroke-dasharray="8 6"/>
+            <path d="M160,96 m0,-61 a61,61 0 0 1 61,61" fill="none" stroke="#E0432E" stroke-width="5"/>
+            <text x="160" y="88" font-size="22" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">正</text>
+            <text x="160" y="118" font-size="22" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">奇</text>
+            <path d="M221,96 a61,61 0 0 1 0,1.6" fill="none" stroke="#E0432E" stroke-width="3.8" marker-end="url(#m5)"/>
           </svg>
         </div>
         <div class="cdesc">正兵正面迎战，奇兵侧面突袭，相互配合</div>
@@ -389,23 +395,23 @@
         <div class="ctitle">知己知彼</div>
         <div class="ctag">先摸清敌我底牌</div>
         <div class="cfig">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 320 192" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <marker id="m6" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker>
               <marker id="m6b" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6A6058"/></marker>
             </defs>
-            <rect x="16" y="22" width="70" height="70" rx="5" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2.2"/>
-            <text x="51" y="48" font-size="14" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">己</text>
-            <text x="51" y="68" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">实力·意图</text>
-            <rect x="114" y="22" width="70" height="70" rx="5" fill="rgba(106,96,88,.14)" stroke="#6A6058" stroke-width="2.2"/>
-            <text x="149" y="48" font-size="14" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">彼</text>
-            <text x="149" y="68" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">实力·意图</text>
-            <path d="M86,50 L114,50" fill="none" stroke="#6A6058" stroke-width="1.8" marker-end="url(#m6b)"/>
-            <path d="M114,64 L86,64" fill="none" stroke="#E0432E" stroke-width="1.8" marker-end="url(#m6)"/>
-            <text x="100" y="110" font-size="11" fill="#201914" text-anchor="middle" font-family="LXGW WenKai">摸清双方底牌 = 胜算</text>
+            <rect x="26" y="35" width="112" height="112" rx="8" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="3.5"/>
+            <text x="82" y="76" font-size="22" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">己</text>
+            <text x="82" y="108" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">实力·意图</text>
+            <rect x="182" y="35" width="112" height="112" rx="8" fill="rgba(106,96,88,.14)" stroke="#6A6058" stroke-width="3.5"/>
+            <text x="238" y="76" font-size="22" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">彼</text>
+            <text x="238" y="108" font-size="18" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">实力·意图</text>
+            <path d="M138,80 L182,80" fill="none" stroke="#6A6058" stroke-width="2.8" marker-end="url(#m6b)"/>
+            <path d="M182,102 L138,102" fill="none" stroke="#E0432E" stroke-width="2.8" marker-end="url(#m6)"/>
+            <text x="160" y="176" font-size="18" fill="#201914" text-anchor="middle" font-family="LXGW WenKai">摸清双方底牌 = 胜算</text>
           </svg>
         </div>
-        <div class="cdesc">"知彼知己，百战不殆"，意思是先摸清敌我双方的实力、意图和条件，才算清该不该打。</div>
+        <div class="cdesc">“知彼知己，百战不殆”，意思是先摸清敌我双方的实力、意图和条件，才算清该不该打。</div>
       </div>
     </div>
 
@@ -421,17 +427,17 @@
           </div>
         </div>
         <div class="cbody">
-          <p>很多人以为《计篇》的"计"是"奇谋"，但其实指的是"计算"，是对比敌我强弱的一套评估框架。这五项各指的是：</p>
+          <p>很多人以为《计篇》的“计”是“奇谋”，但其实指的是“计算”，是对比敌我强弱的一套评估框架。这五项各指的是：</p>
           <div class="five" style="margin-top:16px">
-            <div class="row"><div class="lab">道</div><div class="body"><b>民心向背</b><span class="orig">"令民与上同意也"，意思是君主与民众意愿一致、上下同心，民众才肯同生共死、不惧危难。所以古代出兵必"师出有名"，让天下认这仗打得对。</span></div></div>
-            <div class="row"><div class="lab">天</div><div class="body"><b>天时与时机</b><span class="orig">"阴阳、寒暑、时制也"，意思是昼夜晴雨、四季寒暑、农时节气，本质是"什么时候打"的外部条件。</span></div></div>
-            <div class="row"><div class="lab">地</div><div class="body"><b>战场环境</b><span class="orig">"远近、险易、广狭、死生也"，意思是距离远近、地形险易、战场宽窄、何处是死地何处是生地，决定兵马如何调动。</span></div></div>
-            <div class="row"><div class="lab">将</div><div class="body"><b>将领五德</b><span class="orig">"智、信、仁、勇、严也"，意思是智是谋略、信是赏罚有信、仁是爱护士卒、勇是果敢、严是军纪严明，五德俱备才堪为将。</span></div></div>
-            <div class="row"><div class="lab">法</div><div class="body"><b>组织编制与制度</b><span class="orig">"曲制、官道、主用也"，意思是曲制是部队编组、官道是军官职守、主用是粮秣军需，保障大军令行禁止。</span></div></div>
+            <div class="row"><div class="lab">道</div><div class="body"><b>民心向背</b><span class="orig">“令民与上同意也”，意思是君主与民众意愿一致、上下同心，民众才肯同生共死、不惧危难。所以古代出兵必“师出有名”，让天下认这仗打得对。</span></div></div>
+            <div class="row"><div class="lab">天</div><div class="body"><b>天时与时机</b><span class="orig">“阴阳、寒暑、时制也”，意思是昼夜晴雨、四季寒暑、农时节气，本质是“什么时候打”的外部条件。</span></div></div>
+            <div class="row"><div class="lab">地</div><div class="body"><b>战场环境</b><span class="orig">“远近、险易、广狭、死生也”，意思是距离远近、地形险易、战场宽窄、何处是死地何处是生地，决定兵马如何调动。</span></div></div>
+            <div class="row"><div class="lab">将</div><div class="body"><b>将领五德</b><span class="orig">“智、信、仁、勇、严也”，意思是智是谋略、信是赏罚有信、仁是爱护士卒、勇是果敢、严是军纪严明，五德俱备才堪为将。</span></div></div>
+            <div class="row"><div class="lab">法</div><div class="body"><b>组织编制与制度</b><span class="orig">“曲制、官道、主用也”，意思是曲制是部队编组、官道是军官职守、主用是粮秣军需，保障大军令行禁止。</span></div></div>
           </div>
           <div class="example" style="margin-top:16px">
             <div class="box-title">七计</div>
-            <p>通过对"主孰有道、将孰有能、天地孰得、法令孰行、兵众孰强、士卒孰练、赏罚孰明"，这七计逐项对比敌我双方的真实情况，来判断一场仗到底该不该打</p>
+            <p>通过对“主孰有道、将孰有能、天地孰得、法令孰行、兵众孰强、士卒孰练、赏罚孰明”，这七计逐项对比敌我双方的真实情况，来判断一场仗到底该不该打</p>
           </div>
         </div>
       </div>
@@ -445,7 +451,7 @@
           </div>
         </div>
         <div class="cbody">
-          <p>"昔之善战者，先为不可胜，以待敌之可胜。不可胜在己，可胜在敌。"什么意思呢？</p>
+          <p>“昔之善战者，先为不可胜，以待敌之可胜。不可胜在己，可胜在敌。”什么意思呢？</p>
           <div class="mini-vs">
             <div class="mcol">
               <div class="mt">败兵先战而后求胜</div>
@@ -468,7 +474,7 @@
           </div>
         </div>
         <div class="cbody">
-          <p>"百战百胜，非善之善者也；不战而屈人之兵，善之善者也。"常打胜仗并不算厉害，因为打仗取胜的代价往往是非常大的。所以孙子给出了最优解：</p>
+          <p>“百战百胜，非善之善者也；不战而屈人之兵，善之善者也。”常打胜仗并不算厉害，因为打仗取胜的代价往往是非常大的。所以孙子给出了最优解：</p>
           <div class="tags" style="margin-top:16px">
             <span class="tagx">上兵伐谋：破坏对方的计谋</span>
             <span class="tagx">其次伐交：拆散对方的联盟</span>
@@ -504,7 +510,7 @@
           </div>
         </div>
         <div class="cbody">
-          <p>凡战者，以正合，以奇胜。奇正相生，如循环之无端：正面牵制对手的就是"正"，突袭、埋伏的就是"奇"。常规部队要正面拒敌，同时，配合奇兵搞突袭，两者相互配合，相互转化，就可以打破僵局。</p>
+          <p>凡战者，以正合，以奇胜。奇正相生，如循环之无端：正面牵制对手的就是“正”，突袭、埋伏的就是“奇”。常规部队要正面拒敌，同时，配合奇兵搞突袭，两者相互配合，相互转化，就可以打破僵局。</p>
         </div>
       </div>
 
@@ -513,11 +519,11 @@
           <div class="cnum">6</div>
           <div class="cmeta">
             <div class="cname">知己知彼</div>
-            <div class="cone">"知彼知己，百战不殆"，意思是先摸清敌我双方的实力、意图和条件</div>
+            <div class="cone">“知彼知己，百战不殆”，意思是先摸清敌我双方的实力、意图和条件</div>
           </div>
         </div>
         <div class="cbody">
-          <p>"知彼知己，百战不殆。"真正开打之前，先摸清双方的实力、意图和外部条件：自己强在哪里、弱在哪里，对手强在哪里、怕在哪里。情报摸清了，五事七计的对比才有依据；情报不准，再精妙的计谋也是赌命。</p>
+          <p>“知彼知己，百战不殆。”真正开打之前，先摸清双方的实力、意图和外部条件：自己强在哪里、弱在哪里，对手强在哪里、怕在哪里。情报摸清了，五事七计的对比才有依据；情报不准，再精妙的计谋也是赌命。</p>
           <div class="example" style="margin-top:16px">
             <div class="box-title">日常判断</div>
             <p>做任何重大决定前先回问自己：我有什么、缺什么？对手或环境会怎样反应？创业前先看市场、看对手、看自己；谈判前先摸对方底线和筹码。</p>
@@ -546,7 +552,7 @@
       <div class="five" style="margin-top:16px">
         <div class="row"><div class="lab">伐谋</div><div class="body"><b>提前排除失败因素</b><span class="orig">
           <div style="margin-bottom:6px"><b>原意：</b>在敌人的计谋还没实施时就打破它，让对方没法打、不想打。</div>
-          <div><b>现代：</b>做事前先想清楚，有哪些问题和困难可能让你失败，提前谋划好破局方案，在跟困难正面冲突前就干掉它们。比如你要读书但坚持不下来，先分析原因：是缺乏执行力？是手机干扰注意力？还是书的门槛太高？这些都是要攻克的"敌军"，提前解决，别等撞上了再硬扛。</div>
+          <div><b>现代：</b>做事前先想清楚，有哪些问题和困难可能让你失败，提前谋划好破局方案，在跟困难正面冲突前就干掉它们。比如你要读书但坚持不下来，先分析原因：是缺乏执行力？是手机干扰注意力？还是书的门槛太高？这些都是要攻克的“敌军”，提前解决，别等撞上了再硬扛。</div>
         </span></div></div>
         <div class="row"><div class="lab">伐交</div><div class="body"><b>借力降低门槛</b><span class="orig">
           <div style="margin-bottom:6px"><b>原意：</b>拆散敌人的联盟，让它孤立无援。</div>
@@ -561,12 +567,12 @@
           <div><b>现代：</b>没有目的、没有技巧地硬上，就是攻城。比如你毫无目的地读了一个月书，什么都没记住，虽然完成了阅读任务，但浪费了大量时间。这种做法代价最大、效果最差，实在没办法才用。</div>
         </span></div></div>
       </div>
-      <div class="item-desc" style="margin-top:14px">所以，在做任何事之前，都要想办法用最低的成本去执行。先靠"伐谋"清除障碍，再靠"伐交"借力，最后靠"伐兵"上技巧。尽量不要用"攻城"的方式蛮干。</div>
+      <div class="item-desc" style="margin-top:14px">所以，在做任何事之前，都要想办法用最低的成本去执行。先靠“伐谋”清除障碍，再靠“伐交”借力，最后靠“伐兵”上技巧。尽量不要用“攻城”的方式蛮干。</div>
     </div>
 
     <div class="card" style="margin-top:26px;border-color:var(--accent)">
       <div class="item-title" style="color:var(--accent)">怎么提升自己的大局观？</div>
-      <div class="item-desc" style="margin-top:10px">大局观就是，以整体利益为目标、用长远眼光分析问题的一种能力。大多数人在做重大人生选择时犯错，就是因为少了大局观。而《孙子兵法》里的"道、天、地、将、法"，就能帮你提升自己的大局观。</div>
+      <div class="item-desc" style="margin-top:10px">大局观就是，以整体利益为目标、用长远眼光分析问题的一种能力。大多数人在做重大人生选择时犯错，就是因为少了大局观。而《孙子兵法》里的“道、天、地、将、法”，就能帮你提升自己的大局观。</div>
       <div class="five" style="margin-top:16px">
         <div class="row"><div class="lab">道</div><div class="body"><b>价值共识</b><span class="orig">
           <div style="margin-bottom:6px"><b>原意：</b>打仗要顺应民心，看民众是不是支持你，所以古代打仗都讲究师出有名。</div>
@@ -593,7 +599,7 @@
 
     <div class="card" style="margin-top:26px">
       <div class="item-title" style="color:var(--accent)">成事心法：不败 · 积强 · 取胜</div>
-      <div class="item-desc" style="margin-top:10px">《孙子兵法》讲"先胜而后求战""胜敌而益强"，《论持久战》讲速胜不可能、要分防御—相持—反攻。两者底色一致：在自己不败的基础上取胜。落到普通人做事，就是三个关键词加四个动作：</div>
+      <div class="item-desc" style="margin-top:10px">《孙子兵法》讲“先胜而后求战”“胜敌而益强”，《论持久战》讲速胜不可能、要分防御—相持—反攻。两者底色一致：在自己不败的基础上取胜。落到普通人做事，就是三个关键词加四个动作：</div>
       <div class="points" style="margin-top:16px">
         <div class="pt"><div class="n">不</div><p><b>不败</b>：不急于求胜，确保每次行动都有结果，让自己永远不下牌桌。</p></div>
         <div class="pt"><div class="n">积</div><p><b>积强</b>：不做没价值的事，每次行动只为一个目的：让自己变强。</p></div>
@@ -601,7 +607,7 @@
       </div>
       <div class="item-desc" style="margin-top:14px">四个落地动作：</div>
       <div class="points" style="margin-top:10px">
-        <div class="pt"><div class="n">1</div><p><b>定一个"不可能失败"的小目标。</b>目标小到不可能失败，才能每天坚持；今天只读一页，比"一次读完一本书"更靠谱。</p></div>
+        <div class="pt"><div class="n">1</div><p><b>定一个“不可能失败”的小目标。</b>目标小到不可能失败，才能每天坚持；今天只读一页，比“一次读完一本书”更靠谱。</p></div>
         <div class="pt"><div class="n">2</div><p><b>用最小的代价获得反馈。</b>围绕小目标投入最少时间精力，正反馈告诉你做对了什么，负反馈帮你发现问题、及时止损。比如一本书读了半小时都没看出个所以然，那说明这本书不适合你，就不需要在上面继续浪费时间了。找对象也是一样的：如果对方对你的付出有回应，那就说明还有戏；如果对方对你爱答不理，那就该早点及时止损。</p></div>
         <div class="pt"><div class="n">3</div><p><b>持续积累优势、让自己变强。</b>很多人只顾着做事，以为做完事就结束了，却忘了让自己变强。结果就是，有的人工作了10年，但他并没有10年的工作经验，而是把1年的工作经验用了10年。那怎么积累优势、让自己变强？靠复盘。不复盘，所有的事都只是经历，而不是经验。</p></div>
         <div class="pt"><div class="n">4</div><p><b>积小胜，成大胜。</b>成功需要不断地积累和放大，这就是量变引起质变。不要指望某一个机会、某一次成功，就能改变命运。逆天改命，靠的是你持续的积累。</p></div>
@@ -738,7 +744,7 @@
     .ap-opt:hover{background:#FCEAE6}
     .ap-opt.active{color:#B5321F;font-weight:700;background:#FCEAE6}
   </style>
-  </style>
+
 <script>
   (function(){
     
@@ -890,7 +896,7 @@
     player.addEventListener('click', function(e){ e.stopPropagation(); });
   })();
 </script>
-</script>
+
 <!-- mobile-fit: 移动端 tab 横向滚动 · 自包含，勿与上方 JS 耦合 · 规范见 books/规范/移动端适配规范.md §三
      铁律：渐变提示画在 .tabsbar 伪元素上；禁用 mask（会把条子变透明，正文透上来跟按钮重叠） -->
 <script>
@@ -899,7 +905,7 @@
   if(!el) return;
   var bar=document.getElementById('tabsbar')||el;   // 渐变遮罩挂不透明外层 .tabsbar，绝不挂滚动容器本身
   var tabs=Array.prototype.slice.call(el.querySelectorAll('.tab'));
-  // ① 左右渐变：按滚动位置开合，提示"还能滑"（画在 .tabsbar 伪元素上，不用 mask）
+  // ① 左右渐变：按滚动位置开合，提示“还能滑”（画在 .tabsbar 伪元素上，不用 mask）
   function fade(){
     var max=el.scrollWidth-el.clientWidth;
     bar.classList.toggle('fade-l', el.scrollLeft>4);

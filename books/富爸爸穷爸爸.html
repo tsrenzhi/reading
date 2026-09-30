@@ -6,17 +6,18 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>《富爸爸穷爸爸》· 白板手绘逻辑图</title>
+<title>《富爸爸穷爸爸》· 知识卡片</title>
 <style>
 /* 本地后备：霞鹜文楷加载失败时使用系统字体 */
 @font-face{font-family:'LXGW WenKai';src:local('LXGW WenKai'),local('LXGWWenKai-Regular');font-display:swap}
+.gold{color:var(--gold);font-weight:700}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet" onerror="this.remove()">
 <!-- 包内字体兜底：CDN 断网/离线时仍保住霞鹜文楷手绘感（相对本卡 → ../assets/fonts/）；铁律见 books/规范/知识卡片-标准可执行模板.md §一-B.7 -->
 <link href="../assets/fonts/lxgw/lxgwwenkai-regular.css" rel="stylesheet">
 <style>
-  :root{
+  :root{--gold:#C8860F;
     --paper:#FBF6F0;
     --ink:#201914;
     --muted:#9C928A;
@@ -45,7 +46,7 @@
   .section{margin-top:48px;scroll-margin-top:96px}
   .section:first-child{margin-top:0}
 
-  .sec-title{font-size:40px;font-weight:400;color:var(--ink);letter-spacing:1px;display:inline-block;position:relative}
+  .sec-title{font-size:36px;font-weight:400;color:var(--ink);letter-spacing:1px;display:inline-block;position:relative}
   .sec-title::after{content:"";position:absolute;left:0;right:-6px;bottom:-9px;height:5px;background:var(--accent);border-radius:3px;transform:rotate(-.6deg)}
   .sec-sub{margin-top:16px;font-size:22px;color:var(--muted);line-height:1.5}
 
@@ -66,7 +67,7 @@
   .hero h1{font-size:56px;font-weight:400;color:var(--ink);letter-spacing:3px;line-height:1.1}
   .hero .bk-author{margin-top:10px;font-size:19px;color:var(--muted);letter-spacing:2px}
   .hero .bk-fullname{margin-top:6px;font-size:20px;color:var(--muted)}
-  .bigq{margin:0 auto;max-width:920px;font-size:44px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
+  .bigq{margin:0 auto;max-width:920px;font-size:40px;font-weight:400;line-height:1.35;letter-spacing:1px;color:var(--accent)}
 
   /* 顶部 tab */
   .tabsbar{position:sticky;top:0;z-index:30;margin-top:18px;background:rgba(251,246,240,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);border-bottom:2px solid var(--line)}
@@ -94,7 +95,7 @@
   .vs{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:22px;border:2.5px solid var(--line);border-radius:16px;overflow:hidden}
   .vs .col{padding:20px 22px}
   .vs .col:first-child{border-right:2.5px dashed var(--line)}
-  .vs .vt{font-size:24px;font-weight:400;color:var(--accent);line-height:1.4}
+  .vs .vt{font-size:28px;font-weight:400;color:var(--accent);line-height:1.4}
   .vs .vd{margin-top:10px;font-size:23px;color:var(--ink);line-height:1.5}
   .vs .ve{margin-top:10px;font-size:21px;color:var(--muted);line-height:1.5}
   .vs .tag{display:inline-block;font-size:19px;color:#fff;background:var(--line);padding:4px 12px;border-radius:13px;margin-bottom:8px}
@@ -157,7 +158,7 @@
     .hero .bk-fullname{margin-top:5px;font-size:14px}
     .bigq{font-size:24px;line-height:1.45;letter-spacing:0}
 
-    /* 顶部 tab：一行不折 + 横向滚动。两侧“还能滑”渐变＝.tabsbar 的伪元素画的实色遮罩，
+    /* 顶部 tab：一行不折 + 横向滚动。两侧"还能滑"渐变＝.tabsbar 的伪元素画的实色遮罩，
        条子本身不透明 → 正文绝不会透上来跟按钮重叠 */
     .tabsbar{background:var(--paper);backdrop-filter:none;-webkit-backdrop-filter:none}
     .tabsbar::before,.tabsbar::after{content:"";position:absolute;top:0;bottom:0;width:28px;pointer-events:none;opacity:0;transition:opacity .18s;z-index:2}
@@ -203,6 +204,7 @@
     .divider{margin-top:36px;max-width:320px}
     .visual svg{max-width:100%}
   }
+.gold{color:var(--gold);font-weight:700}
 </style>
 <link rel="stylesheet" href="../assets/free-lock.css?v=7">
 </head>
@@ -213,8 +215,7 @@
   <header class="hero rise">
     <h1>《富爸爸穷爸爸》</h1>
     <div class="bk-author">罗伯特·清崎 · 1997</div>
-    <div class="bk-fullname">原名《Rich Dad Poor Dad》· 富爸爸教给孩子的金钱课</div>
-    <div class="bigq" style="margin-top:18px">穷人思维和富人思维的差异</div>
+    <div class="bigq" style="margin-top:18px">穷人只会为钱工作，但富人会让钱为自己工作。</div>
   </header>
 
   <!-- 顶部 tab 导航 -->
@@ -233,19 +234,19 @@
   <section class="section rise" id="s1">
     <div class="sec-title">一 · 这本书到底在讲什么</div>
     <div class="prose">
-      <p>作者清崎小时候有两个"爸爸"：一个是亲生父亲，高学历、有稳定工作，却一辈子为钱发愁；另一个是朋友的爸爸，没上过大学，却成了当地最富有的人。他把这两位分别叫"穷爸爸"和"富爸爸"。</p>
-      <div class="indent"><b>这本书要回答的根本问题：</b>为什么两个同样聪明、同样努力的人，一个一辈子为钱工作，另一个却让钱为自己工作？差别不在智商，而在"财商"——也就是对钱的理解和处理方式。</div>
-      <p style="margin-top:12px">一句话：这不是一本教你怎么一夜暴富的书，而是教你看懂<b>资产、负债、现金流</b>这些最底层的金钱逻辑，把"为钱打工"变成"让钱为你打工"。</p>
+      <p>作者清崎小时候有两个“爸爸”：一个是亲生父亲，高学历、有稳定工作，却一辈子为钱发愁；另一个是朋友的爸爸，没上过大学，却成了当地最富有的人。他把这两位分别叫“穷爸爸”和“富爸爸”。</p>
+      <div class="indent"><b>这本书要回答的根本问题：</b>为什么两个同样聪明、同样努力的人，一个一辈子为钱工作，另一个却让钱为自己工作？差别不在智商，而在“财商”，也就是对钱的理解和处理方式。</div>
+      <p style="margin-top:12px">一句话：这不是一本教你怎么一夜暴富的书，而是教你看懂<b>资产、负债、现金流</b>这些最底层的金钱逻辑，把“为钱打工”变成“让钱为你打工”。</p>
     </div>
   </section>
 
   <!-- 二、当时面对的现实矛盾 -->
   <section class="section rise" id="s2">
-    <div class="sec-title old">二 · 大多数人掉进的"老鼠赛跑"陷阱</div>
+    <div class="sec-title old">二 · 老鼠赛跑陷阱</div>
     <div class="sec-sub">普通人就像笼子里的老鼠：一直在拼命跑，却一直停在原地。</div>
     <div class="prose">
       <p>大多数人走的路是同一个模式：好好读书、找份稳定工作、领工资，然后买车买房、养家糊口。工资刚到手，就被房贷、信用卡、生活费吞掉，于是只能更拼命工作、争取加薪。可加薪之后，消费也跟着涨，钱还是不够。</p>
-      <p>这种模式有个名字，叫"老鼠赛跑"：你跑得越快，笼子里的轮子转得就越快，但你始终还停在原来的地方。你越怕失去工作，就越是把你牢牢绑在了工作上，只能一辈子都在为了赚钱打工。</p>
+      <p>这种模式有个名字，叫“老鼠赛跑”：你跑得越快，笼子里的轮子转得就越快，但你始终还停在原来的地方。你越怕失去工作，就越是把你牢牢绑在了工作上，只能一辈子都在为了赚钱打工。</p>
     </div>
   </section>
 
@@ -255,15 +256,15 @@
     <div class="sec-sub">同样一件事，两位爸爸的看法完全相反。差别就藏在每一句里。</div>
     <div class="vs">
       <div class="col">
-        <span class="tag" style="background:var(--line)">穷爸爸</span>
+        <span class="tag" style="background:#E0432E;color:#fff;">穷爸爸</span>
         <div class="vt" style="color:var(--line)">为了钱而工作</div>
         <div class="vd">认为好好读书、找稳定工作最安全，钱不够就去多加班、求加薪。房子是这辈子最大的资产。</div>
         <div class="ve">结果：工资一停，生活就转不动，越努力越被账单绑住。</div>
       </div>
       <div class="col">
-        <span class="tag" style="background:var(--accent)">富爸爸</span>
+        <span class="tag" style="background:#4ECDC4;color:#fff;">富爸爸</span>
         <div class="vt" style="color:var(--accent)">让钱为自己工作</div>
-        <div class="vd">认为工作只是手段，真正要攒的是能下金蛋的"资产"。先付钱给自己买资产，再考虑消费。房子不一定是资产。</div>
+        <div class="vd">认为工作只是手段，真正要攒的是能下金蛋的“资产”。先付钱给自己买资产，再考虑消费。房子不一定是资产。</div>
         <div class="ve">结果：资产带来的现金流越来越多，人越来越不需要为工资出卖时间。</div>
       </div>
     </div>
@@ -307,15 +308,10 @@
     </div>
 
     <div class="points">
-      <div class="pt"><div class="n">1</div><p><b>资产和负债的区别：</b>资产是能给你带来现金流的东西——买了它，钱会自动流向你；负债是让钱远离你的东西——买了它，你得不断往里贴钱。</p></div>
-      <div class="pt"><div class="n">2</div><p><b>让钱为你工作，而不是你为钱工作。</b>靠出卖时间换工资，永远有上限；靠资产生现金流，才有滚雪球的可能。</p></div>
-      <div class="pt"><div class="n">3</div><p><b>先支付自己：工资到手，先划一笔投入到能给自己带来收益的资产上，剩下来的才用于生活。</b>怎么落到账户、看哪些资产，s5 ④ 展开。</p></div>
-    </div>
-
-    <div class="quote">
-      <div class="mark">"</div>
-      <blockquote>"穷人为钱工作，富人让钱为自己工作。"</blockquote>
-      <div class="ex">这就是作者提出来的，穷人和富人之间的差异。</div>
+      <div class="pt"><div class="n">1</div><p><b><span class="gold">资产和负债的区别</span>：</b>资产是能给你带来现金流的东西，买了它，钱会自动流向你；负债是让钱远离你的东西，买了它，你得不断往里贴钱。</p></div>
+      <div class="pt"><div class="n">2</div><p><b><span class="gold">让钱为你工作，而不是你为钱工作</span>：</b>靠出卖时间换工资，永远有上限；靠资产生现金流，才有滚雪球的可能。</p></div>
+      <div class="pt"><div class="n">3</div><p><b><span class="gold">先支付自己</span>：工资到手，先划一笔投入到能给自己带来收益的资产上，剩下来的才用于生活。</b></p></div>
+      
     </div>
 
   </section>
@@ -333,9 +329,9 @@
         <div class="cdesc">两套完全不同的金钱观，决定了后面所有行为。</div>
       </div>
       <div class="ccard">
-        <div class="ctitle">资产 vs 负债</div>
+        <div class="ctitle">负债 vs 资产</div>
         <div class="ctag">看钱往哪走</div>
-        <div class="cfig"><svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="14" width="60" height="28" rx="6" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/><text x="50" y="32" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">资产</text><path d="M50,46 L50,68" stroke="#E0432E" stroke-width="2.5" fill="none" marker-end="url(#s5flow1)"/><defs><marker id="s5flow1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs><text x="50" y="82" font-size="11" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">钱流向你</text><rect x="120" y="14" width="60" height="28" rx="6" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/><text x="150" y="32" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">负债</text><path d="M150,68 L150,46" stroke="#6A6058" stroke-width="2.5" fill="none" marker-end="url(#s5flow2)"/><defs><marker id="s5flow2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6A6058"/></marker></defs><text x="150" y="82" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">钱远离你</text></svg></div>
+        <div class="cfig"><svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="14" width="60" height="28" rx="6" fill="rgba(106,96,88,.12)" stroke="#6A6058" stroke-width="2"/><text x="50" y="32" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">负债</text><path d="M50,46 L50,68" stroke="#6A6058" stroke-width="2.5" fill="none" marker-end="url(#s5flow1)"/><defs><marker id="s5flow1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6A6058"/></marker></defs><text x="50" y="82" font-size="11" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">钱远离你</text><rect x="120" y="14" width="60" height="28" rx="6" fill="rgba(224,67,46,.12)" stroke="#E0432E" stroke-width="2"/><text x="150" y="32" font-size="13" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">资产</text><path d="M150,68 L150,46" stroke="#E0432E" stroke-width="2.5" fill="none" marker-end="url(#s5flow2)"/><defs><marker id="s5flow2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E0432E"/></marker></defs><text x="150" y="82" font-size="11" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">钱流向你</text></svg></div>
         <div class="cdesc">同样的东西，看清方向就知道归哪边。</div>
       </div>
       <div class="ccard">
@@ -386,47 +382,47 @@
         <div class="cbody">
           <div class="vs" style="margin-top:16px">
             <div class="col">
-              <span class="tag" style="background:var(--line)">穷人思维</span>
+              <span class="tag" style="background:#E0432E;color:#fff;">穷人思维</span>
               <div class="vt" style="color:var(--line)">源于对缺钱的恐惧</div>
-              <div class="vd">好好学习、找个安稳的工作、努力干活、拿工资去买想要的东西。所有动作都围绕"怎么把工资变多"。这条路走下去，人就活成了金钱的奴隶——工资一停，账单就来了。</div>
+              <div class="vd">好好学习、找个安稳的工作、努力干活、拿工资去买想要的东西。所有动作都围绕”怎么把工资变多“。这条路走下去，人就活成了金钱的奴隶，工资一停，账单就来了。</div>
               <div class="ve">结论：高工资不等于富人，工资再高也只是在为钱打工。</div>
             </div>
             <div class="col">
-              <span class="tag" style="background:var(--accent)">富人思维</span>
+              <span class="tag" style="background:#4ECDC4;color:#fff;">富人思维</span>
               <div class="vt" style="color:var(--accent)">用钱买资产，让钱去工作</div>
-              <div class="vd">把"工资"当成跳板而非目的地。每月把一部分劳动性收入投到能产生现金流的投资组合和被动收入上，让资产替你打工。</div>
+              <div class="vd">把”工资“当成跳板而非目的地。每月把一部分劳动性收入投到能产生现金流的投资组合和被动收入上，让资产替你打工。</div>
               <div class="ve">结论：真正的富人，是让钱为他工作。</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 概念 2：资产 vs 负债 -->
+      <!-- 概念 2：负债 vs 资产 -->
       <div class="concept">
         <div class="chead">
           <div class="cnum">2</div>
           <div class="cmeta">
-            <div class="cname">资产 vs 负债</div>
-            <div class="cone">钱流向你 vs 钱远离你</div>
+            <div class="cname">负债 vs 资产</div>
+            <div class="cone">钱远离你 vs 钱流向你</div>
           </div>
         </div>
         <div class="cbody">
           <div class="vs">
             <div class="col">
-              <span class="tag" style="background:var(--accent)">资产</span>
-              <div class="vt" style="color:var(--accent)">能给你带来现金流</div>
-              <div class="vd">买了它，钱会自动流向你。出租的房子收到的租金、股票的分红、债券的利息、版税，都属于这一类。</div>
-              <div class="ve">结果：现金流越攒越多，资产像滚雪球自己长大。</div>
-            </div>
-            <div class="col">
-              <span class="tag" style="background:var(--line)">负债</span>
+              <span class="tag" style="background:#E0432E;color:#fff;">负债</span>
               <div class="vt" style="color:var(--line)">让钱远离你</div>
               <div class="vd">买了它，你得不断往里贴钱。自己住的房子每月要还月供、自己开的车每月要加油保养、刷卡买东西每月要还利息。</div>
               <div class="ve">结果：现金流不断被抽走，资产侧始终为零。</div>
             </div>
+            <div class="col">
+              <span class="tag" style="background:#4ECDC4;color:#fff;">资产</span>
+              <div class="vt" style="color:var(--accent)">能给你带来现金流</div>
+              <div class="vd">买了它，钱会自动流向你。出租的房子收到的租金、股票的分红、债券的利息、版税，都属于这一类。</div>
+              <div class="ve">结果：现金流越攒越多，资产像滚雪球自己长大。</div>
+            </div>
           </div>
           <div class="cline" style="margin-top:16px">
-            <div class="lab">同样是"房子"，为什么既可以是资产，又可以是负债？</div>
+            <div class="lab">同样是”房子“，为什么既可以是资产，又可以是负债？</div>
             <p>如果你的房子是用来收租的，那就是资产；如果你只是自己住，还要一直还贷款，那就是负债。</p>
           </div>
         </div>
@@ -475,7 +471,7 @@
             <text x="500" y="216" font-size="14" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">负债</text>
             <text x="500" y="234" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">房贷、车贷、</text>
             <text x="500" y="252" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">信用卡</text>
-            <!-- 中产：箭头从收入框右下斜落负债栏中心（被负债吃掉）——大空间用 L 直角不拐弯 -->
+            <!-- 中产：箭头从收入框右下斜落负债栏中心（被负债吃掉），大空间用 L 直角不拐弯 -->
             <path d="M462,150 L500,184" fill="none" stroke="#E0432E" stroke-width="3" marker-end="url(#g1)"/>
             <text x="510" y="172" font-size="12" fill="#E0432E" font-family="LXGW WenKai">被负债吃掉</text>
 
@@ -493,7 +489,7 @@
             <text x="700" y="266" font-size="12" fill="#E0432E" text-anchor="middle" font-family="LXGW WenKai">知识产权</text>
             <text x="800" y="216" font-size="14" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">负债</text>
             <text x="800" y="236" font-size="13" fill="#6A6058" text-anchor="middle" font-family="LXGW WenKai">房贷、信用卡</text>
-            <!-- 富人：从资产栏（x=700）斜上指向收入框正中（x=750）——大空间 Q 弧线，钱回流进口袋 -->
+            <!-- 富人：从资产栏（x=700）斜上指向收入框正中（x=750），大空间 Q 弧线，钱回流进口袋 -->
             <path d="M700,184 Q725,168 750,150" fill="none" stroke="#E0432E" stroke-width="3" marker-end="url(#g1)"/>
             <text x="778" y="172" font-size="12" fill="#E0432E" font-family="LXGW WenKai">钱回流</text>
           </svg>
@@ -512,10 +508,10 @@
         </div>
         <div class="cbody">
           <div class="cline">
-            <p>先支付自己，就是发了工资之后，先把一部分钱存起来、或者单独设一个投资账户。这个账户里的钱，是投入到未来能给自己带来更大回报的资产上——比如分红型股票、能稳定收租的房产、债券基金，或者你自己生意里的再投资。<b>它不是先填窟窿、先去还房贷、先去消费</b>，而是<b>先考虑怎么让钱给自己带来回报</b>。</p>
+            <p>先支付自己，就是发了工资之后，先把一部分钱存起来、或者单独设一个投资账户。这个账户里的钱，是投入到未来能给自己带来更大回报的资产上，比如分红型股票、能稳定收租的房产、债券基金，或者你自己生意里的再投资。<b>它不是先填窟窿、先去还房贷、先去消费</b>，而是<b>先考虑怎么让钱给自己带来回报</b>。</p>
           </div>
           <div class="example">
-            <p>钱一旦进了那个独立的投资账户、并且只能投到能产生现金流的资产上，它就别想再出来覆盖生活开支。这笔钱被锁住之后，工资再涨、消费再多，也不会动到它——你的"为钱打工"就彻底停下了，剩下的是"钱为你工作"。</p>
+            <p>钱一旦进了那个独立的投资账户、并且只能投到能产生现金流的资产上，它就别想再出来覆盖生活开支。这笔钱被锁住之后，工资再涨、消费再多，也不会动到它，你的”为钱打工“就彻底停下了，剩下的是”钱为你工作“。</p>
           </div>
         </div>
       </div>
@@ -529,12 +525,11 @@
     <div class="sec-sub">写于 1997 年，但它点破的金钱盲区，今天一点没过时。</div>
 
     <div class="points">
-      <div class="pt"><div class="n">①</div><p><b>分清资产和负债，其实就看你买的东西能不能给你带来稳定的现金流。</b>比如你大笔钱去买的那些不生钱的东西——大部分奢侈品就属于这种——你消费出去了，钱花出去就回不来了，那就是负债。反过来，你把钱花到能给自己产生现金流的地方——比如收租的房产、分红型股票、债券基金——那就是资产，不用再做任何额外工作，钱就自己流进来。所以判断式只有一句：你买这个东西，到底能不能持续给你带来现金流？能，就是资产；不能，就是负债。</p></div>
+      <div class="pt"><div class="n">①</div><p><b>分清资产和负债，其实就看你买的东西能不能给你带来稳定的现金流。</b>比如你大笔钱去买的那些不生钱的东西，大部分奢侈品就属于这种，你消费出去了，钱花出去就回不来了，那就是负债。反过来，你把钱花到能给自己产生现金流的地方，比如收租的房产、分红型股票、债券基金，那就是资产，不用再做任何额外工作，钱就自己流进来。所以判断式只有一句：你买这个东西，到底能不能持续给你带来现金流？能，就是资产；不能，就是负债。</p></div>
       <div class="pt"><div class="n">②</div><p><b>要摆脱努力陷阱：</b>打工人要多思考如何增加自己的投资组合收入和被动收入，才能摆脱努力陷阱。要把工作当成增加这两项收入的跳板，而不能只是为了工作而工作。</p></div>
     </div>
 
-    <div class="indent">它当然有局限：毕竟是启蒙书，不是投资教科书。具体怎么买、怎么估值、怎么避坑，它讲得很粗，千万别照着直接梭哈。把它当"财商第一课"读——它帮你把门推开，但路要自己走。</div>
-  </section>
+    </section>
 
 </div>
 
@@ -566,11 +561,6 @@
   sections.forEach(function(s){spy.observe(s);});
 
   // 内容块默认已可见（CSS .rise opacity:1），不再用 IntersectionObserver 控制显隐，避免滚动时出现空白断层。
-</script>
-
-  
-  </style>
-
 </script>
 <!-- mobile-fit: 移动端 tab 横向滚动 · 自包含，勿与上方 JS 耦合 · 规范见 books/规范/移动端适配规范.md §三
      铁律：渐变提示画在 .tabsbar 伪元素上；禁用 mask（会把条子变透明，正文透上来跟按钮重叠） -->
@@ -612,7 +602,8 @@
     tabs.forEach(function(t){mo.observe(t,{attributes:true,attributeFilter:['class']});});
   }
 })();
-</script>
+</sc  </div>
+ript>
 <script src="../assets/free-lock.js?v=7"></script>
 </body>
 </html>
