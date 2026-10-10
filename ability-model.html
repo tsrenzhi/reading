@@ -19,8 +19,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>个人能力模型</title>
-<link rel="stylesheet" href="assets/site.css?v=41">
-<link rel="stylesheet" href="assets/search.css?v=41">
+<link rel="stylesheet" href="assets/site.css?v=70">
+<link rel="stylesheet" href="assets/search.css?v=70">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
 <style>
@@ -54,36 +54,280 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
   width:3px;height:16px;background:var(--brand);border-radius:2px;
 }
 
-/* ===== 详情区块切换（机制同 .pain-section） ===== */
-.pain-section{margin-bottom:0;}
-.pain-section .core{margin-bottom:0;opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease;}
-.pain-section .core.reveal-in{opacity:1;transform:translateY(0);}
-@media (prefers-reduced-motion: reduce){
-  .pain-section .core{opacity:1;transform:none;transition:none;}
+/* ===== 详情区：字阶与组件全部对齐书籍知识卡片（#375 重建） ===== */
+.ab-hero{
+  background:var(--card);border:2.5px solid var(--abline);border-radius:14px;
+  box-shadow:3px 4px 0 rgba(32,25,20,.07);padding:24px 28px;
+  margin-bottom:6px;
+}
+.ab-hero h1{
+  font-size:26px;font-weight:700;color:var(--brand);
+  letter-spacing:.3px;margin:0;line-height:1.35;
+}
+/* 相邻独立卡（结构卡）：卡与卡之间留呼吸空隙 */
+.ab-hero + .ab-hero{margin-top:26px;}
+.ab-role{font-size:15.5px;line-height:1.75;color:#201914;margin:10px 0 0;}
+.ab-hero .bp{font-size:15.5px;margin-top:12px;}
+/* 头卡内的小节标题（误区与定义同居一个大框） */
+.ab-hero .ab-stitle{font-size:17px;margin-top:20px;}
+.ab-hero .mvswrap{margin-top:14px;}
+/* 区块标题（无下划线——设计规范禁标题下划线） */
+.ab-sec{margin-top:36px;}
+.ab-stitle{
+  font-size:20px;font-weight:400;color:#201914;letter-spacing:.5px;
+  display:inline-block;position:relative;
+}
+/* 缺失表现：红色椭圆标签 */
+.sym-cloud{
+  margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;
+  align-items:center;
+}
+.stag{
+  font-size:13.5px;color:var(--brand);border:2px solid var(--brand);
+  border-radius:20px;padding:4px 12px;background:rgba(224,67,46,.04);
+  white-space:nowrap;line-height:1.4;
+}
+/* 提升方法：概念卡（红圆号+红名+正文） */
+.ab-concepts{display:flex;flex-direction:column;gap:16px;margin-top:18px;}
+.concept{
+  background:var(--card);border:2.5px solid var(--abline);border-radius:12px;
+  padding:17px 21px;box-shadow:3px 4px 0 rgba(32,25,20,.06);
+}
+.concept .chead{display:flex;gap:11px;align-items:center;margin-bottom:13px;}
+.concept .cnum{
+  flex:0 0 26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;
+  font-size:13.5px;display:flex;align-items:center;justify-content:center;
+}
+.concept .cname{font-size:16.5px;color:var(--brand);line-height:1.35;font-weight:400;}
+.concept .cbody{margin-top:0;font-size:15.5px;line-height:1.75;color:#201914;}
+.concept .cbody p+p{margin-top:6px;}
+.concept .csteps{margin-top:10px;display:flex;flex-direction:column;gap:7px;}
+.concept .lv{display:flex;gap:10px;align-items:flex-start;}
+.concept .lvn{
+  flex:0 0 20px;height:20px;border-radius:50%;background:var(--abline);color:#fff;
+  font-size:11.5px;display:flex;align-items:center;justify-content:center;margin-top:3px;
+}
+.concept .lvc{font-size:15px;color:#201914;line-height:1.7;flex:1;}
+/* 误区 */
+.ab-myths{display:flex;flex-direction:column;gap:12px;}
+.myth{
+  background:var(--card);border:2.5px solid var(--abline);border-radius:12px;
+  padding:13px 17px;box-shadow:3px 4px 0 rgba(32,25,20,.06);
+  font-size:15.5px;line-height:1.75;color:#201914;
+}
+/* 误区对比：照抄组件库/纳瓦尔宝典 .vs 真值（实线外框圆角16 + 列间竖虚线 + 圆角矩形tag + vt红字结论/vd说明/ve后果） */
+.mvswrap{margin-top:14px;border:2.5px solid var(--abline);border-radius:16px;overflow:hidden;background:var(--card);display:grid;grid-template-columns:1fr 1fr;}
+.mvswrap .mcol{padding:18px 20px;min-width:0;}
+.mvswrap .mcol:first-child{border-right:2.5px dashed var(--abline);padding-left:20px;}
+.mvswrap .mcol:last-child{padding-right:20px;}
+.mvs2 .mcol{padding:0 14px;min-width:0;}
+.mvs2 .mcol:first-child{border-right:2.5px dashed var(--abline);padding-left:0;}
+.mvs2 .mcol:last-child{padding-right:0;}
+.mvswrap .tag, .mvs2 .tag{display:inline-block;font-size:14.5px;font-weight:700;color:#fff;background:var(--brand);
+  padding:5px 16px;border-radius:10px;margin-bottom:10px;letter-spacing:1px;}
+.mvswrap .mcol:last-child .tag, .mvs2 .mcol:last-child .tag{background:#4ECDC4;}
+.mvswrap .vt, .mvs2 .vt{font-size:15.5px;color:var(--brand);line-height:1.5;}
+.mvswrap .vd, .mvs2 .vd{margin-top:8px;font-size:15px;color:#201914;line-height:1.75;}
+.ab-mythhead{margin-top:22px;font-size:15.5px;line-height:1.75;color:#201914;}
+.ab-mythhead .t{font-size:17px;color:#201914;letter-spacing:.5px;}
+/* 多组误区=多组对比框竖排（组件库真值：每组一个 .vs 框），框间只留间距，不加额外边框 */
+.ab-myths-multi{display:flex;flex-direction:column;gap:12px;}
+.ab-myths-multi .mvswrap{margin-top:0;}
+/* 缩进拆解：组件库 .indent 真值（左灰条；头卡/卡内的名+说明，不用红标签块） */
+.indent{margin-top:10px;padding:2px 0 2px 14px;border-left:3px solid var(--abline);}
+.indent:first-child{margin-top:0;}
+.indent b{color:var(--brand);font-weight:400;display:block;margin-bottom:2px;}
+.indent .it{font-size:15px;line-height:1.75;color:#201914;}
+/* 案例：虚线纸底 */
+.ab-cases{margin-top:14px;}
+.example{border:2px dashed rgba(106,96,88,.55);border-radius:10px;padding:13px 16px 18px;
+  margin:12px 0 16px;background:rgba(251,246,240,.7);}
+.example .ex-title{font-size:12.5px;color:#9C928A;margin-bottom:5px;}
+.example .bp{font-size:15px;line-height:1.75;margin:0;}
+/* 纵向流程网格 3×3：左列=流程（节点纵向，↓衔接），中列=处理逻辑，右列=案例 */
+.ioflow{margin:12px 0 2px;display:grid;grid-template-columns:112px 1fr 1fr;gap:9px 12px;align-items:stretch;}
+.ioflow.nocase{grid-template-columns:112px 1fr;}
+.io-lead{grid-column:1/-1;font-size:15px;color:#201914;line-height:1.7;margin-bottom:2px;}
+.io-node{border:2.5px solid var(--brand);border-radius:12px;background:rgba(224,67,46,.07);
+  display:flex;align-items:center;justify-content:center;text-align:center;white-space:nowrap;
+  padding:10px 8px;font-size:15px;color:#201914;line-height:1.4;}
+.io-arrow{grid-column:1/-1;display:flex;align-items:center;justify-content:flex-start;
+  padding-left:46px;font-size:19px;color:var(--brand);line-height:1;}
+.io-x{align-self:center;font-size:15.5px;line-height:1.75;color:#201914;}
+.io-case{border:2px dashed rgba(106,96,88,.55);border-radius:10px;padding:9px 13px;
+  background:rgba(251,246,240,.7);font-size:14.5px;line-height:1.7;color:#201914;}
+.io-case .lab{display:block;font-size:12.5px;color:#9C928A;margin-bottom:3px;}
+.io-note{grid-column:1/-1;margin-top:4px;border-top:2px dashed rgba(106,96,88,.55);padding-top:11px;
+  font-size:15px;line-height:1.75;color:#201914;}
+/* 组卡：无序号无外框 */
+.cgroup{margin-top:2px;}
+.cgroup .gname{font-size:16.5px;color:var(--brand);line-height:1.4;margin:14px 0 10px;}
+.cgroup:first-child .gname{margin-top:0;}
+/* 方法区引导语 */
+.ab-mlead{font-size:15.5px;line-height:1.75;color:#201914;margin:12px 0 0;}
+.ab-mlead + .ab-concepts{margin-top:10px;}
+/* ===== 卡内组件 ===== */
+.bp{font-size:15.5px;line-height:1.75;color:#201914;margin:0 0 8px;}
+.bp:last-child{margin-bottom:0;}
+/* 编号要点清单：整体一个大框 + 行式条目 + 品牌红单色编号圈；
+   不一条一个框（框海），也不搞多色循环（同页多色=乱） */
+.bsteps{display:flex;flex-direction:column;gap:13px;margin:10px 0 2px;
+  border:2px solid var(--abline);border-radius:12px;padding:14px 16px;background:var(--card);}
+.bstep{display:flex;gap:13px;align-items:flex-start;}
+.bstep .n{flex:0 0 26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;
+  font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.bstep .x{flex:1;font-size:15px;line-height:1.7;color:#201914;}
+/* 条目多且短时双列排布，降低纵向拥挤感；列优先填充（左列1234/右列5678），每格独立虚线框做视觉分割 */
+.bsteps.cols2{border:none;background:transparent;padding:0;
+  display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:column;grid-template-rows:repeat(4,auto);gap:12px;}
+.bsteps.cols2 .bstep{border:2px solid var(--abline);background:var(--card);border-radius:10px;padding:11px 13px;align-items:flex-start;}
+/* 红标签行：组件库 .five 真值；单列对齐网格，标签 nowrap 不折行、正文左缘对齐；
+   标签=浅红底红字（同故事标签形态：浅底彩字），单色不抢主色调，不做多色循环 */
+.kvs{display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:8px;align-items:start;margin:10px 0 2px;}
+.kv{display:contents;}
+.kv .n{padding:2px 10px;border-radius:8px;background:#FDE8E4;color:var(--brand);font-size:13px;line-height:1.6;text-align:center;white-space:nowrap;}
+.kv .x{font-size:15px;line-height:1.72;color:#201914;}
+/* 嵌套小卡 */
+.subs{display:flex;flex-direction:column;gap:13px;margin:10px 0 2px;}
+.sub{border:2px solid var(--abline);border-radius:12px;padding:13px 16px;background:var(--card);}
+.sub .shead{display:flex;gap:10px;align-items:center;margin-bottom:13px;}
+.sub .sn{flex:0 0 26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;
+  font-size:14px;display:flex;align-items:center;justify-content:center;}
+.sub .n{color:var(--brand);font-size:15.5px;line-height:1.5;}
+.sub .x{font-size:15px;line-height:1.72;color:#201914;}
+.sub .x .bp{font-size:15px;}
+.sub .lv{display:flex;gap:10px;align-items:flex-start;margin-top:6px;}
+.sub .lvn{flex:0 0 20px;height:20px;border-radius:50%;background:var(--abline);color:#fff;
+  font-size:11.5px;display:flex;align-items:center;justify-content:center;margin-top:3px;}
+.sub .lvc{font-size:15px;color:#201914;line-height:1.7;flex:1;}
+.sub .example{margin-top:11px;}
+.sub-steps{margin-top:4px;}
+.sub-tail{margin-top:6px;}
+/* 话术引用：说的话不用虚线框（虚线框=例子的专用样式），红字引文+前置引号，一眼看出是话 */
+.callout{margin:14px 0 6px;padding:0 0 0 26px;position:relative;
+  font-size:15px;line-height:1.85;color:var(--brand);}
+.callout::before{content:"“";position:absolute;left:0;top:-4px;
+  font-size:30px;color:var(--brand);line-height:1;}
+/* 方法清单：红字引导条 + 编号子卡（红圈+红名+内容卡片化），不再平铺信息罗列 */
+.cline{margin:10px 0 2px;display:flex;flex-direction:column;gap:10px;}
+.cline .clinelab{font-size:14px;color:var(--brand);background:rgba(224,67,46,.07);
+  padding:8px 12px;border-radius:8px;}
+.cline .example{margin-top:2px;}
+/* 框架格子：5W1H 工具说明 .grid/.subcell 真值（灰底圆角格 + 居中粗标题 + 说明） */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:10px 0 2px;}
+.fcell{background:rgba(106,96,88,.07);border-radius:12px;padding:18px 16px;}
+.fcell h4{font-size:15px;font-weight:700;color:#201914;letter-spacing:1px;margin:0 0 10px;text-align:center;}
+.fcell .explain{font-size:15px;color:#201914;line-height:1.7;margin:0;text-align:left;}
+@media (max-width:640px){.fgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}.fcell{padding:14px 12px;}.mini-vs{grid-template-columns:1fr;}}
+/* 标签云：组件库 .tags 真值 */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px;}
+.tagx{font-size:13.5px;color:#201914;background:rgba(106,96,88,.10);
+  border:2px solid var(--abline);border-radius:18px;padding:4px 11px;white-space:nowrap;}
+/* 横向流程图：每个节点=节点框+正下方说明（说明与环节一一对齐）；箭头与节点框等高垂直居中 */
+.hflow{display:flex;align-items:flex-start;justify-content:center;gap:0;margin:16px 0 2px;}
+.hflow .hcol{display:flex;flex-direction:column;align-items:center;}
+.hflow .hn{flex:0 0 auto;border:2.5px solid var(--brand);border-radius:10px;
+  background:rgba(224,67,46,.05);padding:9px 24px;text-align:center;
+  font-size:15.5px;color:var(--brand);font-weight:700;letter-spacing:2px;line-height:1.4;}
+.hflow .ha{flex:0 0 44px;height:45px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:var(--brand);line-height:1;}
+.hflow .hcap{margin-top:9px;font-size:14.5px;color:#201914;line-height:1.7;text-align:center;}
+/* 分阶段流程图：阶段分行（左=红阶段标签，右=内容），阶段间↓衔接时序；贯穿项=浅红底圆角标签行 */
+.pflow{margin:16px 0 2px;}
+.pflow .phase{display:flex;align-items:flex-start;gap:14px;}
+.pflow .plab{flex:0 0 104px;margin-top:2px;border:2.5px solid var(--brand);border-radius:10px;
+  background:rgba(224,67,46,.05);padding:9px 0;text-align:center;
+  font-size:15.5px;color:var(--brand);font-weight:700;letter-spacing:2px;line-height:1.4;}
+.pflow .pjoin{padding-left:41px;font-size:18px;color:#9C928A;line-height:1.15;margin:3px 0;}
+.pflow .pbody{flex:1 1 auto;min-width:0;}
+.pflow .pchain{display:flex;align-items:flex-start;gap:0;margin:2px 0 4px;}
+.pflow .pchain.flat{gap:12px;flex-wrap:wrap;}
+.pflow .hcol{display:flex;flex-direction:column;align-items:center;}
+.pflow .hn{flex:0 0 auto;border:2.5px solid var(--brand);border-radius:10px;
+  background:rgba(224,67,46,.05);padding:9px 20px;text-align:center;
+  font-size:15.5px;color:var(--brand);font-weight:700;letter-spacing:2px;line-height:1.4;}
+.pflow .ha{flex:0 0 40px;height:45px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:var(--brand);line-height:1;}
+.pflow .hcap{margin-top:9px;font-size:14.5px;color:#201914;line-height:1.7;text-align:center;}
+.pflow .pthrough{display:flex;align-items:center;gap:10px;margin:2px 0 12px;flex-wrap:wrap;}
+.pflow .pt-lab{font-size:13px;color:#9C928A;letter-spacing:1px;white-space:nowrap;}
+.pflow .ptag{font-size:14px;color:var(--brand);background:#FDE8E4;border-radius:9px;
+  padding:5px 14px;font-weight:700;white-space:nowrap;}
+/* 对比列内嵌 SVG 机制图（组件库 .cfig 真值） */
+.mvswrap .mfig{margin:10px auto 0;max-width:180px;}
+.mvswrap .mfig svg{width:100%;height:auto;display:block;}
+/* 金句不上组件：原句内红色强调（内容连贯不打断） */
+.em-red{color:var(--brand);}
+/* 小节标题：定义区内的什么是X/为什么X结构小节（红字粗体，不套框） */
+.abh{font-size:16px;color:var(--brand);margin:18px 0 8px;font-weight:500;}
+/* 独立 SVG 结构图容器（hub 中心辐射/阶梯图等） */
+.ab-fig{margin:12px auto 0;max-width:560px;}
+/* 方法区前置大图（屏蔽力 hub）：放大到接近正文栏宽，保证框内文字接近正文字号 */
+.ab-fig + .ab-concepts{margin-top:12px;}
+.ab-fig svg{width:100%;height:auto;display:block;}
+/* 引用框（如《学会提问》金句）：左侧红条 + 浅红底，不抢主色 */
+.quote{border-left:3px solid var(--brand);background:rgba(224,67,46,.05);
+  border-radius:0 10px 10px 0;padding:14px 18px;margin:10px 0 2px;}
+.quote .qb{font-size:15.5px;line-height:1.85;color:#201914;}
+.quote .qsrc{margin-top:10px;font-size:15.5px;color:var(--brand);text-align:right;}
+/* 信息金字塔：自顶向下逐层变宽；顶=最可靠一手信息，底=最滞后碎片化信息 */
+.ab-pyramid{display:flex;flex-direction:column;align-items:center;gap:7px;margin:14px 0 2px;}
+.ab-pyramid .pl{box-sizing:border-box;border:1.5px solid var(--brand);border-radius:9px;
+  background:rgba(224,67,46,.05);padding:10px 14px;text-align:center;}
+.ab-pyramid .pn{font-size:14.5px;font-weight:700;color:var(--brand);}
+.ab-pyramid .px{font-size:13.5px;color:#201914;margin-top:3px;line-height:1.6;}
+/* 卡内小对比：组件库 .mini-vs 真值（左列灰底、右列红框，列=标签+陈述；外层不加框——
+   卡片本身已有边框，组件库示例里的虚线外框是演示容器，不是组件的一部分） */
+.mini-vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 2px;}
+.mini-vs .mcol{border-radius:10px;padding:14px 16px;min-width:0;}
+.mini-vs .mcol.l{background:rgba(106,96,88,.08);}
+.mini-vs .mcol.r{border:2px solid var(--brand);}
+.mini-vs .mt{font-size:15px;color:var(--brand);margin-bottom:8px;letter-spacing:1px;}
+.mini-vs .mp{font-size:15px;line-height:1.75;color:#201914;}
+/* 道天地将法 / 五事拆解：照搬孙子兵法 .five 真值（红 lab + 关键词 + 原意/现代） */
+.five{margin-top:18px;display:grid;grid-template-columns:1fr;gap:10px}
+.five .row{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:2px solid var(--abline);border-radius:12px;padding:14px 18px}
+.five .lab{flex:0 0 auto;min-width:48px;height:48px;padding:0 9px;border-radius:10px;background:var(--brand);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;font-weight:400;line-height:1.1;text-align:center;white-space:nowrap}
+.five .body{font-size:16px;line-height:1.6;color:#201914}
+.five .body b{color:var(--brand)}
+.five .body .orig{color:#201914;font-size:15px;display:block;margin-top:5px;line-height:1.7}
+
+/* ===== 评估首页 + 分区显隐（#375 补回） ===== */
+
+.asm-last .more{
+  display:inline-block;margin-top:12px;font-size:14px;color:var(--brand);
+  font-weight:600;text-decoration:none;
 }
 
-/* ===== 详情：白板手绘风（字体/字号/字重全照抄纳瓦尔宝典知识卡片） ===== */
-/* 通篇手写体 + 字重 400（对齐原版 --font-hand 体系） */
-.pain-section{
-  --abline:#6A6058;
-  font-family:var(--font-hand);
+.asm-last .more:hover{text-decoration:underline;}
+
+.asm-last .nm{font-size:14.5px;color:var(--title);flex:1;}
+
+.asm-last .row{
+  display:flex;align-items:center;gap:10px;padding:9px 0;
+  border-bottom:1px dashed var(--line-weak);
 }
-/* ===== 首页（abm-home）：直接照搬原个人能力评估页的居中首屏 =====
-   独立居中一块，不与左侧维度功能混排（用户红线） */
-/* 居中：max-width 加在内层 block 上（.stack 是 flex 列，直接在 flex 项上 margin auto 会收缩成内容宽） */
-.asm-hero{
-  max-width:880px;margin:0 auto;
-  background:var(--card);border:1px solid var(--line-weak);border-radius:16px;
-  padding:30px 26px;text-align:center;box-shadow:0 2px 10px rgba(32,25,20,.04);
-  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+
+.asm-last .row:last-of-type{border-bottom:0;}
+
+.asm-last .sc{font-size:14px;font-weight:700;min-width:64px;text-align:right;}
+
+.asm-last .sev{
+  font-size:12px;font-weight:600;padding:2px 10px;border-radius:100px;
+  border:1px solid transparent;white-space:nowrap;
 }
-.asm-hero h1{
-  font-family:var(--font-hand);font-size:30px;font-weight:700;color:var(--title);
-  letter-spacing:.5px;margin:0 0 14px;line-height:1.3;
+
+.asm-last h2{
+  font-family:var(--font-hand);font-size:19px;font-weight:700;color:var(--title);
+  margin:0 0 6px;letter-spacing:.4px;
 }
+
 .asm-meta{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:0 0 20px;align-items:baseline;}
-.asm-meta span{font-size:13px;color:var(--text-2);}
+
 .asm-meta b{color:var(--brand);font-weight:700;font-size:24px;margin-right:3px;}
+
+.asm-meta span{font-size:13px;color:var(--text-2);}
+
 .asm-start{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--brand);color:#fff;border:0;border-radius:100px;text-decoration:none;
@@ -91,173 +335,112 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
   letter-spacing:.5px;box-shadow:0 4px 14px rgba(224,67,46,.22);
   transition:transform .2s ease,box-shadow .2s ease;
 }
+
 .asm-start:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(224,67,46,.28);color:#fff;}
+
+.pain-section .core{margin-bottom:0;opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease;}
+
+.pain-section .core.reveal-in{opacity:1;transform:translateY(0);}
+
+
+.asm-hero{
+  max-width:880px;margin:0 auto;
+  background:var(--card);border:1px solid var(--line-weak);border-radius:16px;
+  padding:30px 26px;text-align:center;box-shadow:0 2px 10px rgba(32,25,20,.04);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+
+.asm-hero h1{
+  font-family:var(--font-hand);font-size:30px;font-weight:700;color:var(--title);
+  letter-spacing:.5px;margin:0 0 14px;line-height:1.3;
+}
+
 .asm-hero .why{font-size:13.5px;color:#9C928A;line-height:1.8;margin:16px 0 0;white-space:nowrap;}
 
-/* ===== 首页：上一次的评估结果（本地留存，不清缓存 / 不重测就一直在） ===== */
+.asm-last h2 .when{
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:12.5px;font-weight:400;color:#9C928A;margin-left:10px;letter-spacing:0;
+}
+
+.asm-last .lv-1{background:rgba(47,158,99,.12);color:#2F9E63;border-color:rgba(47,158,99,.35);}
+
+.asm-last .lv-2{background:rgba(124,168,60,.14);color:#6E9A2E;border-color:rgba(124,168,60,.38);}
+
+.asm-last .lv-3{background:rgba(217,147,13,.13);color:#B57A0A;border-color:rgba(217,147,13,.4);}
+
+.asm-last .lv-4{background:rgba(224,106,46,.12);color:#D65F24;border-color:rgba(224,106,46,.4);}
+
+.asm-last .lv-5{background:rgba(224,67,46,.10);color:var(--brand);border-color:rgba(224,67,46,.42);}
+
+  .asm-hero{padding:26px 18px;}
+
+  .asm-hero h1{font-size:24px;}
+
+  .asm-hero .why{white-space:normal;}
+
+
+.ab-hero .ab-role + .kvs{display:flex;flex-direction:column;gap:8px;margin:10px 0 2px;}
+
 .asm-last{
   max-width:880px;margin:16px auto 0;
   background:var(--card);border:1px solid var(--line-weak);border-radius:16px;
   padding:22px 26px;box-shadow:0 2px 10px rgba(32,25,20,.04);
   font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 }
-.asm-last h2{
-  font-family:var(--font-hand);font-size:19px;font-weight:700;color:var(--title);
-  margin:0 0 6px;letter-spacing:.4px;
-}
-/* 时间并到标题后面，不再单独占一行 */
-.asm-last h2 .when{
-  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-  font-size:12.5px;font-weight:400;color:#9C928A;margin-left:10px;letter-spacing:0;
-}
-.asm-last .row{
-  display:flex;align-items:center;gap:10px;padding:9px 0;
-  border-bottom:1px dashed var(--line-weak);
-}
-.asm-last .row:last-of-type{border-bottom:0;}
-.asm-last .nm{font-size:14.5px;color:var(--title);flex:1;}
-.asm-last .sev{
-  font-size:12px;font-weight:600;padding:2px 10px;border-radius:100px;
-  border:1px solid transparent;white-space:nowrap;
-}
-.asm-last .sc{font-size:14px;font-weight:700;min-width:64px;text-align:right;}
-.asm-last .more{
-  display:inline-block;margin-top:12px;font-size:14px;color:var(--brand);
-  font-weight:600;text-decoration:none;
-}
-.asm-last .more:hover{text-decoration:underline;}
-/* 等级徽章五档配色（与报告页完全一致） */
-.asm-last .lv-1{background:rgba(47,158,99,.12);color:#2F9E63;border-color:rgba(47,158,99,.35);}
-.asm-last .lv-2{background:rgba(124,168,60,.14);color:#6E9A2E;border-color:rgba(124,168,60,.38);}
-.asm-last .lv-3{background:rgba(217,147,13,.13);color:#B57A0A;border-color:rgba(217,147,13,.4);}
-.asm-last .lv-4{background:rgba(224,106,46,.12);color:#D65F24;border-color:rgba(224,106,46,.4);}
-.asm-last .lv-5{background:rgba(224,67,46,.10);color:var(--brand);border-color:rgba(224,67,46,.42);}
-@media(max-width:768px){
-  .asm-hero{padding:26px 18px;}
-  .asm-hero h1{font-size:24px;}
-  .asm-hero .why{white-space:normal;}
-  .asm-last{padding:20px 18px;}
-  .asm-last .sc{min-width:58px;}
-}
-/* 头卡：粗墨线 + 偏移阴影（不旋转） */
-.ab-hero{
-  background:var(--card);border:2.5px solid var(--abline);border-radius:14px;
-  box-shadow:3px 4px 0 rgba(32,25,20,.07);padding:26px 30px;
-  margin-bottom:8px;
-}
-.ab-hero h1{
-  font-size:40px;font-weight:400;color:var(--ink,#201914);
-  letter-spacing:1px;margin:0 0 12px;line-height:1.25;
-}
-.ab-role{font-size:20px;line-height:1.6;color:#201914;}
-.ab-role .rk{
-  color:var(--brand);font-weight:400;margin-right:8px;
-  border-bottom:3px solid rgba(224,67,46,.35);padding-bottom:1px;
-}
-/* 首页改走 .asm-*（原评估页版式），旧的自造按钮/提示样式已废弃 */
-
-/* 区块标题：红色手绘下划线（照抄 .sec-title：大字 + w400 + 斜红条）
-   字号 28px 与成长之路页 .ab-stitle 完全一致（用户红线：两页标题字体/字号/间距统一） */
-.ab-sec{margin-top:42px;}
-.ab-stitle{
-  font-size:28px;font-weight:400;color:#201914;letter-spacing:1px;
-  display:inline-block;position:relative;
-}
-.ab-stitle::after{
-  content:"";position:absolute;left:0;right:-6px;bottom:-7px;height:4px;
-  background:var(--brand);border-radius:3px;transform:rotate(-.6deg);
-}
-
-/* 缺失表现：红色椭圆标签（红框更显眼，对齐成长之路页 .pain-tag），左对齐不套框 */
-.sym-cloud{
-  margin-top:22px;display:flex;flex-wrap:wrap;gap:15px 14px;
-  align-items:center;
-}
-.stag{
-  font-size:18px;color:var(--brand);border:2px solid var(--brand);
-  border-radius:20px;padding:6px 16px;background:rgba(224,67,46,.04);
-  white-space:nowrap;line-height:1.4;
-}
-
-/* 落地方法：概念模块（红圆号收紧到 34 / 名称 23 / 正文 16；步骤圈 24+14字+17正文） */
-.ab-concepts{display:flex;flex-direction:column;gap:16px;margin-top:18px;}
-.concept{
-  background:var(--card);border:2.5px solid var(--abline);border-radius:16px;
-  padding:18px 20px;box-shadow:3px 4px 0 rgba(32,25,20,.06);
-}
-.concept .chead{display:flex;gap:12px;align-items:flex-start;}
-.concept .cnum{
-  flex:0 0 34px;height:34px;border-radius:50%;background:var(--brand);color:#fff;
-  font-size:18px;display:flex;align-items:center;justify-content:center;
-}
-.concept .cname{font-size:23px;color:var(--brand);line-height:1.2;font-weight:400;}
-.concept .cone{font-size:16px;color:#9C928A;margin-top:4px;line-height:1.45;}
-/* 步骤：紧凑行内层级 */
-.concept .csteps{margin-top:14px;display:flex;flex-direction:column;gap:8px;}
-.concept .lv{display:flex;gap:12px;align-items:flex-start;}
-.concept .lvn{
-  flex:0 0 24px;height:24px;border-radius:50%;background:var(--abline);color:#fff;
-  font-size:14px;display:flex;align-items:center;justify-content:center;
-}
-.concept .lvc{font-size:17px;color:#201914;line-height:1.55;flex:1;}
-
-/* 待补充：虚线框（对齐 .example） */
-.ab-train{
-  margin-top:22px;padding:18px 20px;border:2px dashed var(--abline);
-  border-radius:12px;background:rgba(251,246,240,.7);
-}
-.ab-train .t{font-size:16px;color:#9C928A;margin-bottom:6px;letter-spacing:.5px;}
-.ab-train p{font-size:20px;color:#201914;line-height:1.5;}
-
 @media (max-width:768px){
-  .ab-hero{padding:22px 18px;}
-  .ab-hero h1{font-size:32px;}
-  .ab-stitle{font-size:23px;}
-  .ab-stitle::after{height:4px;bottom:-6px;}
-  .concept{padding:20px 16px;}
-  .concept .cname{font-size:24px;}
-  .concept .cone{font-size:16px;}
-  .concept .lvc{font-size:18px;}
-  .concept .lvn{flex:0 0 26px;height:26px;font-size:15px;}
-  .stag{font-size:15px;padding:6px 14px;}
+  .ab-hero{padding:16px 15px;}
+  .ab-hero h1{font-size:20px;}
+  .ab-stitle{font-size:18px;}
+  .ab-role,.ab-hero .bp{font-size:14.5px;}
+  .concept{padding:13px 14px;}
+  .concept .cname{font-size:15.5px;}
+  .concept .cnum{flex:0 0 23px;height:23px;font-size:12px;}
+  .concept .cbody{font-size:14.5px;}
+  .concept .lvc{font-size:14px;}
+  .myth{font-size:14.5px;padding:12px 13px;}
+  .example{padding:10px 12px;}
+  .example .bp,.io-x,.io-case{font-size:14.5px;}
+  .ioflow{grid-template-columns:92px 1fr 1fr;}
+  .ioflow.nocase{grid-template-columns:92px 1fr;}
+  .io-arrow{padding-left:34px;}
+  .io-node{font-size:14px;}
+  .cgroup .gname{font-size:15.5px;}
+  .stag{font-size:12.5px;padding:4px 10px;}
+  .bp,.bstep .x,.kv .x{font-size:14.5px;}
+  .kv .n{font-size:12.5px;padding:2px 8px;}
+  .mvswrap{grid-template-columns:1fr;}
+  .mvswrap .mcol:first-child{border-right:none;border-bottom:2.5px dashed var(--abline);}
+  .hflow{flex-direction:column;align-items:center;gap:10px;}
+  .hflow .ha{flex:0 0 22px;height:22px;margin:0 auto;font-size:0;}
+  .hflow .ha::before{content:"↓";font-size:20px;}
+  .hflow .hn{font-size:14.5px;padding:7px 20px;letter-spacing:1.5px;}
+  .hflow .hcap{margin-top:6px;}
+  .pflow .phase{flex-direction:column;gap:8px;}
+  .pflow .plab{flex:0 0 auto;align-self:flex-start;padding:7px 18px;}
+  .pflow .pjoin{padding-left:28px;}
+  .pflow .pchain{flex-direction:column;align-items:center;gap:9px;width:100%;}
+  .pflow .pchain.flat{flex-direction:row;justify-content:flex-start;gap:10px;flex-wrap:wrap;}
+  .pflow .ha{flex:0 0 22px;height:22px;margin:0 auto;font-size:0;}
+  .pflow .ha::before{content:"↓";font-size:20px;}
+  .pflow .hn{font-size:14.5px;padding:7px 20px;letter-spacing:1.5px;}
+  .pflow .hcap{margin-top:6px;}
+  .pflow .pthrough{margin-bottom:4px;}
+  .kvs.duo{grid-template-columns:1fr;}
+  .sub{padding:10px 12px;}.sub .sn{flex:0 0 23px;height:23px;font-size:12.5px;}
+  .bsteps.cols2{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:auto;}
+  .sub .n{font-size:14.5px;}.sub .x{font-size:14px;}.sub .x .bp{font-size:14px;}
+  .callout{font-size:14.5px;padding-left:20px;}
+  .ab-sec{margin-top:24px;}
 }
-
-/* 待补充：虚线框（对齐 .example） */
-.ab-train{
-  margin-top:22px;padding:18px 20px;border:2px dashed var(--abline);
-  border-radius:12px;background:rgba(251,246,240,.7);
+/* 标题逐字掉落动效（#401 回灌：能力名逐字、门控 html.ab-mjs） */
+html.ab-mjs .ab-hero h1 .m-char{
+  display:inline-block;opacity:0;transform:translateY(-46px) rotate(-8deg);
+  animation:abCharDrop .55s cubic-bezier(.34,1.56,.64,1) forwards;
+  animation-delay:calc(var(--i)*95ms + 120ms);
 }
-.ab-train .t{font-size:14px;color:var(--text-2);margin-bottom:6px;letter-spacing:.5px;}
-.ab-train p{font-size:17px;color:var(--title);line-height:1.75;}
-
-@media (max-width:768px){
-  .ab-hero{padding:22px 18px;}
-  .ab-hero h1{font-size:30px;}
-  .ab-stitle{font-size:21px;}
-  .ab-stitle::after{height:4px;bottom:-6px;}
-  .concept{padding:20px 16px;}
-  .concept .cname{font-size:22px;}
-  .concept .cone{font-size:15px;}
-  .concept .lvc{font-size:17px;}
-  .stag{font-size:15px;padding:8px 16px;}
-}
-
-/* 关联痛点：手绘标签（对齐 .tagx） */
-.ab-pains{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
-.ab-pain{
-  font-size:14px;color:var(--title);background:var(--card);
-  border:2px solid var(--abline);border-radius:20px;padding:8px 17px;
-  text-decoration:none;box-shadow:2px 3px 0 rgba(32,25,20,.05);
-  transition:border-color .18s ease,color .18s ease,transform .18s ease;
-}
-.ab-pain:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-2px);}
-
-@media (max-width:768px){
-  .ab-hero{padding:20px 18px;}
-  .ab-hero h1{font-size:27px;}
-  .ab-stitle{font-size:19px;}
-  .ab-stitle::after{height:4px;bottom:-6px;}
-  .concept{padding:18px 16px;}
+@keyframes abCharDrop{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  html.ab-mjs .ab-hero h1 .m-char{opacity:1;transform:none;animation:none}
 }
 </style>
 <style>:root{--side-width:0px !important}.wrap{margin-left:auto !important;margin-right:auto !important}.site-foot{margin-left:auto !important;margin-right:auto !important}#menuToggle{display:none !important}@media (min-width:769px){.site-nav .nav-tabs{left:248px !important}}</style>
@@ -305,19 +488,7 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
 <div class="wrap">
   <div class="stack" id="abmStack">
 
-<section class="pain-section" id="abm-home" style="display:none;">
-  <div class="asm-hero core core-first">
-    <h1>个人能力评估</h1>
-    <div class="asm-meta">
-      <span><b>23</b> 道题</span>
-      <span>约 <b>3</b> 分钟</span>
-      <span><b>5</b> 大维度</span>
-    </div>
-    <a class="asm-start" href="assessment.html">开始评估 →</a>
-    <p class="why">根据你的选择，评估你在哪方面的能力可能存在不足。</p>
-  </div>
-  <div class="asm-last" id="abmLast" style="display:none;"></div>
-</section>
+
 
 </div>
 </div>
@@ -331,6 +502,7 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
     if(animate === undefined) animate = true;
     window.__shownId = id;
     try{ sessionStorage.setItem('abmCurrent', id); }catch(e){}
+    try{ history.replaceState(null, '', '#' + encodeURIComponent(id)); }catch(e){}
     sections.forEach(function(s){ s.style.display = (s.id === id ? 'block' : 'none'); });
     links.forEach(function(a){
       a.classList.toggle('active', a.getAttribute('data-target') === id);
@@ -378,12 +550,18 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
   first = first.replace(/^#/, '');
   var rawHash = window.__savedHash || location.hash || '';
   var hash = rawHash ? decodeURIComponent(rawHash.replace('#','')) : '';
-  // 刷新停留在当前能力：hash 直达 > 本次会话记住的 > 第一个
-  var saved = '';
-  try{ saved = sessionStorage.getItem('abmCurrent') || ''; }catch(e){}
-  // 无 hash 时默认进入首页（评估优先），有 hash 才直达具体能力
+  // 两个动作分开：刷新=URL 带 hash 原地保持；点顶部导航=整页重载且无 hash → 一律回首页（评估优先）
   var target = hash || 'abm-home';
   show(document.getElementById(target) ? target : first, true, false);
+  // 顶部导航个人能力模型回首页：详情页点导航 = hash 被清空 = 回 abm-home（与刷新是两个动作，分开处理）
+  window.addEventListener('hashchange', function(){
+    var h = '';
+    try{ h = decodeURIComponent(location.hash.replace('#', '')); }catch(e){ h = location.hash.replace('#', ''); }
+    if(!h) h = 'abm-home';
+    if(document.getElementById(h) && window.__shownId !== h){
+      show(h);
+    }
+  });
   window.addEventListener('load', function(){ try{ window.scrollTo(0, 0); }catch(e){} });
   function revealFirst(){
     var cur = document.getElementById(window.__shownId);
@@ -452,6 +630,13 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
   up.addEventListener('click', function(){ if(scroll.scrollTop <= 1){ showHint('已到达顶部', true); return; } scrollBy(-step); });
   down.addEventListener('click', function(){ if(scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 1){ showHint('已到达底部', false); return; } scrollBy(step); });
   scroll.addEventListener('scroll', updateArrows, {passive: true});
+  /* 有选中/高亮项时，把侧栏滚动到该项可见（尽量居中） */
+  var act = scroll.querySelector('a.active');
+  if(act){
+    var actRect = act.getBoundingClientRect();
+    var scRect = scroll.getBoundingClientRect();
+    scroll.scrollTop += (actRect.top + actRect.height / 2) - (scRect.top + scRect.height / 2);
+  }
   window.addEventListener('load', updateArrows);
   updateArrows();
 })();
