@@ -44,6 +44,11 @@
 
 *{box-sizing:border-box;margin:0;padding:0;}
 
+/* 锚点跳转让位顶部导航：hash 直达（如第二大脑图谱点能力 → ability-model.html#p-X）时，
+   原生锚点滚动把目标顶到 y=0 会被 64px sticky 导航盖住，顶部内容被截断。
+   scroll-padding 让原生滚动自动落在导航下方（#411b） */
+html{scroll-padding-top:calc(var(--nav-height) + 24px);}
+
 body{
   background:var(--bg);
   color:var(--text);
