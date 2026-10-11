@@ -564,9 +564,12 @@ body{
 
 /* ===== 详情页公共组件 ===== */
 .modelnav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;}
-.modelnav a{font-size:var(--fs-body);font-weight:500;color:var(--text-2);text-decoration:none;transition:color var(--dur) ease;}
+.modelnav a{font-size:var(--fs-body);font-weight:500;color:var(--text-2);text-decoration:none;transition:color var(--dur) ease;display:inline-flex;align-items:baseline;gap:6px;line-height:1.4;}
 .modelnav a:hover{color:var(--brand);}
-.modelnav span{font-size:var(--fs-body);font-weight:500;color:var(--muted);}
+.modelnav span{font-size:var(--fs-body);font-weight:500;color:inherit;}
+.modelnav span.disabled{color:var(--muted);}
+.modelnav .mn-dir{white-space:nowrap;flex:0 0 auto;}
+.modelnav .mn-name{white-space:normal;word-break:break-word;}
 
 .toggle{display:block;width:fit-content;background:none;border:none;padding:0;cursor:pointer;color:var(--brand);font-size:var(--fs-2nd);font-weight:600;font-family:inherit;letter-spacing:.3px;text-decoration:underline;text-decoration-color:var(--brand);text-underline-offset:3px;transition:color var(--dur) ease,text-decoration-color var(--dur) ease;}
 .toggle:hover{color:var(--brand);text-decoration-color:var(--brand);}
@@ -780,7 +783,7 @@ div.node{text-wrap:balance;}
 .page-trap .modelnav{padding-top:8px;}
 .page-trap .modelnav a{color:var(--text);}
 .page-trap .modelnav a:hover{color:var(--brand);}
-.page-trap .modelnav span{color:var(--disabled);}
+.page-trap .modelnav span.disabled{color:var(--disabled);}
 
 /* =========== 详情页 H5 适配（720px） =========== */
 @media (max-width:768px){
@@ -788,6 +791,8 @@ div.node{text-wrap:balance;}
   /* 移动端最小可读兜底：注解/提示类 12-13px 一律抬到 14px，禁止移动端出现过小字 */
   .top-tag,.step .dot{font-size:var(--fs-text);}
   .page{margin-left:0;padding:16px 16px 36px;gap:18px;}
+  .wrap{margin-left:0;padding:16px 16px 36px;}
+  .site-foot{margin-left:0;padding:8px 16px 36px;}
   .card{padding:22px;border-radius:12px;}
   .topbar-head{display:flex;flex-direction:row;justify-content:space-between;align-items:flex-start;flex-wrap:nowrap;gap:12px;}
   .topbar-titles{flex:1 1 auto;min-width:auto;}
@@ -796,10 +801,12 @@ div.node{text-wrap:balance;}
   .topbar-actions{flex-wrap:wrap;gap:8px;width:100%;}
   .back-link{font-size:var(--fs-text);padding:8px 14px;order:1;}
 
-  .modelnav{flex-direction:row;align-items:center;justify-content:space-between;gap:10px;flex-wrap:nowrap;padding-top:14px;}
-  .modelnav>a,.modelnav>span{font-size:var(--fs-text);line-height:1.5;flex:0 1 auto;max-width:48%;}
+  .modelnav{flex-direction:row;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:nowrap;padding-top:14px;}
+  .modelnav>a,.modelnav>span{font-size:var(--fs-text);line-height:1.4;flex:1 1 0;max-width:none;display:flex;flex-direction:column;align-items:flex-start;gap:2px;}
   .modelnav>*:first-child{text-align:left;}
-  .modelnav>*:last-child{text-align:right;}
+  .modelnav>*:last-child{text-align:right;align-items:flex-end;}
+  .modelnav .mn-dir{font-size:var(--fs-text);white-space:nowrap;}
+  .modelnav .mn-name{font-size:var(--fs-2nd);line-height:1.45;word-break:break-word;}
   .card:has(>.flow-scroll){overflow:visible;}
   .flow-scroll{width:100%;padding:12px 0;box-sizing:border-box;text-align:center;}
   .flow{display:inline-flex;gap:4px;justify-content:center;min-width:max-content;text-align:left;}
@@ -808,6 +815,9 @@ div.node{text-wrap:balance;}
   .arrow svg{width:100%;height:auto;}
   .global-tip{max-width:calc(100vw - 32px);width:auto;}
   .loop-wrap svg text{font-size:var(--fs-h4);fill:var(--brand);}
+  /* C 类带图工具卡：移动端 svg 不缩放、横向滚动保可读（#412） */
+  .loop-tool .loop-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;justify-content:flex-start;}
+  .loop-tool .loop-wrap svg{min-width:560px;width:100%;height:auto;}
   .flow-scroll svg text{font-size:var(--fs-lead);}
   .flow-caption{font-size:var(--fs-text);}
   .flow-caption text{font-size:var(--fs-lead);}
