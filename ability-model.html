@@ -19,8 +19,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>个人能力模型</title>
-<link rel="stylesheet" href="assets/site.css?v=72">
-<link rel="stylesheet" href="assets/search.css?v=72">
+<link rel="stylesheet" href="assets/site.css?v=73">
+<link rel="stylesheet" href="assets/search.css?v=73">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
 <style>
@@ -344,7 +344,9 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
 
 
 .asm-hero{
-  max-width:880px;margin:0 auto;
+  /* 有侧栏时靠左贴齐（间距=wrap padding 28px，用户 2026-10-16 拍板：嫌居中偏移 90px 太宽）；
+     无侧栏（无权限隐藏）时由 lock.js 的 body.abm-nav-hidden 规则改回居中 */
+  max-width:880px;margin:0 auto 0 0;
   background:var(--card);border:1px solid var(--line-weak);border-radius:16px;
   padding:30px 26px;text-align:center;box-shadow:0 2px 10px rgba(32,25,20,.04);
   font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
@@ -382,7 +384,8 @@ html.preload,html.preload *{transition:none!important;animation:none!important;}
 .ab-hero .ab-role + .kvs{display:flex;flex-direction:column;gap:8px;margin:10px 0 2px;}
 
 .asm-last{
-  max-width:880px;margin:16px auto 0;
+  /* 与 .asm-hero 同一左缘（2026-10-16 用户拍板：两卡左对齐） */
+  max-width:880px;margin:16px auto 0 0;
   background:var(--card);border:1px solid var(--line-weak);border-radius:16px;
   padding:22px 26px;box-shadow:0 2px 10px rgba(32,25,20,.04);
   font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
@@ -813,6 +816,23 @@ html.ab-mjs .ab-hero h1 .m-char{
     + rows
     + '<a class="more" href="assessment-report.html?s=' + encodeURIComponent(d.s) + '">查看完整报告 →</a>';
   el.style.display = 'block';
+})();
+</script><script>
+/* 能力名逐字掉落（门控 html.ab-mjs，防止无动效环境出错） */
+(function(){
+  var de = document.documentElement;
+  de.classList.add('ab-mjs');
+  document.querySelectorAll('.ab-hero h1').forEach(function(h){
+    var t = h.textContent;
+    h.textContent = '';
+    for(var i = 0; i < t.length; i++){
+      var sp = document.createElement('span');
+      sp.className = 'm-char';
+      sp.style.setProperty('--i', i);
+      sp.textContent = (t[i] === ' ') ? ' ' : t[i];
+      h.appendChild(sp);
+    }
+  });
 })();
 </script>
 <script src="assets/free-lock.js?v=7"></script>

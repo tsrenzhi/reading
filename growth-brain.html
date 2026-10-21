@@ -7,8 +7,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>第二大脑 - 成长觉醒</title>
-  <link rel="stylesheet" href="assets/site.css?v=72">
-  <link rel="stylesheet" href="assets/search.css?v=72">
+  <link rel="stylesheet" href="assets/site.css?v=73">
+  <link rel="stylesheet" href="assets/search.css?v=73">
   <style>
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;overflow:hidden;scrollbar-width:none;-ms-overflow-style:none;
@@ -132,7 +132,8 @@
   .source-date{font-size:11px;color:rgba(232,230,226,0.5)}
   body.light .source-date{color:rgba(32,25,20,0.5)}
   .source-link a{font-size:12px;color:#F4A261;text-decoration:none;border:1px solid rgba(244,162,97,0.4);
-    border-radius:12px;padding:2px 10px;transition:all .2s}
+    border-radius:12px;padding:2px 10px;transition:all .2s;
+    display:inline-flex;align-items:center;white-space:nowrap;flex-shrink:0}
   .source-link a:hover{background:rgba(244,162,97,0.15)}
   body.light .source-link a{color:#C97B00;border-color:rgba(201,123,0,0.4)}
   @media (max-width: 700px){
@@ -213,8 +214,9 @@
   <div id="panelBody"></div>
 </div>
 <script>
-const BOOK_FILES = {"富爸爸穷爸爸.html": "富爸爸穷爸爸.html", "富爸爸穷爸爸": "富爸爸穷爸爸.html", "这就是人性.html": "这就是人性.html", "这就是人性": "这就是人性.html", "人类简史.html": "人类简史.html", "人类简史": "人类简史.html", "理解未来的7个原则.html": "理解未来的7个原则.html", "理解未来的7个原则": "理解未来的7个原则.html", "assets.html": "assets.html", "assets": "assets.html", "枪炮病菌与钢铁.html": "枪炮病菌与钢铁.html", "枪炮病菌与钢铁": "枪炮病菌与钢铁.html", "巴拉巴西成功定律.html": "巴拉巴西成功定律.html", "巴拉巴西成功定律": "巴拉巴西成功定律.html", "娱乐至死.html": "娱乐至死.html", "娱乐至死": "娱乐至死.html", "毛选.html": "毛选.html", "毛选": "毛选.html", "经济学的思维方式.html": "经济学的思维方式.html", "经济学的思维方式": "经济学的思维方式.html", "高效能人士的7个习惯.html": "高效能人士的7个习惯.html", "高效能人士的7个习惯": "高效能人士的7个习惯.html", "21世纪资本论.html": "21世纪资本论.html", "21世纪资本论": "21世纪资本论.html", "规范.html": "规范.html", "规范": "规范.html", "学会提问.html": "学会提问.html", "学会提问": "学会提问.html", "非暴力沟通.html": "非暴力沟通.html", "非暴力沟通": "非暴力沟通.html", "报告.html": "报告.html", "报告": "报告.html", "影响力.html": "影响力.html", "影响力": "影响力.html", "金钱心理学.html": "金钱心理学.html", "金钱心理学": "金钱心理学.html", "思考，快与慢.html": "思考，快与慢.html", "思考，快与慢": "思考，快与慢.html", "孙子兵法.html": "孙子兵法.html", "孙子兵法": "孙子兵法.html", "国富论.html": "国富论.html", "国富论": "国富论.html", "穷查理宝典.html": "穷查理宝典.html", "穷查理宝典": "穷查理宝典.html", "纳瓦尔宝典.html": "纳瓦尔宝典.html", "纳瓦尔宝典": "纳瓦尔宝典.html", "通向奴役之路.html": "通向奴役之路.html", "通向奴役之路": "通向奴役之路.html", "为什么伟大不能被计划.html": "为什么伟大不能被计划.html", "为什么伟大不能被计划": "为什么伟大不能被计划.html", "小岛经济学.html": "小岛经济学.html", "小岛经济学": "小岛经济学.html", "列奥纳多·达·芬奇传.html": "列奥纳多·达·芬奇传.html", "列奥纳多·达·芬奇传": "列奥纳多·达·芬奇传.html", "_backup.html": "_backup.html", "_backup": "_backup.html"};
+const BOOK_FILES = {"富爸爸穷爸爸.html": "富爸爸穷爸爸.html", "富爸爸穷爸爸": "富爸爸穷爸爸.html", "这就是人性.html": "这就是人性.html", "这就是人性": "这就是人性.html", "人类简史.html": "人类简史.html", "人类简史": "人类简史.html", "理解未来的7个原则.html": "理解未来的7个原则.html", "理解未来的7个原则": "理解未来的7个原则.html", "assets.html": "assets.html", "assets": "assets.html", "枪炮病菌与钢铁.html": "枪炮病菌与钢铁.html", "枪炮病菌与钢铁": "枪炮病菌与钢铁.html", "巴拉巴西成功定律.html": "巴拉巴西成功定律.html", "巴拉巴西成功定律": "巴拉巴西成功定律.html", "娱乐至死.html": "娱乐至死.html", "娱乐至死": "娱乐至死.html", "毛选.html": "毛选.html", "毛选": "毛选.html", "经济学的思维方式.html": "经济学的思维方式.html", "经济学的思维方式": "经济学的思维方式.html", "高效能人士的7个习惯.html": "高效能人士的7个习惯.html", "高效能人士的7个习惯": "高效能人士的7个习惯.html", "_backup_backfill_20261013.html": "_backup_backfill_20261013.html", "_backup_backfill_20261013": "_backup_backfill_20261013.html", "21世纪资本论.html": "21世纪资本论.html", "21世纪资本论": "21世纪资本论.html", "资本论.html": "资本论.html", "资本论": "资本论.html", "规范.html": "规范.html", "规范": "规范.html", "教育就是培养习惯.html": "教育就是培养习惯.html", "教育就是培养习惯": "教育就是培养习惯.html", "学会提问.html": "学会提问.html", "学会提问": "学会提问.html", "非暴力沟通.html": "非暴力沟通.html", "非暴力沟通": "非暴力沟通.html", "报告.html": "报告.html", "报告": "报告.html", "影响力.html": "影响力.html", "影响力": "影响力.html", "金钱心理学.html": "金钱心理学.html", "金钱心理学": "金钱心理学.html", "思考，快与慢.html": "思考，快与慢.html", "思考，快与慢": "思考，快与慢.html", "孙子兵法.html": "孙子兵法.html", "孙子兵法": "孙子兵法.html", "国富论.html": "国富论.html", "国富论": "国富论.html", "穷查理宝典.html": "穷查理宝典.html", "穷查理宝典": "穷查理宝典.html", "纳瓦尔宝典.html": "纳瓦尔宝典.html", "纳瓦尔宝典": "纳瓦尔宝典.html", "通向奴役之路.html": "通向奴役之路.html", "通向奴役之路": "通向奴役之路.html", "为什么伟大不能被计划.html": "为什么伟大不能被计划.html", "为什么伟大不能被计划": "为什么伟大不能被计划.html", "小岛经济学.html": "小岛经济学.html", "小岛经济学": "小岛经济学.html", "列奥纳多·达·芬奇传.html": "列奥纳多·达·芬奇传.html", "列奥纳多·达·芬奇传": "列奥纳多·达·芬奇传.html", "_backup.html": "_backup.html", "_backup": "_backup.html"};
 const MODEL_SLUGS = {"zi-zu-zhi-si-wei": "zi-zu-zhi-si-wei.html", "zi-zu-zhi-si-wei.md": "zi-zu-zhi-si-wei.html", "hui-xi-niu": "hui-xi-niu.html", "hui-xi-niu.md": "hui-xi-niu.html", "feng-xian-ping-gu-ju-zhen": "feng-xian-ping-gu-ju-zhen.html", "feng-xian-ping-gu-ju-zhen.md": "feng-xian-ping-gu-ju-zhen.html", "you-xi-hua-si-wei": "you-xi-hua-si-wei.html", "you-xi-hua-si-wei.md": "you-xi-hua-si-wei.html", "gong-ping-qing-xiang": "gong-ping-qing-xiang.html", "gong-ping-qing-xiang.md": "gong-ping-qing-xiang.html", "jue-ce-shu-mo-xing": "jue-ce-shu-mo-xing.html", "jue-ce-shu-mo-xing.md": "jue-ce-shu-mo-xing.html", "cuo-wu-heng-liang-yi-de-xing-qing-xiang": "cuo-wu-heng-liang-yi-de-xing-qing-xiang.html", "cuo-wu-heng-liang-yi-de-xing-qing-xiang.md": "cuo-wu-heng-liang-yi-de-xing-qing-xiang.html", "shuang-ying-si-wei": "shuang-ying-si-wei.html", "shuang-ying-si-wei.md": "shuang-ying-si-wei.html", "ni-xiang-si-wei": "ni-xiang-si-wei.html", "ni-xiang-si-wei.md": "ni-xiang-si-wei.html", "ben-zhi-si-wei": "ben-zhi-si-wei.html", "ben-zhi-si-wei.md": "ben-zhi-si-wei.html", "jing-zheng-pai-chi-yuan-li": "jing-zheng-pai-chi-yuan-li.html", "jing-zheng-pai-chi-yuan-li.md": "jing-zheng-pai-chi-yuan-li.html", "tou-nao-feng-bao-fa": "tou-nao-feng-bao-fa.html", "tou-nao-feng-bao-fa.md": "tou-nao-feng-bao-fa.html", "shang-ye-hua-bu": "shang-ye-hua-bu.html", "shang-ye-hua-bu.md": "shang-ye-hua-bu.html", "fu-ren-si-wei": "fu-ren-si-wei.html", "fu-ren-si-wei.md": "fu-ren-si-wei.html", "qi-dong-xiao-ying": "qi-dong-xiao-ying.html", "qi-dong-xiao-ying.md": "qi-dong-xiao-ying.html", "zi-shi-guo-gao-qing-xiang": "zi-shi-guo-gao-qing-xiang.html", "zi-shi-guo-gao-qing-xiang.md": "zi-shi-guo-gao-qing-xiang.html", "bi-mian-huai-yi-qing-xiang": "bi-mian-huai-yi-qing-xiang.html", "bi-mian-huai-yi-qing-xiang.md": "bi-mian-huai-yi-qing-xiang.html", "bi-mian-tong-ku-qing-xiang": "bi-mian-tong-ku-qing-xiang.html", "bi-mian-tong-ku-qing-xiang.md": "bi-mian-tong-ku-qing-xiang.html", "gai-lv-si-wei": "gai-lv-si-wei.html", "gai-lv-si-wei.md": "gai-lv-si-wei.html", "chen-mo-cheng-ben": "chen-mo-cheng-ben.html", "chen-mo-cheng-ben.md": "chen-mo-cheng-ben.html", "roi-fen-xi": "roi-fen-xi.html", "roi-fen-xi.md": "roi-fen-xi.html", "xi-tong-si-wei": "xi-tong-si-wei.html", "xi-tong-si-wei.md": "xi-tong-si-wei.html", "bian-zheng-si-wei": "bian-zheng-si-wei.html", "bian-zheng-si-wei.md": "bian-zheng-si-wei.html", "jue-dui-si-wei": "jue-dui-si-wei.html", "jue-dui-si-wei.md": "jue-dui-si-wei.html", "hao-qi-xin-qing-xiang": "hao-qi-xin-qing-xiang.html", "hao-qi-xin-qing-xiang.md": "hao-qi-xin-qing-xiang.html", "hu-shi-ji-chu-gai-lv": "hu-shi-ji-chu-gai-lv.html", "hu-shi-ji-chu-gai-lv.md": "hu-shi-ji-chu-gai-lv.html", "shuai-lao-ying-xiang-qing-xiang": "shuai-lao-ying-xiang-qing-xiang.html", "shuai-lao-ying-xiang-qing-xiang.md": "shuai-lao-ying-xiang-qing-xiang.html", "bei-lun-si-wei": "bei-lun-si-wei.html", "bei-lun-si-wei.md": "bei-lun-si-wei.html", "duo-zhong-xin-li-die-jia-qing-xiang": "duo-zhong-xin-li-die-jia-qing-xiang.html", "duo-zhong-xin-li-die-jia-qing-xiang.md": "duo-zhong-xin-li-die-jia-qing-xiang.html", "bi-mian-bu-yi-zhi-qing-xiang": "bi-mian-bu-yi-zhi-qing-xiang.html", "bi-mian-bu-yi-zhi-qing-xiang.md": "bi-mian-bu-yi-zhi-qing-xiang.html", "qian-jing-li-lun": "qian-jing-li-lun.html", "qian-jing-li-lun.md": "qian-jing-li-lun.html", "xue-sheng-si-wei": "xue-sheng-si-wei.html", "xue-sheng-si-wei.md": "xue-sheng-si-wei.html", "bian-jie-si-wei": "bian-jie-si-wei.html", "bian-jie-si-wei.md": "bian-jie-si-wei.html", "pdca-xun-huan": "pdca-xun-huan.html", "pdca-xun-huan.md": "pdca-xun-huan.html", "gui-hua-miu-wu": "gui-hua-miu-wu.html", "gui-hua-miu-wu.md": "gui-hua-miu-wu.html", "fei-xian-xing-si-wei": "fei-xian-xing-si-wei.html", "fei-xian-xing-si-wei.md": "fei-xian-xing-si-wei.html", "5w1h-fa": "5w1h-fa.html", "5w1h-fa.md": "5w1h-fa.html", "you-xian-ji-ju-zhen": "you-xian-ji-ju-zhen.html", "you-xian-ji-ju-zhen.md": "you-xian-ji-ju-zhen.html", "lei-bi-si-wei": "lei-bi-si-wei.html", "lei-bi-si-wei.md": "lei-bi-si-wei.html", "zi-ran-xuan-ze": "zi-ran-xuan-ze.html", "zi-ran-xuan-ze.md": "zi-ran-xuan-ze.html", "yan-xian-du-ji-qing-xiang": "yan-xian-du-ji-qing-xiang.html", "yan-xian-du-ji-qing-xiang.md": "yan-xian-du-ji-qing-xiang.html", "bing-fu-xiao-ying": "bing-fu-xiao-ying.html", "bing-fu-xiao-ying.md": "bing-fu-xiao-ying.html", "wang-luo-si-wei": "wang-luo-si-wei.html", "wang-luo-si-wei.md": "wang-luo-si-wei.html", "smart-mu-biao-she-ding-fa": "smart-mu-biao-she-ding-fa.html", "smart-mu-biao-she-ding-fa.md": "smart-mu-biao-she-ding-fa.html", "bo-te-wu-li-mo-xing": "bo-te-wu-li-mo-xing.html", "bo-te-wu-li-mo-xing.md": "bo-te-wu-li-mo-xing.html", "hun-dun-si-wei": "hun-dun-si-wei.html", "hun-dun-si-wei.md": "hun-dun-si-wei.html", "ren-zhi-fang-song": "ren-zhi-fang-song.html", "ren-zhi-fang-song.md": "ren-zhi-fang-song.html", "ma-si-luo-xu-qiu-ceng-ci-li-lun": "ma-si-luo-xu-qiu-ceng-ci-li-lun.html", "ma-si-luo-xu-qiu-ceng-ci-li-lun.md": "ma-si-luo-xu-qiu-ceng-ci-li-lun.html", "bu-yong-jiu-wang-qing-xiang": "bu-yong-jiu-wang-qing-xiang.html", "bu-yong-jiu-wang-qing-xiang.md": "bu-yong-jiu-wang-qing-xiang.html", "guo-du-le-guan-qing-xiang": "guo-du-le-guan-qing-xiang.html", "guo-du-le-guan-qing-xiang.md": "guo-du-le-guan-qing-xiang.html", "jiao-yi-cheng-ben": "jiao-yi-cheng-ben.html", "jiao-yi-cheng-ben.md": "jiao-yi-cheng-ben.html", "er-yuan-si-wei": "er-yuan-si-wei.html", "er-yuan-si-wei.md": "er-yuan-si-wei.html", "die-dai-si-wei": "die-dai-si-wei.html", "die-dai-si-wei.md": "die-dai-si-wei.html", "dui-chen-si-wei": "dui-chen-si-wei.html", "dui-chen-si-wei.md": "dui-chen-si-wei.html", "pi-pan-xing-si-wei": "pi-pan-xing-si-wei.html", "pi-pan-xing-si-wei.md": "pi-pan-xing-si-wei.html", "jie-guo-pian-jian": "jie-guo-pian-jian.html", "jie-guo-pian-jian.md": "jie-guo-pian-jian.html", "neng-liang-bi-lei": "neng-liang-bi-lei.html", "neng-liang-bi-lei.md": "neng-liang-bi-lei.html", "chou-yang-yu-sui-ji-xing": "chou-yang-yu-sui-ji-xing.html", "chou-yang-yu-sui-ji-xing.md": "chou-yang-yu-sui-ji-xing.html", "sign-mo-xing": "sign-mo-xing.html", "sign-mo-xing.md": "sign-mo-xing.html", "zui-sheng-li-fa-ze": "zui-sheng-li-fa-ze.html", "zui-sheng-li-fa-ze.md": "zui-sheng-li-fa-ze.html", "gong-sheng-si-wei": "gong-sheng-si-wei.html", "gong-sheng-si-wei.md": "gong-sheng-si-wei.html", "neng-li-quan": "neng-li-quan.html", "neng-li-quan.md": "neng-li-quan.html", "fa-san-si-wei": "fa-san-si-wei.html", "fa-san-si-wei.md": "fa-san-si-wei.html", "zi-yuan-fen-pei-si-wei": "zi-yuan-fen-pei-si-wei.html", "zi-yuan-fen-pei-si-wei.md": "zi-yuan-fen-pei-si-wei.html", "tao-yan-zeng-hen-qing-xiang": "tao-yan-zeng-hen-qing-xiang.html", "tao-yan-zeng-hen-qing-xiang.md": "tao-yan-zeng-hen-qing-xiang.html", "xin-hao-yu-zao-sheng": "xin-hao-yu-zao-sheng.html", "xin-hao-yu-zao-sheng.md": "xin-hao-yu-zao-sheng.html", "chang-qi-zhu-yi": "chang-qi-zhu-yi.html", "chang-qi-zhu-yi.md": "chang-qi-zhu-yi.html", "xin-li-zhang-hu": "xin-li-zhang-hu.html", "xin-li-zhang-hu.md": "xin-li-zhang-hu.html", "chuang-xin-si-wei": "chuang-xin-si-wei.html", "chuang-xin-si-wei.md": "chuang-xin-si-wei.html", "ao-ka-mu-ti-dao-ding-lv": "ao-ka-mu-ti-dao-ding-lv.html", "ao-ka-mu-ti-dao-ding-lv.md": "ao-ka-mu-ti-dao-ding-lv.html", "zhi-shu-xing-si-wei": "zhi-shu-xing-si-wei.html", "zhi-shu-xing-si-wei.md": "zhi-shu-xing-si-wei.html", "yi-yuan-si-wei": "yi-yuan-si-wei.html", "yi-yuan-si-wei.md": "yi-yuan-si-wei.html", "huang-jin-quan-mo-xing": "huang-jin-quan-mo-xing.html", "huang-jin-quan-mo-xing.md": "huang-jin-quan-mo-xing.html", "jia-she-si-wei": "jia-she-si-wei.html", "jia-she-si-wei.md": "jia-she-si-wei.html", "jin-hua-si-wei": "jin-hua-si-wei.html", "jin-hua-si-wei.md": "jin-hua-si-wei.html", "wei-ke-xue-si-wei": "wei-ke-xue-si-wei.html", "wei-ke-xue-si-wei.md": "wei-ke-xue-si-wei.html", "hu-hui": "hu-hui.html", "hu-hui.md": "hu-hui.html", "quan-wei": "quan-wei.html", "quan-wei.md": "quan-wei.html", "pa-lei-tuo-fa-ze": "pa-lei-tuo-fa-ze.html", "pa-lei-tuo-fa-ze.md": "pa-lei-tuo-fa-ze.html", "pest-fen-xi-fa": "pest-fen-xi-fa.html", "pest-fen-xi-fa.md": "pest-fen-xi-fa.html", "jun-zhi-hui-gui": "jun-zhi-hui-gui.html", "jun-zhi-hui-gui.md": "jun-zhi-hui-gui.html", "yong-xian-si-wei": "yong-xian-si-wei.html", "yong-xian-si-wei.md": "yong-xian-si-wei.html", "quan-wei-cuo-wu-ying-xiang-qing-xiang": "quan-wei-cuo-wu-ying-xiang-qing-xiang.html", "quan-wei-cuo-wu-ying-xiang-qing-xiang.md": "quan-wei-cuo-wu-ying-xiang-qing-xiang.html", "qiong-ren-si-wei": "qiong-ren-si-wei.html", "qiong-ren-si-wei.md": "qiong-ren-si-wei.html", "luo-ji-si-wei": "luo-ji-si-wei.html", "luo-ji-si-wei.md": "luo-ji-si-wei.html", "han-long-ti-dao-ding-lv": "han-long-ti-dao-ding-lv.html", "han-long-ti-dao-ding-lv.md": "han-long-ti-dao-ding-lv.html", "xiao-shu-ding-lv": "xiao-shu-ding-lv.html", "xiao-shu-ding-lv.md": "xiao-shu-ding-lv.html", "hei-tian-e": "hei-tian-e.html", "hei-tian-e.md": "hei-tian-e.html", "zheng-shi-pian-cha": "zheng-shi-pian-cha.html", "zheng-shi-pian-cha.md": "zheng-shi-pian-cha.html", "di-ruo-dai-chang-li-lun": "di-ruo-dai-chang-li-lun.html", "di-ruo-dai-chang-li-lun.md": "di-ruo-dai-chang-li-lun.html", "ou-he-yu-jie-ou": "ou-he-yu-jie-ou.html", "ou-he-yu-jie-ou.md": "ou-he-yu-jie-ou.html", "cui-hua-ji-si-wei": "cui-hua-ji-si-wei.html", "cui-hua-ji-si-wei.md": "cui-hua-ji-si-wei.html", "ji-hui-cheng-ben": "ji-hui-cheng-ben.html", "ji-hui-cheng-ben.md": "ji-hui-cheng-ben.html", "wang-luo-tuo-pu": "wang-luo-tuo-pu.html", "wang-luo-tuo-pu.md": "wang-luo-tuo-pu.html", "ke-de-xing-qi-fa": "ke-de-xing-qi-fa.html", "ke-de-xing-qi-fa.md": "ke-de-xing-qi-fa.html", "li-ta-si-wei": "li-ta-si-wei.html", "li-ta-si-wei.md": "li-ta-si-wei.html", "na-shi-jun-heng-li-lun": "na-shi-jun-heng-li-lun.html", "na-shi-jun-heng-li-lun.md": "na-shi-jun-heng-li-lun.html", "zhong-qun-si-wei": "zhong-qun-si-wei.html", "zhong-qun-si-wei.md": "zhong-qun-si-wei.html", "ji-he-si-wei": "ji-he-si-wei.html", "ji-he-si-wei.md": "ji-he-si-wei.html", "zi-wo-sun-hao": "zi-wo-sun-hao.html", "zi-wo-sun-hao.md": "zi-wo-sun-hao.html", "si-xiang-shi-yan": "si-xiang-shi-yan.html", "si-xiang-shi-yan.md": "si-xiang-shi-yan.html", "de-er-fei-fa": "de-er-fei-fa.html", "de-er-fei-fa.md": "de-er-fei-fa.html", "da-gong-si-wei": "da-gong-si-wei.html", "da-gong-si-wei.md": "da-gong-si-wei.html", "dong-tai-si-wei": "dong-tai-si-wei.html", "dong-tai-si-wei.md": "dong-tai-si-wei.html", "xi-tong-dong-li-xue-mo-xing": "xi-tong-dong-li-xue-mo-xing.html", "xi-tong-dong-li-xue-mo-xing.md": "xi-tong-dong-li-xue-mo-xing.html", "quan-heng-si-wei": "quan-heng-si-wei.html", "quan-heng-si-wei.md": "quan-heng-si-wei.html", "min-jie-si-wei": "min-jie-si-wei.html", "min-jie-si-wei.md": "min-jie-si-wei.html", "fu-shi-bu-ji-mo-xing": "fu-shi-bu-ji-mo-xing.html", "fu-shi-bu-ji-mo-xing.md": "fu-shi-bu-ji-mo-xing.html", "fan-ying-lu-jing": "fan-ying-lu-jing.html", "fan-ying-lu-jing.md": "fan-ying-lu-jing.html", "fan-cui-ruo": "fan-cui-ruo.html", "fan-cui-ruo.md": "fan-cui-ruo.html", "ju-he-si-wei": "ju-he-si-wei.html", "ju-he-si-wei.md": "ju-he-si-wei.html", "hui-kui-qing-xiang": "hui-kui-qing-xiang.html", "hui-kui-qing-xiang.md": "hui-kui-qing-xiang.html", "5why-fen-xi-fa": "5why-fen-xi-fa.html", "5why-fen-xi-fa.md": "5why-fen-xi-fa.html", "jiang-li-he-cheng-fa-qing-xiang": "jiang-li-he-cheng-fa-qing-xiang.html", "jiang-li-he-cheng-fa-qing-xiang.md": "jiang-li-he-cheng-fa-qing-xiang.html", "ma-er-ke-fu-mo-xing": "ma-er-ke-fu-mo-xing.html", "ma-er-ke-fu-mo-xing.md": "ma-er-ke-fu-mo-xing.html", "kano-mo-xing": "kano-mo-xing.html", "kano-mo-xing.md": "kano-mo-xing.html", "mo-xing-si-wei": "mo-xing-si-wei.html", "mo-xing-si-wei.md": "mo-xing-si-wei.html", "da-shu-ding-lv": "da-shu-ding-lv.html", "da-shu-ding-lv.md": "da-shu-ding-lv.html", "bian-ji-xiao-yong-di-jian": "bian-ji-xiao-yong-di-jian.html", "bian-ji-xiao-yong-di-jian.md": "bian-ji-xiao-yong-di-jian.html", "gui-mo-xiao-ying": "gui-mo-xiao-ying.html", "gui-mo-xiao-ying.md": "gui-mo-xiao-ying.html", "ji-zhi-si-wei": "ji-zhi-si-wei.html", "ji-zhi-si-wei.md": "ji-zhi-si-wei.html", "chou-xiang-si-wei": "chou-xiang-si-wei.html", "chou-xiang-si-wei.md": "chou-xiang-si-wei.html", "mian-fei": "mian-fei.html", "mian-fei.md": "mian-fei.html", "li-xing-jue-ce-mo-xing": "li-xing-jue-ce-mo-xing.html", "li-xing-jue-ce-mo-xing.md": "li-xing-jue-ce-mo-xing.html", "han-shu-si-wei": "han-shu-si-wei.html", "han-shu-si-wei.md": "han-shu-si-wei.html", "hou-jian-zhi-ming-pian-jian": "hou-jian-zhi-ming-pian-jian.html", "hou-jian-zhi-ming-pian-jian.md": "hou-jian-zhi-ming-pian-jian.html", "mai-ke-bai-xiao-ying": "mai-ke-bai-xiao-ying.html", "mai-ke-bai-xiao-ying.md": "mai-ke-bai-xiao-ying.html", "xin-liu-mo-xing": "xin-liu-mo-xing.html", "xin-liu-mo-xing.md": "xin-liu-mo-xing.html", "xian-xing-si-wei": "xian-xing-si-wei.html", "xian-xing-si-wei.md": "xian-xing-si-wei.html", "cheng-ben-xiao-yi-feng-xian-fen-xi": "cheng-ben-xiao-yi-feng-xian-fen-xi.html", "cheng-ben-xiao-yi-feng-xian-fen-xi.md": "cheng-ben-xiao-yi-feng-xian-fen-xi.html", "an-quan-bian-ji": "an-quan-bian-ji.html", "an-quan-bian-ji.md": "an-quan-bian-ji.html", "zheng-tai-mi-lv-fen-bu": "zheng-tai-mi-lv-fen-bu.html", "zheng-tai-mi-lv-fen-bu.md": "zheng-tai-mi-lv-fen-bu.html", "zhong-shi-li-you-qing-xiang": "zhong-shi-li-you-qing-xiang.html", "zhong-shi-li-you-qing-xiang.md": "zhong-shi-li-you-qing-xiang.html", "bao-guang-xiao-ying": "bao-guang-xiao-ying.html", "bao-guang-xiao-ying.md": "bao-guang-xiao-ying.html", "shang-zeng-ding-lv": "shang-zeng-ding-lv.html", "shang-zeng-ding-lv.md": "shang-zeng-ding-lv.html", "feng-xian-shou-yi-quan-heng": "feng-xian-shou-yi-quan-heng.html", "feng-xian-shou-yi-quan-heng.md": "feng-xian-shou-yi-quan-heng.html", "ya-li-ying-xiang-qing-xiang": "ya-li-ying-xiang-qing-xiang.html", "ya-li-ying-xiang-qing-xiang.md": "ya-li-ying-xiang-qing-xiang.html", "xi-huan-re-ai-qing-xiang": "xi-huan-re-ai-qing-xiang.html", "xi-huan-re-ai-qing-xiang.md": "xi-huan-re-ai-qing-xiang.html", "dong-tai-ping-heng-si-wei": "dong-tai-ping-heng-si-wei.html", "dong-tai-ping-heng-si-wei.md": "dong-tai-ping-heng-si-wei.html", "xi-que": "xi-que.html", "xi-que.md": "xi-que.html", "bei-ye-si-ding-li": "bei-ye-si-ding-li.html", "bei-ye-si-ding-li.md": "bei-ye-si-ding-li.html", "di-gui-si-wei": "di-gui-si-wei.html", "di-gui-si-wei.md": "di-gui-si-wei.html", "xue-xi-mo-xing": "xue-xi-mo-xing.html", "xue-xi-mo-xing.md": "xue-xi-mo-xing.html", "lin-jie-zhi-liang": "lin-jie-zhi-liang.html", "lin-jie-zhi-liang.md": "lin-jie-zhi-liang.html", "shi-shi-qiu-shi": "shi-shi-qiu-shi.html", "shi-shi-qiu-shi.md": "shi-shi-qiu-shi.html", "lian-meng": "lian-meng.html", "lian-meng.md": "lian-meng.html", "chu-zhi-xiao-ying": "chu-zhi-xiao-ying.html", "chu-zhi-xiao-ying.md": "chu-zhi-xiao-ying.html", "guan-xing-si-wei": "guan-xing-si-wei.html", "guan-xing-si-wei.md": "guan-xing-si-wei.html", "mo-kuai-hua-si-wei": "mo-kuai-hua-si-wei.html", "mo-kuai-hua-si-wei.md": "mo-kuai-hua-si-wei.html", "duan-lie-dian-li-lun": "duan-lie-dian-li-lun.html", "duan-lie-dian-li-lun.md": "duan-lie-dian-li-lun.html", "ding-wei-li-lun": "ding-wei-li-lun.html", "ding-wei-li-lun.md": "ding-wei-li-lun.html", "xiang-dui-si-wei": "xiang-dui-si-wei.html", "xiang-dui-si-wei.md": "xiang-dui-si-wei.html", "bei-bo-duo-chao-ji-fan-ying-qing-xiang": "bei-bo-duo-chao-ji-fan-ying-qing-xiang.html", "bei-bo-duo-chao-ji-fan-ying-qing-xiang.md": "bei-bo-duo-chao-ji-fan-ying-qing-xiang.html", "sheng-tai-wei-si-wei": "sheng-tai-wei-si-wei.html", "sheng-tai-wei-si-wei.md": "sheng-tai-wei-si-wei.html", "zhi-liang-kong-zhi-li-lun": "zhi-liang-kong-zhi-li-lun.html", "zhi-liang-kong-zhi-li-lun.md": "zhi-liang-kong-zhi-li-lun.html", "10-10-10-fa-ze": "10-10-10-fa-ze.html", "10-10-10-fa-ze.md": "10-10-10-fa-ze.html", "hua-xue-wu-zhi-cuo-wu-ying-xiang-qing-xiang": "hua-xue-wu-zhi-cuo-wu-ying-xiang-qing-xiang.html", "hua-xue-wu-zhi-cuo-wu-ying-xiang-qing-xiang.md": "hua-xue-wu-zhi-cuo-wu-ying-xiang-qing-xiang.html", "kuo-san-mo-xing": "kuo-san-mo-xing.html", "kuo-san-mo-xing.md": "kuo-san-mo-xing.html", "pai-lie-zu-he": "pai-lie-zu-he.html", "pai-lie-zu-he.md": "pai-lie-zu-he.html", "gong-xu-guan-xi": "gong-xu-guan-xi.html", "gong-xu-guan-xi.md": "gong-xu-guan-xi.html", "yong-hu-si-wei": "yong-hu-si-wei.html", "yong-hu-si-wei.md": "yong-hu-si-wei.html", "fen-bu-shi-si-wei": "fen-bu-shi-si-wei.html", "fen-bu-shi-si-wei.md": "fen-bu-shi-si-wei.html", "hao-san-jie-gou-li-lun": "hao-san-jie-gou-li-lun.html", "hao-san-jie-gou-li-lun.md": "hao-san-jie-gou-li-lun.html", "xing-cun-zhe-pian-cha": "xing-cun-zhe-pian-cha.html", "xing-cun-zhe-pian-cha.md": "xing-cun-zhe-pian-cha.html", "swot-fen-xi-fa": "swot-fen-xi-fa.html", "swot-fen-xi-fa.md": "swot-fen-xi-fa.html", "di-yi-xing-yuan-li": "di-yi-xing-yuan-li.html", "di-yi-xing-yuan-li.md": "di-yi-xing-yuan-li.html", "fei-hua-qing-xiang": "fei-hua-qing-xiang.html", "fei-hua-qing-xiang.md": "fei-hua-qing-xiang.html", "kuang-jia-xiao-ying": "kuang-jia-xiao-ying.html", "kuang-jia-xiao-ying.md": "kuang-jia-xiao-ying.html", "zi-shi-ying-xi-tong": "zi-shi-ying-xi-tong.html", "zi-shi-ying-xi-tong.md": "zi-shi-ying-xi-tong.html", "rong-yu-si-wei": "rong-yu-si-wei.html", "rong-yu-si-wei.md": "rong-yu-si-wei.html", "fan-kui-hui-lu": "fan-kui-hui-lu.html", "fan-kui-hui-lu.md": "fan-kui-hui-lu.html", "gan-gan-si-wei": "gan-gan-si-wei.html", "gan-gan-si-wei.md": "gan-gan-si-wei.html", "fu-li-si-wei": "fu-li-si-wei.html", "fu-li-si-wei.md": "fu-li-si-wei.html", "xi-hao": "xi-hao.html", "xi-hao.md": "xi-hao.html", "bcg-ju-zhen": "bcg-ju-zhen.html", "bcg-ju-zhen.md": "bcg-ju-zhen.html", "jia-zhi-jiao-huan-si-wei": "jia-zhi-jiao-huan-si-wei.html", "jia-zhi-jiao-huan-si-wei.md": "jia-zhi-jiao-huan-si-wei.html", "ruo-zhe-si-wei": "ruo-zhe-si-wei.html", "ruo-zhe-si-wei.md": "ruo-zhe-si-wei.html", "jian-dan-lian-xiang-qing-xiang": "jian-dan-lian-xiang-qing-xiang.html", "jian-dan-lian-xiang-qing-xiang.md": "jian-dan-lian-xiang-qing-xiang.html", "sheng-tai-si-wei": "sheng-tai-si-wei.html", "sheng-tai-si-wei.md": "sheng-tai-si-wei.html", "she-hui-ren-tong": "she-hui-ren-tong.html", "she-hui-ren-tong.md": "she-hui-ren-tong.html", "kong-jian-jing-zheng-mo-xing": "kong-jian-jing-zheng-mo-xing.html", "kong-jian-jing-zheng-mo-xing.md": "kong-jian-jing-zheng-mo-xing.html", "yin-guo-si-wei": "yin-guo-si-wei.html", "yin-guo-si-wei.md": "yin-guo-si-wei.html", "she-hui-ren-tong-qing-xiang": "she-hui-ren-tong-qing-xiang.html", "she-hui-ren-tong-qing-xiang.md": "she-hui-ren-tong-qing-xiang.html", "bo-yi-si-wei": "bo-yi-si-wei.html", "bo-yi-si-wei.md": "bo-yi-si-wei.html", "dui-bi-cuo-wu-fan-ying-qing-xiang": "dui-bi-cuo-wu-fan-ying-qing-xiang.html", "dui-bi-cuo-wu-fan-ying-qing-xiang.md": "dui-bi-cuo-wu-fan-ying-qing-xiang.html", "lu-jing-yi-lai": "lu-jing-yi-lai.html", "lu-jing-yi-lai.md": "lu-jing-yi-lai.html", "jie-gou-hua-si-wei": "jie-gou-hua-si-wei.html", "jie-gou-hua-si-wei.md": "jie-gou-hua-si-wei.html", "neng-liang-shou-heng": "neng-liang-shou-heng.html", "neng-liang-shou-heng.md": "neng-liang-shou-heng.html", "cheng-nuo-yu-yi-zhi": "cheng-nuo-yu-yi-zhi.html", "cheng-nuo-yu-yi-zhi.md": "cheng-nuo-yu-yi-zhi.html", "cheng-zhang-xing-si-wei": "cheng-zhang-xing-si-wei.html", "cheng-zhang-xing-si-wei.md": "cheng-zhang-xing-si-wei.html", "bi-jiao-you-shi": "bi-jiao-you-shi.html", "bi-jiao-you-shi.md": "bi-jiao-you-shi.html"};
+const ABILITY_NO_JUMP = ["专注力", "抗压能力", "共情能力", "高效学习能力", "深度思考能力", "决策力", "目标管理能力", "时间管理", "精力管理", "复盘能力", "输出能力", "风险管控能力", "麻烦别人的能力", "表达能力"];
 function normalizeBookTitle(title){ return title.replace(/[《》]/g,"").trim(); }
 </script>
 <script>
@@ -225,7 +227,7 @@ function normalizeBookTitle(title){ return title.replace(/[《》]/g,"").trim();
 <script>
 const _GRAPH = {
   "meta": {
-    "version": "2026-08-20-v3",
+    "version": "2026-10-12-v2",
     "description": "个人成长知识图谱：主题-认知洞察-思维方式-能力提升-痛点",
     "node_types": [
       "theme",
@@ -1432,9 +1434,9 @@ const _GRAPH = {
       "methods": []
     },
     {
-      "id": "ability-自我认同",
+      "id": "ability-自我认同与接纳",
       "type": "ability",
-      "label": "自我认同",
+      "label": "自我认同与接纳",
       "category": "能力提升",
       "theme": "self",
       "desc": "价值感由自身定义，不需外界评价证明。",
@@ -1573,47 +1575,11 @@ const _GRAPH = {
       ]
     },
     {
-      "id": "ability-自我接纳",
-      "type": "ability",
-      "label": "自我接纳",
-      "category": "能力提升",
-      "theme": "self",
-      "desc": "允许自己会犯错，才敢迈第一步。",
-      "why": "自我接纳解决的是“跟自己的缺点较劲”的问题。整天盯着自己哪里不行，力气全耗在自我攻击上：脸红一次懊恼一天，说错一句话反复回放，越讨厌自己越不敢行动。接纳不是躺平，而是承认“我有缺点，但我照样可以做事”——你身上有缺点再正常不过，要是遇到一个完美的人，只有两种情况：要么你不了解他，要么遇到的是骗子。放过自己，力气才能用到做事上。",
-      "train": "发现自己又盯着缺点不放时，提醒自己一句：有缺点是常态，先把这件事做完，缺点不影响我做事。",
-      "radius": 9,
-      "methods": []
-    },
-    {
-      "id": "ability-自我觉察",
-      "type": "ability",
-      "label": "自我觉察",
-      "category": "能力提升",
-      "theme": "self",
-      "desc": "先识别“我又在自我否定”这个自动念头，才能打断它。",
-      "why": "自我觉察解决的是“情绪和念头来了却后知后觉”的问题。被否定之后炸了、内耗了一整晚，才反应过来“我怎么了”——但那时候行为早就发生了。觉察就是把这个反应点往前挪：在念头刚冒头、情绪刚起来的时候就看见它，看见“我又在自我否定了”“我又开始讨好他了”，你才有可能选别的做法。看不见，就只能被习惯自动驾驶。",
-      "train": "每天留一个固定时刻回看一下：今天什么时候情绪波动最大？当时冒出的第一个念头是什么？把它记下来，练多了，觉察的时机就会越来越提前。",
-      "radius": 9,
-      "methods": []
-    },
-    {
-      "id": "ability-自我认知能力",
-      "type": "ability",
-      "label": "自我认知能力",
-      "category": "能力提升",
-      "theme": "self",
-      "desc": "知道自己擅长什么、不擅长什么，才不会被外界评价带着跑。",
-      "why": "自我认知解决的是“不知道自己几斤几两”的问题。不知道自己擅长什么，选行业靠跟风、找工作靠碰运气，别人一句“你不适合”就把你劝退；不知道短板在哪，就在同一个地方反复摔跤，还以为是自己运气差。把自己摸清楚——擅长什么、怕什么、什么状态下状态最好——你才能选对方向、把力气用在刀刃上，而不是被外界评价带着跑。",
-      "train": "",
-      "radius": 9,
-      "methods": []
-    },
-    {
       "id": "ability-屏蔽力",
       "type": "ability",
       "label": "屏蔽力",
       "category": "能力提升",
-      "theme": "emotion",
+      "theme": "self",
       "desc": "主动隔离负面评价、负能量人群、碎片化信息。",
       "why": "屏蔽力解决的是“注意力被无关的东西吃光”的问题。别人一句不友好的评价、群里一条抱怨、短视频一条接一条的推送，单看每件都不大，加起来却能把你的时间和情绪消耗干净——一天下来觉得很累，正事一件没干。屏蔽力是一个人对抗外界干扰的顶级能力：主动决定什么能进你的脑子，阻碍你实现目标的东西，直接挡在外面。",
       "train": "",
@@ -1641,21 +1607,9 @@ const _GRAPH = {
       ]
     },
     {
-      "id": "ability-延迟满足能力",
+      "id": "ability-情绪调节能力",
       "type": "ability",
-      "label": "延迟满足能力",
-      "category": "能力提升",
-      "theme": "emotion",
-      "desc": "主动舍弃即时享乐，为长线目标持续付出。",
-      "why": "延迟满足解决的是“眼前舒服和长远目标打架”的问题。刷短视频爽、躺着爽、吃甜食爽，这些即时快感每一下都在偷你将来的结果：想学的东西收藏了没打开，想练的技能拖了半年。练延迟满足，不是当苦行僧，而是能为了三个月后的身材、一年后的收入，主动放下眼前这点小甜头——你此刻忍不忍得住，决定三年后你手里有什么。",
-      "train": "想刷手机、想吃东西的冲动上来时，先给自己设一个 72 小时冷静期，过了还想再说；把大奖励拆到里程碑上，每推进一段就兑现一次；再找一个替代性的小满足顶住当下的瘾。",
-      "radius": 9,
-      "methods": []
-    },
-    {
-      "id": "ability-情绪调节",
-      "type": "ability",
-      "label": "情绪调节",
+      "label": "情绪调节能力",
       "category": "能力提升",
       "theme": "emotion",
       "desc": "情绪来了不硬压，学会转移和释放，脑子才停得下来。",
@@ -1701,7 +1655,7 @@ const _GRAPH = {
       "type": "ability",
       "label": "专注力",
       "category": "能力提升",
-      "theme": "action",
+      "theme": "self",
       "desc": "注意力有去处，脑子才不会原地打转。",
       "why": "专注力解决的是“人在心不在”的问题。坐在桌前三小时，手机摸了十次、微信回了几条，真正干活的时间不到半小时——一天下来很忙，产出却对不起自己。而且注意力散着的时候，脑子最容易原地打转，胡思乱想全来了。专注力就是把注意力收回到一件事上：注意力有去处，脑子才不会乱转，你才能在更短的时间里做出像样的东西。",
       "train": "",
@@ -1729,9 +1683,9 @@ const _GRAPH = {
       ]
     },
     {
-      "id": "ability-时间管理能力",
+      "id": "ability-时间管理",
       "type": "ability",
-      "label": "时间管理能力",
+      "label": "时间管理",
       "category": "能力提升",
       "theme": "action",
       "desc": "任务排布、精力分配、节奏把控。",
@@ -1865,9 +1819,9 @@ const _GRAPH = {
       ]
     },
     {
-      "id": "ability-学习能力",
+      "id": "ability-高效学习能力",
       "type": "ability",
-      "label": "学习能力",
+      "label": "高效学习能力",
       "category": "能力提升",
       "theme": "action",
       "desc": "找到适合自己的方式，记得住也用得上。",
@@ -1914,18 +1868,6 @@ const _GRAPH = {
           ]
         }
       ]
-    },
-    {
-      "id": "ability-归纳总结能力",
-      "type": "ability",
-      "label": "归纳总结能力",
-      "category": "能力提升",
-      "theme": "action",
-      "desc": "从具体里抽规律，知识才成体系。",
-      "why": "归纳总结解决的是“经验散落一地”的问题。做过很多事、读过很多书，但每件事之间连不成线，下次遇到新问题还是从零开始。会归纳的人，能从具体的事里抽出规律：把十个案例变成一个套路，把一年的踩坑变成一页清单。知识不归纳就永远是碎片，归纳成体系了，才能举一反三——学一样，通一片。",
-      "train": "每做完一件事、每读完一篇内容，强迫自己用一两句话回答：这件事背后的规律是什么？跟以前哪件事是相通的？写下来。攒多了，碎片自然连成体系。",
-      "radius": 9,
-      "methods": []
     },
     {
       "id": "ability-执行力",
@@ -2178,63 +2120,6 @@ const _GRAPH = {
       "methods": []
     },
     {
-      "id": "ability-思辨能力",
-      "type": "ability",
-      "label": "思辨能力",
-      "category": "能力提升",
-      "theme": "think",
-      "desc": "综合批判、逻辑、辩证、逆向四个维度的思考。",
-      "why": "思辨能力解决的是“看问题太单一”的问题。别人说什么就信什么，非黑即白：要么觉得选择大于努力，要么觉得努力没用——认知低的人，对这个世界的理解是标签化的、单一化的。会思辨的人，一个观点会主动找反例、换视角：辩证地看、反过来看、拆开看。视角多了，看问题才全面，才不容易被人带节奏。",
-      "train": "",
-      "radius": 9,
-      "methods": [
-        {
-          "id": "method-fact-opinion",
-          "label": "事实-观点拆分",
-          "theme": "think",
-          "summary": "遇到任何信息，先把客观事实和主观解读分开。别人说\"你根本不关心我\"，这是观点和情绪，不是事实；事实是这周你加了三天班、回消息晚了两小时。把事实剥出来，情绪化的误判就少一大半。",
-          "steps": [],
-          "abilities": [
-            "独立思考能力",
-            "逻辑思维能力",
-            "思辨能力"
-          ],
-          "thinkings": [
-            "批判性思维"
-          ],
-          "books": [
-            "《学会提问》"
-          ],
-          "sources": [
-            "source-ima-高认知"
-          ]
-        },
-        {
-          "id": "method-multi-angle",
-          "label": "多视角切换",
-          "theme": "think",
-          "summary": "遇到问题别只站在自己的角度，主动换几种思维方式再想一遍：辩证地看、逆向地看、拆成结构看。很多问题之所以是问题，不是问题本身多难，而是你没换个角度去看它。",
-          "steps": [],
-          "abilities": [
-            "思辨能力",
-            "逻辑思维能力",
-            "独立思考能力"
-          ],
-          "thinkings": [
-            "辩证思维",
-            "逆向思维",
-            "结构化思维"
-          ],
-          "books": [
-            "《思考，快与慢》"
-          ],
-          "sources": [
-            "source-ima-高认知"
-          ]
-        }
-      ]
-    },
-    {
       "id": "ability-决策力",
       "type": "ability",
       "label": "决策力",
@@ -2430,84 +2315,6 @@ const _GRAPH = {
       ]
     },
     {
-      "id": "ability-逻辑思维能力",
-      "type": "ability",
-      "label": "逻辑思维能力",
-      "category": "能力提升",
-      "theme": "think",
-      "desc": "能看出论证漏洞，忽悠就站不住。",
-      "why": "逻辑思维解决的是“看不出哪里不对劲”的问题。别人一套话术讲下来，听着句句有理，你就跟着走了——其实论证里全是偷换概念和跳跃结论。会逻辑的人能看出漏洞：前提站不站得住、结论是不是真的推得出来。逻辑通了，忽悠就站不住了；逻辑不通的地方，就是别人想坑你的地方。",
-      "train": "",
-      "radius": 9,
-      "methods": [
-        {
-          "id": "method-fact-opinion",
-          "label": "事实-观点拆分",
-          "theme": "think",
-          "summary": "遇到任何信息，先把客观事实和主观解读分开。别人说\"你根本不关心我\"，这是观点和情绪，不是事实；事实是这周你加了三天班、回消息晚了两小时。把事实剥出来，情绪化的误判就少一大半。",
-          "steps": [],
-          "abilities": [
-            "独立思考能力",
-            "逻辑思维能力",
-            "思辨能力"
-          ],
-          "thinkings": [
-            "批判性思维"
-          ],
-          "books": [
-            "《学会提问》"
-          ],
-          "sources": [
-            "source-ima-高认知"
-          ]
-        },
-        {
-          "id": "method-5whys",
-          "label": "5Why追问",
-          "theme": "think",
-          "summary": "连续追问五次为什么，问到不能再分的事实为止。比如客户投诉快递太慢：为什么慢？绕路了。为什么绕路？不熟悉新小区。为什么不熟悉？没给地图。为什么没给？没收集信息。为什么没收集？没人负责更新配送资料——问到底，真原因不是快递员，是流程没人管。",
-          "steps": [],
-          "abilities": [
-            "逻辑思维能力",
-            "判断力",
-            "独立思考能力"
-          ],
-          "thinkings": [
-            "第一性原理"
-          ],
-          "books": [
-            "《丰田生产方式》"
-          ],
-          "sources": [
-            "source-ima-高认知"
-          ]
-        },
-        {
-          "id": "method-multi-angle",
-          "label": "多视角切换",
-          "theme": "think",
-          "summary": "遇到问题别只站在自己的角度，主动换几种思维方式再想一遍：辩证地看、逆向地看、拆成结构看。很多问题之所以是问题，不是问题本身多难，而是你没换个角度去看它。",
-          "steps": [],
-          "abilities": [
-            "思辨能力",
-            "逻辑思维能力",
-            "独立思考能力"
-          ],
-          "thinkings": [
-            "辩证思维",
-            "逆向思维",
-            "结构化思维"
-          ],
-          "books": [
-            "《思考，快与慢》"
-          ],
-          "sources": [
-            "source-ima-高认知"
-          ]
-        }
-      ]
-    },
-    {
       "id": "ability-风险管控能力",
       "type": "ability",
       "label": "风险管控能力",
@@ -2530,50 +2337,6 @@ const _GRAPH = {
       "train": "冲突来了先做两件事：把指责句换成需求句（把“你总是”换成“我希望”），把人和事分开（否定的是这件事的做法，不是这个人）。",
       "radius": 9,
       "methods": []
-    },
-    {
-      "id": "ability-边界感",
-      "type": "ability",
-      "label": "边界感",
-      "category": "能力提升",
-      "theme": "interpersonal",
-      "desc": "知道哪些情绪是别人的，不必兜，才不会总替人难受。",
-      "why": "边界感解决的是“分不清哪份情绪该谁背”的问题。别人不高兴你就紧张，别人的事你比本人还上心，到头来替所有人扛了情绪，自己被榨干。有边界的人分得清：哪些是我的事，哪些是他的事；哪些情绪是他的，不必我兜。边界不是冷漠，是不委屈自己也能维持关系。",
-      "train": "",
-      "radius": 9,
-      "methods": [
-        {
-          "id": "method-body-language",
-          "label": "姿态与语言去弱化",
-          "theme": "self",
-          "summary": "弱者气息不是性格，是可以改的行为模式。把那些从骨子里透露\"我是弱者\"的行为一条条戒掉，别人对你的态度就会变。",
-          "steps": [
-            "少说叠词：好好好、是是是、收到收到，直接说\"可以、没问题\"",
-            "不习惯性妥协：少说随便、都行、都听你的，多表达自己的真实想法",
-            "不贬低自己：不说\"我不行\"，改说\"我愿意去试一试\"",
-            "说话不低头，眼神不躲闪",
-            "拒绝别人不找一堆理由，不想做直接回绝",
-            "优先顾及自己的感受，再考虑别人",
-            "体态舒展，挺胸抬头，不含胸驼背",
-            "沟通时不抠手、不挠头，减少小动作",
-            "不往后缩：开会不坐后排，拍照不往边上站"
-          ],
-          "abilities": [
-            "自信心",
-            "边界感",
-            "敢于拒绝能力",
-            "表达能力"
-          ],
-          "thinkings": [],
-          "books": [
-            "《非暴力沟通》",
-            "《影响力》"
-          ],
-          "sources": [
-            "source-ima-弱者气息"
-          ]
-        }
-      ]
     },
     {
       "id": "ability-主动邀功",
@@ -2616,9 +2379,9 @@ const _GRAPH = {
       ]
     },
     {
-      "id": "ability-人脉筛选与维护能力",
+      "id": "ability-人脉经营能力",
       "type": "ability",
-      "label": "人脉筛选与维护能力",
+      "label": "人脉经营能力",
       "category": "能力提升",
       "theme": "interpersonal",
       "desc": "升级圈子、远离消耗者、维护良关系。",
@@ -2661,9 +2424,9 @@ const _GRAPH = {
       "methods": []
     },
     {
-      "id": "ability-敢于拒绝能力",
+      "id": "ability-敢于拒绝的能力",
       "type": "ability",
-      "label": "敢于拒绝能力",
+      "label": "敢于拒绝的能力",
       "category": "能力提升",
       "theme": "interpersonal",
       "desc": "对不合理请求说不，不委屈自己。",
@@ -2769,9 +2532,9 @@ const _GRAPH = {
       ]
     },
     {
-      "id": "ability-装傻能力",
+      "id": "ability-装傻的能力",
       "type": "ability",
-      "label": "装傻能力",
+      "label": "装傻的能力",
       "category": "能力提升",
       "theme": "interpersonal",
       "desc": "该糊涂时装糊涂，避免无谓争锋。",
@@ -2805,26 +2568,14 @@ const _GRAPH = {
       "methods": []
     },
     {
-      "id": "ability-麻烦别人能力",
+      "id": "ability-麻烦别人的能力",
       "type": "ability",
-      "label": "麻烦别人能力",
+      "label": "麻烦别人的能力",
       "category": "能力提升",
       "theme": "interpersonal",
       "desc": "合理求助，借关系增进连接。",
       "why": "会麻烦别人解决的是“人情越不用越淡”的问题。很多人怕欠人情，什么都不肯求人——但关系是处出来的，你从不开口，别人也找不到帮你、跟你加深关系的入口。会麻烦人是一门技术：找对方擅长的事开口，事后记得回馈，小额互欠反而让关系越来越近。好关系是麻烦出来的。",
       "train": "求助挑对方擅长且顺手的事开口，事成之后及时回馈——一顿饭、一份用得上的信息都行。让关系一直处于“你帮我、我帮你”的流动里。",
-      "radius": 9,
-      "methods": []
-    },
-    {
-      "id": "ability-应变能力",
-      "type": "ability",
-      "label": "应变能力",
-      "category": "能力提升",
-      "theme": "interpersonal",
-      "desc": "现场被cue、冷场，能接得住。",
-      "why": "应变解决的是“计划赶不上变化就懵”的问题。主持冷场了、演讲忘词了、现场被突然cue了——没准备的事一发生就大脑空白。会应变的人接得住意外：不慌，先接住当前场面，再顺势调整。应变能力是练出来的：出场面多了，什么意外都见过，自然就不慌了。",
-      "train": "多把自己放进需要临场反应的场合练：发言、主持、接话都算。意外见得多了，套路自然长出来——接不住的时候，先重复一遍对方的话给自己争取思考时间。",
       "radius": 9,
       "methods": []
     },
@@ -3132,6 +2883,150 @@ const _GRAPH = {
           ]
         }
       ]
+    },
+    {
+      "id": "ability-挖掘自身优势",
+      "type": "ability",
+      "label": "挖掘自身优势",
+      "category": "能力提升",
+      "theme": "self",
+      "desc": "找到你愿意持续投入、能做得比别人好的长板，并把它做到极致。",
+      "why": "挖掘自身优势，核心就是找到你愿意持续投入、能做得比别人好的长板，并把它做到极致。\n\n我们从小接受的教育是“木桶理论”，告诉你一个桶能装多少水，取决于最短的那块木板。这导致很多人习惯性地盯着自己的短板，总想着去补短板。但在社会上生存，你不需要什么都会，你需要的是让你的长板足够长。只有当你把某一项优势不断放大，你才能建立起别人无法替代的价值。\n\n找到自身的优势，要从这4个问题出发：\n\n3.1 你热爱什么？\n\n 判断是不是真热爱，其实很简单，就看你是不是对\"生产内容\"感兴趣。如果只是喜欢刷别人的内容、享受别人的成果，那顶多算浅层的喜欢；愿意主动动手去做、去创造，才是真的热爱。就像很多人都说自己热爱美食——要是你只是爱吃、爱探店，那不算热爱美食，顶多是胃口好；真正热爱的人，会琢磨每道菜的做法、食材搭配、火候把控，甚至会去查这道菜的起源、背后的历史故事。而且现在有了互联网，不管你有什么小众爱好都能放大，比如喜欢读书、健身、玩乐器，这些爱好都能变成可以变现的内容或产品。\n\n3.2 你擅长什么？ \n\n其实大多数普通人都谈不上有什么天赋，但每个人都有自己的优势。这种优势来源于社会分工，是跟别人比出来的。经济学里有个词叫\"比较优势\"，说的就是你比别人强的那个点。比如，你是相声演员里最会唱歌的，是厨师里最会变魔术的，这些都是你的比较优势。不管你掌握了什么能力，写作、演讲、做 PPT 都行，只要能帮别人解决问题，就能把它做成产品。\n\n3.3 你想获得什么？ \n\n说到这个问题，很多人第一反应都是\"我想要钱\"。但如果你还记得前面说的\"钱的本质是社会价值欠条\"，就不会只盯着钱了，反而需要你想清楚：有了钱之后，你真正想换的是什么。有一个关于富翁与渔夫的故事：富翁问渔夫为何不打更多鱼，渔夫反问\"然后呢\"；富翁说买船雇人、赚更多钱，最后躺着晒太阳，渔夫说\"我现在不就已经过上这样的生活了吗\"。这个故事的意思是：如果你想要某个东西，应该直接去追求，而不是先去赚钱，因为这样反而舍本逐末了——钱是你实现目标过程中产生的副产品。比如有的人想提升个人影响力，就可以选择写书、拍视频、写文章来实现。\n\n3.4 你能提供什么价值？ \n\n能提供的价值有很多种，常见的包括以下 5 类：\n\n1. 经济价值：帮用户省钱、赚钱、避坑（降低成本 / 增加收入）\n2. 效率价值：帮用户省时间、少走弯路（节省时间 / 降低门槛 / 减少试错）\n3. 解决问题价值：帮用户处理烂摊子、搞定难办事（处理冲突 / 善后补救 / 辅助决策）\n4. 成长价值：帮用户变强、跃迁、抓机会（拓展机会 / 成为榜样）\n5. 情绪价值：帮用户获得愉悦、缓解负面感受（带来愉悦 / 给予尊重 / 缓解负面情绪）\n\n所以，就像《纳瓦尔宝典》里说的，在“做自己”这件事情上，没有人能和你竞争。《巨人的工具》里研究了大量成功人士发现：一些人之所以成功，不是因为他们没有缺点，而是因为他们发现了自己的优势，并围绕这些优势培养了各种好习惯。",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-情绪觉察能力",
+      "type": "ability",
+      "label": "情绪觉察能力",
+      "category": "能力提升",
+      "theme": "emotion",
+      "desc": "在情绪刚冒头时就认出它、说出它，而不是被它带着走。",
+      "why": "",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-共情能力",
+      "type": "ability",
+      "label": "共情能力",
+      "category": "能力提升",
+      "theme": "emotion",
+      "desc": "能站到对方的角度，感受他的处境和情绪。",
+      "why": "",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-深度思考能力",
+      "type": "ability",
+      "label": "深度思考能力",
+      "category": "能力提升",
+      "theme": "think",
+      "desc": "不停留在第一层原因，能一路挖到问题的本质。",
+      "why": "",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-大局观",
+      "type": "ability",
+      "label": "大局观",
+      "category": "能力提升",
+      "theme": "think",
+      "desc": "以整体利益为目标、用长远眼光去分析问题。",
+      "why": "大局观，就是以整体利益为目标、用长远眼光去分析问题的能力。你面对人生重大选择，或者一些日常小事，都可以用大局观来帮自己判断。它是一项能力，是可以练出来的。\n\n很多人重大选择总出错，不是认知不够，而是少了大局观。",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-习惯养成",
+      "type": "ability",
+      "label": "习惯养成",
+      "category": "能力提升",
+      "theme": "action",
+      "desc": "把想做的事变得足够简单，让行为长期自动发生。",
+      "why": "习惯养成，就是让一个行为长期、自动地发生的能力。你坚持不下来一件事，往往不是因为缺少毅力，而是因为你没把这件事做得足够简单。\n\n光有执行力，能把一件事做出来；但只有习惯，才能让这件事不用想就自动发生，长期不费劲。",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-构建能力",
+      "type": "ability",
+      "label": "构建能力",
+      "category": "能力提升",
+      "theme": "action",
+      "desc": "把你的优势和价值，变成可交付、可复制的解决方案。",
+      "why": "构建能力，就是把你的优势和价值，变成一个可交付、可复制的解决方案的能力。\n\n普通人做不了改变行业的大产品，但完全可以做小而美的个人产品。你平时买的各种学习课程、实操手册，本质上都是别人的个人产品。你也可以把自己的经验、技能，打包成可复制的内容产品，一次制作完成，就能反复售卖、反复交付价值，这就是最适合普通人的产品化路径。",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-把自己产品化",
+      "type": "ability",
+      "label": "把自己产品化",
+      "category": "能力提升",
+      "theme": "action",
+      "desc": "把自己的经验、专长、技能，封装成可规模化的产品。",
+      "why": "把自己产品化，就是不再靠单纯出卖时间赚钱，而是把自己的经验、专长、技能，封装成有社会需求、可规划、可规模化的产品。\n\n \n\n比如一位高中老师，每年给 4 个班上课，最多影响 200 人，自己还累；但如果把课程录成视频，配上练习题和答疑模板，就能服务成千上万人，自己也不用重复劳动。\n\n阿基米德说过，给我一个支点，我能撬动整个地球。",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-价值交换",
+      "type": "ability",
+      "label": "价值交换",
+      "category": "能力提升",
+      "theme": "interpersonal",
+      "desc": "认清自己能提供什么价值，用价值去交换，而不是靠讨好换认可。",
+      "why": "先说清楚什么是价值。价值，就是你能给别人提供的有用东西，你需要先了解价值的 5 种类型：\n物质价值：钱、资源、资产、加薪等，都属于物质价值。\n情绪价值：被别人认可、鼓励、激励，这些都是情绪价值。\n社会价值：影响力、名誉、地位、人脉。它不是实物，也不能直接带来情绪上的反应，但能在社会层面带来好处。\n成长价值：做一件事时，如果能学习新技能、提升认知、积累经验，这些都属于成长价值。\n解决问题价值：帮别人处理烂摊子、搞定难办事，比如处理冲突、善后补救、辅助决策。\n\n在做任何一件事时，至少要看到这件事背后带来的至少一项价值。当你自己有价值的时候，一切的好都会向你靠拢，一切的不幸都会远离你。\n\n认清价值之后，还要摆平利他和利己的关系。现在很多人被传统教育规训得过于关注对别人有利，导致忽略了自己。因此，利他和利己本身需要做到一定的平衡：我们不能做一个纯粹的利己主义者，当然也不能完全利他，对谁都掏心掏肺，而是要找到一种平衡。\n\n什么是价值交换\n\n当你认清\"价值\"后，你就可以从\"讨好\"变成\"价值交换\"了。因为人际关系的本质就是价值交换。不管任何关系，都得有价值，才能走得更远。如果一个人没有了被利用的价值，别人才懒得理他。这就是\"穷在闹市无人问，富在深山有远亲\"。\n\n我们要通过自身的价值去吸引别人，而不是通过迎合、讨好来获得别人的认可。因为迎合讨好别人，其实是在否定自己的价值。\n\n为什么需要价值交换\n\n当你建立了自我价值的标准后，你就：不会过度依赖外部的评价和反馈；不会为了迎合别人而做事，也会懂得拒绝了；做事也有了自己的判断标准，会关注事情是否真正给自己带来价值。",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-向内求",
+      "type": "ability",
+      "label": "向内求",
+      "category": "能力提升",
+      "theme": "self",
+      "desc": "在自己身上找原因、找方向，而不是向外求认可。",
+      "why": "什么是向内求？《了凡四训》中，云谷禅师对袁了凡说：\"求在我，不独得道德仁义，亦得功名富贵。\"意思就是，要追求真正的自我，通过找到自己真正热爱的事，来实现自我价值的确定性，而不是盲目地追求金钱、地位这些外在的东西。陆游临终前留给他儿子一首诗：\"汝果欲学诗，功夫在诗外。\"说的是同样的道理：不要追求表面的形式，更要注重内心的修炼。\n\n这条正好接在\"价值交换\"后面：认清了价值、会价值交换了，下一步就是回到自己身上，向内求，挖掘自身的价值。\n\n为什么需要向内求\n\n但大多数人总是在\"向外求\"：希望通过别人的认可，来证明自己有价值。所以你会怕丢脸、怕出丑、怕被否定，做什么都先想\"别人怎么看我\"，总想着\"我该怎么做，才能让别人满意\"。\n\n而高手是\"向内求\"——他们想的是：\"这件事对我有什么价值？\"\"我怎么才能和对方进行价值交换？\"所以别总想着\"让别人满意\"，而是换一种思维：看看自己到底能提供什么价值。",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-预期管理",
+      "type": "ability",
+      "label": "预期管理",
+      "category": "能力提升",
+      "theme": "interpersonal",
+      "desc": "管好三方期待：不对别人期待过高，不对自己期待过高，也不让别人对你期待过高。",
+      "why": "预期管理，就是把三方期待都管理好：不对别人有过高的期待，不对自己有过高的期待，也不让别人对你有过高的期待。\n\n做好这 3 点你就会发现，真的是，一切发生皆有利于我。",
+      "train": "",
+      "radius": 9,
+      "methods": []
+    },
+    {
+      "id": "ability-给自己造势",
+      "type": "ability",
+      "label": "给自己造势",
+      "category": "能力提升",
+      "theme": "interpersonal",
+      "desc": "主动让别人知道你、记住你、认可你，而不是等别人发现你。",
+      "why": "给自己造势，就是主动让别人知道你、记住你、认可你，而不是在外面等别人发现你。\n\n只会闷头干活，是成年人最大的短板。很多人在职场里就只会闷头干活，根本不懂人情世故。有人可能会说，人情世故不就是拍马屁吗，我不屑于人情世故。如果你真的这么认为，那你在社会上、职场里，一定没少吃亏。\n\n所以我要告诉你一个真相，人情世故其实并不是拍马屁，也不是阿谀奉承，而是懂得给自己造势。",
+      "train": "",
+      "radius": 9,
+      "methods": []
     },
     {
       "id": "pain-迷茫",
@@ -3466,7 +3361,7 @@ const _GRAPH = {
       "themes": [
         "self"
       ],
-      "theme": "self",
+      "theme": "think",
       "slug": "bi-jiao-you-shi",
       "file": "website/data/models/bi-jiao-you-shi.md",
       "radius": 10,
@@ -3520,7 +3415,7 @@ const _GRAPH = {
         "self",
         "emotion"
       ],
-      "theme": "self",
+      "theme": "think",
       "slug": "chang-qi-zhu-yi",
       "file": "website/data/models/chang-qi-zhu-yi.md",
       "radius": 10,
@@ -3535,7 +3430,7 @@ const _GRAPH = {
         "self",
         "emotion"
       ],
-      "theme": "self",
+      "theme": "think",
       "slug": "cheng-zhang-xing-si-wei",
       "file": "website/data/models/cheng-zhang-xing-si-wei.md",
       "radius": 10,
@@ -3601,7 +3496,7 @@ const _GRAPH = {
         "action",
         "think"
       ],
-      "theme": "action",
+      "theme": "think",
       "slug": "die-dai-si-wei",
       "file": "website/data/models/die-dai-si-wei.md",
       "radius": 10,
@@ -3852,7 +3747,7 @@ const _GRAPH = {
         "self",
         "think"
       ],
-      "theme": "self",
+      "theme": "think",
       "slug": "xiang-dui-si-wei",
       "file": "website/data/models/xiang-dui-si-wei.md",
       "radius": 10,
@@ -3870,6 +3765,383 @@ const _GRAPH = {
       "slug": "yin-guo-si-wei",
       "file": "website/data/models/yin-guo-si-wei.md",
       "radius": 10,
+      "methods": []
+    },
+    {
+      "id": "thinking-gan-gan-si-wei",
+      "type": "thinking",
+      "label": "杠杆思维",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "gan-gan-si-wei",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-fu-li-si-wei",
+      "type": "thinking",
+      "label": "复利思维",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "fu-li-si-wei",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-bo-yi-si-wei",
+      "type": "thinking",
+      "label": "博弈思维",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "bo-yi-si-wei",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-quan-heng-si-wei",
+      "type": "thinking",
+      "label": "权衡思维",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "quan-heng-si-wei",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-bian-jie-si-wei",
+      "type": "thinking",
+      "label": "边界思维",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "bian-jie-si-wei",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-shuang-ying-si-wei",
+      "type": "thinking",
+      "label": "双赢思维",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "shuang-ying-si-wei",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-li-ta-si-wei",
+      "type": "thinking",
+      "label": "利他思维",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "li-ta-si-wei",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-jia-zhi-jiao-huan-si-wei",
+      "type": "thinking",
+      "label": "价值交换思维",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "jia-zhi-jiao-huan-si-wei",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-fu-ren-si-wei",
+      "type": "thinking",
+      "label": "富人思维",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "fu-ren-si-wei",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-ding-wei-li-lun",
+      "type": "thinking",
+      "label": "定位理论",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "ding-wei-li-lun",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-neng-li-quan",
+      "type": "thinking",
+      "label": "能力圈",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "neng-li-quan",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-ben-zhi-si-wei",
+      "type": "thinking",
+      "label": "本质思维",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "ben-zhi-si-wei",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-fan-cui-ruo",
+      "type": "thinking",
+      "label": "反脆弱",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "fan-cui-ruo",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-xin-liu-mo-xing",
+      "type": "thinking",
+      "label": "心流模型",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "xin-liu-mo-xing",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-5w1h-fa",
+      "type": "thinking",
+      "label": "5W1H法",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "5w1h-fa",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-pdca-xun-huan",
+      "type": "thinking",
+      "label": "PDCA循环",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "pdca-xun-huan",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-you-xian-ji-ju-zhen",
+      "type": "thinking",
+      "label": "重要紧急程度",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "you-xian-ji-ju-zhen",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-huang-jin-quan-mo-xing",
+      "type": "thinking",
+      "label": "黄金圈模型",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "huang-jin-quan-mo-xing",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-ao-ka-mu-ti-dao-ding-lv",
+      "type": "thinking",
+      "label": "奥卡姆剃刀定律",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "ao-ka-mu-ti-dao-ding-lv",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-han-long-ti-dao-ding-lv",
+      "type": "thinking",
+      "label": "汉隆剃刀定律",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "han-long-ti-dao-ding-lv",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-5why-fen-xi-fa",
+      "type": "thinking",
+      "label": "5Why分析法",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "5why-fen-xi-fa",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-10-10-10-fa-ze",
+      "type": "thinking",
+      "label": "10-10-10法则",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "10-10-10-fa-ze",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-jue-ce-shu-mo-xing",
+      "type": "thinking",
+      "label": "决策树模型",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "jue-ce-shu-mo-xing",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-roi-fen-xi",
+      "type": "thinking",
+      "label": "ROI分析",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "roi-fen-xi",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-bei-ye-si-ding-li",
+      "type": "thinking",
+      "label": "贝叶斯定理",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "bei-ye-si-ding-li",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-hu-hui",
+      "type": "thinking",
+      "label": "互惠",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "hu-hui",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-she-hui-ren-tong",
+      "type": "thinking",
+      "label": "社会认同",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "she-hui-ren-tong",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-xi-que",
+      "type": "thinking",
+      "label": "稀缺",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "xi-que",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
+      "methods": []
+    },
+    {
+      "id": "thinking-cheng-nuo-yu-yi-zhi",
+      "type": "thinking",
+      "label": "承诺与一致",
+      "category": "思维方式",
+      "theme": "think",
+      "slug": "cheng-nuo-yu-yi-zhi",
+      "radius": 10,
+      "desc": "",
+      "themes": [],
+      "file": "",
       "methods": []
     },
     {
@@ -4131,34 +4403,6 @@ const _GRAPH = {
       "radius": 14
     },
     {
-      "id": "book-蛤蟆先生去看心理医生",
-      "type": "book",
-      "label": "蛤蟆先生去看心理医生",
-      "category": "书单",
-      "theme": "emotion",
-      "author": "罗伯特·戴博德",
-      "score": 8.3,
-      "recommend": "",
-      "categories": [
-        "心理成长"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-自卑与超越",
-      "type": "book",
-      "label": "自卑与超越",
-      "category": "书单",
-      "theme": "emotion",
-      "author": "阿尔弗雷德·阿德勒",
-      "score": 7.7,
-      "recommend": "",
-      "categories": [
-        "心理成长"
-      ],
-      "radius": 15
-    },
-    {
       "id": "book-毛选",
       "type": "book",
       "label": "毛选",
@@ -4173,34 +4417,6 @@ const _GRAPH = {
       "radius": 15
     },
     {
-      "id": "book-道德经",
-      "type": "book",
-      "label": "道德经",
-      "category": "书单",
-      "theme": "think",
-      "author": "老子",
-      "score": 9.5,
-      "recommend": "",
-      "categories": [
-        "哲学思辨"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-物种起源",
-      "type": "book",
-      "label": "物种起源",
-      "category": "书单",
-      "theme": "think",
-      "author": "达尔文",
-      "score": 9.3,
-      "recommend": "",
-      "categories": [
-        "底层规律"
-      ],
-      "radius": 15
-    },
-    {
       "id": "book-人类简史",
       "type": "book",
       "label": "人类简史",
@@ -4211,20 +4427,6 @@ const _GRAPH = {
       "recommend": "重新审视人类历史的宏大叙事",
       "categories": [
         "底层规律"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-苏菲的世界",
-      "type": "book",
-      "label": "苏菲的世界",
-      "category": "书单",
-      "theme": "think",
-      "author": "乔斯坦·贾德",
-      "score": 9,
-      "recommend": "",
-      "categories": [
-        "哲学思辨"
       ],
       "radius": 15
     },
@@ -4257,62 +4459,6 @@ const _GRAPH = {
       "radius": 15
     },
     {
-      "id": "book-格鲁夫给经理人的第一课",
-      "type": "book",
-      "label": "格鲁夫给经理人的第一课",
-      "category": "书单",
-      "theme": "action",
-      "author": "安迪·格鲁夫",
-      "score": 8.9,
-      "recommend": "",
-      "categories": [
-        "能力提升"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-掌控习惯",
-      "type": "book",
-      "label": "掌控习惯",
-      "category": "书单",
-      "theme": "action",
-      "author": "詹姆斯·克利尔",
-      "score": 8.8,
-      "recommend": "",
-      "categories": [
-        "习惯养成"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-福格行为模型",
-      "type": "book",
-      "label": "福格行为模型",
-      "category": "书单",
-      "theme": "action",
-      "author": "B.J.福格",
-      "score": 8.7,
-      "recommend": "",
-      "categories": [
-        "习惯养成"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-谈谈方法",
-      "type": "book",
-      "label": "谈谈方法",
-      "category": "书单",
-      "theme": "action",
-      "author": "笛卡尔",
-      "score": 8.7,
-      "recommend": "",
-      "categories": [
-        "成事方法"
-      ],
-      "radius": 15
-    },
-    {
       "id": "book-高效能人士的-7-个习惯",
       "type": "book",
       "label": "高效能人士的 7 个习惯",
@@ -4323,76 +4469,6 @@ const _GRAPH = {
       "recommend": "",
       "categories": [
         "习惯养成"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-津巴多普通心理学",
-      "type": "book",
-      "label": "津巴多普通心理学",
-      "category": "书单",
-      "theme": "interpersonal",
-      "author": "菲利普·津巴多（Philip G. Zimbardo）",
-      "score": 9.3,
-      "recommend": "",
-      "categories": [
-        "人性洞察"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-亲密关系",
-      "type": "book",
-      "label": "亲密关系",
-      "category": "书单",
-      "theme": "interpersonal",
-      "author": "罗兰·米勒",
-      "score": 9.1,
-      "recommend": "",
-      "categories": [
-        "人际关系与沟通"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-社会心理学",
-      "type": "book",
-      "label": "社会心理学",
-      "category": "书单",
-      "theme": "interpersonal",
-      "author": "戴维·迈尔斯",
-      "score": 9,
-      "recommend": "",
-      "categories": [
-        "人性洞察"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-社会性动物",
-      "type": "book",
-      "label": "社会性动物",
-      "category": "书单",
-      "theme": "interpersonal",
-      "author": "埃利奥特·阿伦森",
-      "score": 9,
-      "recommend": "",
-      "categories": [
-        "人性洞察"
-      ],
-      "radius": 15
-    },
-    {
-      "id": "book-君主论",
-      "type": "book",
-      "label": "君主论",
-      "category": "书单",
-      "theme": "interpersonal",
-      "author": "尼可罗·马基雅维利",
-      "score": 8.7,
-      "recommend": "",
-      "categories": [
-        "人性洞察"
       ],
       "radius": 15
     },
@@ -4409,6 +4485,162 @@ const _GRAPH = {
         "人性洞察"
       ],
       "radius": 15
+    },
+    {
+      "id": "book-富爸爸穷爸爸",
+      "type": "book",
+      "label": "富爸爸穷爸爸",
+      "category": "书单",
+      "theme": "action",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-纳瓦尔宝典",
+      "type": "book",
+      "label": "纳瓦尔宝典",
+      "category": "书单",
+      "theme": "self",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-金钱心理学",
+      "type": "book",
+      "label": "金钱心理学",
+      "category": "书单",
+      "theme": "think",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-思考，快与慢",
+      "type": "book",
+      "label": "思考，快与慢",
+      "category": "书单",
+      "theme": "think",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-学会提问",
+      "type": "book",
+      "label": "学会提问",
+      "category": "书单",
+      "theme": "think",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-娱乐至死",
+      "type": "book",
+      "label": "娱乐至死",
+      "category": "书单",
+      "theme": "think",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-经济学的思维方式",
+      "type": "book",
+      "label": "经济学的思维方式",
+      "category": "书单",
+      "theme": "think",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-理解未来的7个原则",
+      "type": "book",
+      "label": "理解未来的7个原则",
+      "category": "书单",
+      "theme": "think",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-非暴力沟通",
+      "type": "book",
+      "label": "非暴力沟通",
+      "category": "书单",
+      "theme": "interpersonal",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-这就是人性",
+      "type": "book",
+      "label": "这就是人性",
+      "category": "书单",
+      "theme": "interpersonal",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-巴拉巴西成功定律",
+      "type": "book",
+      "label": "巴拉巴西成功定律",
+      "category": "书单",
+      "theme": "action",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
+    },
+    {
+      "id": "book-为什么伟大不能被计划",
+      "type": "book",
+      "label": "为什么伟大不能被计划",
+      "category": "书单",
+      "theme": "action",
+      "radius": 15,
+      "desc": "",
+      "author": "",
+      "score": null,
+      "recommend": "",
+      "categories": []
     }
   ],
   "links": [
@@ -4421,7 +4653,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-self",
-      "target": "ability-自我认同",
+      "target": "ability-自我认同与接纳",
       "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
@@ -4429,27 +4661,6 @@ const _GRAPH = {
     {
       "source": "theme-self",
       "target": "ability-自信心",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-self",
-      "target": "ability-自我接纳",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-self",
-      "target": "ability-自我觉察",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-self",
-      "target": "ability-自我认知能力",
       "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
@@ -4463,14 +4674,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-emotion",
-      "target": "ability-延迟满足能力",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-emotion",
-      "target": "ability-情绪调节",
+      "target": "ability-情绪调节能力",
       "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
@@ -4491,7 +4695,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-action",
-      "target": "ability-时间管理能力",
+      "target": "ability-时间管理",
       "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
@@ -4505,14 +4709,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-action",
-      "target": "ability-学习能力",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-action",
-      "target": "ability-归纳总结能力",
+      "target": "ability-高效学习能力",
       "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
@@ -4547,13 +4744,6 @@ const _GRAPH = {
     },
     {
       "source": "theme-think",
-      "target": "ability-思辨能力",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-think",
       "target": "ability-决策力",
       "relation": "主题包含",
       "value": 1,
@@ -4575,13 +4765,6 @@ const _GRAPH = {
     },
     {
       "source": "theme-think",
-      "target": "ability-逻辑思维能力",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-think",
       "target": "ability-风险管控能力",
       "relation": "主题包含",
       "value": 1,
@@ -4596,7 +4779,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-interpersonal",
-      "target": "ability-边界感",
+      "target": "ability-立边界能力",
       "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
@@ -4610,7 +4793,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-interpersonal",
-      "target": "ability-人脉筛选与维护能力",
+      "target": "ability-人脉经营能力",
       "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
@@ -4624,7 +4807,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-interpersonal",
-      "target": "ability-敢于拒绝能力",
+      "target": "ability-敢于拒绝的能力",
       "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
@@ -4638,13 +4821,6 @@ const _GRAPH = {
     },
     {
       "source": "theme-interpersonal",
-      "target": "ability-立边界能力",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-interpersonal",
       "target": "ability-自我包装能力",
       "relation": "主题包含",
       "value": 1,
@@ -4652,7 +4828,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-interpersonal",
-      "target": "ability-装傻能力",
+      "target": "ability-装傻的能力",
       "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
@@ -4673,14 +4849,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-interpersonal",
-      "target": "ability-麻烦别人能力",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-interpersonal",
-      "target": "ability-应变能力",
+      "target": "ability-麻烦别人的能力",
       "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
@@ -4770,13 +4939,6 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-自我觉察",
-      "target": "pain-习惯性自我否定",
-      "relation": "能力解痛点",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "ability-自信心",
       "target": "pain-习惯性自我否定",
       "relation": "能力解痛点",
@@ -4840,7 +5002,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-自我接纳",
+      "source": "ability-自我认同与接纳",
       "target": "pain-害怕失败",
       "relation": "能力解痛点",
       "value": 1,
@@ -4868,14 +5030,14 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-情绪调节",
+      "source": "ability-情绪调节能力",
       "target": "pain-焦虑",
       "relation": "能力解痛点",
       "value": 1,
       "color": "#F08075"
     },
     {
-      "source": "ability-自我接纳",
+      "source": "ability-自我认同与接纳",
       "target": "pain-焦虑",
       "relation": "能力解痛点",
       "value": 1,
@@ -4889,14 +5051,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-自我觉察",
-      "target": "pain-精神内耗",
-      "relation": "能力解痛点",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "ability-情绪调节",
+      "source": "ability-情绪调节能力",
       "target": "pain-精神内耗",
       "relation": "能力解痛点",
       "value": 1,
@@ -4924,7 +5079,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-情绪调节",
+      "source": "ability-情绪调节能力",
       "target": "pain-情绪不稳定",
       "relation": "能力解痛点",
       "value": 1,
@@ -4945,21 +5100,14 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-边界感",
+      "source": "ability-立边界能力",
       "target": "pain-高敏感",
       "relation": "能力解痛点",
       "value": 1,
       "color": "#F08075"
     },
     {
-      "source": "ability-自我觉察",
-      "target": "pain-高敏感",
-      "relation": "能力解痛点",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "ability-情绪调节",
+      "source": "ability-情绪调节能力",
       "target": "pain-高敏感",
       "relation": "能力解痛点",
       "value": 1,
@@ -4981,20 +5129,6 @@ const _GRAPH = {
     },
     {
       "source": "ability-独立思考能力",
-      "target": "pain-盲目跟风",
-      "relation": "能力解痛点",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "ability-逻辑思维能力",
-      "target": "pain-盲目跟风",
-      "relation": "能力解痛点",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "ability-思辨能力",
       "target": "pain-盲目跟风",
       "relation": "能力解痛点",
       "value": 1,
@@ -5064,7 +5198,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-情绪调节",
+      "source": "ability-情绪调节能力",
       "target": "pain-情绪化决策",
       "relation": "能力解痛点",
       "value": 1,
@@ -5099,7 +5233,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-时间管理能力",
+      "source": "ability-时间管理",
       "target": "pain-拖延",
       "relation": "能力解痛点",
       "value": 1,
@@ -5155,7 +5289,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-时间管理能力",
+      "source": "ability-时间管理",
       "target": "pain-专注力差",
       "relation": "能力解痛点",
       "value": 1,
@@ -5176,7 +5310,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-时间管理能力",
+      "source": "ability-时间管理",
       "target": "pain-低效瞎忙",
       "relation": "能力解痛点",
       "value": 1,
@@ -5211,7 +5345,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-边界感",
+      "source": "ability-立边界能力",
       "target": "pain-总是讨好别人",
       "relation": "能力解痛点",
       "value": 1,
@@ -5246,7 +5380,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-情绪调节",
+      "source": "ability-情绪调节能力",
       "target": "pain-过度在意他人看法",
       "relation": "能力解痛点",
       "value": 1,
@@ -5295,13 +5429,6 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-应变能力",
-      "target": "pain-社恐",
-      "relation": "能力解痛点",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "theme-interpersonal",
       "target": "pain-总想改变别人",
       "relation": "主题包含",
@@ -5316,14 +5443,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-情绪调节",
-      "target": "pain-总想改变别人",
-      "relation": "能力解痛点",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "ability-自我觉察",
+      "source": "ability-情绪调节能力",
       "target": "pain-总想改变别人",
       "relation": "能力解痛点",
       "value": 1,
@@ -5344,13 +5464,6 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-应变能力",
-      "target": "pain-沟通能力差",
-      "relation": "能力解痛点",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "theme-interpersonal",
       "target": "pain-没有边界感",
       "relation": "主题包含",
@@ -5358,7 +5471,7 @@ const _GRAPH = {
       "color": "#F08075"
     },
     {
-      "source": "ability-边界感",
+      "source": "ability-立边界能力",
       "target": "pain-没有边界感",
       "relation": "能力解痛点",
       "value": 1,
@@ -5368,20 +5481,6 @@ const _GRAPH = {
       "source": "ability-沟通能力",
       "target": "pain-没有边界感",
       "relation": "能力解痛点",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "ability-自我觉察",
-      "target": "pain-没有边界感",
-      "relation": "能力解痛点",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-self",
-      "target": "thinking-bi-jiao-you-shi",
-      "relation": "主题包含",
       "value": 1,
       "color": "#F08075"
     },
@@ -5407,20 +5506,6 @@ const _GRAPH = {
       "color": "#A88BD8"
     },
     {
-      "source": "theme-think",
-      "target": "thinking-bian-zheng-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-interpersonal",
-      "target": "thinking-bian-zheng-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "pain-盲目跟风",
       "target": "thinking-bian-zheng-si-wei",
       "relation": "思维应用于",
@@ -5433,20 +5518,6 @@ const _GRAPH = {
       "relation": "思维应用于",
       "value": 1,
       "color": "#A88BD8"
-    },
-    {
-      "source": "theme-self",
-      "target": "thinking-chang-qi-zhu-yi",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-emotion",
-      "target": "thinking-chang-qi-zhu-yi",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
     },
     {
       "source": "pain-焦虑",
@@ -5468,20 +5539,6 @@ const _GRAPH = {
       "relation": "思维应用于",
       "value": 1,
       "color": "#A88BD8"
-    },
-    {
-      "source": "theme-self",
-      "target": "thinking-cheng-zhang-xing-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-emotion",
-      "target": "thinking-cheng-zhang-xing-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
     },
     {
       "source": "pain-害怕失败",
@@ -5512,27 +5569,6 @@ const _GRAPH = {
       "color": "#A88BD8"
     },
     {
-      "source": "theme-think",
-      "target": "thinking-chou-xiang-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-action",
-      "target": "thinking-chou-xiang-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-think",
-      "target": "thinking-di-yi-xing-yuan-li",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "pain-盲目跟风",
       "target": "thinking-di-yi-xing-yuan-li",
       "relation": "思维应用于",
@@ -5545,20 +5581,6 @@ const _GRAPH = {
       "relation": "思维应用于",
       "value": 1,
       "color": "#A88BD8"
-    },
-    {
-      "source": "theme-action",
-      "target": "thinking-die-dai-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-think",
-      "target": "thinking-die-dai-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
     },
     {
       "source": "pain-拖延",
@@ -5582,20 +5604,6 @@ const _GRAPH = {
       "color": "#A88BD8"
     },
     {
-      "source": "theme-think",
-      "target": "thinking-dong-tai-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-self",
-      "target": "thinking-dong-tai-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "pain-迷茫",
       "target": "thinking-dong-tai-si-wei",
       "relation": "思维应用于",
@@ -5610,32 +5618,11 @@ const _GRAPH = {
       "color": "#A88BD8"
     },
     {
-      "source": "theme-think",
-      "target": "thinking-fa-san-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "pain-迷茫",
       "target": "thinking-fa-san-si-wei",
       "relation": "思维应用于",
       "value": 1,
       "color": "#A88BD8"
-    },
-    {
-      "source": "theme-think",
-      "target": "thinking-gai-lv-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-emotion",
-      "target": "thinking-gai-lv-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
     },
     {
       "source": "pain-焦虑",
@@ -5659,20 +5646,6 @@ const _GRAPH = {
       "color": "#A88BD8"
     },
     {
-      "source": "theme-think",
-      "target": "thinking-jia-she-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-action",
-      "target": "thinking-jia-she-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "pain-执行力差",
       "target": "thinking-jia-she-si-wei",
       "relation": "思维应用于",
@@ -5685,20 +5658,6 @@ const _GRAPH = {
       "relation": "思维应用于",
       "value": 1,
       "color": "#A88BD8"
-    },
-    {
-      "source": "theme-think",
-      "target": "thinking-jie-gou-hua-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-action",
-      "target": "thinking-jie-gou-hua-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
     },
     {
       "source": "pain-低效瞎忙",
@@ -5722,13 +5681,6 @@ const _GRAPH = {
       "color": "#A88BD8"
     },
     {
-      "source": "theme-think",
-      "target": "thinking-ju-he-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "pain-选择困难症",
       "target": "thinking-ju-he-si-wei",
       "relation": "思维应用于",
@@ -5743,27 +5695,6 @@ const _GRAPH = {
       "color": "#A88BD8"
     },
     {
-      "source": "theme-think",
-      "target": "thinking-lei-bi-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-action",
-      "target": "thinking-lei-bi-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-think",
-      "target": "thinking-luo-ji-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "pain-经常吃亏上当",
       "target": "thinking-luo-ji-si-wei",
       "relation": "思维应用于",
@@ -5776,27 +5707,6 @@ const _GRAPH = {
       "relation": "思维应用于",
       "value": 1,
       "color": "#A88BD8"
-    },
-    {
-      "source": "theme-think",
-      "target": "thinking-mo-xing-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-think",
-      "target": "thinking-ni-xiang-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-action",
-      "target": "thinking-ni-xiang-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
     },
     {
       "source": "pain-选择困难症",
@@ -5813,13 +5723,6 @@ const _GRAPH = {
       "color": "#A88BD8"
     },
     {
-      "source": "theme-think",
-      "target": "thinking-pi-pan-xing-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "pain-盲目跟风",
       "target": "thinking-pi-pan-xing-si-wei",
       "relation": "思维应用于",
@@ -5832,20 +5735,6 @@ const _GRAPH = {
       "relation": "思维应用于",
       "value": 1,
       "color": "#A88BD8"
-    },
-    {
-      "source": "theme-think",
-      "target": "thinking-shi-shi-qiu-shi",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-self",
-      "target": "thinking-shi-shi-qiu-shi",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
     },
     {
       "source": "pain-盲目跟风",
@@ -5862,20 +5751,6 @@ const _GRAPH = {
       "color": "#A88BD8"
     },
     {
-      "source": "theme-think",
-      "target": "thinking-xi-tong-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-action",
-      "target": "thinking-xi-tong-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
       "source": "pain-低效瞎忙",
       "target": "thinking-xi-tong-si-wei",
       "relation": "思维应用于",
@@ -5888,20 +5763,6 @@ const _GRAPH = {
       "relation": "思维应用于",
       "value": 1,
       "color": "#A88BD8"
-    },
-    {
-      "source": "theme-self",
-      "target": "thinking-xiang-dui-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
-    },
-    {
-      "source": "theme-think",
-      "target": "thinking-xiang-dui-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
     },
     {
       "source": "pain-自卑",
@@ -5923,13 +5784,6 @@ const _GRAPH = {
       "relation": "思维应用于",
       "value": 1,
       "color": "#A88BD8"
-    },
-    {
-      "source": "theme-think",
-      "target": "thinking-yin-guo-si-wei",
-      "relation": "主题包含",
-      "value": 1,
-      "color": "#F08075"
     },
     {
       "source": "pain-经常吃亏上当",
@@ -5968,7 +5822,7 @@ const _GRAPH = {
     },
     {
       "source": "insight-renqingshigu",
-      "target": "ability-人脉筛选与维护能力",
+      "target": "ability-人脉经营能力",
       "relation": "洞察要求",
       "value": 1,
       "color": "#7BC47E"
@@ -5996,13 +5850,6 @@ const _GRAPH = {
     },
     {
       "source": "insight-gaorenzhi",
-      "target": "ability-思辨能力",
-      "relation": "洞察要求",
-      "value": 1,
-      "color": "#7BC47E"
-    },
-    {
-      "source": "insight-gaorenzhi",
       "target": "ability-判断力",
       "relation": "洞察要求",
       "value": 1,
@@ -6017,14 +5864,7 @@ const _GRAPH = {
     },
     {
       "source": "insight-gaorenzhi",
-      "target": "ability-逻辑思维能力",
-      "relation": "洞察要求",
-      "value": 1,
-      "color": "#7BC47E"
-    },
-    {
-      "source": "insight-gaorenzhi",
-      "target": "ability-情绪调节",
+      "target": "ability-情绪调节能力",
       "relation": "洞察要求",
       "value": 1,
       "color": "#7BC47E"
@@ -6087,7 +5927,7 @@ const _GRAPH = {
     },
     {
       "source": "insight-tisheng",
-      "target": "ability-学习能力",
+      "target": "ability-高效学习能力",
       "relation": "洞察要求",
       "value": 1,
       "color": "#7BC47E"
@@ -6129,7 +5969,7 @@ const _GRAPH = {
     },
     {
       "source": "insight-ruozhe",
-      "target": "ability-敢于拒绝能力",
+      "target": "ability-敢于拒绝的能力",
       "relation": "洞察要求",
       "value": 1,
       "color": "#7BC47E"
@@ -6150,14 +5990,14 @@ const _GRAPH = {
     },
     {
       "source": "insight-ruozhe",
-      "target": "ability-边界感",
+      "target": "ability-立边界能力",
       "relation": "洞察要求",
       "value": 1,
       "color": "#7BC47E"
     },
     {
       "source": "insight-ruozhe",
-      "target": "ability-自我认同",
+      "target": "ability-自我认同与接纳",
       "relation": "洞察要求",
       "value": 1,
       "color": "#7BC47E"
@@ -6184,27 +6024,6 @@ const _GRAPH = {
       "color": "#F5C84C"
     },
     {
-      "source": "theme-emotion",
-      "target": "book-蛤蟆先生去看心理医生",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-emotion",
-      "target": "book-自卑与超越",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "book-自卑与超越",
-      "target": "pain-自卑",
-      "relation": "书单解决",
-      "value": 1,
-      "color": "#F5C84C"
-    },
-    {
       "source": "theme-think",
       "target": "book-毛选",
       "relation": "书单推荐",
@@ -6220,28 +6039,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-think",
-      "target": "book-道德经",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-think",
-      "target": "book-物种起源",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-think",
       "target": "book-人类简史",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-think",
-      "target": "book-苏菲的世界",
       "relation": "书单推荐",
       "value": 1,
       "color": "#F48FB1"
@@ -6262,70 +6060,7 @@ const _GRAPH = {
     },
     {
       "source": "theme-action",
-      "target": "book-格鲁夫给经理人的第一课",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-action",
-      "target": "book-掌控习惯",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-action",
-      "target": "book-福格行为模型",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-action",
-      "target": "book-谈谈方法",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-action",
       "target": "book-高效能人士的-7-个习惯",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-interpersonal",
-      "target": "book-津巴多普通心理学",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-interpersonal",
-      "target": "book-亲密关系",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-interpersonal",
-      "target": "book-社会心理学",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-interpersonal",
-      "target": "book-社会性动物",
-      "relation": "书单推荐",
-      "value": 1,
-      "color": "#F48FB1"
-    },
-    {
-      "source": "theme-interpersonal",
-      "target": "book-君主论",
       "relation": "书单推荐",
       "value": 1,
       "color": "#F48FB1"
@@ -6346,7 +6081,7 @@ const _GRAPH = {
     },
     {
       "source": "ability-主动邀功",
-      "target": "ability-人脉筛选与维护能力",
+      "target": "ability-人脉经营能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
@@ -6366,7 +6101,7 @@ const _GRAPH = {
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-人脉筛选与维护能力",
+      "source": "ability-人脉经营能力",
       "target": "ability-自我包装能力",
       "relation": "能力协同",
       "value": 1,
@@ -6387,14 +6122,14 @@ const _GRAPH = {
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-人脉筛选与维护能力",
+      "source": "ability-人脉经营能力",
       "target": "ability-沟通能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-人脉筛选与维护能力",
+      "source": "ability-人脉经营能力",
       "target": "ability-识人辨人能力",
       "relation": "能力协同",
       "value": 1,
@@ -6423,69 +6158,55 @@ const _GRAPH = {
     },
     {
       "source": "ability-自信心",
-      "target": "ability-自我接纳",
-      "relation": "能力协同",
-      "value": 1,
-      "color": "#9AA0EF"
-    },
-    {
-      "source": "ability-自信心",
-      "target": "ability-自我认同",
+      "target": "ability-自我认同与接纳",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
       "source": "ability-执行力",
-      "target": "ability-自我接纳",
+      "target": "ability-自我认同与接纳",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-执行力",
-      "target": "ability-自我认同",
-      "relation": "能力协同",
-      "value": 1,
-      "color": "#9AA0EF"
-    },
-    {
-      "source": "ability-自我接纳",
-      "target": "ability-自我认同",
+      "source": "ability-自我认同与接纳",
+      "target": "ability-自我认同与接纳",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
       "source": "ability-复盘能力",
-      "target": "ability-学习能力",
+      "target": "ability-高效学习能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-学习能力",
+      "source": "ability-高效学习能力",
       "target": "ability-输出能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-学习能力",
+      "source": "ability-高效学习能力",
       "target": "ability-执行力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-学习能力",
+      "source": "ability-高效学习能力",
       "target": "ability-屏蔽力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-学习能力",
+      "source": "ability-高效学习能力",
       "target": "ability-表达能力",
       "relation": "能力协同",
       "value": 1,
@@ -6563,7 +6284,7 @@ const _GRAPH = {
     },
     {
       "source": "ability-自信心",
-      "target": "ability-边界感",
+      "target": "ability-立边界能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
@@ -6576,49 +6297,49 @@ const _GRAPH = {
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-敢于拒绝能力",
+      "source": "ability-敢于拒绝的能力",
       "target": "ability-自信心",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-自我认同",
-      "target": "ability-边界感",
+      "source": "ability-自我认同与接纳",
+      "target": "ability-立边界能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-自我认同",
+      "source": "ability-自我认同与接纳",
       "target": "ability-表达能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-敢于拒绝能力",
-      "target": "ability-自我认同",
+      "source": "ability-敢于拒绝的能力",
+      "target": "ability-自我认同与接纳",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
       "source": "ability-表达能力",
-      "target": "ability-边界感",
+      "target": "ability-立边界能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-敢于拒绝能力",
-      "target": "ability-边界感",
+      "source": "ability-敢于拒绝的能力",
+      "target": "ability-立边界能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-敢于拒绝能力",
+      "source": "ability-敢于拒绝的能力",
       "target": "ability-表达能力",
       "relation": "能力协同",
       "value": 1,
@@ -6646,7 +6367,7 @@ const _GRAPH = {
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-时间管理能力",
+      "source": "ability-时间管理",
       "target": "ability-精力管理",
       "relation": "能力协同",
       "value": 1,
@@ -6661,21 +6382,7 @@ const _GRAPH = {
     },
     {
       "source": "ability-执行力",
-      "target": "ability-时间管理能力",
-      "relation": "能力协同",
-      "value": 1,
-      "color": "#9AA0EF"
-    },
-    {
-      "source": "ability-独立思考能力",
-      "target": "ability-逻辑思维能力",
-      "relation": "能力协同",
-      "value": 1,
-      "color": "#9AA0EF"
-    },
-    {
-      "source": "ability-思辨能力",
-      "target": "ability-独立思考能力",
+      "target": "ability-时间管理",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
@@ -6688,50 +6395,15 @@ const _GRAPH = {
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-情绪调节",
+      "source": "ability-情绪调节能力",
       "target": "ability-独立思考能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-思辨能力",
-      "target": "ability-逻辑思维能力",
-      "relation": "能力协同",
-      "value": 1,
-      "color": "#9AA0EF"
-    },
-    {
       "source": "ability-判断力",
-      "target": "ability-逻辑思维能力",
-      "relation": "能力协同",
-      "value": 1,
-      "color": "#9AA0EF"
-    },
-    {
-      "source": "ability-情绪调节",
-      "target": "ability-逻辑思维能力",
-      "relation": "能力协同",
-      "value": 1,
-      "color": "#9AA0EF"
-    },
-    {
-      "source": "ability-判断力",
-      "target": "ability-思辨能力",
-      "relation": "能力协同",
-      "value": 1,
-      "color": "#9AA0EF"
-    },
-    {
-      "source": "ability-思辨能力",
-      "target": "ability-情绪调节",
-      "relation": "能力协同",
-      "value": 1,
-      "color": "#9AA0EF"
-    },
-    {
-      "source": "ability-判断力",
-      "target": "ability-情绪调节",
+      "target": "ability-情绪调节能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
@@ -6800,7 +6472,7 @@ const _GRAPH = {
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-情绪调节",
+      "source": "ability-情绪调节能力",
       "target": "ability-解决问题能力",
       "relation": "能力协同",
       "value": 1,
@@ -6815,13 +6487,13 @@ const _GRAPH = {
     },
     {
       "source": "ability-复盘能力",
-      "target": "ability-情绪调节",
+      "target": "ability-情绪调节能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
     },
     {
-      "source": "ability-情绪调节",
+      "source": "ability-情绪调节能力",
       "target": "ability-执行力",
       "relation": "能力协同",
       "value": 1,
@@ -6829,10 +6501,1368 @@ const _GRAPH = {
     },
     {
       "source": "ability-决策力",
-      "target": "ability-情绪调节",
+      "target": "ability-情绪调节能力",
       "relation": "能力协同",
       "value": 1,
       "color": "#9AA0EF"
+    },
+    {
+      "source": "theme-self",
+      "target": "ability-挖掘自身优势",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-emotion",
+      "target": "ability-情绪觉察能力",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-emotion",
+      "target": "ability-共情能力",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "ability-深度思考能力",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "ability-大局观",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-action",
+      "target": "ability-习惯养成",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-action",
+      "target": "ability-构建能力",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-action",
+      "target": "ability-把自己产品化",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-interpersonal",
+      "target": "ability-价值交换",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-self",
+      "target": "ability-向内求",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-interpersonal",
+      "target": "ability-预期管理",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-interpersonal",
+      "target": "ability-给自己造势",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "thinking-gan-gan-si-wei",
+      "target": "ability-把自己产品化",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-gan-gan-si-wei",
+      "target": "ability-构建能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-gan-gan-si-wei",
+      "target": "ability-主动邀功",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-fu-li-si-wei",
+      "target": "ability-习惯养成",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-fu-li-si-wei",
+      "target": "ability-输出能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-fu-li-si-wei",
+      "target": "ability-专注力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-bo-yi-si-wei",
+      "target": "ability-试探能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-bo-yi-si-wei",
+      "target": "ability-冲突处理能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-bo-yi-si-wei",
+      "target": "ability-价值交换",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-quan-heng-si-wei",
+      "target": "ability-决策力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-quan-heng-si-wei",
+      "target": "ability-大局观",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-quan-heng-si-wei",
+      "target": "ability-风险管控能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-bian-jie-si-wei",
+      "target": "ability-立边界能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-bian-jie-si-wei",
+      "target": "ability-敢于拒绝的能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-shuang-ying-si-wei",
+      "target": "ability-冲突处理能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-shuang-ying-si-wei",
+      "target": "ability-价值交换",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-shuang-ying-si-wei",
+      "target": "ability-人脉经营能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-li-ta-si-wei",
+      "target": "ability-人脉经营能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-li-ta-si-wei",
+      "target": "ability-价值交换",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-jia-zhi-jiao-huan-si-wei",
+      "target": "ability-价值交换",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-jia-zhi-jiao-huan-si-wei",
+      "target": "ability-识人辨人能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-fu-ren-si-wei",
+      "target": "ability-把自己产品化",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-fu-ren-si-wei",
+      "target": "ability-价值交换",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-ding-wei-li-lun",
+      "target": "ability-挖掘自身优势",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-ding-wei-li-lun",
+      "target": "ability-自我包装能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-neng-li-quan",
+      "target": "ability-挖掘自身优势",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-neng-li-quan",
+      "target": "ability-构建能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-ben-zhi-si-wei",
+      "target": "ability-深度思考能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-ben-zhi-si-wei",
+      "target": "ability-解决问题能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-fan-cui-ruo",
+      "target": "ability-抗压能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-fan-cui-ruo",
+      "target": "ability-情绪调节能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-xin-liu-mo-xing",
+      "target": "ability-专注力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-xin-liu-mo-xing",
+      "target": "ability-习惯养成",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-5w1h-fa",
+      "target": "ability-解决问题能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-5w1h-fa",
+      "target": "ability-执行力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-pdca-xun-huan",
+      "target": "ability-复盘能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-pdca-xun-huan",
+      "target": "ability-执行力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-you-xian-ji-ju-zhen",
+      "target": "ability-时间管理",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-you-xian-ji-ju-zhen",
+      "target": "ability-目标管理能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-huang-jin-quan-mo-xing",
+      "target": "ability-深度思考能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-huang-jin-quan-mo-xing",
+      "target": "ability-表达能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-ao-ka-mu-ti-dao-ding-lv",
+      "target": "ability-深度思考能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-ao-ka-mu-ti-dao-ding-lv",
+      "target": "ability-决策力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-han-long-ti-dao-ding-lv",
+      "target": "ability-判断力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-han-long-ti-dao-ding-lv",
+      "target": "ability-沟通能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-5why-fen-xi-fa",
+      "target": "ability-解决问题能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-5why-fen-xi-fa",
+      "target": "ability-深度思考能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-10-10-10-fa-ze",
+      "target": "ability-决策力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-10-10-10-fa-ze",
+      "target": "ability-情绪调节能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-jue-ce-shu-mo-xing",
+      "target": "ability-决策力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-jue-ce-shu-mo-xing",
+      "target": "ability-风险管控能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-roi-fen-xi",
+      "target": "ability-决策力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-roi-fen-xi",
+      "target": "ability-大局观",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-bei-ye-si-ding-li",
+      "target": "ability-判断力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-bei-ye-si-ding-li",
+      "target": "ability-决策力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-hu-hui",
+      "target": "ability-人脉经营能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-hu-hui",
+      "target": "ability-价值交换",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-she-hui-ren-tong",
+      "target": "ability-给自己造势",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-she-hui-ren-tong",
+      "target": "ability-人脉经营能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-xi-que",
+      "target": "ability-自我包装能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-xi-que",
+      "target": "ability-价值交换",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-cheng-nuo-yu-yi-zhi",
+      "target": "ability-人脉经营能力",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "thinking-cheng-nuo-yu-yi-zhi",
+      "target": "ability-预期管理",
+      "relation": "思维应用于",
+      "value": 1,
+      "color": "#A88BD8"
+    },
+    {
+      "source": "theme-action",
+      "target": "book-富爸爸穷爸爸",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-self",
+      "target": "book-纳瓦尔宝典",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-think",
+      "target": "book-金钱心理学",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-think",
+      "target": "book-思考，快与慢",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-think",
+      "target": "book-学会提问",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-think",
+      "target": "book-娱乐至死",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-think",
+      "target": "book-经济学的思维方式",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-think",
+      "target": "book-理解未来的7个原则",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-interpersonal",
+      "target": "book-非暴力沟通",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-interpersonal",
+      "target": "book-这就是人性",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-action",
+      "target": "book-巴拉巴西成功定律",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "theme-action",
+      "target": "book-为什么伟大不能被计划",
+      "relation": "书单推荐",
+      "value": 1,
+      "color": "#F48FB1"
+    },
+    {
+      "source": "ability-元认知",
+      "target": "pain-习惯性自我否定",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-元认知",
+      "target": "pain-情绪化决策",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-元认知",
+      "target": "pain-盲目跟风",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-挖掘自身优势",
+      "target": "pain-自卑",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-挖掘自身优势",
+      "target": "pain-自我价值感低",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-挖掘自身优势",
+      "target": "pain-迷茫",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-向内求",
+      "target": "pain-过度在意他人看法",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-向内求",
+      "target": "pain-自我价值感低",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-向内求",
+      "target": "pain-总是讨好别人",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-屏蔽力",
+      "target": "pain-精神内耗",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-屏蔽力",
+      "target": "pain-高敏感",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-屏蔽力",
+      "target": "pain-过度在意他人看法",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-情绪觉察能力",
+      "target": "pain-情绪不稳定",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-情绪觉察能力",
+      "target": "pain-焦虑",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-情绪觉察能力",
+      "target": "pain-精神内耗",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-共情能力",
+      "target": "pain-沟通能力差",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-共情能力",
+      "target": "pain-总想改变别人",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-高效学习能力",
+      "target": "pain-低效瞎忙",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-深度思考能力",
+      "target": "pain-盲目跟风",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-深度思考能力",
+      "target": "pain-选择困难症",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-深度思考能力",
+      "target": "pain-经常吃亏上当",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-大局观",
+      "target": "pain-迷茫",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-大局观",
+      "target": "pain-选择困难症",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-习惯养成",
+      "target": "pain-拖延",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-习惯养成",
+      "target": "pain-执行力差",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-解决问题能力",
+      "target": "pain-低效瞎忙",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-解决问题能力",
+      "target": "pain-拖延",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-输出能力",
+      "target": "pain-精神内耗",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-销售能力",
+      "target": "pain-自我价值感低",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-构建能力",
+      "target": "pain-迷茫",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-把自己产品化",
+      "target": "pain-迷茫",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-把自己产品化",
+      "target": "pain-自我价值感低",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-价值交换",
+      "target": "pain-总是讨好别人",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-价值交换",
+      "target": "pain-自我价值感低",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-价值交换",
+      "target": "pain-经常吃亏上当",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-识人辨人能力",
+      "target": "pain-经常吃亏上当",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-识人辨人能力",
+      "target": "pain-社恐",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-人脉经营能力",
+      "target": "pain-社恐",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-人脉经营能力",
+      "target": "pain-总是讨好别人",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-试探能力",
+      "target": "pain-经常吃亏上当",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-试探能力",
+      "target": "pain-没有边界感",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-敢于拒绝的能力",
+      "target": "pain-总是讨好别人",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-敢于拒绝的能力",
+      "target": "pain-没有边界感",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-装傻的能力",
+      "target": "pain-总想改变别人",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-示弱能力",
+      "target": "pain-自卑",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-示弱能力",
+      "target": "pain-社恐",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-厚脸皮能力",
+      "target": "pain-自卑",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-厚脸皮能力",
+      "target": "pain-害怕失败",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-厚脸皮能力",
+      "target": "pain-过度在意他人看法",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-预期管理",
+      "target": "pain-焦虑",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-预期管理",
+      "target": "pain-精神内耗",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-主动邀功",
+      "target": "pain-自我价值感低",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-给自己造势",
+      "target": "pain-自我价值感低",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-自我包装能力",
+      "target": "pain-自我价值感低",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-自我包装能力",
+      "target": "pain-自卑",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "ability-麻烦别人的能力",
+      "target": "pain-社恐",
+      "relation": "能力解痛点",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-bi-jiao-you-shi",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-bian-zheng-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-chang-qi-zhu-yi",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-cheng-zhang-xing-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-chou-xiang-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-di-yi-xing-yuan-li",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-die-dai-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-dong-tai-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-fa-san-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-gai-lv-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-jia-she-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-jie-gou-hua-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-ju-he-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-lei-bi-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-luo-ji-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-mo-xing-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-ni-xiang-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-pi-pan-xing-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-shi-shi-qiu-shi",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-xi-tong-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-xiang-dui-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-yin-guo-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-gan-gan-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-fu-li-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-bo-yi-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-quan-heng-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-bian-jie-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-shuang-ying-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-li-ta-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-jia-zhi-jiao-huan-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-fu-ren-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-ding-wei-li-lun",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-neng-li-quan",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-ben-zhi-si-wei",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-fan-cui-ruo",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-xin-liu-mo-xing",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-5w1h-fa",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-pdca-xun-huan",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-you-xian-ji-ju-zhen",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-huang-jin-quan-mo-xing",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-ao-ka-mu-ti-dao-ding-lv",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-han-long-ti-dao-ding-lv",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-5why-fen-xi-fa",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-10-10-10-fa-ze",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-jue-ce-shu-mo-xing",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-roi-fen-xi",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-bei-ye-si-ding-li",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-hu-hui",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-she-hui-ren-tong",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-xi-que",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
+    },
+    {
+      "source": "theme-think",
+      "target": "thinking-cheng-nuo-yu-yi-zhi",
+      "relation": "主题包含",
+      "value": 1,
+      "color": "#F08075"
     }
   ]
 };
@@ -6878,19 +7908,19 @@ const radius = n => {
 const nodeColor = n => CAT_COLOR[n.category] || '#999';
 
 const themeKeys = ['self','emotion','action','think','interpersonal'];
-// 主题吸引点：不规则、偏中心，子节点围绕各自主题蓬松成团
+// 主题吸引点：适中五角形，主题居构图中心不贴边；子节点贴近主题分布（2026-10-12c 收紧定稿）
 const themeCenters = {
-  'self':        { x: -0.22, y:  0.26 },
-  'emotion':     { x:  0.16, y:  0.34 },
-  'action':      { x: -0.34, y: -0.14 },
-  'think':       { x:  0.30, y: -0.22 },
-  'interpersonal':{ x:  0.06, y: -0.06 }
+  'self':        { x: -0.34, y:  0.08 },
+  'emotion':     { x: -0.10, y:  0.38 },
+  'interpersonal':{ x:  0.32, y:  0.26 },
+  'think':       { x:  0.36, y: -0.20 },
+  'action':      { x: -0.28, y: -0.32 }
 };
 const minWH = ()=>Math.min(W(), H());
 
 nodes.forEach(n=>{
-  n.x = W()/2 + (Math.random()-0.5)*minWH()*0.55;
-  n.y = H()/2 + (Math.random()-0.5)*minWH()*0.55;
+  n.x = W()/2 + (Math.random()-0.5)*minWH()*0.75;
+  n.y = H()/2 + (Math.random()-0.5)*minWH()*0.75;
 });
 
 const svg = d3.select("#svg").attr("width", W()).attr("height", H()).attr("viewBox", `0 0 ${W()} ${H()}`);
@@ -6899,8 +7929,8 @@ const viewport = svg.append("g").attr("class","viewport");
 function clusterPos(theme, isTheme){
   const c = themeCenters[theme];
   if(!c) return {x: W()/2, y: H()/2};
-  // 主题偏中心；子节点成团但半径更大，留出自然空隙
-  const r = isTheme ? minWH()*0.18 : minWH()*0.36;
+  // 主题节点钉在吸引点上（强）；子节点半径适中，紧贴主题分布
+  const r = isTheme ? minWH()*0.24 : minWH()*0.40;
   return { x: W()/2 + c.x*r, y: H()/2 + c.y*r };
 }
 
@@ -6910,25 +7940,25 @@ const sim = d3.forceSimulation(nodes)
   .force("link", d3.forceLink(links).id(d=>d.id)
       .distance(l=> {
         const a = l.s.type, b = l.t.type;
-        if(a==='theme' && b==='theme') return 320;
-        if(a==='theme' || b==='theme') return 130;
-        return 85;
+        if(a==='theme' && b==='theme') return 300;
+        if(a==='theme' || b==='theme') return 140;
+        return 90;
       })
       .strength(l=> {
         const a = l.s.type, b = l.t.type;
-        if(a==='theme' && b==='theme') return 0.22;
-        if(a==='theme' || b==='theme') return 0.40;
+        if(a==='theme' && b==='theme') return 0.08;
+        if(a==='theme' || b==='theme') return 0.22;
         return 0.50;
       }))
-  // 增强斥力，节点数多时也能自然散开
-  .force("charge", d3.forceManyBody().strength(n=> n.type==='theme' ? -760 : -460).distanceMax(minWH()*0.9))
+  // 增强斥力，节点数多时也能自然散开（2026-10-12 再加强）
+  .force("charge", d3.forceManyBody().strength(n=> n.type==='theme' ? -700 : -500).distanceMax(minWH()*0.8))
   .force("center", d3.forceCenter(W()/2, H()/2).strength(0.012))
-  // 弱化聚类拉力，只给主题归属一个轻微趋势
+  // 主题定位力强（钉住五角形），子节点向心力中等（贴主题成团）
   .force("clusterX", d3.forceX(d=> clusterPos(d.theme, d.type==='theme').x)
-    .strength(d => d.type==='theme' ? 0.018 : 0.028))
+    .strength(d => d.type==='theme' ? 0.14 : 0.05))
   .force("clusterY", d3.forceY(d=> clusterPos(d.theme, d.type==='theme').y)
-    .strength(d => d.type==='theme' ? 0.018 : 0.028))
-  .force("collide", d3.forceCollide().radius(d=>radius(d)+10).strength(0.62))
+    .strength(d => d.type==='theme' ? 0.14 : 0.05))
+  .force("collide", d3.forceCollide().radius(d=>radius(d)+12).strength(0.7))
   // 只保留极弱软边界，防止节点完全飞出可视区；不制造硬框
   .force("softBounds", softBounds());
 
@@ -7049,14 +8079,19 @@ function focusNodes(idSet){
   node.classed("dim", d => !idSet.has(d.id)).classed("hl", d => idSet.has(d.id));
   link.classed("dim", d => !(idSet.has(d.s.id) && idSet.has(d.t.id)));
 }
+function applyCenterView(centerId, set){
+  // 中心节点发光；相关邻居正常显示；连线只保留「中心↔邻居」的放射线，邻居之间互连的线一律隐藏（2026-10-12 定稿）
+  node.classed("dim", d => !set.has(d.id)).classed("hl", d => d.id === centerId);
+  link.classed("dim", d => !(d.s.id === centerId || d.t.id === centerId));
+}
 function setLockedHighlight(centerId){
   const set = new Set([centerId]);
   adj.get(centerId).forEach(id => set.add(id));
   lockedHighlight = set;
-  focusNodes(set);
+  applyCenterView(centerId, set);
 }
 function restoreHighlight(){
-  if(lockedHighlight) focusNodes(lockedHighlight);
+  if(lockedHighlight) applyCenterView(lockedHighlight.values().next().value, lockedHighlight);
   else applyTypeVisual();
 }
 
@@ -7067,13 +8102,10 @@ node.on("mouseover",(e,d)=>{
     const set=adj.get(d.id);
     node.classed("dim",o=>!set.has(o.id)).classed("hl",o=>o.id===d.id);
     link.classed("dim",o=>!(o.s.id===d.id||o.t.id===d.id));
-    let html = `<b>${d.label}</b>`;
-    html += `<br><span style="opacity:.6">${TYPE_LABELS[d.type] || d.type}</span>`;
-    if(d.theme && THEME_INFO[d.theme]) html += `<br><span style="opacity:.6">${THEME_INFO[d.theme].label}</span>`;
-    tip.innerHTML = html; tip.style.display="block";
+    // 悬浮 tooltip 已按需求移除（2026-10-11）：hover 只做高亮，不再弹框
   })
-  .on("mousemove",(e)=>{ if(isTouch) return; tip.style.left=(e.clientX+14)+"px"; tip.style.top=(e.clientY+14)+"px"; })
-  .on("mouseout",()=>{ if(isTouch) return; tip.style.display="none"; restoreHighlight(); });
+  .on("mousemove",()=>{})
+  .on("mouseout",()=>{ if(isTouch) return; restoreHighlight(); });
 
 let selectedSearchId = null;
 
@@ -7143,8 +8175,13 @@ function showPanel(d){
     const src = (GRAPH.meta.sources || {})[sid];
     if(!src) return '';
     const date = src.updated_at || src.date || '';
-    return `<div class="source-link"><span class="source-date">更新时间：${date}</span>`
-      + `</div>`;
+    // 来源可点：跳到 sources 原文页（文件名 = seq-id.html，随站点分发 knowledge-base/sources/html/）
+    // 禁用 emoji（用户 2026-10-16）：文档图标用 inline SVG；**必须显式 style 尺寸**——
+    // 母版全局 svg{width:100%;height:100%} 会把无尺寸内联图标撑满容器
+    const file = (src.seq ? src.seq + '-' : '') + sid + '.html';
+    const icon = `<svg viewBox="0 0 24 24" width="13" height="13" style="width:13px;height:13px;flex-shrink:0;vertical-align:-2px;margin-right:4px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>`;
+    return `<div class="source-link"><a href="knowledge-base/sources/html/${encodeURIComponent(file)}" target="_blank" rel="noopener" style="color:#F4A261;text-decoration:none;font-size:12.5px">${icon}原文：${src.title || sid}</a>`
+      + `<span class="source-date" style="margin-left:8px;color:rgba(255,255,255,.45);font-size:12px">更新：${date}</span></div>`;
   }
   let metaHtml = `<span class="tag" style="background:${nodeColor(d)}!important;color:#fff!important">${TYPE_LABELS[d.type]||d.type}</span>`;
   if(d.theme && THEME_INFO[d.theme]) metaHtml += `<span class="tag">${THEME_INFO[d.theme].label}</span>`;
@@ -7274,10 +8311,8 @@ document.getElementById("closePanel").onclick = hidePanel;
 node.on("click", function(ev){
   const d = d3.select(this).datum();
   ev.stopPropagation();
-  tip.style.display = "none";            // 点击节点时立即隐藏 hover tooltip
-  selectedSearchId = d.id;
-  setLockedHighlight(d.id);
-  if(canJump(d)){
+  if(d.type === 'theme'){ return; }
+  if(typeof canJump === 'function' && canJump(d)){
     jumpToDetail(d);
   } else {
     showPanel(d);
@@ -7306,6 +8341,7 @@ function centerNode(n){
 function canJump(d){
   if(!d) return false;
   if(d.type === 'pain') return false;
+  if(d.type === 'ability') return false;
   if(d.type === 'book'){
     const title = typeof normalizeBookTitle === 'function' ? normalizeBookTitle(d.label) : d.label;
     const freeBooks = new Set(['纳瓦尔宝典', '富爸爸穷爸爸', '人类简史', '国富论', '孙子兵法']);
@@ -7332,6 +8368,11 @@ function jumpToDetail(d){
     const file = MODEL_SLUGS[rawSlug] || MODEL_SLUGS[slug];
     if(file) window.open('models/' + file, '_blank');
   } else if(d.type === 'ability'){
+    // 无详情内容的能力先不跳转，回落到右侧面板
+    if(typeof ABILITY_NO_JUMP !== 'undefined' && ABILITY_NO_JUMP.indexOf(d.label) >= 0){
+      showPanel(d);
+      return;
+    }
     /* [free] 能力详情为付费功能，跳转已移除 */ void 0;
   }
 }
@@ -7342,28 +8383,38 @@ searchInput.addEventListener("input", ()=>{
   selectedSearchId = null;
   lockedHighlight = null;
   if(!q){ searchDropdown.style.display='none'; applyTypeVisual(); return; }
-  const matches = nodes.filter(n => n.label.toLowerCase().includes(q)).slice(0,12);
+  // 主题（5 个固定大球）不在搜索结果里展示，只搜具体节点
+  const matches = nodes.filter(n => n.type !== 'theme' && n.label.toLowerCase().includes(q)).slice(0,12);
   if(!matches.length){
-    searchDropdown.innerHTML = '<div class="searchEmpty">无匹配节点</div>';
+    searchDropdown.innerHTML = '<div class="searchEmpty">无匹配内容</div>';
   } else {
     matches.forEach(n=>{
       const item = document.createElement('div');
       item.className = 'searchItem';
       item.innerHTML = `<span class="dot" style="background:${nodeColor(n)}"></span><span>${cleanLabel(n.label)}</span><span class="meta">${TYPE_LABELS[n.type]||n.type}</span>`;
+      item.__node = n;
       item.onclick = ()=>{
         centerNode(n);
         searchDropdown.style.display='none';
       };
+      item.onmouseenter = ()=>{ activeSearchItem = item; };
       searchDropdown.appendChild(item);
-    });
-  }
+    });  }
   searchDropdown.style.display='block';
 });
+// 光标一进搜索框就按当前内容出匹配结果，不用先删字
+searchInput.addEventListener("focus", ()=>{
+  if(searchInput.value.trim()) searchInput.dispatchEvent(new Event('input'));
+});
+// 回车行为（用户 2026-10-16 拍板）：只有用户明确选中过下拉项（鼠标划过/方向键选中）后，
+// 回车才把该项填入输入框并打开面板；没有明确选中时（如拼音只打了一个字母 d），
+// 回车一律不动输入框——不得自动把第一个匹配项（如 PDCA循环）拼进输入框。
+let activeSearchItem = null;
+searchInput.addEventListener("input", ()=>{ activeSearchItem = null; });
 searchInput.addEventListener("keydown", (e)=>{
   if(e.key === 'Enter'){
-    const q = searchInput.value.trim().toLowerCase();
-    if(!q) return;
-    const n = nodes.find(n => n.label.toLowerCase().includes(q));
+    if(!activeSearchItem) return; // 无明确选中：保持输入原样
+    const n = activeSearchItem.__node;
     if(n){ centerNode(n); searchDropdown.style.display='none'; }
   }
 });
